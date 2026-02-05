@@ -8,32 +8,28 @@ interface LogoProps {
 }
 
 export function Logo({ className, variant = "default", showTagline = false }: LogoProps) {
-  const textPrimary = variant === "default" ? "text-primary" : "text-white";
-
   return (
     <Link
       href="/"
       className={cn("flex items-center gap-3", className)}
     >
-      {/* Logo Icon */}
-      <div className={cn(
-        "w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xl flex-shrink-0",
-        variant === "default"
-          ? "bg-gradient-to-br from-accent to-secondary text-white"
-          : "bg-white/10 text-white border border-white/20"
-      )}>
+      {/* Logo Icon - Always use gradient for visibility */}
+      <div className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xl flex-shrink-0 bg-gradient-to-br from-accent to-secondary text-white shadow-lg">
         <span>1S</span>
       </div>
 
       <div className="flex flex-col">
-        <span className={cn("font-bold text-2xl leading-tight whitespace-nowrap", textPrimary)}>
+        <span className={cn(
+          "font-bold text-2xl leading-tight whitespace-nowrap",
+          variant === "default" ? "text-primary" : "text-white drop-shadow-md"
+        )}>
           <span className="text-accent">One</span>Squad
         </span>
         {showTagline && (
           <span
             className={cn(
               "text-xs whitespace-nowrap",
-              variant === "default" ? "text-muted-foreground" : "text-white/70"
+              variant === "default" ? "text-muted-foreground" : "text-white/90"
             )}
           >
             <span className="text-accent">Unlock your</span> digital potential
