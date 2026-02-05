@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
@@ -16,15 +15,15 @@ export function Logo({ className, variant = "default", showTagline = false }: Lo
       href="/"
       className={cn("flex items-center gap-3", className)}
     >
-      {/* Official OneSquad Logo from brand guide */}
-      <Image
-        src="/logo-v2.png"
-        alt="OneSquad Logo"
-        width={40}
-        height={40}
-        className="w-10 h-10 flex-shrink-0"
-        priority
-      />
+      {/* Logo Icon */}
+      <div className={cn(
+        "w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xl flex-shrink-0",
+        variant === "default"
+          ? "bg-gradient-to-br from-accent to-secondary text-white"
+          : "bg-white/10 text-white border border-white/20"
+      )}>
+        <span>1S</span>
+      </div>
 
       <div className="flex flex-col">
         <span className={cn("font-bold text-2xl leading-tight whitespace-nowrap", textPrimary)}>
@@ -54,12 +53,14 @@ export function LogoIcon({
   size?: number;
 }) {
   return (
-    <Image
-      src="/logo-v2.png"
-      alt="OneSquad Logo"
-      width={size}
-      height={size}
-      className={className}
-    />
+    <div
+      className={cn(
+        "rounded-xl flex items-center justify-center font-bold bg-gradient-to-br from-accent to-secondary text-white",
+        className
+      )}
+      style={{ width: size, height: size, fontSize: size * 0.4 }}
+    >
+      1S
+    </div>
   );
 }
