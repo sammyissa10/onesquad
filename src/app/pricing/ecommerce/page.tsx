@@ -152,7 +152,7 @@ export default function EcommercePricingPage() {
       <Breadcrumb items={[{ label: "Pricing", href: "/pricing" }, { label: "E-Commerce Plans" }]} />
       <main>
         {/* Hero */}
-        <Section background="gradient" className="pt-32">
+        <Section background="gradient">
           <Container>
             <motion.div
               initial={{ opacity: 0, y: 30 }}

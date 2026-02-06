@@ -190,7 +190,7 @@ export default function TeamPage() {
       <Breadcrumb items={[{ label: "Our Team" }]} />
       <main>
         {/* Hero */}
-        <Section background="gradient" className="pt-32">
+        <Section background="gradient">
           <Container>
             <motion.div
               initial={{ opacity: 0, y: 30 }}

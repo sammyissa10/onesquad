@@ -173,7 +173,7 @@ function TemplateCard({ template }: { template: typeof templates[0] }) {
             <h3 className="font-bold text-primary group-hover:text-accent transition-colors">
               {template.name}
             </h3>
-            <span className="text-xs font-medium text-green-600 bg-green-50 px-2 py-1 rounded">
+            <span className="text-xs font-medium text-accent bg-accent/10 px-2 py-1 rounded">
               {template.price}
             </span>
           </div>

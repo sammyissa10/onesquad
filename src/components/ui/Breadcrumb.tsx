@@ -15,7 +15,7 @@ interface BreadcrumbProps {
 
 export function Breadcrumb({ items }: BreadcrumbProps) {
   return (
-    <div className="bg-muted border-b border-border">
+    <div className="bg-muted border-b border-border pt-20">
       <Container>
         <nav
           aria-label="Breadcrumb"

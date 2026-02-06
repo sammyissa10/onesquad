@@ -178,7 +178,7 @@ export default function PricingPage() {
       <Breadcrumb items={[{ label: "Pricing" }]} />
       <main>
         {/* Hero */}
-        <Section background="gradient" className="pt-32">
+        <Section background="gradient">
           <Container>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -299,31 +299,24 @@ export default function PricingPage() {
               </motion.p>
 
               {/* Plans grid */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTab}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 }}
-                  className={cn(
-                    "grid gap-8",
-                    activeTab === "hosting"
-                      ? "md:grid-cols-3"
-                      : "md:grid-cols-2 lg:grid-cols-4"
-                  )}
-                >
-                  {(activeTab === "hosting" ? hostingPlans : managedPlans).map(
-                    (plan) => (
-                      <PricingCard
-                        key={plan.name}
-                        plan={plan}
-                        isAnnual={isAnnual}
-                      />
-                    )
-                  )}
-                </motion.div>
-              </AnimatePresence>
+              <div
+                className={cn(
+                  "grid gap-8",
+                  activeTab === "hosting"
+                    ? "md:grid-cols-3"
+                    : "md:grid-cols-2 lg:grid-cols-4"
+                )}
+              >
+                {(activeTab === "hosting" ? hostingPlans : managedPlans).map(
+                  (plan) => (
+                    <PricingCard
+                      key={plan.name}
+                      plan={plan}
+                      isAnnual={isAnnual}
+                    />
+                  )
+                )}
+              </div>
             </motion.div>
           </Container>
         </Section>

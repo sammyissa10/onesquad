@@ -186,7 +186,7 @@ export default function BlogPage() {
       <Breadcrumb items={[{ label: "Blog" }]} />
       <main>
         {/* Hero */}
-        <Section background="gradient" className="pt-32">
+        <Section background="gradient">
           <Container>
             <motion.div
               initial={{ opacity: 0, y: 30 }}

@@ -170,7 +170,7 @@ export default function CaseStudiesPage() {
       <Breadcrumb items={[{ label: "Case Studies" }]} />
       <main>
         {/* Hero */}
-        <Section background="gradient" className="pt-32">
+        <Section background="gradient">
           <Container>
             <motion.div
               initial={{ opacity: 0, y: 30 }}

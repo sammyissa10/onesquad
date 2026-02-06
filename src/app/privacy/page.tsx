@@ -12,7 +12,7 @@ export default function PrivacyPage() {
       <Breadcrumb items={[{ label: "Privacy Policy" }]} />
       <main>
         {/* Hero */}
-        <Section background="gradient" className="pt-32 pb-16">
+        <Section background="gradient" className="pb-16">
           <Container>
             <motion.div
               initial={{ opacity: 0, y: 30 }}

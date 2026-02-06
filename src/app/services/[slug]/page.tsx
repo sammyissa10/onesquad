@@ -43,7 +43,7 @@ export default function ServicePage() {
       <>
         <Header />
         <main>
-          <Section background="gradient" className="pt-32 pb-20">
+          <Section background="gradient" className="pb-20">
             <Container>
               <div className="text-center">
                 <h1 className="text-4xl font-bold text-white mb-4">
@@ -73,7 +73,7 @@ export default function ServicePage() {
       <Header />
       <main>
         {/* Hero */}
-        <Section background="gradient" className="pt-32 pb-20">
+        <Section background="gradient" className="pb-20">
           <Container>
             <motion.div
               initial={{ opacity: 0, y: 30 }}

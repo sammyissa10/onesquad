@@ -12,7 +12,7 @@ export default function TermsPage() {
       <Breadcrumb items={[{ label: "Terms of Service" }]} />
       <main>
         {/* Hero */}
-        <Section background="gradient" className="pt-32 pb-16">
+        <Section background="gradient" className="pb-16">
           <Container>
             <motion.div
               initial={{ opacity: 0, y: 30 }}

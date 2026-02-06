@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { Target, Heart, Zap, Users, Award, Clock } from "lucide-react";
 import { Header, Footer } from "@/components/layout";
 import { Container, Section } from "@/components/ui/Container";
@@ -94,7 +95,7 @@ export default function AboutPage() {
       <Breadcrumb items={[{ label: "About Us" }]} />
       <main>
         {/* Hero */}
-        <Section background="gradient" className="pt-32">
+        <Section background="gradient">
           <Container>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -154,56 +155,20 @@ export default function AboutPage() {
                 variants={itemVariants}
                 className="relative"
               >
-                <div className="aspect-square bg-gradient-to-br from-primary to-highlight rounded-3xl flex items-center justify-center">
-                  {/* Animated logo representation */}
-                  <motion.svg
-                    viewBox="0 0 200 200"
-                    className="w-2/3 h-2/3"
+                <div className="aspect-square bg-gradient-to-br from-primary-brand to-[#27598E] rounded-3xl flex items-center justify-center p-12">
+                  <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1, delay: 0.5 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
                   >
-                    <motion.circle
-                      cx="100"
-                      cy="100"
-                      r="90"
-                      fill="white"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.8, delay: 0.3 }}
+                    <Image
+                      src="/onesquadlogo.png"
+                      alt="OneSquad Logo"
+                      width={400}
+                      height={400}
+                      className="w-full h-full object-contain"
                     />
-                    <motion.path
-                      d="M70 50 L70 100 L130 100 L130 150"
-                      stroke="#051733"
-                      strokeWidth="16"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      fill="none"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 1.5, delay: 0.8 }}
-                    />
-                    <motion.path
-                      d="M130 50 L130 70"
-                      stroke="#E2795E"
-                      strokeWidth="16"
-                      strokeLinecap="round"
-                      fill="none"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 0.5, delay: 2 }}
-                    />
-                    <motion.path
-                      d="M70 130 L70 150"
-                      stroke="#E2795E"
-                      strokeWidth="16"
-                      strokeLinecap="round"
-                      fill="none"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 0.5, delay: 2.3 }}
-                    />
-                  </motion.svg>
+                  </motion.div>
                 </div>
               </motion.div>
             </motion.div>

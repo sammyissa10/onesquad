@@ -171,7 +171,7 @@ export default function ServicesPage() {
       <Breadcrumb items={[{ label: "Services" }]} />
       <main>
         {/* Hero */}
-        <Section background="gradient" className="pt-32">
+        <Section background="gradient">
           <Container>
             <motion.div
               initial={{ opacity: 0, y: 30 }}

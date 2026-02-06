@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -79,9 +80,24 @@ export default function ContactPage() {
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    console.log("Form submitted:", data);
+
+    const subject = encodeURIComponent(
+      `New inquiry from ${data.name}${data.company ? ` (${data.company})` : ""}`
+    );
+    const bodyParts = [
+      `Name: ${data.name}`,
+      `Email: ${data.email}`,
+      data.phone ? `Phone: ${data.phone}` : "",
+      data.company ? `Company: ${data.company}` : "",
+      data.service ? `Service: ${data.service}` : "",
+      "",
+      `Message:`,
+      data.message,
+    ].filter(Boolean);
+    const body = encodeURIComponent(bodyParts.join("\n"));
+
+    window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`;
+
     setIsSubmitting(false);
     setIsSubmitted(true);
     reset();
@@ -93,7 +109,7 @@ export default function ContactPage() {
       <Breadcrumb items={[{ label: "Contact" }]} />
       <main>
         {/* Hero */}
-        <Section background="gradient" className="pt-32">
+        <Section background="gradient">
           <Container>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -278,16 +294,31 @@ export default function ContactPage() {
           </Container>
         </Section>
 
-        {/* Map placeholder */}
-        <Section background="muted" className="py-0">
-          <div className="h-96 bg-gradient-to-br from-primary/10 to-highlight/10 flex items-center justify-center">
-            <div className="text-center">
-              <MapPin className="w-12 h-12 text-accent mx-auto mb-4" />
-              <p className="text-muted-foreground">
-                Interactive map would go here
+        {/* CTA Section */}
+        <Section background="gradient">
+          <Container>
+            <div className="text-center max-w-2xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                Not Sure Where to Start?
+              </h2>
+              <p className="text-white/80 text-lg mb-8">
+                Try our price calculator to get an instant estimate for your project,
+                or browse our plans to find the perfect fit for your business.
               </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Link href="/pricing-calculator">
+                  <Button variant="secondary" size="lg">
+                    Price Calculator
+                  </Button>
+                </Link>
+                <Link href="/pricing">
+                  <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
+                    View Plans
+                  </Button>
+                </Link>
+              </div>
             </div>
-          </div>
+          </Container>
         </Section>
       </main>
       <Footer />
