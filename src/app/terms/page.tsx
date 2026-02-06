@@ -3,11 +3,13 @@
 import { motion } from "framer-motion";
 import { Header, Footer } from "@/components/layout";
 import { Container, Section } from "@/components/ui/Container";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
 export default function TermsPage() {
   return (
     <>
       <Header />
+      <Breadcrumb items={[{ label: "Terms of Service" }]} />
       <main>
         {/* Hero */}
         <Section background="gradient" className="pt-32 pb-16">

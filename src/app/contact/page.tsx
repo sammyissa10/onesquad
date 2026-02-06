@@ -19,6 +19,7 @@ import { Container, Section } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Input, Textarea, Select } from "@/components/ui/Input";
 import { siteConfig, services } from "@/lib/constants";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -89,6 +90,7 @@ export default function ContactPage() {
   return (
     <>
       <Header />
+      <Breadcrumb items={[{ label: "Contact" }]} />
       <main>
         {/* Hero */}
         <Section background="gradient" className="pt-32">

@@ -8,6 +8,7 @@ import { Header, Footer } from "@/components/layout";
 import { Container, Section } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { siteConfig, stats } from "@/lib/constants";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -90,6 +91,7 @@ export default function AboutPage() {
   return (
     <>
       <Header />
+      <Breadcrumb items={[{ label: "About Us" }]} />
       <main>
         {/* Hero */}
         <Section background="gradient" className="pt-32">

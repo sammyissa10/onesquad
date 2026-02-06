@@ -6,6 +6,7 @@ import { Linkedin, Twitter, Mail } from "lucide-react";
 import { Header, Footer } from "@/components/layout";
 import { Container, Section } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -186,6 +187,7 @@ export default function TeamPage() {
   return (
     <>
       <Header />
+      <Breadcrumb items={[{ label: "Our Team" }]} />
       <main>
         {/* Hero */}
         <Section background="gradient" className="pt-32">

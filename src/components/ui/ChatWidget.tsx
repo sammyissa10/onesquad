@@ -45,10 +45,10 @@ export function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-8 left-8 z-50 w-80 bg-white rounded-2xl shadow-2xl overflow-hidden border border-border"
+            className="fixed bottom-8 left-8 z-50 w-80 bg-card rounded-2xl shadow-2xl overflow-hidden border border-border"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-primary to-highlight p-4 flex items-center justify-between">
+            <div className="bg-gradient-to-r from-primary-brand to-[#27598E] p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
                   <MessageCircle size={20} className="text-white" />

@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { pricingPlans, includedWithEveryPlan, faqs } from "@/lib/constants";
 import { formatPrice, cn } from "@/lib/utils";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -174,6 +175,7 @@ export default function PricingPage() {
   return (
     <>
       <Header />
+      <Breadcrumb items={[{ label: "Pricing" }]} />
       <main>
         {/* Hero */}
         <Section background="gradient" className="pt-32">

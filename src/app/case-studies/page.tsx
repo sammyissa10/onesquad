@@ -7,6 +7,7 @@ import { Header, Footer } from "@/components/layout";
 import { Container, Section } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -166,6 +167,7 @@ export default function CaseStudiesPage() {
   return (
     <>
       <Header />
+      <Breadcrumb items={[{ label: "Case Studies" }]} />
       <main>
         {/* Hero */}
         <Section background="gradient" className="pt-32">

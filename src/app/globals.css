@@ -6,6 +6,7 @@
   --accent: #E2795E;
   --secondary: #FFBD83;
   --highlight: #27598E;
+  --primary-brand: #051733;
 
   /* Semantic Colors */
   --background: #ffffff;
@@ -13,11 +14,25 @@
   --muted: #f8fafc;
   --muted-foreground: #64748b;
   --border: #e2e8f0;
+  --card: #ffffff;
+}
+
+.dark {
+  --primary: #e8edf4;
+  --highlight: #5b9bd5;
+
+  --background: #0a1628;
+  --foreground: #e8edf4;
+  --muted: #111d31;
+  --muted-foreground: #94a3b8;
+  --border: #1e3050;
+  --card: #111d31;
 }
 
 @theme inline {
   /* Colors */
   --color-primary: var(--primary);
+  --color-primary-brand: var(--primary-brand);
   --color-accent: var(--accent);
   --color-secondary: var(--secondary);
   --color-highlight: var(--highlight);
@@ -26,6 +41,7 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
+  --color-card: var(--card);
 
   /* Fonts */
   --font-heading: var(--font-nunito);
@@ -78,5 +94,10 @@ html {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary);
+  background: var(--accent);
+}
+
+/* Dark mode: convert white surfaces to dark card color */
+.dark .bg-white {
+  background-color: var(--card);
 }

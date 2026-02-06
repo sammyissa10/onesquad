@@ -59,7 +59,7 @@ const dots = [
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-primary via-primary to-highlight">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-primary-brand via-primary-brand to-[#27598E]">
       {/* Animated background shapes */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div

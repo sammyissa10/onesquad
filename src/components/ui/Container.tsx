@@ -43,10 +43,10 @@ interface SectionProps {
 }
 
 const backgroundStyles = {
-  white: "bg-white",
+  white: "bg-card",
   muted: "bg-muted",
-  primary: "bg-primary text-white",
-  gradient: "bg-gradient-to-br from-primary to-highlight text-white",
+  primary: "bg-primary-brand text-white",
+  gradient: "bg-gradient-to-br from-primary-brand to-[#27598E] text-white",
 };
 
 export function Section({

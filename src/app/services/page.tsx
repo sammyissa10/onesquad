@@ -9,6 +9,7 @@ import { Container, Section } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { DynamicIcon } from "@/components/ui/Icon";
 import { services } from "@/lib/constants";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -167,6 +168,7 @@ export default function ServicesPage() {
   return (
     <>
       <Header />
+      <Breadcrumb items={[{ label: "Services" }]} />
       <main>
         {/* Hero */}
         <Section background="gradient" className="pt-32">

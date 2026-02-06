@@ -24,6 +24,7 @@ import { Header, Footer } from "@/components/layout";
 import { Container, Section } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -146,6 +147,7 @@ export default function WebsitePricingPage() {
   return (
     <>
       <Header />
+      <Breadcrumb items={[{ label: "Pricing", href: "/pricing" }, { label: "Website Plans" }]} />
       <main>
         {/* Hero */}
         <Section background="gradient" className="pt-32">

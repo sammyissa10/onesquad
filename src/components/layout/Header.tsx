@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { navItems, siteConfig } from "@/lib/constants";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { Logo } from "./Logo";
 
 export function Header() {
@@ -37,7 +38,7 @@ export function Header() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-lg"
+          ? "bg-card/95 backdrop-blur-md shadow-lg"
           : "bg-transparent"
       )}
     >
@@ -101,7 +102,7 @@ export function Header() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-border overflow-hidden"
+                      className="absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-xl border border-border overflow-hidden"
                     >
                       <div className="py-2">
                         {item.children.map((child) => (
@@ -122,7 +123,14 @@ export function Header() {
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-3">
+            <ThemeToggle
+              className={cn(
+                isScrolled
+                  ? "text-foreground hover:bg-muted"
+                  : "text-white hover:bg-white/10"
+              )}
+            />
             <Link href="/contact">
               <Button variant="accent" size="md">
                 Get Started
@@ -149,7 +157,7 @@ export function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden bg-white border-t border-border overflow-hidden"
+            className="lg:hidden bg-card border-t border-border overflow-hidden"
           >
             <Container>
               <div className="py-4 space-y-2">
@@ -218,6 +226,11 @@ export function Header() {
                   <Calculator size={18} />
                   Price Calculator
                 </Link>
+
+                <div className="flex items-center justify-between py-3 border-t border-border">
+                  <span className="font-medium text-foreground">Theme</span>
+                  <ThemeToggle className="text-foreground hover:bg-muted" />
+                </div>
 
                 <div className="pt-4 space-y-3">
                   <Link href="/#pricing-calculator">

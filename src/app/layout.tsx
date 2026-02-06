@@ -3,6 +3,7 @@ import { Nunito } from "next/font/google";
 import "./globals.css";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
 import { ChatWidget } from "@/components/ui/ChatWidget";
+import { ThemeProvider } from "@/components/ui/ThemeProvider";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -62,11 +63,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${nunito.variable} antialiased`}>
-        {children}
-        <ScrollToTop />
-        <ChatWidget />
+        <ThemeProvider>
+          {children}
+          <ScrollToTop />
+          <ChatWidget />
+        </ThemeProvider>
       </body>
     </html>
   );
