@@ -70,6 +70,40 @@ export function ServicesPreview() {
 
           {/* Services Categories */}
           <div className="space-y-16">
+            {/* Web Solutions */}
+            <motion.div variants={itemVariants}>
+              <h3 className="text-2xl font-bold text-primary mb-8 flex items-center gap-3">
+                <span className="w-12 h-1 bg-highlight rounded-full" />
+                Web Solutions
+              </h3>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {webSolutions.map((service) => (
+                  <motion.div
+                    key={service.slug}
+                    whileHover={{ y: -8 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Link href={`/services/${service.slug}`}>
+                      <div className="bg-white rounded-2xl p-6 shadow-lg shadow-primary/5 border border-transparent hover:border-highlight/30 transition-all duration-300 h-full group">
+                        <div className="w-12 h-12 rounded-xl bg-highlight/10 flex items-center justify-center mb-4 group-hover:bg-highlight transition-colors">
+                          <DynamicIcon
+                            name={service.icon}
+                            className="w-6 h-6 text-highlight group-hover:text-white transition-colors"
+                          />
+                        </div>
+                        <h4 className="font-bold text-primary mb-2 group-hover:text-highlight transition-colors">
+                          {service.title}
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          {service.shortDescription}
+                        </p>
+                      </div>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
             {/* Digital Marketing */}
             <motion.div variants={itemVariants}>
               <h3 className="text-2xl font-bold text-primary mb-8 flex items-center gap-3">
@@ -105,40 +139,6 @@ export function ServicesPreview() {
                             className="text-muted-foreground group-hover:text-accent group-hover:translate-x-1 transition-all flex-shrink-0"
                           />
                         </div>
-                      </div>
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Web Solutions */}
-            <motion.div variants={itemVariants}>
-              <h3 className="text-2xl font-bold text-primary mb-8 flex items-center gap-3">
-                <span className="w-12 h-1 bg-highlight rounded-full" />
-                Web Solutions
-              </h3>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {webSolutions.map((service) => (
-                  <motion.div
-                    key={service.slug}
-                    whileHover={{ y: -8 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Link href={`/services/${service.slug}`}>
-                      <div className="bg-white rounded-2xl p-6 shadow-lg shadow-primary/5 border border-transparent hover:border-highlight/30 transition-all duration-300 h-full group">
-                        <div className="w-12 h-12 rounded-xl bg-highlight/10 flex items-center justify-center mb-4 group-hover:bg-highlight transition-colors">
-                          <DynamicIcon
-                            name={service.icon}
-                            className="w-6 h-6 text-highlight group-hover:text-white transition-colors"
-                          />
-                        </div>
-                        <h4 className="font-bold text-primary mb-2 group-hover:text-highlight transition-colors">
-                          {service.title}
-                        </h4>
-                        <p className="text-sm text-muted-foreground">
-                          {service.shortDescription}
-                        </p>
                       </div>
                     </Link>
                   </motion.div>

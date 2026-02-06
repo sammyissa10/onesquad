@@ -54,7 +54,7 @@ export function Features() {
               Why Choose Us
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-4 mb-6">
-              Why SMBs Choose OneSquad
+              We Can Help You With...
             </h2>
             <p className="text-muted-foreground text-lg">
               We understand the unique challenges small and medium businesses

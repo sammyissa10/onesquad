@@ -224,15 +224,15 @@ export function TemplateShowcase() {
             className="text-center max-w-2xl mx-auto mb-12"
           >
             <span className="text-accent font-semibold text-sm uppercase tracking-wider">
-              Templates
+              Portfolio
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-4 mb-6">
-              Professional Templates{" "}
-              <span className="text-accent">Included Free</span>
+              Our Work{" "}
+              <span className="text-accent">Speaks for Itself</span>
             </h2>
             <p className="text-muted-foreground text-lg">
-              Choose from our collection of professionally designed templates.
-              All templates are fully customizable and included with every plan.
+              Explore our portfolio of professionally designed websites.
+              Each project showcases our commitment to quality and results.
             </p>
           </motion.div>
 

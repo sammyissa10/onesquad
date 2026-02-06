@@ -41,6 +41,22 @@ const floatingVariants = {
   },
 };
 
+// Drifting dots configuration
+const dots = [
+  { x: "10%", y: "20%", size: 4, delay: 0, duration: 15 },
+  { x: "25%", y: "60%", size: 3, delay: 2, duration: 18 },
+  { x: "40%", y: "30%", size: 5, delay: 1, duration: 20 },
+  { x: "55%", y: "70%", size: 3, delay: 3, duration: 16 },
+  { x: "70%", y: "25%", size: 4, delay: 0.5, duration: 17 },
+  { x: "85%", y: "55%", size: 3, delay: 2.5, duration: 19 },
+  { x: "15%", y: "80%", size: 4, delay: 1.5, duration: 14 },
+  { x: "60%", y: "85%", size: 3, delay: 3.5, duration: 21 },
+  { x: "90%", y: "15%", size: 5, delay: 0.8, duration: 16 },
+  { x: "35%", y: "45%", size: 3, delay: 2.2, duration: 18 },
+  { x: "75%", y: "40%", size: 4, delay: 1.2, duration: 15 },
+  { x: "5%", y: "50%", size: 3, delay: 4, duration: 20 },
+];
+
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-primary via-primary to-highlight">
@@ -63,6 +79,31 @@ export function Hero() {
           style={{ animationDelay: "4s" }}
           className="absolute top-1/2 right-1/4 w-64 h-64 bg-highlight/30 rounded-full blur-2xl"
         />
+
+        {/* Drifting dots */}
+        {dots.map((dot, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-white/20"
+            style={{
+              left: dot.x,
+              top: dot.y,
+              width: dot.size,
+              height: dot.size,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              x: [0, 15, -15, 0],
+              opacity: [0.2, 0.5, 0.2],
+            }}
+            transition={{
+              duration: dot.duration,
+              delay: dot.delay,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
       </div>
 
       {/* Grid pattern overlay */}

@@ -103,27 +103,27 @@ function ComparisonCard({
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true, margin: "-50px" }}
       className={`flex items-start gap-4 p-4 rounded-xl ${
-        isWithout ? "bg-red-50" : "bg-green-50"
+        isWithout ? "bg-red-50" : "bg-accent/5"
       }`}
     >
       <div
         className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-          isWithout ? "bg-red-100" : "bg-green-100"
+          isWithout ? "bg-red-100" : "bg-accent/10"
         }`}
       >
         <item.icon
-          className={`w-6 h-6 ${isWithout ? "text-red-500" : "text-green-500"}`}
+          className={`w-6 h-6 ${isWithout ? "text-red-500" : "text-accent"}`}
         />
       </div>
       <div>
         <h4
           className={`font-bold mb-1 ${
-            isWithout ? "text-red-700" : "text-green-700"
+            isWithout ? "text-red-700" : "text-primary"
           }`}
         >
           {item.title}
         </h4>
-        <p className={`text-sm ${isWithout ? "text-red-600/80" : "text-green-600/80"}`}>
+        <p className={`text-sm ${isWithout ? "text-red-600/80" : "text-muted-foreground"}`}>
           {item.description}
         </p>
       </div>
@@ -192,45 +192,23 @@ export function Comparison() {
 
             {/* Center Divider */}
             <div className="hidden lg:flex flex-col items-center py-8">
-              <div className="w-px h-full bg-gradient-to-b from-red-200 via-muted to-green-200 relative">
+              <div className="w-px h-full bg-gradient-to-b from-red-200 via-muted to-accent/30 relative">
                 <motion.div
                   style={{ height: dividerHeight }}
-                  className="absolute top-0 left-0 w-full bg-gradient-to-b from-red-500 via-accent to-green-500"
+                  className="absolute top-0 left-0 w-full bg-gradient-to-b from-red-500 via-accent to-accent"
                 />
               </div>
-              <motion.div
-                initial={{ scale: 0, rotate: -180 }}
-                whileInView={{ scale: 1, rotate: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                viewport={{ once: true }}
-                className="absolute top-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-accent flex items-center justify-center shadow-lg shadow-accent/30"
-              >
-                <span className="text-white font-bold text-lg">VS</span>
-              </motion.div>
-            </div>
-
-            {/* Mobile VS Badge */}
-            <div className="lg:hidden flex justify-center">
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                className="w-16 h-16 rounded-full bg-accent flex items-center justify-center shadow-lg shadow-accent/30"
-              >
-                <span className="text-white font-bold text-lg">VS</span>
-              </motion.div>
             </div>
 
             {/* With Us Column */}
             <motion.div style={{ x: rightX }} className="space-y-4">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
-                  <Check className="w-6 h-6 text-green-500" />
+                <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
+                  <Check className="w-6 h-6 text-accent" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-green-600">With OneSquad</h3>
-                  <p className="text-sm text-green-500">Success made simple</p>
+                  <h3 className="text-xl font-bold text-accent">With OneSquad</h3>
+                  <p className="text-sm text-accent/80">Success made simple</p>
                 </div>
               </div>
 
