@@ -254,20 +254,11 @@ export function TemplateShowcase() {
           </motion.div>
 
           {/* Templates Grid */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCategory}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-            >
-              {filteredTemplates.map((template) => (
-                <TemplateCard key={template.id} template={template} />
-              ))}
-            </motion.div>
-          </AnimatePresence>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {filteredTemplates.map((template) => (
+              <TemplateCard key={template.id} template={template} />
+            ))}
+          </div>
 
           {/* CTA */}
           <motion.div variants={itemVariants} className="text-center mt-12">
