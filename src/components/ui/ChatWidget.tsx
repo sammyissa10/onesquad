@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send } from "lucide-react";
-import { Button } from "./Button";
+import { siteConfig } from "@/lib/constants";
 
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,8 +11,10 @@ export function ChatWidget() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real implementation, this would send the message to a chat service
-    alert(`Message sent: ${message}\n\nThis is a demo. In production, this would connect to a live chat service.`);
+    if (!message.trim()) return;
+    const subject = encodeURIComponent("New inquiry from OneSquad website");
+    const body = encodeURIComponent(message);
+    window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`;
     setMessage("");
     setIsOpen(false);
   };
@@ -29,7 +31,7 @@ export function ChatWidget() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-8 left-8 z-50 w-14 h-14 rounded-full bg-primary text-white shadow-lg shadow-primary/30 flex items-center justify-center hover:bg-primary/90 transition-colors"
+            className="fixed bottom-8 left-8 z-50 w-14 h-14 rounded-full bg-accent text-white shadow-lg shadow-accent/30 flex items-center justify-center hover:bg-accent/90 transition-colors"
             aria-label="Open chat"
           >
             <MessageCircle size={24} />
@@ -74,8 +76,8 @@ export function ChatWidget() {
             <div className="p-4">
               <div className="bg-muted rounded-lg p-4 mb-4">
                 <p className="text-sm text-muted-foreground">
-                  👋 Hi there! Have a question about our services? We're here to
-                  help. Send us a message and we'll get back to you right away!
+                  Hi there! Have a question about our services? Type a message
+                  below or tap a quick option to send us an email.
                 </p>
               </div>
 
