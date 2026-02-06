@@ -33,11 +33,15 @@ export function Header() {
     setOpenDropdown(null);
   }, [pathname]);
 
+  // Only the home page has a dark hero behind the header; all other pages need solid styling
+  const isHomePage = pathname === "/";
+  const useDarkText = isScrolled || !isHomePage;
+
   return (
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
+        useDarkText
           ? "bg-card/95 backdrop-blur-md shadow-lg"
           : "bg-transparent"
       )}
@@ -45,7 +49,7 @@ export function Header() {
       <Container>
         <nav className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Logo variant={isScrolled ? "default" : "light"} />
+          <Logo variant={useDarkText ? "default" : "light"} />
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
@@ -62,7 +66,7 @@ export function Header() {
                   href={item.href}
                   className={cn(
                     "flex items-center gap-1 text-sm font-medium transition-colors hover:text-accent",
-                    pathname === item.href ? "text-accent" : isScrolled ? "text-foreground" : "text-white"
+                    pathname === item.href ? "text-accent" : useDarkText ? "text-foreground" : "text-white"
                   )}
                 >
                   {item.label}
@@ -111,7 +115,7 @@ export function Header() {
               <button
                 className={cn(
                   "flex items-center gap-1.5 p-2 rounded-lg transition-colors",
-                  isScrolled
+                  useDarkText
                     ? "text-foreground hover:text-accent hover:bg-muted"
                     : "text-white/80 hover:text-white hover:bg-white/10"
                 )}
@@ -122,7 +126,7 @@ export function Header() {
             </Link>
             <ThemeToggle
               className={cn(
-                isScrolled
+                useDarkText
                   ? "text-foreground hover:bg-muted"
                   : "text-white hover:bg-white/10"
               )}
@@ -136,7 +140,7 @@ export function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className={cn("lg:hidden p-2", isScrolled ? "text-foreground" : "text-white")}
+            className={cn("lg:hidden p-2", useDarkText ? "text-foreground" : "text-white")}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
