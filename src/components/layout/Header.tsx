@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, Calculator, Phone } from "lucide-react";
+import { Menu, X, ChevronDown, Calculator } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { navItems, siteConfig } from "@/lib/constants";
+import { navItems } from "@/lib/constants";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
@@ -44,28 +44,11 @@ export function Header() {
     >
       <Container>
         <nav className="flex items-center justify-between h-20">
-          {/* Logo and Price Calculator Button */}
-          <div className="flex items-center gap-4">
-            <Logo variant={isScrolled ? "default" : "light"} />
-
-            {/* Price Calculator Button - Desktop */}
-            <Link href="/pricing-calculator" className="hidden lg:block">
-              <button
-                className={cn(
-                  "flex items-center gap-2 px-4 py-2 rounded-full border-2 font-semibold text-sm transition-all",
-                  isScrolled
-                    ? "border-accent text-accent hover:bg-accent hover:text-white"
-                    : "border-white/50 text-white hover:bg-white hover:text-primary"
-                )}
-              >
-                <Calculator size={16} />
-                PRICE CALCULATOR
-              </button>
-            </Link>
-          </div>
+          {/* Logo */}
+          <Logo variant={isScrolled ? "default" : "light"} />
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6">
             {navItems.map((item) => (
               <div
                 key={item.label}
@@ -78,14 +61,14 @@ export function Header() {
                 <Link
                   href={item.href}
                   className={cn(
-                    "flex items-center gap-1 font-medium transition-colors hover:text-accent",
+                    "flex items-center gap-1 text-sm font-medium transition-colors hover:text-accent",
                     pathname === item.href ? "text-accent" : isScrolled ? "text-foreground" : "text-white"
                   )}
                 >
                   {item.label}
                   {item.children && (
                     <ChevronDown
-                      size={16}
+                      size={14}
                       className={cn(
                         "transition-transform",
                         openDropdown === item.label && "rotate-180"
@@ -124,18 +107,19 @@ export function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
-            <a
-              href={`tel:${siteConfig.phone}`}
-              className={cn(
-                "flex items-center gap-1.5 text-sm font-medium transition-colors",
-                isScrolled
-                  ? "text-foreground hover:text-accent"
-                  : "text-white/80 hover:text-white"
-              )}
-            >
-              <Phone size={14} />
-              {siteConfig.phone}
-            </a>
+            <Link href="/pricing-calculator">
+              <button
+                className={cn(
+                  "flex items-center gap-1.5 p-2 rounded-lg transition-colors",
+                  isScrolled
+                    ? "text-foreground hover:text-accent hover:bg-muted"
+                    : "text-white/80 hover:text-white hover:bg-white/10"
+                )}
+                title="Price Calculator"
+              >
+                <Calculator size={18} />
+              </button>
+            </Link>
             <ThemeToggle
               className={cn(
                 isScrolled
@@ -230,15 +214,6 @@ export function Header() {
                     )}
                   </div>
                 ))}
-                {/* Price Calculator - Mobile */}
-                <Link
-                  href="/pricing-calculator"
-                  className="flex items-center gap-2 py-3 font-medium text-accent"
-                >
-                  <Calculator size={18} />
-                  Price Calculator
-                </Link>
-
                 <div className="flex items-center justify-between py-3 border-t border-border">
                   <span className="font-medium text-foreground">Theme</span>
                   <ThemeToggle className="text-foreground hover:bg-muted" />
