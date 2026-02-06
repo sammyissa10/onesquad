@@ -5,7 +5,7 @@ import { ArrowRight, Play } from "lucide-react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { siteConfig } from "@/lib/constants";
+import { siteConfig, stats } from "@/lib/constants";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -172,13 +172,13 @@ export function Hero() {
                 See Our Plans
               </Button>
             </Link>
-            <Link href="/services">
+            <Link href="/contact">
               <Button
                 variant="outline"
                 size="lg"
                 className="border-white/30 text-white hover:bg-white hover:text-primary"
               >
-                Explore Services
+                Get a Free Quote
               </Button>
             </Link>
           </motion.div>
@@ -188,16 +188,16 @@ export function Hero() {
             variants={itemVariants}
             className="mt-16 pt-8 border-t border-white/10"
           >
-            <p className="text-white/50 text-sm mb-4">
-              Trusted by growing businesses
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-8 opacity-60">
-              {/* Placeholder for client logos */}
-              {[1, 2, 3, 4, 5].map((i) => (
-                <div
-                  key={i}
-                  className="w-24 h-8 bg-white/20 rounded"
-                />
+            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+              {stats.map((stat) => (
+                <div key={stat.label} className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-white">
+                    {stat.value}
+                  </div>
+                  <div className="text-white/50 text-xs md:text-sm mt-1">
+                    {stat.label}
+                  </div>
+                </div>
               ))}
             </div>
           </motion.div>

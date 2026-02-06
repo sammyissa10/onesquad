@@ -3,7 +3,9 @@ import { Nunito } from "next/font/google";
 import "./globals.css";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
 import { ChatWidget } from "@/components/ui/ChatWidget";
+import { CookieConsent } from "@/components/ui/CookieConsent";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
+import { siteConfig } from "@/lib/constants";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -64,11 +66,36 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: siteConfig.name,
+              url: siteConfig.url,
+              logo: `${siteConfig.url}/onesquadlogo.png`,
+              email: siteConfig.email,
+              telephone: siteConfig.phone,
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: siteConfig.address.street,
+                addressLocality: siteConfig.address.city,
+                addressRegion: siteConfig.address.state,
+                postalCode: siteConfig.address.zip,
+              },
+              sameAs: Object.values(siteConfig.socials),
+            }),
+          }}
+        />
+      </head>
       <body className={`${nunito.variable} antialiased`}>
         <ThemeProvider>
           {children}
           <ScrollToTop />
           <ChatWidget />
+          <CookieConsent />
         </ThemeProvider>
       </body>
     </html>

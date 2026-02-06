@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ChevronRight, Home } from "lucide-react";
 import { Container } from "./Container";
+import { siteConfig } from "@/lib/constants";
 
 interface BreadcrumbItem {
   label: string;
@@ -14,8 +15,31 @@ interface BreadcrumbProps {
 }
 
 export function Breadcrumb({ items }: BreadcrumbProps) {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteConfig.url,
+      },
+      ...items.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 2,
+        name: item.label,
+        ...(item.href ? { item: `${siteConfig.url}${item.href}` } : {}),
+      })),
+    ],
+  };
+
   return (
     <div className="bg-muted border-b border-border pt-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Container>
         <nav
           aria-label="Breadcrumb"

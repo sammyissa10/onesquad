@@ -172,8 +172,25 @@ export default function PricingPage() {
   const hostingPlans = pricingPlans.filter((p) => p.category === "hosting");
   const managedPlans = pricingPlans.filter((p) => p.category === "managed");
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <Header />
       <Breadcrumb items={[{ label: "Pricing" }]} />
       <main>

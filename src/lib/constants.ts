@@ -83,6 +83,15 @@ export const services: Service[] = [
       "Competitor analysis",
       "Monthly reporting and insights",
     ],
+    results: [
+      { metric: "150%", description: "Average increase in lead generation" },
+      { metric: "3x", description: "Return on ad spend" },
+      { metric: "40%", description: "Reduction in cost per acquisition" },
+    ],
+    serviceFaqs: [
+      { question: "How long before I see results from digital marketing?", answer: "Most clients see measurable improvements within 60-90 days. PPC campaigns can generate leads immediately, while organic strategies like SEO build momentum over 3-6 months." },
+      { question: "Do you work with businesses in my industry?", answer: "We work with SMBs across all industries. Our strategies are tailored to your specific market, audience, and business goals." },
+    ],
   },
   {
     slug: "seo",
@@ -100,6 +109,15 @@ export const services: Service[] = [
       "Link building campaigns",
       "Local SEO optimization",
       "Monthly ranking reports",
+    ],
+    results: [
+      { metric: "200%", description: "Average organic traffic increase" },
+      { metric: "Top 10", description: "Google rankings for target keywords" },
+      { metric: "85%", description: "Client keyword improvement rate" },
+    ],
+    serviceFaqs: [
+      { question: "How long does SEO take to show results?", answer: "SEO is a long-term strategy. You'll typically see initial improvements in 3-4 months, with significant results in 6-12 months. We provide monthly reports so you can track progress." },
+      { question: "Do you guarantee first page rankings?", answer: "No ethical SEO company can guarantee specific rankings. What we do guarantee is proven strategies, transparent reporting, and consistent improvement in your organic visibility." },
     ],
   },
   {
@@ -119,6 +137,15 @@ export const services: Service[] = [
       "Influencer partnerships",
       "Analytics and performance reports",
     ],
+    results: [
+      { metric: "300%", description: "Average follower growth" },
+      { metric: "5x", description: "Increase in engagement rate" },
+      { metric: "60%", description: "More website traffic from social" },
+    ],
+    serviceFaqs: [
+      { question: "Which social media platforms should my business be on?", answer: "It depends on your target audience. We'll analyze where your customers spend time and focus efforts there. Most B2C businesses benefit from Instagram and Facebook, while B2B does well on LinkedIn." },
+      { question: "How often will you post on my accounts?", answer: "Posting frequency depends on your plan. Our managed plans include 10-15 posts per month, with options to increase. We focus on quality and consistency over volume." },
+    ],
   },
   {
     slug: "email-marketing",
@@ -136,6 +163,15 @@ export const services: Service[] = [
       "Automated email sequences",
       "A/B testing and optimization",
       "Detailed campaign analytics",
+    ],
+    results: [
+      { metric: "42%", description: "Average open rate" },
+      { metric: "4x", description: "ROI on email campaigns" },
+      { metric: "25%", description: "Increase in repeat purchases" },
+    ],
+    serviceFaqs: [
+      { question: "How do you build an email list?", answer: "We use proven list-building strategies including opt-in forms, lead magnets, and landing pages. We never buy email lists — all subscribers are genuinely interested in your business." },
+      { question: "How often should I email my customers?", answer: "We typically recommend 1-4 emails per month depending on your industry. We'll test different frequencies and optimize based on engagement metrics." },
     ],
   },
   {
@@ -155,6 +191,15 @@ export const services: Service[] = [
       "Bid management and optimization",
       "Conversion tracking setup",
     ],
+    results: [
+      { metric: "250%", description: "Average return on ad spend" },
+      { metric: "35%", description: "Lower cost per click vs industry avg" },
+      { metric: "2x", description: "Conversion rate improvement" },
+    ],
+    serviceFaqs: [
+      { question: "How much should I budget for PPC?", answer: "We recommend starting with at least $500-$1,000/month in ad spend plus management fees. We'll optimize your budget to maximize ROI and scale up as results come in." },
+      { question: "How quickly can PPC generate leads?", answer: "PPC can drive traffic and leads within days of launching. We typically see campaigns fully optimized within 2-4 weeks for best performance." },
+    ],
   },
   {
     slug: "content-marketing",
@@ -172,6 +217,15 @@ export const services: Service[] = [
       "Infographic design",
       "E-book and whitepaper creation",
       "Content calendar management",
+    ],
+    results: [
+      { metric: "3x", description: "More leads than traditional marketing" },
+      { metric: "70%", description: "Increase in website engagement" },
+      { metric: "45%", description: "Growth in organic search traffic" },
+    ],
+    serviceFaqs: [
+      { question: "What types of content do you create?", answer: "We create blog posts, articles, infographics, videos, case studies, whitepapers, and social media content. Everything is tailored to your brand voice and audience." },
+      { question: "How do you measure content marketing success?", answer: "We track metrics like organic traffic, time on page, social shares, lead generation, and conversions. Monthly reports show exactly how content is impacting your business." },
     ],
   },
   // Web Solutions
@@ -192,6 +246,15 @@ export const services: Service[] = [
       "Speed optimization",
       "Cross-browser compatibility",
     ],
+    results: [
+      { metric: "500+", description: "Websites designed and launched" },
+      { metric: "95%", description: "Mobile responsiveness score" },
+      { metric: "2-4 wks", description: "Average delivery time" },
+    ],
+    serviceFaqs: [
+      { question: "How long does it take to build a website?", answer: "Most standard websites take 2-4 weeks. More complex sites with custom features may take 4-8 weeks. We'll provide a detailed timeline during our consultation." },
+      { question: "Will my website work on mobile devices?", answer: "Absolutely. Every website we build is fully responsive and optimized for all devices — phones, tablets, and desktops. Mobile-first design is our standard approach." },
+    ],
   },
   {
     slug: "ecommerce",
@@ -209,6 +272,15 @@ export const services: Service[] = [
       "Product catalog management",
       "Inventory tracking",
       "Order management systems",
+    ],
+    results: [
+      { metric: "180%", description: "Average increase in online sales" },
+      { metric: "99.9%", description: "Uptime for all stores" },
+      { metric: "3 sec", description: "Average page load time" },
+    ],
+    serviceFaqs: [
+      { question: "Which e-commerce platform do you use?", answer: "We work with Shopify, WooCommerce, and custom solutions depending on your needs. We'll recommend the best platform based on your product catalog, budget, and growth plans." },
+      { question: "Can you migrate my existing store?", answer: "Yes, we handle full store migrations including products, customer data, and order history. We ensure zero downtime and a seamless transition." },
     ],
   },
   {
@@ -228,6 +300,15 @@ export const services: Service[] = [
       "DDoS protection",
       "Regular security updates",
     ],
+    results: [
+      { metric: "99.9%", description: "Uptime guarantee" },
+      { metric: "24/7", description: "Security monitoring" },
+      { metric: "<1 sec", description: "Average server response time" },
+    ],
+    serviceFaqs: [
+      { question: "What happens if my site goes down?", answer: "Our 24/7 monitoring detects issues within seconds. Our team is automatically alerted and begins resolution immediately. Most issues are resolved within minutes." },
+      { question: "Are backups included?", answer: "Yes, daily automated backups are included with all hosting plans. We retain backups for 30 days, so you can restore to any point within the last month." },
+    ],
   },
   {
     slug: "maintenance",
@@ -245,6 +326,15 @@ export const services: Service[] = [
       "Content updates",
       "Bug fixes and troubleshooting",
       "Monthly health reports",
+    ],
+    results: [
+      { metric: "100%", description: "Security patch compliance" },
+      { metric: "40%", description: "Faster load times after optimization" },
+      { metric: "0", description: "Downtime from missed updates" },
+    ],
+    serviceFaqs: [
+      { question: "What does maintenance include?", answer: "Our maintenance covers software updates, security patches, performance optimization, content updates, bug fixes, and monthly health reports. Think of us as your website's dedicated IT team." },
+      { question: "Can I request changes to my website anytime?", answer: "Yes! Your plan includes monthly work hours for updates and changes. Simply submit a request and our team will handle it, usually within 24-48 hours." },
     ],
   },
 ];

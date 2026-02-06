@@ -10,3 +10,4 @@ export { HomeFAQ } from "./HomeFAQ";
 export { TemplateShowcase } from "./TemplateShowcase";
 export { PricingCalculator } from "./PricingCalculator";
 export { Comparison } from "./Comparison";
+export { MidPageCTA } from "./MidPageCTA";

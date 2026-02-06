@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, Calculator } from "lucide-react";
+import { Menu, X, ChevronDown, Calculator, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { navItems, siteConfig } from "@/lib/constants";
 import { Container } from "@/components/ui/Container";
@@ -124,6 +124,18 @@ export function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
+            <a
+              href={`tel:${siteConfig.phone}`}
+              className={cn(
+                "flex items-center gap-1.5 text-sm font-medium transition-colors",
+                isScrolled
+                  ? "text-foreground hover:text-accent"
+                  : "text-white/80 hover:text-white"
+              )}
+            >
+              <Phone size={14} />
+              {siteConfig.phone}
+            </a>
             <ThemeToggle
               className={cn(
                 isScrolled

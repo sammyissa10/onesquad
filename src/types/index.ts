@@ -1,4 +1,9 @@
 // Service Types
+export interface ServiceResult {
+  metric: string;
+  description: string;
+}
+
 export interface Service {
   slug: string;
   title: string;
@@ -7,6 +12,8 @@ export interface Service {
   shortDescription: string;
   icon: string;
   features: string[];
+  results?: ServiceResult[];
+  serviceFaqs?: FAQ[];
 }
 
 // Pricing Types

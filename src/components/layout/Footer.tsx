@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
   Facebook,
@@ -7,6 +9,10 @@ import {
   Mail,
   Phone,
   MapPin,
+  Shield,
+  Clock,
+  FileCheck,
+  ArrowRight,
 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "./Logo";
@@ -31,6 +37,44 @@ export function Footer() {
 
   return (
     <footer className="bg-primary-brand text-white">
+      {/* Newsletter Signup */}
+      <div className="border-b border-white/10">
+        <Container>
+          <div className="py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <h3 className="font-bold text-lg">Get Digital Tips & Updates</h3>
+              <p className="text-white/70 text-sm mt-1">
+                Join our newsletter for the latest insights on growing your business online.
+              </p>
+            </div>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const form = e.target as HTMLFormElement;
+                const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+                window.location.href = `mailto:${siteConfig.email}?subject=${encodeURIComponent("Newsletter Signup")}&body=${encodeURIComponent(`Please add me to the newsletter: ${email}`)}`;
+              }}
+              className="flex gap-2 w-full md:w-auto"
+            >
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="Enter your email"
+                className="px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/40 text-sm focus:outline-none focus:border-accent w-full md:w-64"
+              />
+              <button
+                type="submit"
+                className="px-5 py-2.5 rounded-lg bg-accent hover:bg-accent/90 text-white font-semibold text-sm transition-colors flex items-center gap-2 whitespace-nowrap"
+              >
+                Subscribe
+                <ArrowRight size={14} />
+              </button>
+            </form>
+          </div>
+        </Container>
+      </div>
+
       {/* Main Footer */}
       <Container>
         <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -164,6 +208,24 @@ export function Footer() {
           </div>
         </div>
       </Container>
+
+      {/* Trust Signals */}
+      <div className="border-t border-white/10">
+        <Container>
+          <div className="py-6 flex flex-wrap items-center justify-center gap-6 md:gap-10">
+            {[
+              { icon: Shield, text: "SSL Secured" },
+              { icon: Clock, text: "24/7 Monitoring" },
+              { icon: FileCheck, text: "No Contracts" },
+            ].map((item) => (
+              <div key={item.text} className="flex items-center gap-2 text-white/50 text-sm">
+                <item.icon size={16} className="text-accent" />
+                <span>{item.text}</span>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </div>
 
       {/* Bottom Bar */}
       <div className="border-t border-white/10">

@@ -1,14 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import { useParams } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, ChevronDown } from "lucide-react";
 import { Header, Footer } from "@/components/layout";
 import { Container, Section } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { DynamicIcon } from "@/components/ui/Icon";
 import { services } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -31,6 +33,42 @@ const itemVariants = {
     },
   },
 };
+
+function ServiceFAQItem({ faq, index, isLast }: { faq: { question: string; answer: string }; index: number; isLast: boolean }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className={cn(!isLast && "border-b border-border")}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full py-6 flex items-center justify-between text-left group"
+      >
+        <span className="font-semibold text-primary group-hover:text-accent transition-colors pr-4">
+          {faq.question}
+        </span>
+        <ChevronDown
+          className={cn(
+            "w-5 h-5 text-muted-foreground transition-transform flex-shrink-0",
+            isOpen && "rotate-180"
+          )}
+        />
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <p className="pb-6 text-muted-foreground">{faq.answer}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 export default function ServicePage() {
   const params = useParams();
@@ -155,6 +193,43 @@ export default function ServicePage() {
           </Container>
         </Section>
 
+        {/* Results Metrics */}
+        {service.results && service.results.length > 0 && (
+          <Section background="gradient">
+            <Container>
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                <motion.div variants={itemVariants} className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                    Results That Speak
+                  </h2>
+                  <p className="text-white/70 text-lg">
+                    What our clients typically see with our {service.title.toLowerCase()} services.
+                  </p>
+                </motion.div>
+                <div className="grid md:grid-cols-3 gap-8">
+                  {service.results.map((result) => (
+                    <motion.div
+                      key={result.description}
+                      variants={itemVariants}
+                      className="text-center"
+                    >
+                      <div className="text-4xl md:text-5xl font-bold text-secondary mb-3">
+                        {result.metric}
+                      </div>
+                      <p className="text-white/70">{result.description}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </Container>
+          </Section>
+        )}
+
         {/* Why Choose Us */}
         <Section background="muted">
           <Container>
@@ -272,6 +347,27 @@ export default function ServicePage() {
                   ))}
                 </div>
               </motion.div>
+            </Container>
+          </Section>
+        )}
+
+        {/* Service FAQ */}
+        {service.serviceFaqs && service.serviceFaqs.length > 0 && (
+          <Section background="white">
+            <Container size="md">
+              <div className="text-center mb-12">
+                <span className="text-accent font-semibold text-sm uppercase tracking-wider">
+                  FAQ
+                </span>
+                <h2 className="text-3xl md:text-4xl font-bold text-primary mt-4">
+                  Common Questions About {service.title}
+                </h2>
+              </div>
+              <div className="bg-white rounded-2xl shadow-xl p-8">
+                {service.serviceFaqs.map((faq, index) => (
+                  <ServiceFAQItem key={faq.question} faq={faq} index={index} isLast={index === (service.serviceFaqs?.length ?? 0) - 1} />
+                ))}
+              </div>
             </Container>
           </Section>
         )}
