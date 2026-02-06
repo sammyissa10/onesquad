@@ -8,7 +8,6 @@ import {
   TemplateShowcase,
   Process,
   Stats,
-  PricingCalculator,
   Testimonials,
   HomeFAQ,
   CTABanner,
@@ -26,7 +25,6 @@ export default function HomePage() {
         <TemplateShowcase />
         <Process />
         <Stats />
-        <PricingCalculator />
         <Testimonials />
         <HomeFAQ />
         <CTABanner />

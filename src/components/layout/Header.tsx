@@ -49,7 +49,7 @@ export function Header() {
             <Logo variant={isScrolled ? "default" : "light"} />
 
             {/* Price Calculator Button - Desktop */}
-            <Link href="/#pricing-calculator" className="hidden lg:block">
+            <Link href="/pricing-calculator" className="hidden lg:block">
               <button
                 className={cn(
                   "flex items-center gap-2 px-4 py-2 rounded-full border-2 font-semibold text-sm transition-all",
@@ -220,7 +220,7 @@ export function Header() {
                 ))}
                 {/* Price Calculator - Mobile */}
                 <Link
-                  href="/#pricing-calculator"
+                  href="/pricing-calculator"
                   className="flex items-center gap-2 py-3 font-medium text-accent"
                 >
                   <Calculator size={18} />
@@ -233,7 +233,7 @@ export function Header() {
                 </div>
 
                 <div className="pt-4 space-y-3">
-                  <Link href="/#pricing-calculator">
+                  <Link href="/pricing-calculator">
                     <Button variant="outline" size="md" className="w-full border-accent text-accent">
                       <Calculator size={16} className="mr-2" />
                       Price Calculator
