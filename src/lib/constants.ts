@@ -14,7 +14,7 @@ export const siteConfig = {
   description:
     "A one-stop-shop digital agency for small-to-midsize businesses to unlock their full potential in the digital world.",
   url: "https://www.onesquads.com",
-  email: "hello@onesquads.com",
+  email: "ayaz.onesquad@outlook.com",
   phone: "+1 (555) 123-4567",
   address: {
     street: "123 Digital Avenue",
