@@ -30,6 +30,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "OneSquad" }],
   creator: "OneSquad",
+  icons: {
+    icon: "/onesquadlogo.png",
+    apple: "/onesquadlogo.png",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -38,6 +42,7 @@ export const metadata: Metadata = {
     title: "OneSquad - Your Digital Partner",
     description:
       "A one-stop-shop digital agency for small-to-midsize businesses to unlock their full potential in the digital world.",
+    images: ["/onesquadlogo.png"],
   },
   twitter: {
     card: "summary_large_image",
