@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
@@ -9,7 +9,7 @@ import { z } from "zod";
 import {
   Mail,
   Phone,
-  MapPin,
+  Globe,
   Clock,
   Send,
   CheckCircle,
@@ -21,6 +21,7 @@ import { Button } from "@/components/ui/Button";
 import { Input, Textarea, Select } from "@/components/ui/Input";
 import { siteConfig, services } from "@/lib/constants";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
+import { QUOTE_STORAGE_KEY, type QuoteData } from "@/lib/pricingData";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -52,9 +53,9 @@ const contactInfo = [
     href: `tel:${siteConfig.phone}`,
   },
   {
-    icon: MapPin,
-    label: "Address",
-    value: `${siteConfig.address.street}, ${siteConfig.address.city}, ${siteConfig.address.state} ${siteConfig.address.zip}`,
+    icon: Globe,
+    label: "Location",
+    value: "We work with clients wherever you are",
     href: "#",
   },
   {
@@ -68,15 +69,47 @@ const contactInfo = [
 export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [quoteData, setQuoteData] = useState<QuoteData | null>(null);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
   });
+
+  // Read quote data from localStorage (passed from Price Calculator)
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(QUOTE_STORAGE_KEY);
+      if (stored) {
+        const quote: QuoteData = JSON.parse(stored);
+        setQuoteData(quote);
+
+        // Build itemized message text
+        const lines: string[] = ["--- Quote from Price Calculator ---"];
+        for (const svc of quote.services) {
+          lines.push(`\n${svc.serviceName} (base: $${svc.basePrice})`);
+          for (const item of svc.lineItems) {
+            if (item.price !== 0) {
+              lines.push(`  - ${item.label}: ${item.price > 0 ? `+$${item.price}` : `-$${Math.abs(item.price)}`}`);
+            }
+          }
+          lines.push(`  Subtotal: $${svc.subtotal}`);
+        }
+        lines.push(`\nTotal: $${quote.total}`);
+        lines.push("---\n");
+        lines.push("Additional details about my project:\n");
+
+        setValue("message", lines.join("\n"));
+      }
+    } catch {
+      // Ignore localStorage errors
+    }
+  }, [setValue]);
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
@@ -97,6 +130,10 @@ export default function ContactPage() {
     const body = encodeURIComponent(bodyParts.join("\n"));
 
     window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`;
+
+    // Clear quote data after submission
+    localStorage.removeItem(QUOTE_STORAGE_KEY);
+    setQuoteData(null);
 
     setIsSubmitting(false);
     setIsSubmitted(true);
@@ -121,11 +158,11 @@ export default function ContactPage() {
                 Contact Us
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-4 mb-6">
-                Let's Start a <span className="text-secondary">Conversation</span>
+                Let&apos;s Start a <span className="text-secondary">Conversation</span>
               </h1>
               <p className="text-xl text-white/80">
-                Have a question or ready to get started? We'd love to hear from
-                you. Reach out and let's discuss how we can help your business
+                Have a question or ready to get started? We&apos;d love to hear from
+                you. Reach out and let&apos;s discuss how we can help your business
                 grow.
               </p>
             </motion.div>
@@ -198,6 +235,23 @@ export default function ContactPage() {
                 className="lg:col-span-3"
               >
                 <div className="bg-white rounded-2xl shadow-xl p-8 border border-border">
+                  {/* Quote summary card */}
+                  {quoteData && !isSubmitted && (
+                    <div className="mb-6 p-4 bg-accent/5 rounded-xl border border-accent/20">
+                      <h4 className="font-semibold text-accent mb-2">Your Quote Summary</h4>
+                      {quoteData.services.map((svc) => (
+                        <div key={svc.serviceId} className="flex justify-between text-sm">
+                          <span className="text-primary">{svc.serviceName}</span>
+                          <span className="font-medium text-primary">${svc.subtotal}</span>
+                        </div>
+                      ))}
+                      <div className="border-t border-accent/20 mt-2 pt-2 flex justify-between font-bold">
+                        <span className="text-primary">Total</span>
+                        <span className="text-accent">${quoteData.total}</span>
+                      </div>
+                    </div>
+                  )}
+
                   {isSubmitted ? (
                     <motion.div
                       initial={{ opacity: 0, scale: 0.9 }}
@@ -211,7 +265,7 @@ export default function ContactPage() {
                         Message Sent!
                       </h3>
                       <p className="text-muted-foreground mb-8">
-                        Thank you for reaching out. We'll get back to you within
+                        Thank you for reaching out. We&apos;ll get back to you within
                         24 hours.
                       </p>
                       <Button

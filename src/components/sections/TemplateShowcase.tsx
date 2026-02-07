@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ExternalLink, Eye, Star } from "lucide-react";
 import { Container, Section } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { categories, templates } from "@/lib/templateData";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -30,98 +31,6 @@ const itemVariants = {
     },
   },
 };
-
-const categories = [
-  { id: "all", label: "All Templates" },
-  { id: "business", label: "Business" },
-  { id: "ecommerce", label: "E-commerce" },
-  { id: "portfolio", label: "Portfolio" },
-  { id: "restaurant", label: "Restaurant" },
-  { id: "healthcare", label: "Healthcare" },
-];
-
-const templates = [
-  {
-    id: "modern-agency",
-    name: "Modern Agency",
-    category: "business",
-    description: "Clean and professional template for digital agencies and consultants.",
-    features: ["Responsive", "Fast Loading", "SEO Ready"],
-    image: "https://colorlib.com/wp/wp-content/uploads/sites/2/digilab-free-template-353x278.jpg",
-    popular: true,
-    price: "Included",
-  },
-  {
-    id: "shop-starter",
-    name: "Shop Starter",
-    category: "ecommerce",
-    description: "Complete e-commerce solution with cart, checkout, and product pages.",
-    features: ["Shopping Cart", "Payment Ready", "Inventory"],
-    image: "https://colorlib.com/wp/wp-content/uploads/sites/2/cozastore-free-template-353x278.jpg",
-    popular: true,
-    price: "Included",
-  },
-  {
-    id: "creative-portfolio",
-    name: "Creative Portfolio",
-    category: "portfolio",
-    description: "Showcase your work beautifully with this stunning portfolio template.",
-    features: ["Gallery", "Animations", "Contact Form"],
-    image: "https://colorlib.com/wp/wp-content/uploads/sites/2/work-free-template-353x278.jpg",
-    popular: false,
-    price: "Included",
-  },
-  {
-    id: "tasty-bites",
-    name: "Tasty Bites",
-    category: "restaurant",
-    description: "Perfect for restaurants, cafes, and food businesses.",
-    features: ["Menu Display", "Reservations", "Gallery"],
-    image: "https://colorlib.com/wp/wp-content/uploads/sites/2/feliciano-free-template-353x278.jpg",
-    popular: false,
-    price: "Included",
-  },
-  {
-    id: "health-first",
-    name: "Health First",
-    category: "healthcare",
-    description: "Professional template for clinics, doctors, and healthcare providers.",
-    features: ["Appointments", "Services", "Team"],
-    image: "https://colorlib.com/wp/wp-content/uploads/sites/2/services-free-template-353x278.jpg",
-    popular: true,
-    price: "Included",
-  },
-  {
-    id: "startup-launch",
-    name: "Startup Launch",
-    category: "business",
-    description: "Modern landing page perfect for SaaS and tech startups.",
-    features: ["Hero Section", "Pricing", "Testimonials"],
-    image: "https://colorlib.com/wp/wp-content/uploads/sites/2/busicol-free-template-353x278.jpg",
-    popular: false,
-    price: "Included",
-  },
-  {
-    id: "boutique-store",
-    name: "Boutique Store",
-    category: "ecommerce",
-    description: "Elegant online store for fashion, jewelry, and lifestyle brands.",
-    features: ["Lookbook", "Quick View", "Wishlist"],
-    image: "https://colorlib.com/wp/wp-content/uploads/sites/2/ashion-free-template-353x278.jpg",
-    popular: false,
-    price: "Included",
-  },
-  {
-    id: "minimal-folio",
-    name: "Minimal Folio",
-    category: "portfolio",
-    description: "Minimalist design that lets your work speak for itself.",
-    features: ["Fullscreen", "Lightbox", "Blog"],
-    image: "https://colorlib.com/wp/wp-content/uploads/sites/2/create-free-template-353x278.jpg",
-    popular: false,
-    price: "Included",
-  },
-];
 
 function TemplateCard({ template }: { template: typeof templates[0] }) {
   return (
@@ -183,7 +92,7 @@ function TemplateCard({ template }: { template: typeof templates[0] }) {
 
           {/* Features */}
           <div className="flex flex-wrap gap-2">
-            {template.features.map((feature) => (
+            {template.features.slice(0, 3).map((feature) => (
               <span
                 key={feature}
                 className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded"
@@ -237,12 +146,16 @@ export function TemplateShowcase() {
           </motion.div>
 
           {/* Category Filter */}
-          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3 mb-12">
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-nowrap overflow-x-auto gap-3 mb-12 pb-2 -mx-4 px-4 lg:flex-wrap lg:justify-center lg:mx-0 lg:px-0"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap flex-shrink-0 ${
                   activeCategory === category.id
                     ? "bg-accent text-white shadow-lg shadow-accent/30"
                     : "bg-white text-muted-foreground hover:bg-accent/10 hover:text-accent"
@@ -263,7 +176,7 @@ export function TemplateShowcase() {
           {/* CTA */}
           <motion.div variants={itemVariants} className="text-center mt-12">
             <p className="text-muted-foreground mb-4">
-              Can't find what you're looking for?
+              Can&apos;t find what you&apos;re looking for?
             </p>
             <Link href="/contact">
               <Button variant="accent" rightIcon={<ArrowRight size={18} />}>
