@@ -3,11 +3,11 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, ExternalLink, Eye, Star } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Container, Section } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
-import { templates, categoryLabels } from "@/lib/templateData";
+import { TemplateGridCard } from "@/components/ui/TemplateCard";
+import { templates } from "@/lib/templateData";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -37,81 +37,12 @@ const previewTemplates = [
   ...templates.filter((t) => !t.popular),
 ].slice(0, 6);
 
-function TemplateCard({ template }: { template: (typeof templates)[0] }) {
-  return (
-    <motion.div variants={itemVariants} className="group flex flex-col">
-      <div className="relative rounded-xl overflow-hidden border border-border bg-white shadow-sm hover:shadow-xl transition-shadow duration-300">
-        <div className="aspect-[3/4] relative overflow-hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={template.screenshot}
-            alt={template.name}
-            className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
-            loading="lazy"
-          />
-
-          {/* Badges */}
-          <div className="absolute top-3 left-3 flex gap-2 z-10">
-            {template.popular && (
-              <Badge
-                variant="accent"
-                className="flex items-center gap-1 shadow-lg text-xs"
-              >
-                <Star size={10} className="fill-current" /> Popular
-              </Badge>
-            )}
-          </div>
-
-          {/* Hover overlay */}
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100">
-            <Link
-              href={`/templates/${template.id}`}
-              className="bg-white text-primary px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-accent hover:text-white transition-colors shadow-lg flex items-center gap-2"
-            >
-              <Eye size={16} />
-              View
-            </Link>
-            <a
-              href={template.demoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-accent text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-accent/90 transition-colors shadow-lg flex items-center gap-2"
-            >
-              <ExternalLink size={16} />
-              Live Demo
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div className="pt-4 pb-2">
-        <div className="flex items-start justify-between gap-2">
-          <div>
-            <Link
-              href={`/templates/${template.id}`}
-              className="font-bold text-primary hover:text-accent transition-colors text-base"
-            >
-              {template.name}
-            </Link>
-            <p className="text-sm text-muted-foreground mt-0.5">
-              {categoryLabels[template.category] || template.category}
-            </p>
-          </div>
-          <span className="text-xs font-semibold text-accent bg-accent/10 px-2.5 py-1 rounded-full flex-shrink-0 mt-0.5">
-            {template.price}
-          </span>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
 export function PortfolioPreview() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <Section id="portfolio" background="white">
+    <Section id="portfolio" background="muted">
       <Container>
         <motion.div
           ref={ref}
@@ -133,15 +64,14 @@ export function PortfolioPreview() {
             </h2>
             <p className="text-muted-foreground text-lg">
               Start with a professionally designed template, then customize every
-              detail to match your brand. All templates are fully responsive and
-              built for performance.
+              detail to match your brand. Transparent pricing included.
             </p>
           </motion.div>
 
-          {/* Templates Grid — show 6 */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Templates Grid — 6 compact cards */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {previewTemplates.map((template) => (
-              <TemplateCard key={template.id} template={template} />
+              <TemplateGridCard key={template.id} template={template} />
             ))}
           </div>
 

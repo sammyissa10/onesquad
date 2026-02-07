@@ -17,9 +17,70 @@ export interface TemplateData {
   demoUrl: string;
 }
 
+export interface PriceBreakdownItem {
+  label: string;
+  value: string;
+}
+
 // Generate a real website screenshot URL from a demo URL
-function screenshotUrl(demoUrl: string, width = 600, height = 900): string {
+function screenshotUrl(demoUrl: string, width = 1200, height = 800): string {
   return `https://image.thum.io/get/width/${width}/crop/${height}/${demoUrl}`;
+}
+
+// Price breakdowns by tier — shows what's included and why
+const breakdownsByTier: Record<string, PriceBreakdownItem[]> = {
+  "700": [
+    { label: "Custom Design & Layout", value: "$300" },
+    { label: "5 Responsive Pages", value: "$100" },
+    { label: "Mobile Optimization", value: "Included" },
+    { label: "Basic SEO Setup", value: "$50" },
+    { label: "Contact Form Integration", value: "$50" },
+    { label: "Performance Optimization", value: "Included" },
+    { label: "Hosting Setup & Deployment", value: "$100" },
+    { label: "30-Day Support", value: "$100" },
+  ],
+  "900": [
+    { label: "Custom Design & Development", value: "$350" },
+    { label: "6 Responsive Pages", value: "$150" },
+    { label: "Mobile-First Design", value: "Included" },
+    { label: "SEO Optimization Package", value: "$100" },
+    { label: "Interactive Features", value: "$100" },
+    { label: "CMS Integration", value: "$100" },
+    { label: "30-Day Support", value: "$100" },
+  ],
+  "1200": [
+    { label: "Premium Design & Development", value: "$450" },
+    { label: "6+ Responsive Pages", value: "$200" },
+    { label: "Mobile-First Design", value: "Included" },
+    { label: "Advanced SEO Setup", value: "$150" },
+    { label: "Booking / Scheduling System", value: "$100" },
+    { label: "CMS Integration", value: "$100" },
+    { label: "Analytics Integration", value: "Included" },
+    { label: "60-Day Priority Support", value: "$200" },
+  ],
+  "1500": [
+    { label: "Complex UI Development", value: "$550" },
+    { label: "Dashboard Interface Design", value: "$250" },
+    { label: "Real-Time Data Widgets", value: "$200" },
+    { label: "Charts & Reporting", value: "$150" },
+    { label: "User Management System", value: "$150" },
+    { label: "Dark / Light Mode", value: "Included" },
+    { label: "60-Day Priority Support", value: "$200" },
+  ],
+  "1700": [
+    { label: "E-Commerce Design & Dev", value: "$500" },
+    { label: "Product & Catalog Pages", value: "$250" },
+    { label: "Payment Integration (Stripe)", value: "$250" },
+    { label: "Shopping Cart & Checkout", value: "$250" },
+    { label: "Inventory Management", value: "$150" },
+    { label: "Mobile Shopping Experience", value: "Included" },
+    { label: "60-Day Priority Support", value: "$300" },
+  ],
+};
+
+export function getTemplateBreakdown(template: TemplateData): PriceBreakdownItem[] {
+  const priceNum = template.price.replace(/[^0-9]/g, "");
+  return breakdownsByTier[priceNum] || breakdownsByTier["900"];
 }
 
 export const categories = [
@@ -64,6 +125,21 @@ export const categoryLabels: Record<string, string> = {
   automotive: "Automotive",
   cleaning: "Cleaning",
 };
+
+export interface CategoryGroup {
+  id: string;
+  label: string;
+  categories: string[];
+}
+
+export const categoryGroups: CategoryGroup[] = [
+  { id: "all", label: "All Templates", categories: [] },
+  { id: "business-professional", label: "Business", categories: ["business", "legal", "realestate", "dashboard"] },
+  { id: "services-trades", label: "Services", categories: ["construction", "plumbing", "landscaping", "remodeling", "automotive", "cleaning"] },
+  { id: "health-lifestyle", label: "Lifestyle", categories: ["healthcare", "fitness", "barbershop", "restaurant"] },
+  { id: "creative-education", label: "Creative", categories: ["portfolio", "education"] },
+  { id: "ecommerce-retail", label: "Shopping", categories: ["ecommerce", "retail"] },
+];
 
 export const templates: TemplateData[] = [
   {
