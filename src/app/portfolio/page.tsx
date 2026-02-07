@@ -217,10 +217,11 @@ export default function PortfolioPage() {
 
               {/* Template Showcase — two per row */}
               <div className="grid md:grid-cols-2 gap-8">
-                {sortedTemplates.map((template) => (
+                {sortedTemplates.map((template, index) => (
                   <TemplateShowcaseCard
                     key={template.id}
                     template={template}
+                    index={index}
                   />
                 ))}
               </div>
