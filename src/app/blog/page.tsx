@@ -34,69 +34,75 @@ const itemVariants = {
 const blogPosts = [
   {
     id: "seo-trends-2026",
-    title: "SEO Trends You Can't Ignore in 2026",
+    title: "5 Crucial SEO Trends in 2026 (and How to Adapt)",
     excerpt:
-      "From AI-powered search to voice optimization, discover the SEO strategies that will dominate this year and how to stay ahead of the curve.",
+      "AI Overviews now appear in 1 of every 4 searches. Discover how AI search, content clustering, and multi-platform optimization are reshaping SEO this year.",
     category: "SEO",
-    author: "Sarah Mitchell",
-    date: "January 15, 2026",
+    author: "Backlinko",
+    date: "February 3, 2026",
     readTime: "8 min read",
     featured: true,
+    url: "https://backlinko.com/seo-this-year",
   },
   {
     id: "small-business-website-guide",
-    title: "The Ultimate Small Business Website Guide",
+    title: "Small Business Website Design: Best Practices, Tips & Tools",
     excerpt:
-      "Everything you need to know about building a website that converts visitors into customers. From design principles to must-have features.",
+      "With 97% of consumers searching online for local businesses, your website is your storefront. Learn the design principles that convert visitors into customers.",
     category: "Web Design",
-    author: "James Chen",
+    author: "HubSpot",
     date: "January 10, 2026",
     readTime: "12 min read",
     featured: true,
+    url: "https://blog.hubspot.com/website/website-management-for-small-business",
   },
   {
     id: "social-media-roi",
-    title: "How to Measure Social Media ROI (The Right Way)",
+    title: "How to Track, Prove, and Improve Your Social Media ROI",
     excerpt:
-      "Stop guessing and start measuring. Learn the metrics that actually matter and how to calculate your true return on social media investment.",
+      "Stop tracking vanity metrics. Learn the formula and framework for calculating your true return on social media investment with real examples.",
     category: "Social Media",
-    author: "Emily Rodriguez",
+    author: "Hootsuite",
     date: "January 5, 2026",
     readTime: "6 min read",
     featured: false,
+    url: "https://blog.hootsuite.com/social-media-roi/",
   },
   {
     id: "email-marketing-automation",
-    title: "Email Marketing Automation: A Beginner's Guide",
+    title: "Your Step-by-Step Guide to Email Automation for 2026",
     excerpt:
-      "Set up your first email automation sequence in under an hour. We break down the process step by step with real examples.",
+      "Automated emails generate nearly 40% of email-driven revenue while making up only 3% of total sends. Learn how to set up your first automation workflows.",
     category: "Email Marketing",
-    author: "Michael Torres",
+    author: "MailerLite",
     date: "December 28, 2025",
     readTime: "10 min read",
     featured: false,
+    url: "https://www.mailerlite.com/ultimate-guide-to-email-marketing/automation",
   },
   {
     id: "ppc-budget-optimization",
-    title: "How to Get More From Your PPC Budget",
+    title: "PPC Budget Guide 2026: Calculate & Optimize Your Spend for Max ROI",
     excerpt:
-      "Maximize every dollar you spend on ads. Discover proven optimization techniques that can reduce your cost per click by up to 40%.",
+      "Adjust your PPC budget monthly, increase spend on high-ROI campaigns, and pause underperformers. A data-driven guide to maximizing every ad dollar.",
     category: "PPC",
-    author: "Sarah Mitchell",
+    author: "Improvado",
     date: "December 20, 2025",
     readTime: "7 min read",
     featured: false,
+    url: "https://improvado.io/blog/ppc-budget-allocation",
   },
   {
     id: "content-marketing-strategy",
-    title: "Building a Content Strategy That Actually Works",
+    title: "42 Experts Reveal Top Content Marketing Trends for 2026",
     excerpt:
-      "Content is king, but only if you have a strategy. Learn how to plan, create, and distribute content that drives real business results.",
+      "Build trust ecosystems with authentic content that AI can't replicate. Top marketers share the strategies that are driving real results right now.",
     category: "Content Marketing",
-    author: "James Chen",
+    author: "Content Marketing Institute",
     date: "December 15, 2025",
     readTime: "9 min read",
     featured: false,
+    url: "https://contentmarketinginstitute.com/strategy-planning/trends-content-marketing",
   },
 ];
 
@@ -117,10 +123,13 @@ function BlogCard({ post, featured = false }: { post: typeof blogPosts[0]; featu
       whileHover={{ y: -8 }}
       className={`group ${featured ? "md:col-span-2" : ""}`}
     >
-      <div
+      <a
+        href={post.url}
+        target="_blank"
+        rel="noopener noreferrer"
         className={`bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full flex ${
           featured ? "md:flex-row" : "flex-col"
-        }`}
+        } block`}
       >
         {/* Image Placeholder */}
         <div
@@ -167,11 +176,11 @@ function BlogCard({ post, featured = false }: { post: typeof blogPosts[0]; featu
           </div>
 
           {/* CTA */}
-          <span className="inline-flex items-center gap-2 text-accent font-medium text-sm group-hover:gap-3 transition-all cursor-pointer">
+          <span className="inline-flex items-center gap-2 text-accent font-medium text-sm group-hover:gap-3 transition-all">
             Read Article <ArrowRight size={16} />
           </span>
         </div>
-      </div>
+      </a>
     </motion.div>
   );
 }

@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
@@ -9,10 +12,25 @@ interface LogoProps {
 }
 
 export function Logo({ className, variant = "default", showTagline = false }: LogoProps) {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleClick = (e: React.MouseEvent) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      e.preventDefault();
+      router.push("/");
+      window.scrollTo({ top: 0 });
+    }
+  };
+
   return (
     <Link
       href="/"
-      className={cn("flex items-center gap-3", className)}
+      onClick={handleClick}
+      className={cn("flex items-center gap-3 cursor-pointer", className)}
     >
       {/* OneSquad Logo */}
       <Image

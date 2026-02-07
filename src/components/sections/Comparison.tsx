@@ -223,35 +223,6 @@ export function Comparison() {
             </motion.div>
           </div>
 
-          {/* Bottom Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true, margin: "-50px" }}
-            className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
-          >
-            {[
-              { value: "500+", label: "Happy Clients" },
-              { value: "98%", label: "Client Retention" },
-              { value: "3x", label: "Average ROI" },
-              { value: "24/7", label: "Support Available" },
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="text-center p-6 rounded-2xl bg-gradient-to-br from-accent/5 to-secondary/5"
-              >
-                <p className="text-3xl md:text-4xl font-bold text-accent mb-2">
-                  {stat.value}
-                </p>
-                <p className="text-sm text-muted-foreground">{stat.label}</p>
-              </motion.div>
-            ))}
-          </motion.div>
         </div>
       </Container>
     </Section>

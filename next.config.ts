@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "colorlib.com",
       },
+      {
+        protocol: "https",
+        hostname: "image.thum.io",
+      },
     ],
   },
 };

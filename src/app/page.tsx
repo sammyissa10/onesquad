@@ -5,9 +5,8 @@ import {
   Features,
   Comparison,
   ServicesPreview,
-  TemplateShowcase,
+  PortfolioPreview,
   Process,
-  Stats,
   Testimonials,
   HomeFAQ,
   CTABanner,
@@ -28,11 +27,10 @@ export default function HomePage() {
           buttonText="Get a Free Quote"
           buttonHref="/contact"
         />
-        <TemplateShowcase />
+        <PortfolioPreview />
         <Process />
-        <Stats />
         <MidPageCTA
-          heading="Join 500+ Growing Businesses"
+          heading="Join 29+ Growing Businesses"
           buttonText="See Our Plans"
           buttonHref="/pricing"
         />

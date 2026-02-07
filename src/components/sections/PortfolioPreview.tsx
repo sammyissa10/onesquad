@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, ExternalLink, Eye, Star } from "lucide-react";
 import { Container, Section } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { categories, templates, categoryLabels } from "@/lib/templateData";
+import { templates, categoryLabels } from "@/lib/templateData";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -31,10 +31,15 @@ const itemVariants = {
   },
 };
 
+// Show 6 templates on homepage — popular ones first
+const previewTemplates = [
+  ...templates.filter((t) => t.popular),
+  ...templates.filter((t) => !t.popular),
+].slice(0, 6);
+
 function TemplateCard({ template }: { template: (typeof templates)[0] }) {
   return (
     <motion.div variants={itemVariants} className="group flex flex-col">
-      {/* Screenshot Preview — tall portrait like Wix */}
       <div className="relative rounded-xl overflow-hidden border border-border bg-white shadow-sm hover:shadow-xl transition-shadow duration-300">
         <div className="aspect-[3/4] relative overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -57,7 +62,7 @@ function TemplateCard({ template }: { template: (typeof templates)[0] }) {
             )}
           </div>
 
-          {/* Hover overlay with buttons — Wix style */}
+          {/* Hover overlay */}
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100">
             <Link
               href={`/templates/${template.id}`}
@@ -79,7 +84,6 @@ function TemplateCard({ template }: { template: (typeof templates)[0] }) {
         </div>
       </div>
 
-      {/* Template info below card — clean like Wix */}
       <div className="pt-4 pb-2">
         <div className="flex items-start justify-between gap-2">
           <div>
@@ -102,26 +106,12 @@ function TemplateCard({ template }: { template: (typeof templates)[0] }) {
   );
 }
 
-export function TemplateShowcase() {
-  const [activeCategory, setActiveCategory] = useState("all");
+export function PortfolioPreview() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
-  const filteredTemplates =
-    activeCategory === "all"
-      ? templates
-      : templates.filter((t) => t.category === activeCategory);
-
-  const categoriesWithCounts = categories.map((cat) => ({
-    ...cat,
-    count:
-      cat.id === "all"
-        ? templates.length
-        : templates.filter((t) => t.category === cat.id).length,
-  }));
-
   return (
-    <Section id="templates" background="white">
+    <Section id="portfolio" background="white">
       <Container>
         <motion.div
           ref={ref}
@@ -135,57 +125,49 @@ export function TemplateShowcase() {
             className="text-center max-w-2xl mx-auto mb-12"
           >
             <span className="text-accent font-semibold text-sm uppercase tracking-wider">
-              Templates
+              Portfolio
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-4 mb-6">
               Pick a Template.{" "}
               <span className="text-accent">Make It Yours.</span>
             </h2>
             <p className="text-muted-foreground text-lg">
-              Start with a professionally designed template, then customize
-              every detail to match your brand. All templates are fully
-              responsive and built for performance.
+              Start with a professionally designed template, then customize every
+              detail to match your brand. All templates are fully responsive and
+              built for performance.
             </p>
           </motion.div>
 
-          {/* Category Filter */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-nowrap overflow-x-auto gap-2 mb-10 pb-2 -mx-4 px-4 lg:flex-wrap lg:justify-center lg:mx-0 lg:px-0"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
-            {categoriesWithCounts.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap flex-shrink-0 ${
-                  activeCategory === category.id
-                    ? "bg-primary text-white shadow-lg"
-                    : "bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary"
-                }`}
-              >
-                {category.label}
-              </button>
-            ))}
-          </motion.div>
-
-          {/* Templates Grid — 3 columns like Wix */}
+          {/* Templates Grid — show 6 */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredTemplates.map((template) => (
+            {previewTemplates.map((template) => (
               <TemplateCard key={template.id} template={template} />
             ))}
           </div>
 
-          {/* CTA */}
-          <motion.div variants={itemVariants} className="text-center mt-16">
-            <p className="text-muted-foreground mb-4">
-              Need something unique? We&apos;ll design it from scratch.
-            </p>
-            <Link href="/contact">
-              <Button variant="accent" rightIcon={<ArrowRight size={18} />}>
-                Request Custom Design
+          {/* View All + Custom CTA */}
+          <motion.div
+            variants={itemVariants}
+            className="text-center mt-12 space-y-4"
+          >
+            <Link href="/portfolio">
+              <Button
+                variant="primary"
+                size="lg"
+                rightIcon={<ArrowRight size={18} />}
+              >
+                View All Templates ({templates.length})
               </Button>
             </Link>
+            <p className="text-muted-foreground">
+              Need something unique?{" "}
+              <Link
+                href="/contact"
+                className="text-accent font-semibold hover:underline"
+              >
+                Request a custom design
+              </Link>
+            </p>
           </motion.div>
         </motion.div>
       </Container>

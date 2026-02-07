@@ -45,9 +45,8 @@ const caseStudies = [
       { label: "New Customers", value: "1,200+" },
       { label: "Website Traffic", value: "+180%" },
     ],
-    image: "/case-studies/bloom-boutique.jpg",
     icon: ShoppingCart,
-    color: "accent",
+    url: "https://www.optimonk.com/ecommerce-case-studies/",
   },
   {
     id: "techstart-solutions",
@@ -62,9 +61,8 @@ const caseStudies = [
       { label: "Cost Per Lead", value: "-45%" },
       { label: "Organic Rankings", value: "Top 3" },
     ],
-    image: "/case-studies/techstart.jpg",
     icon: TrendingUp,
-    color: "highlight",
+    url: "https://sproutsocial.com/insights/case-studies/plaid/",
   },
   {
     id: "green-living",
@@ -79,9 +77,8 @@ const caseStudies = [
       { label: "Engagement Rate", value: "+220%" },
       { label: "Brand Awareness", value: "+150%" },
     ],
-    image: "/case-studies/green-living.jpg",
     icon: Users,
-    color: "secondary",
+    url: "https://www.socialpilot.co/blog/social-media-case-study",
   },
   {
     id: "metro-dental",
@@ -96,16 +93,20 @@ const caseStudies = [
       { label: "Google Rankings", value: "#1" },
       { label: "Review Score", value: "4.9★" },
     ],
-    image: "/case-studies/metro-dental.jpg",
     icon: Globe,
-    color: "accent",
+    url: "https://www.seoraf.com/local-seo-case-studies/",
   },
 ];
 
 function CaseStudyCard({ study }: { study: typeof caseStudies[0] }) {
   return (
     <motion.div variants={itemVariants} whileHover={{ y: -8 }} className="group">
-      <div className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
+      <a
+        href={study.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full flex flex-col block"
+      >
         {/* Image Placeholder */}
         <div
           className="h-48 bg-gradient-to-br from-primary/10 to-highlight/10 flex items-center justify-center relative overflow-hidden"
@@ -154,11 +155,11 @@ function CaseStudyCard({ study }: { study: typeof caseStudies[0] }) {
           </div>
 
           {/* CTA */}
-          <span className="inline-flex items-center gap-2 text-accent font-medium text-sm group-hover:gap-3 transition-all cursor-pointer">
+          <span className="inline-flex items-center gap-2 text-accent font-medium text-sm group-hover:gap-3 transition-all">
             Read Full Case Study <ArrowRight size={16} />
           </span>
         </div>
-      </div>
+      </a>
     </motion.div>
   );
 }

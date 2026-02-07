@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowLeft,
   ArrowRight,
@@ -19,7 +20,6 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { notFound } from "next/navigation";
 import { templates, categoryLabels } from "@/lib/templateData";
-import { TemplatePreview, TemplatePreviewThumbnail } from "@/components/ui/TemplatePreview";
 
 export default function TemplatePage() {
   const params = useParams();
@@ -102,13 +102,26 @@ export default function TemplatePage() {
                 </div>
               </div>
 
-              {/* Preview */}
-              <Link href={`/templates/${slug}/demo`}>
-                <TemplatePreview
-                  templateId={slug}
-                  className="w-full cursor-pointer"
+              {/* Preview Screenshot */}
+              <a
+                href={template.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block relative cursor-pointer group"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={template.screenshot}
+                  alt={`${template.name} template preview`}
+                  className="w-full h-auto max-h-[600px] object-cover object-top"
                 />
-              </Link>
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white rounded-full px-6 py-3 flex items-center gap-2 shadow-xl">
+                    <ExternalLink size={18} className="text-accent" />
+                    <span className="font-semibold text-primary">View Live Demo</span>
+                  </div>
+                </div>
+              </a>
             </motion.div>
           </Container>
         </Section>
@@ -176,19 +189,35 @@ export default function TemplatePage() {
                   <h2 className="text-2xl font-bold text-primary mb-6">
                     See It In Action
                   </h2>
-                  <Link href={`/templates/${slug}/demo`}>
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      className="rounded-xl overflow-hidden shadow-lg cursor-pointer border border-border"
-                    >
-                      <TemplatePreview templateId={slug} className="w-full" />
-                      <div className="bg-white p-4 text-center">
-                        <span className="text-accent font-semibold text-sm flex items-center justify-center gap-2">
-                          <ExternalLink size={14} /> View Full Live Demo
-                        </span>
-                      </div>
-                    </motion.div>
-                  </Link>
+                  <div className="grid sm:grid-cols-3 gap-4">
+                    {template.gallery.map((img, i) => (
+                      <a
+                        key={i}
+                        href={template.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block group"
+                      >
+                        <div className="rounded-xl overflow-hidden shadow-lg border border-border aspect-[4/3] relative">
+                          <Image
+                            src={img}
+                            alt={`${template.name} preview ${i + 1}`}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                          />
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                  <a
+                    href={template.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-2 text-accent font-semibold text-sm hover:underline"
+                  >
+                    <ExternalLink size={14} /> View Full Live Demo
+                  </a>
                 </motion.div>
               </div>
 
@@ -216,7 +245,12 @@ export default function TemplatePage() {
                         Get This Template
                       </Button>
                     </Link>
-                    <Link href={`/templates/${slug}/demo`} className="block">
+                    <a
+                      href={template.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block"
+                    >
                       <Button
                         variant="outline"
                         className="w-full"
@@ -225,7 +259,7 @@ export default function TemplatePage() {
                       >
                         Live Preview
                       </Button>
-                    </Link>
+                    </a>
                   </div>
 
                   <div className="border-t border-border pt-6 space-y-4">
@@ -299,10 +333,15 @@ export default function TemplatePage() {
                       whileHover={{ y: -8 }}
                       className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all border border-border"
                     >
-                      <TemplatePreviewThumbnail
-                        templateId={related.id}
-                        className="aspect-[3/2]"
-                      />
+                      <div className="aspect-[3/4] relative overflow-hidden">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={related.screenshot}
+                          alt={related.name}
+                          className="absolute inset-0 w-full h-full object-cover object-top"
+                          loading="lazy"
+                        />
+                      </div>
                       <div className="p-4">
                         <h3 className="font-bold text-primary">{related.name}</h3>
                         <p className="text-sm text-muted-foreground line-clamp-2">

@@ -20,7 +20,7 @@ export function TemplatePreview({ templateId, className = "" }: TemplatePreviewP
   const { primaryColor, accentColor, businessName, tagline, nav, hero, features, stats } = content;
 
   return (
-    <div className={`overflow-hidden select-none pointer-events-none ${className}`} style={{ backgroundColor: "#f8fafc" }}>
+    <div className={`overflow-hidden select-none ${className}`} style={{ backgroundColor: "#f8fafc" }}>
       {/* Mini Navbar */}
       <div className="flex items-center justify-between px-3 py-1.5" style={{ backgroundColor: primaryColor }}>
         <div className="flex items-center gap-1.5">
@@ -117,7 +117,7 @@ export function TemplatePreviewThumbnail({ templateId, className = "" }: Templat
   const { primaryColor, accentColor, businessName, tagline } = content;
 
   return (
-    <div className={`overflow-hidden select-none pointer-events-none ${className}`} style={{ backgroundColor: primaryColor }}>
+    <div className={`overflow-hidden select-none ${className}`} style={{ backgroundColor: primaryColor }}>
       <div className="h-full flex flex-col items-center justify-center p-4 relative">
         <div className="absolute top-4 right-4 w-16 h-16 rounded-full opacity-10 blur-xl" style={{ backgroundColor: accentColor }} />
         <div className="absolute bottom-4 left-4 w-12 h-12 rounded-full opacity-10 blur-xl" style={{ backgroundColor: accentColor }} />

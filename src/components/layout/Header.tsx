@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, Calculator } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -17,6 +17,17 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleHomeClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      router.push("/");
+      window.scrollTo({ top: 0 });
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,6 +75,7 @@ export function Header() {
               >
                 <Link
                   href={item.href}
+                  onClick={item.href === "/" ? handleHomeClick : undefined}
                   className={cn(
                     "flex items-center gap-1 text-sm font-medium transition-colors hover:text-accent",
                     pathname === item.href ? "text-accent" : useDarkText ? "text-foreground" : "text-white"
@@ -116,8 +128,8 @@ export function Header() {
                 className={cn(
                   "flex items-center gap-1.5 p-2 rounded-lg transition-colors",
                   useDarkText
-                    ? "text-foreground hover:text-accent hover:bg-muted"
-                    : "text-white/80 hover:text-white hover:bg-white/10"
+                    ? "text-accent hover:text-accent/80 hover:bg-muted"
+                    : "text-white hover:text-white/80 hover:bg-white/10"
                 )}
                 title="Price Calculator"
               >
@@ -206,6 +218,7 @@ export function Header() {
                     ) : (
                       <Link
                         href={item.href}
+                        onClick={item.href === "/" ? handleHomeClick : undefined}
                         className={cn(
                           "block py-3 font-medium transition-colors",
                           pathname === item.href

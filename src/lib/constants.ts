@@ -37,7 +37,7 @@ export const navItems: NavItem[] = [
     label: "Services",
     href: "/services",
     children: [
-      { label: "Digital Marketing", href: "/services#digital-marketing" },
+      { label: "Digital Marketing", href: "/services/digital-marketing" },
       { label: "SEO", href: "/services/seo" },
       { label: "Social Media Marketing", href: "/services/social-media" },
       { label: "Email Marketing", href: "/services/email-marketing" },
@@ -49,6 +49,7 @@ export const navItems: NavItem[] = [
       { label: "Ongoing Maintenance", href: "/services/maintenance" },
     ],
   },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "Pricing", href: "/pricing" },
   {
     label: "Resources",
@@ -573,8 +574,8 @@ export const includedWithEveryPlan = [
 
 // Stats for social proof
 export const stats = [
-  { value: "500+", label: "Websites Launched" },
-  { value: "98%", label: "Client Retention" },
+  { value: "29+", label: "Websites Launched" },
+  { value: "99%", label: "Client Retention" },
   { value: "24/7", label: "Support Available" },
-  { value: "50+", label: "Happy Clients" },
+  { value: "29+", label: "Happy Clients" },
 ];
