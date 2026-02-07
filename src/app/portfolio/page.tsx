@@ -215,8 +215,8 @@ export default function PortfolioPage() {
 
               {activeGroup === "all" && <div className="mb-8" />}
 
-              {/* Template Showcase — one per row */}
-              <div className="space-y-8">
+              {/* Template Showcase — two per row */}
+              <div className="grid md:grid-cols-2 gap-8">
                 {sortedTemplates.map((template) => (
                   <TemplateShowcaseCard
                     key={template.id}

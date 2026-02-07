@@ -2,26 +2,23 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Eye, ExternalLink, Star, Check } from "lucide-react";
+import { Eye, ExternalLink, Star, Check, Sparkles, Crown, Zap } from "lucide-react";
 import {
   type TemplateData,
   type PriceBreakdownItem,
   categoryLabels,
   getTemplateBreakdown,
+  getPriceTier,
 } from "@/lib/templateData";
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const },
-  },
-};
 
 /**
  * Full-width showcase card for the portfolio page.
- * Large screenshot on the left, info + price breakdown on the right.
+ * Visual complexity and animations scale with price tier.
+ *
+ * Tier 1-2: Clean, minimal entrance
+ * Tier 3-4: Accent border, enhanced shadows
+ * Tier 5-6: Gradient accents, glow effects
+ * Tier 7:   Full premium — animated borders, pulsing glow
  */
 export function TemplateShowcaseCard({
   template,
@@ -29,16 +26,87 @@ export function TemplateShowcaseCard({
   template: TemplateData;
 }) {
   const breakdown = getTemplateBreakdown(template);
+  const tier = getPriceTier(template);
+
+  // Tier-based entrance animation
+  const entranceVariant = {
+    hidden: {
+      opacity: 0,
+      y: tier >= 5 ? 50 : 30,
+      scale: tier >= 5 ? 0.95 : 1,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: tier >= 5 ? 0.7 : 0.5,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
+  // Tier-based hover lift
+  const hoverY = tier >= 6 ? -10 : tier >= 4 ? -6 : tier >= 2 ? -4 : -2;
+  const hoverScale = tier >= 6 ? 1.015 : tier >= 4 ? 1.008 : 1;
+
+  // Tier-based screenshot zoom on hover
+  const screenshotZoom =
+    tier >= 6 ? "group-hover:scale-[1.06]" :
+    tier >= 4 ? "group-hover:scale-[1.04]" :
+    "group-hover:scale-[1.02]";
+
+  // Tier-based card styling
+  const cardBorder =
+    tier >= 7 ? "border-2 border-accent/30" :
+    tier >= 5 ? "border border-accent/20" :
+    "border border-gray-200/60";
+
+  const cardShadow =
+    tier >= 7 ? "shadow-xl shadow-accent/10 hover:shadow-2xl hover:shadow-accent/20" :
+    tier >= 5 ? "shadow-lg hover:shadow-2xl hover:shadow-accent/10" :
+    tier >= 3 ? "shadow-lg hover:shadow-2xl" :
+    "shadow-md hover:shadow-xl";
+
+  // Tier badge icon & label
+  const tierBadge = (() => {
+    if (tier >= 7) return { icon: Crown, label: "Enterprise", color: "text-amber-500 bg-amber-50" };
+    if (tier >= 5) return { icon: Sparkles, label: "Premium", color: "text-violet-600 bg-violet-50" };
+    if (tier >= 3) return { icon: Zap, label: "Professional", color: "text-blue-600 bg-blue-50" };
+    return null;
+  })();
+
+  // Gradient accent bar at top — more prominent at higher tiers
+  const accentBar =
+    tier >= 7 ? "h-1.5 bg-gradient-to-r from-accent via-secondary to-accent" :
+    tier >= 5 ? "h-1 bg-gradient-to-r from-accent to-secondary" :
+    tier >= 3 ? "h-0.5 bg-accent/60" :
+    "";
 
   return (
-    <motion.div variants={itemVariants} className="group">
-      <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-200/60 grid grid-cols-1 lg:grid-cols-[58%_42%]">
-        {/* Screenshot Side */}
-        <div className="relative aspect-[16/10] lg:aspect-auto lg:min-h-[420px] overflow-hidden">
+    <motion.div
+      variants={entranceVariant}
+      whileHover={{ y: hoverY, scale: hoverScale }}
+      transition={{ duration: 0.35, ease: "easeOut" }}
+      className="group"
+    >
+      <div
+        className={`bg-white rounded-2xl overflow-hidden ${cardShadow} ${cardBorder} flex flex-col transition-all duration-500 relative`}
+      >
+        {/* Accent bar at top */}
+        {accentBar && <div className={accentBar} />}
+
+        {/* Glow ring for premium tiers */}
+        {tier >= 6 && (
+          <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-br from-accent/20 via-transparent to-secondary/20 -z-10 blur-sm group-hover:blur-md transition-all duration-500" />
+        )}
+
+        {/* Screenshot */}
+        <div className="relative aspect-[16/10] overflow-hidden">
           <img
             src={template.screenshot}
             alt={template.name}
-            className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-700"
+            className={`absolute inset-0 w-full h-full object-cover object-top ${screenshotZoom} transition-transform duration-700`}
             loading="lazy"
           />
 
@@ -47,6 +115,17 @@ export function TemplateShowcaseCard({
             <div className="absolute top-4 left-4 z-10">
               <span className="bg-accent/90 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg">
                 <Star size={12} className="fill-current" /> Popular
+              </span>
+            </div>
+          )}
+
+          {/* Tier badge (top-right) */}
+          {tierBadge && (
+            <div className="absolute top-4 right-4 z-10">
+              <span
+                className={`${tierBadge.color} text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-md backdrop-blur-sm`}
+              >
+                <tierBadge.icon size={12} /> {tierBadge.label}
               </span>
             </div>
           )}
@@ -70,10 +149,10 @@ export function TemplateShowcaseCard({
           </div>
         </div>
 
-        {/* Content + Breakdown Side */}
+        {/* Content + Breakdown */}
         <div className="p-6 lg:p-8 flex flex-col">
           {/* Header */}
-          <div className="flex items-center gap-2 mb-3">
+          <div className="flex items-center gap-2 mb-3 flex-wrap">
             <span className="text-xs font-semibold text-accent bg-accent/10 px-2.5 py-1 rounded-full">
               {categoryLabels[template.category] || template.category}
             </span>
@@ -85,7 +164,11 @@ export function TemplateShowcaseCard({
           </div>
 
           <Link href={`/templates/${template.id}`}>
-            <h3 className="text-xl lg:text-2xl font-bold text-primary hover:text-accent transition-colors mb-2">
+            <h3
+              className={`font-bold text-primary hover:text-accent transition-colors mb-2 ${
+                tier >= 5 ? "text-2xl lg:text-3xl" : "text-xl lg:text-2xl"
+              }`}
+            >
               {template.name}
             </h3>
           </Link>
@@ -107,7 +190,13 @@ export function TemplateShowcaseCard({
           </div>
 
           {/* Price Breakdown */}
-          <div className="bg-muted/60 rounded-xl p-4 mb-5 flex-1">
+          <div
+            className={`rounded-xl p-4 mb-5 flex-1 ${
+              tier >= 5
+                ? "bg-gradient-to-br from-primary/5 to-accent/5 border border-accent/10"
+                : "bg-muted/60"
+            }`}
+          >
             <h4 className="text-xs font-bold text-primary uppercase tracking-wider mb-3">
               What&apos;s Included
             </h4>
@@ -144,17 +233,25 @@ export function TemplateShowcaseCard({
             {/* Total */}
             <div className="border-t border-border mt-3 pt-3 flex items-center justify-between">
               <span className="font-bold text-primary">Starting from</span>
-              <span className="text-xl font-bold text-accent">
+              <span
+                className={`font-bold text-accent ${
+                  tier >= 5 ? "text-2xl" : "text-xl"
+                }`}
+              >
                 {template.price.replace("From ", "")}
               </span>
             </div>
           </div>
 
-          {/* CTA buttons */}
+          {/* CTA buttons — styling scales with tier */}
           <div className="flex gap-3">
             <Link
               href={`/templates/${template.id}`}
-              className="flex-1 inline-flex items-center justify-center gap-2 bg-accent text-white px-5 py-3 rounded-xl text-sm font-semibold hover:bg-accent/90 transition-colors shadow-md shadow-accent/25"
+              className={`flex-1 inline-flex items-center justify-center gap-2 text-white px-5 py-3 rounded-xl text-sm font-semibold transition-colors ${
+                tier >= 5
+                  ? "bg-gradient-to-r from-accent to-accent/80 hover:from-accent/90 hover:to-accent/70 shadow-lg shadow-accent/30"
+                  : "bg-accent hover:bg-accent/90 shadow-md shadow-accent/25"
+              }`}
             >
               View Template
             </Link>
@@ -173,6 +270,15 @@ export function TemplateShowcaseCard({
   );
 }
 
+const gridItemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" as const },
+  },
+};
+
 /**
  * Compact grid card for the homepage portfolio preview.
  * Screenshot with overlaid info at bottom.
@@ -184,7 +290,7 @@ export function TemplateGridCard({
 }) {
   return (
     <motion.div
-      variants={itemVariants}
+      variants={gridItemVariants}
       whileHover={{ y: -6 }}
       transition={{ duration: 0.3 }}
       className="group"
