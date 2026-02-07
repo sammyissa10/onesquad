@@ -2,13 +2,13 @@
 
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ExternalLink, Eye, Star } from "lucide-react";
 import { Container, Section } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { categories, templates } from "@/lib/templateData";
+import { TemplatePreview } from "@/components/ui/TemplatePreview";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -43,11 +43,9 @@ function TemplateCard({ template }: { template: typeof templates[0] }) {
         <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
         {/* Template Preview */}
         <div className="h-48 relative overflow-hidden">
-          <Image
-            src={template.image}
-            alt={template.name}
-            fill
-            className="object-cover group-hover:scale-110 transition-transform duration-500"
+          <TemplatePreview
+            templateId={template.id}
+            className="absolute inset-0 w-full h-full group-hover:scale-110 transition-transform duration-500"
           />
 
           {/* Badges */}

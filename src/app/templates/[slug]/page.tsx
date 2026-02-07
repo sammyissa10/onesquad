@@ -2,7 +2,6 @@
 
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -10,9 +9,6 @@ import {
   Check,
   ExternalLink,
   Star,
-  Smartphone,
-  Monitor,
-  Tablet,
   Zap,
   Shield,
   Clock,
@@ -23,6 +19,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { notFound } from "next/navigation";
 import { templates, categoryLabels } from "@/lib/templateData";
+import { TemplatePreview, TemplatePreviewThumbnail } from "@/components/ui/TemplatePreview";
 
 export default function TemplatePage() {
   const params = useParams();
@@ -103,29 +100,15 @@ export default function TemplatePage() {
                 <div className="flex-1 bg-white rounded-lg px-4 py-1.5 text-sm text-muted-foreground">
                   www.yoursite.com
                 </div>
-                <div className="flex items-center gap-2">
-                  <button className="p-1 hover:bg-white/50 rounded transition-colors">
-                    <Monitor size={16} className="text-muted-foreground" />
-                  </button>
-                  <button className="p-1 hover:bg-white/50 rounded transition-colors">
-                    <Tablet size={16} className="text-muted-foreground" />
-                  </button>
-                  <button className="p-1 hover:bg-white/50 rounded transition-colors">
-                    <Smartphone size={16} className="text-muted-foreground" />
-                  </button>
-                </div>
               </div>
 
-              {/* Preview Image */}
-              <div className="relative aspect-[16/9]">
-                <Image
-                  src={template.image}
-                  alt={template.name}
-                  fill
-                  className="object-cover"
-                  priority
+              {/* Preview */}
+              <Link href={`/templates/${slug}/demo`}>
+                <TemplatePreview
+                  templateId={slug}
+                  className="w-full cursor-pointer"
                 />
-              </div>
+              </Link>
             </motion.div>
           </Container>
         </Section>
@@ -191,24 +174,21 @@ export default function TemplatePage() {
                   viewport={{ once: true }}
                 >
                   <h2 className="text-2xl font-bold text-primary mb-6">
-                    More Screenshots
+                    See It In Action
                   </h2>
-                  <div className="grid sm:grid-cols-3 gap-4">
-                    {template.gallery.map((image, index) => (
-                      <motion.div
-                        key={index}
-                        whileHover={{ scale: 1.05 }}
-                        className="relative aspect-[3/2] rounded-xl overflow-hidden shadow-lg cursor-pointer"
-                      >
-                        <Image
-                          src={image}
-                          alt={`${template.name} screenshot ${index + 1}`}
-                          fill
-                          className="object-cover"
-                        />
-                      </motion.div>
-                    ))}
-                  </div>
+                  <Link href={`/templates/${slug}/demo`}>
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      className="rounded-xl overflow-hidden shadow-lg cursor-pointer border border-border"
+                    >
+                      <TemplatePreview templateId={slug} className="w-full" />
+                      <div className="bg-white p-4 text-center">
+                        <span className="text-accent font-semibold text-sm flex items-center justify-center gap-2">
+                          <ExternalLink size={14} /> View Full Live Demo
+                        </span>
+                      </div>
+                    </motion.div>
+                  </Link>
                 </motion.div>
               </div>
 
@@ -236,14 +216,16 @@ export default function TemplatePage() {
                         Get This Template
                       </Button>
                     </Link>
-                    <Button
-                      variant="outline"
-                      className="w-full"
-                      size="lg"
-                      rightIcon={<ExternalLink size={16} />}
-                    >
-                      Live Preview
-                    </Button>
+                    <Link href={`/templates/${slug}/demo`} className="block">
+                      <Button
+                        variant="outline"
+                        className="w-full"
+                        size="lg"
+                        rightIcon={<ExternalLink size={16} />}
+                      >
+                        Live Preview
+                      </Button>
+                    </Link>
                   </div>
 
                   <div className="border-t border-border pt-6 space-y-4">
@@ -317,14 +299,10 @@ export default function TemplatePage() {
                       whileHover={{ y: -8 }}
                       className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all border border-border"
                     >
-                      <div className="relative aspect-[3/2]">
-                        <Image
-                          src={related.image}
-                          alt={related.name}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
+                      <TemplatePreviewThumbnail
+                        templateId={related.id}
+                        className="aspect-[3/2]"
+                      />
                       <div className="p-4">
                         <h3 className="font-bold text-primary">{related.name}</h3>
                         <p className="text-sm text-muted-foreground line-clamp-2">
