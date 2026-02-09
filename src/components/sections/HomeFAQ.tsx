@@ -1,71 +1,46 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { ChevronDown, ArrowRight } from "lucide-react";
 import { Container, Section } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-} as const;
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut" as const,
-    },
-  },
-};
-
 const homeFAQs = [
   {
     question: "How much does it cost to work with OneSquad?",
     answer:
-      "Our plans start at $150/month for basic website hosting and go up to $550/month for our full-service OneSquad package. We also offer custom solutions tailored to your specific needs. All plans include 24/7 support, security, and daily backups.",
+      "Plans start at $150/month for hosting and go up to $550/month for our full-service package. We also do custom quotes. Every plan includes support, security, and daily backups.",
   },
   {
     question: "What kind of results can I expect?",
     answer:
-      "Results vary based on your industry and current digital presence, but our clients typically see 50-200% increases in website traffic within 3-6 months. We focus on measurable outcomes and provide monthly reports so you can track progress.",
+      "It depends on where you're starting from, but most clients see a noticeable jump in traffic within 3-6 months. We send monthly reports so you can see exactly what's moving.",
   },
   {
     question: "How long does it take to get started?",
     answer:
-      "You can be up and running in as little as 2-4 weeks for most website projects. We begin with a discovery call to understand your needs, then move quickly through strategy and execution phases while keeping you informed every step.",
+      "Most websites go live in 2-4 weeks. We start with a call to figure out what you need, then get moving. You'll have updates the whole way through.",
   },
   {
     question: "Do I need to sign a long-term contract?",
     answer:
-      "No! All our plans are month-to-month with no long-term commitment required. You can cancel anytime with 30 days notice. We believe in earning your business every month through results, not locking you into contracts.",
+      "Nope. Month-to-month, cancel anytime with 30 days notice. If we're not earning your business, you should be free to leave.",
   },
   {
     question: "What makes OneSquad different from other agencies?",
     answer:
-      "We're a true partner, not just a vendor. Our name says it all—when you work with us, your team and our team become one with a single mission: your digital success. Plus, we're an all-in-one solution, so you don't need to juggle multiple vendors.",
+      "Honestly? We're smaller and we like it that way. You won't get passed between departments. The person you talk to on day one is the same person managing your account on day 100.",
   },
 ];
 
-function FAQItem({ faq, index }: { faq: typeof homeFAQs[0]; index: number }) {
+function FAQItem({ faq }: { faq: typeof homeFAQs[0] }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <motion.div
-      variants={itemVariants}
-      className="border-b border-border last:border-0"
-    >
+    <div className="border-b border-border last:border-0">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full py-5 flex items-center justify-between text-left group"
@@ -93,58 +68,42 @@ function FAQItem({ faq, index }: { faq: typeof homeFAQs[0]; index: number }) {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 }
 
 export function HomeFAQ() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
-
   return (
-    <Section background="muted">
+    <Section background="muted" padding="sm">
       <Container size="md">
-        <motion.div
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          {/* Section Header */}
-          <motion.div variants={itemVariants} className="text-center mb-12">
-            <span className="text-accent font-semibold text-sm uppercase tracking-wider">
-              FAQ
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mt-4 mb-4">
-              Common Questions
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              Quick answers to help you decide if we're the right fit.
-            </p>
-          </motion.div>
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+            Common Questions
+          </h2>
+          <p className="text-muted-foreground text-lg">
+            Quick answers to help you decide if we&apos;re the right fit.
+          </p>
+        </div>
 
-          {/* FAQ List */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-white rounded-2xl shadow-xl p-6 md:p-8"
-          >
-            {homeFAQs.map((faq, index) => (
-              <FAQItem key={faq.question} faq={faq} index={index} />
-            ))}
-          </motion.div>
+        {/* FAQ List */}
+        <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+          {homeFAQs.map((faq) => (
+            <FAQItem key={faq.question} faq={faq} />
+          ))}
+        </div>
 
-          {/* CTA */}
-          <motion.div variants={itemVariants} className="text-center mt-8">
-            <p className="text-muted-foreground mb-4">
-              Have more questions?
-            </p>
-            <Link href="/contact">
-              <Button variant="accent" rightIcon={<ArrowRight size={18} />}>
-                Get in Touch
-              </Button>
-            </Link>
-          </motion.div>
-        </motion.div>
+        {/* CTA */}
+        <div className="text-center mt-8">
+          <p className="text-muted-foreground mb-4">
+            Have more questions?
+          </p>
+          <Link href="/contact">
+            <Button variant="accent" rightIcon={<ArrowRight size={18} />}>
+              Get in Touch
+            </Button>
+          </Link>
+        </div>
       </Container>
     </Section>
   );

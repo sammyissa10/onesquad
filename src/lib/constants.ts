@@ -10,18 +10,13 @@ import type {
 // Site Configuration
 export const siteConfig = {
   name: "OneSquad",
-  tagline: "Unlock your digital potential",
+  tagline: "Your team, amplified.",
   description:
-    "A one-stop-shop digital agency for small-to-midsize businesses to unlock their full potential in the digital world.",
+    "We handle the websites, marketing, and tech stuff so you can focus on running your business. Think of us as the digital department you never had to hire.",
   url: "https://www.onesquads.com",
   email: "ayaz.onesquad@outlook.com",
-  phone: "+1 (555) 123-4567",
-  address: {
-    street: "123 Digital Avenue",
-    city: "Tech City",
-    state: "TC",
-    zip: "12345",
-  },
+  phone: "",
+  address: "Remote-first, serving businesses nationwide",
   socials: {
     facebook: "https://facebook.com/onesquad",
     twitter: "https://twitter.com/onesquad",
@@ -478,21 +473,21 @@ export const pricingPlans: PricingPlan[] = [
 // Value Propositions
 export const valueProps: ValueProp[] = [
   {
-    title: "All-In-One Solution",
+    title: "One vendor. Everything handled.",
     description:
-      "No juggling multiple vendors. Get everything you need—web design, marketing, hosting, and support—from one dedicated team.",
+      "Website, SEO, social, email, hosting, maintenance. All from the same people who already know your business.",
     icon: "Layers",
   },
   {
-    title: "Built for Growth",
+    title: "Start small, scale up.",
     description:
-      "Scalable plans that grow with your business. Start small and expand your digital presence as your needs evolve.",
+      "Our plans flex with you. Most clients start with a website and add marketing once they're ready. No pressure.",
     icon: "TrendingUp",
   },
   {
-    title: "True Partnership",
+    title: "We pick up the phone.",
     description:
-      "We're not just another vendor. With 24/7 support and dedicated account managers, we're invested in your success.",
+      "No ticket queues, no chatbots, no 'we'll get back to you in 3-5 business days.' Your account manager knows your name.",
     icon: "Users",
   },
 ];
@@ -511,19 +506,19 @@ export const testimonials: Testimonial[] = [
   {
     id: "2",
     name: "Michael Chen",
-    role: "Marketing Director",
-    company: "TechStart Solutions",
+    role: "Operations Manager",
+    company: "Relay Logistics",
     content:
-      "The team at OneSquad doesn't just deliver services—they deliver results. Their SEO expertise helped us rank on the first page of Google within 3 months.",
-    rating: 5,
+      "We'd been burned by two agencies before. OneSquad actually explained what they were doing and why. Organic traffic is up about 180% since we started — took about 4 months to really kick in.",
+    rating: 4,
   },
   {
     id: "3",
     name: "Emily Rodriguez",
     role: "Founder",
-    company: "Green Living Co.",
+    company: "Hart & Home Interiors",
     content:
-      "Finally, a digital agency that actually listens! OneSquad took the time to understand our brand and created a website that perfectly represents who we are.",
+      "I'm not technical at all, and that used to stress me out. Now I just email my account manager and things get done. The site they built us actually looks like us, not like a template.",
     rating: 5,
   },
 ];
@@ -558,7 +553,7 @@ export const faqs: FAQ[] = [
   {
     question: "Is there a contract or commitment?",
     answer:
-      "Our hosting and managed service plans are month-to-month with no long-term commitment required. You can cancel anytime with 30 days notice. We believe in earning your business every month.",
+      "Nope. Month-to-month, cancel anytime with 30 days notice. If we're not earning your business, you should be free to leave.",
   },
 ];
 
@@ -575,7 +570,7 @@ export const includedWithEveryPlan = [
 // Stats for social proof
 export const stats = [
   { value: "29+", label: "Websites Launched" },
-  { value: "99%", label: "Client Retention" },
-  { value: "24/7", label: "Support Available" },
-  { value: "29+", label: "Happy Clients" },
+  { value: "2–4 wk", label: "Avg. Launch Time" },
+  { value: "24/7", label: "Uptime Monitoring" },
+  { value: "0", label: "Long-term Contracts" },
 ];

@@ -3,31 +3,10 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Phone, Calendar } from "lucide-react";
+import { ArrowRight, Calendar } from "lucide-react";
 import { Container, Section } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-} as const;
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut" as const,
-    },
-  },
-};
+import { fadeIn, stagger } from "@/lib/animations";
 
 export function CTABanner() {
   const ref = useRef(null);
@@ -38,51 +17,30 @@ export function CTABanner() {
       <Container>
         <motion.div
           ref={ref}
-          variants={containerVariants}
+          variants={stagger(0.15)}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           className="relative"
         >
           <div className="relative bg-gradient-to-br from-primary via-primary to-highlight rounded-3xl p-8 md:p-16 overflow-hidden">
-            {/* Background decoration */}
-            <div className="absolute inset-0 overflow-hidden">
-              <motion.div
-                animate={{
-                  rotate: [0, 360],
-                }}
-                transition={{
-                  duration: 50,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-                className="absolute -top-1/2 -right-1/2 w-full h-full"
-              >
-                <div className="absolute top-1/2 left-1/2 w-96 h-96 border border-white/10 rounded-full" />
-                <div className="absolute top-1/2 left-1/2 w-[500px] h-[500px] border border-white/5 rounded-full" />
-                <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] border border-white/5 rounded-full" />
-              </motion.div>
-            </div>
-
             <div className="relative z-10 text-center max-w-3xl mx-auto">
               <motion.h2
-                variants={itemVariants}
+                variants={fadeIn}
                 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6"
               >
-                Ready to Unlock Your{" "}
-                <span className="text-secondary">Digital Potential?</span>
+                Ready to Get Started?
               </motion.h2>
 
               <motion.p
-                variants={itemVariants}
+                variants={fadeIn}
                 className="text-lg text-white/80 mb-10"
               >
-                Join the growing number of SMBs who trust OneSquad to handle
-                their digital presence. Let's start building your success story
-                today.
+                No long pitch, no pressure. Let&apos;s talk about what you need and
+                whether we&apos;re the right fit.
               </motion.p>
 
               <motion.div
-                variants={itemVariants}
+                variants={fadeIn}
                 className="flex flex-col sm:flex-row items-center justify-center gap-4"
               >
                 <Link href="/pricing">
@@ -108,7 +66,7 @@ export function CTABanner() {
               </motion.div>
 
               <motion.div
-                variants={itemVariants}
+                variants={fadeIn}
                 className="mt-10 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-center gap-6 text-white/70"
               >
                 <div className="flex items-center gap-2">
@@ -117,7 +75,7 @@ export function CTABanner() {
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-green-400" />
-                  <span>24/7 support included</span>
+                  <span>Response within 24 hours</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-green-400" />

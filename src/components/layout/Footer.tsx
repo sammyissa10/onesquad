@@ -7,7 +7,6 @@ import {
   Instagram,
   Linkedin,
   Mail,
-  Phone,
   MapPin,
   Shield,
   Clock,
@@ -187,21 +186,9 @@ export function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <Phone size={18} className="text-accent mt-1 flex-shrink-0" />
-                <a
-                  href={`tel:${siteConfig.phone}`}
-                  className="text-white/70 hover:text-accent transition-colors"
-                >
-                  {siteConfig.phone}
-                </a>
-              </li>
-              <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-accent mt-1 flex-shrink-0" />
                 <span className="text-white/70">
-                  {siteConfig.address.street}
-                  <br />
-                  {siteConfig.address.city}, {siteConfig.address.state}{" "}
-                  {siteConfig.address.zip}
+                  {siteConfig.address}
                 </span>
               </li>
             </ul>
@@ -235,7 +222,7 @@ export function Footer() {
               © {currentYear} OneSquad. All rights reserved.
             </p>
             <p className="text-white/50 text-sm">
-              Crafted with ❤️ for small businesses everywhere
+              Built by OneSquad.
             </p>
           </div>
         </Container>

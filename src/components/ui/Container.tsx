@@ -40,7 +40,14 @@ interface SectionProps {
   className?: string;
   id?: string;
   background?: "white" | "muted" | "primary" | "gradient";
+  padding?: "sm" | "md" | "lg";
 }
+
+const paddingStyles = {
+  sm: "py-10 md:py-14",
+  md: "py-16 md:py-24",
+  lg: "py-20 md:py-32",
+};
 
 const backgroundStyles = {
   white: "bg-card",
@@ -54,12 +61,13 @@ export function Section({
   className,
   id,
   background = "white",
+  padding = "md",
 }: SectionProps) {
   return (
     <section
       id={id}
       className={cn(
-        "py-16 md:py-24",
+        paddingStyles[padding],
         backgroundStyles[background],
         className
       )}

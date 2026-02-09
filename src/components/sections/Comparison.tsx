@@ -7,15 +7,11 @@ import {
   Check,
   Clock,
   DollarSign,
-  Users,
   TrendingDown,
   TrendingUp,
-  Frown,
-  Smile,
   AlertTriangle,
   Shield,
   Zap,
-  Heart,
 } from "lucide-react";
 import { Container, Section } from "@/components/ui/Container";
 
@@ -40,16 +36,6 @@ const withoutUsItems = [
     title: "Constant Stress",
     description: "Dealing with technical issues, security vulnerabilities, and site crashes",
   },
-  {
-    icon: Users,
-    title: "No Support",
-    description: "Left alone when things break, waiting days for freelancers to respond",
-  },
-  {
-    icon: Frown,
-    title: "Frustration",
-    description: "Watching competitors succeed while your online presence stagnates",
-  },
 ];
 
 const withUsItems = [
@@ -72,16 +58,6 @@ const withUsItems = [
     icon: Shield,
     title: "Peace of Mind",
     description: "Enterprise-grade security, daily backups, and 99.9% uptime guaranteed",
-  },
-  {
-    icon: Users,
-    title: "Dedicated Team",
-    description: "Your own squad of experts available 24/7 to help you succeed",
-  },
-  {
-    icon: Heart,
-    title: "Success Stories",
-    description: "Join hundreds of businesses thriving with our partnership",
   },
 ];
 
@@ -176,7 +152,7 @@ export function Comparison() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-red-600">Without OneSquad</h3>
-                  <p className="text-sm text-red-500">The struggle is real</p>
+                  <p className="text-sm text-red-500">Sound familiar?</p>
                 </div>
               </div>
 
@@ -208,7 +184,7 @@ export function Comparison() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-accent">With OneSquad</h3>
-                  <p className="text-sm text-accent/80">Success made simple</p>
+                  <p className="text-sm text-accent/80">What working with us looks like</p>
                 </div>
               </div>
 

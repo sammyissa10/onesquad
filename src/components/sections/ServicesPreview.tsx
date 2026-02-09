@@ -9,27 +9,10 @@ import { Button } from "@/components/ui/Button";
 import { DynamicIcon } from "@/components/ui/Icon";
 import { services } from "@/lib/constants";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-} as const;
+import { fadeIn, stagger } from "@/lib/animations";
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut" as const,
-    },
-  },
-};
+const containerVariants = stagger(0.1);
+const itemVariants = fadeIn;
 
 export function ServicesPreview() {
   const ref = useRef(null);
@@ -41,7 +24,7 @@ export function ServicesPreview() {
   const webSolutions = services.filter((s) => s.category === "web-solutions");
 
   return (
-    <Section background="muted">
+    <Section background="muted" padding="lg">
       <Container>
         <motion.div
           ref={ref}

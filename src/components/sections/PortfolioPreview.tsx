@@ -9,27 +9,10 @@ import { Button } from "@/components/ui/Button";
 import { TemplateGridCard } from "@/components/ui/TemplateCard";
 import { templates } from "@/lib/templateData";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-    },
-  },
-} as const;
+import { scaleIn, stagger } from "@/lib/animations";
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut" as const,
-    },
-  },
-};
+const containerVariants = stagger(0.08);
+const itemVariants = scaleIn;
 
 // Show 6 templates on homepage — popular ones first
 const previewTemplates = [

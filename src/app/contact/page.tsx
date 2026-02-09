@@ -8,7 +8,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import {
   Mail,
-  Phone,
   Globe,
   Clock,
   Send,
@@ -47,21 +46,15 @@ const contactInfo = [
     href: `mailto:${siteConfig.email}`,
   },
   {
-    icon: Phone,
-    label: "Phone",
-    value: siteConfig.phone,
-    href: `tel:${siteConfig.phone}`,
-  },
-  {
     icon: Globe,
     label: "Location",
-    value: "We work with clients wherever you are",
+    value: siteConfig.address,
     href: "#",
   },
   {
     icon: Clock,
     label: "Hours",
-    value: "24/7 Support Available",
+    value: "Response within 24 hours",
     href: "#",
   },
 ];

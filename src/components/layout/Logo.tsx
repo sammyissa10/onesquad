@@ -56,7 +56,7 @@ export function Logo({ className, variant = "default", showTagline = false }: Lo
               variant === "default" ? "text-muted-foreground" : "text-white/90"
             )}
           >
-            <span className="text-accent">Unlock your</span> digital potential
+            <span className="text-accent">Your team,</span> amplified.
           </span>
         )}
       </div>

@@ -10,7 +10,6 @@ import {
   Testimonials,
   HomeFAQ,
   CTABanner,
-  MidPageCTA,
 } from "@/components/sections";
 
 export default function HomePage() {
@@ -20,20 +19,10 @@ export default function HomePage() {
       <main>
         <Hero />
         <Features />
-        <Comparison />
         <ServicesPreview />
-        <MidPageCTA
-          heading="Ready to Build Something Great? Let's Talk."
-          buttonText="Get a Free Quote"
-          buttonHref="/contact"
-        />
+        <Comparison />
         <PortfolioPreview />
         <Process />
-        <MidPageCTA
-          heading="Join 29+ Growing Businesses"
-          buttonText="See Our Plans"
-          buttonHref="/pricing"
-        />
         <Testimonials />
         <HomeFAQ />
         <CTABanner />

@@ -77,14 +77,7 @@ export default function RootLayout({
               url: siteConfig.url,
               logo: `${siteConfig.url}/onesquadlogo.png`,
               email: siteConfig.email,
-              telephone: siteConfig.phone,
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: siteConfig.address.street,
-                addressLocality: siteConfig.address.city,
-                addressRegion: siteConfig.address.state,
-                postalCode: siteConfig.address.zip,
-              },
+              description: siteConfig.description,
               sameAs: Object.values(siteConfig.socials),
             }),
           }}
