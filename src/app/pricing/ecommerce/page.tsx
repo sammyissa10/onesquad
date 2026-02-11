@@ -35,7 +35,7 @@ const growthFadeIn = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: { type: "spring", stiffness: 100, damping: 15 }
+    transition: { type: "spring" as const, stiffness: 100, damping: 15 }
   }
 };
 
@@ -52,7 +52,7 @@ const growthItem = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 200, damping: 20 }
+    transition: { type: "spring" as const, stiffness: 200, damping: 20 }
   }
 };
 
@@ -191,7 +191,7 @@ export default function EcommercePricingPage() {
       <Breadcrumb items={[{ label: "Pricing", href: "/pricing" }, { label: "E-Commerce Plans" }]} />
       <main>
         {/* Hero - Gradient with navy/blue tones */}
-        <Section background="navy">
+        <section className="relative bg-navy py-28 md:py-36 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy to-blue/80" />
           <div className="absolute inset-0 opacity-20" style={{
             backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)`,
@@ -223,7 +223,7 @@ export default function EcommercePricingPage() {
               </div>
             </motion.div>
           </Container>
-        </Section>
+        </section>
 
         {/* Calculator - Split-screen layout */}
         <section className="bg-white">
