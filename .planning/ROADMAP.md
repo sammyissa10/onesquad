@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Custom Cursor System** - Build foundational UX element with magnetic effects
 - [x] **Phase 3: Homepage Visual Overhaul** - Redesign homepage with asymmetric layouts, bold typography, and visual rhythm
 - [x] **Phase 4: Services Page Redesign** - Apply design system to services with unique section treatments
-- [ ] **Phase 5: Pricing Pages Redesign** - Distinct visual approach per tier across three pricing pages
+- [x] **Phase 5: Pricing Pages Redesign** - Distinct visual approach per tier across three pricing pages
 - [ ] **Phase 6: Portfolio Page Redesign** - Masonry layouts with video-on-hover project cards
 - [ ] **Phase 7: Contact & About Pages** - Unique layouts for final two key pages
 - [ ] **Phase 8: Scroll Animations Site-Wide** - Apply scroll-driven animations across all redesigned pages
@@ -98,10 +98,10 @@ Plans:
 **Plans**: 4 plans
 
 Plans:
-- [ ] 05-01-PLAN.md — Pricing overview page: bold gateway with 3 personality-previewing tier cards, redesigned hosting/managed section
-- [ ] 05-02-PLAN.md — Social media calculator: bold/playful personality, full-width layout, scale hover, snappy animations
-- [ ] 05-03-PLAN.md — Website calculator: crafted/premium personality, refined sidebar layout, glow hover, smooth animations
-- [ ] 05-04-PLAN.md — E-commerce calculator: revenue/growth personality, split-screen layout, lift+shadow hover, spring animations + visual verification
+- [x] 05-01-PLAN.md — Pricing overview page: bold gateway with 3 personality-previewing tier cards, redesigned hosting/managed section
+- [x] 05-02-PLAN.md — Social media calculator: bold/playful personality, full-width layout, scale hover, snappy animations
+- [x] 05-03-PLAN.md — Website calculator: crafted/premium personality, refined sidebar layout, glow hover, smooth animations
+- [x] 05-04-PLAN.md — E-commerce calculator: revenue/growth personality, split-screen layout, lift+shadow hover, spring animations + visual verification
 
 ### Phase 6: Portfolio Page Redesign
 **Goal**: Portfolio page uses masonry layout with video-on-hover project cards
@@ -112,11 +112,11 @@ Plans:
   2. Project cards show muted auto-play video on hover (pause and reset on mouse leave, <1MB per video)
   3. Portfolio project copy includes narratives (not generic descriptions)
   4. Masonry layout adapts to single-column on mobile
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 06-01: TBD
-- [ ] 06-02: TBD
+- [ ] 06-01-PLAN.md -- Template data (narrative copy + video URLs) + page structure (dark hero, dark CTA, section rhythm)
+- [ ] 06-02-PLAN.md -- PortfolioCard component with video hover + masonry grid + sticky filter bar + visual verification
 
 ### Phase 7: Contact & About Pages
 **Goal**: Final two key pages have unique layouts completing the site-wide design overhaul
@@ -160,7 +160,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | 2. Custom Cursor System | 2/2 | Complete | 2026-02-11 |
 | 3. Homepage Visual Overhaul | 3/3 | Complete | 2026-02-11 |
 | 4. Services Page Redesign | 3/3 | Complete | 2026-02-11 |
-| 5. Pricing Pages Redesign | 0/4 | Planned | - |
+| 5. Pricing Pages Redesign | 4/4 | Complete | 2026-02-11 |
 | 6. Portfolio Page Redesign | 0/TBD | Not started | - |
 | 7. Contact & About Pages | 0/TBD | Not started | - |
 | 8. Scroll Animations Site-Wide | 0/TBD | Not started | - |
