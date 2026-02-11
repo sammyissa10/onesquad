@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Container, Section } from "@/components/ui/Container";
+import { Container } from "@/components/ui/Container";
 import { DynamicIcon } from "@/components/ui/Icon";
 import { valueProps } from "@/lib/constants";
 import { fadeIn, scaleIn, stagger } from "@/lib/animations";
@@ -12,7 +12,7 @@ export function Features() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <Section background="white">
+    <section className="bg-navy text-white py-32 md:py-40">
       <Container>
         <motion.div
           ref={ref}
@@ -24,12 +24,11 @@ export function Features() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             {/* Left — heading and description */}
             <motion.div variants={fadeIn} className="lg:sticky lg:top-32">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-6">
-                Why businesses switch to us
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6">
+                Why Businesses Ditch Their Old Agency For Us
               </h2>
-              <p className="text-muted-foreground text-lg">
-                We know the challenges small and midsize businesses face online.
-                Here&apos;s what makes working with us different.
+              <p className="text-white/60 text-lg">
+                Because we're faster, cheaper, and we actually give a damn about your results.
               </p>
             </motion.div>
 
@@ -39,17 +38,20 @@ export function Features() {
                 <motion.div
                   key={prop.title}
                   variants={scaleIn}
-                  className="bg-white rounded-2xl p-8 shadow-lg shadow-primary/5 border border-border hover:border-accent/50 transition-colors duration-300"
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ duration: 0.2 }}
+                  data-cursor="card"
+                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8"
                 >
                   <div className="flex items-start gap-5">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent to-secondary flex items-center justify-center flex-shrink-0">
-                      <DynamicIcon name={prop.icon} className="w-7 h-7 text-white" />
+                    <div className="w-14 h-14 rounded-2xl bg-coral/20 flex items-center justify-center flex-shrink-0">
+                      <DynamicIcon name={prop.icon} className="w-7 h-7 text-coral" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-primary mb-2">
+                      <h3 className="text-xl font-bold text-white mb-2">
                         {prop.title}
                       </h3>
-                      <p className="text-muted-foreground">{prop.description}</p>
+                      <p className="text-white/70">{prop.description}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -58,6 +60,6 @@ export function Features() {
           </div>
         </motion.div>
       </Container>
-    </Section>
+    </section>
   );
 }
