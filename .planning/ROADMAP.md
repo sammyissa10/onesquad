@@ -80,11 +80,12 @@ Plans:
   1. Services page sections have unique layouts (not identical card grids)
   2. Services copy is confident and edgy (not corporate)
   3. Visual rhythm patterns from homepage are applied (dark/light alternation, varied spacing, bold typography)
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 04-01: TBD
-- [ ] 04-02: TBD
+- [ ] 04-01-PLAN.md — Services overview page: bold hero, Digital Marketing grid (glow hover), Web Solutions bento (lift+shadow hover), peach CTA
+- [ ] 04-02-PLAN.md — Service detail pages: 7-section layout with dark/light rhythm, edgy taglines, generateStaticParams for all 10 pages
+- [ ] 04-03-PLAN.md — Visual verification checkpoint for overview and detail pages
 
 ### Phase 5: Pricing Pages Redesign
 **Goal**: Three pricing pages (tiers) each have distinct visual approaches matching their personality
@@ -156,7 +157,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | 1. Animation Foundation | 2/2 | Complete | 2026-02-11 |
 | 2. Custom Cursor System | 2/2 | Complete | 2026-02-11 |
 | 3. Homepage Visual Overhaul | 3/3 | Complete | 2026-02-11 |
-| 4. Services Page Redesign | 0/TBD | Not started | - |
+| 4. Services Page Redesign | 0/3 | Planned | - |
 | 5. Pricing Pages Redesign | 0/TBD | Not started | - |
 | 6. Portfolio Page Redesign | 0/TBD | Not started | - |
 | 7. Contact & About Pages | 0/TBD | Not started | - |
