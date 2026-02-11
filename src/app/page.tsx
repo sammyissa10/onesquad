@@ -3,8 +3,8 @@ import { Footer } from "@/components/layout";
 import {
   Hero,
   Features,
-  Comparison,
   ServicesPreview,
+  Comparison,
   PortfolioPreview,
   Process,
   Testimonials,
