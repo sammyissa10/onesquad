@@ -6,8 +6,13 @@ import { gsap, MOTION_QUERIES } from "@/lib/gsap";
 export function CustomCursor() {
   const cursorDotRef = useRef<HTMLDivElement>(null);
   const cursorFollowerRef = useRef<HTMLDivElement>(null);
+  const cursorTextRef = useRef<HTMLSpanElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  // Cursor state refs - use refs to avoid re-renders on hover state changes
+  const currentStateRef = useRef<string>("default");
+  const currentTextRef = useRef<string>("");
 
   // Touch device detection - check on mount to avoid SSR mismatch
   useEffect(() => {
@@ -25,8 +30,9 @@ export function CustomCursor() {
 
     const dotElement = cursorDotRef.current;
     const followerElement = cursorFollowerRef.current;
+    const textElement = cursorTextRef.current;
 
-    if (!dotElement || !followerElement) return;
+    if (!dotElement || !followerElement || !textElement) return;
 
     // Use matchMedia for reduced-motion support
     const mm = gsap.matchMedia();
@@ -67,6 +73,164 @@ export function CustomCursor() {
           ease: "power2.out",
         });
 
+        // Cursor state transition function
+        const setCursorState = (state: string, text: string = "") => {
+          // Skip if state hasn't changed
+          if (currentStateRef.current === state && currentTextRef.current === text) {
+            return;
+          }
+
+          // Kill any in-progress animations
+          gsap.killTweensOf([dotElement, followerElement, textElement]);
+
+          // Update refs
+          currentStateRef.current = state;
+          currentTextRef.current = text;
+
+          // Apply state-specific animations
+          switch (state) {
+            case "button":
+              // Button state: shrink dot, compact follower with white fill + invert
+              gsap.to(dotElement, {
+                width: 4,
+                height: 4,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+              gsap.to(followerElement, {
+                width: 20,
+                height: 20,
+                borderColor: "#E2795E",
+                backgroundColor: "rgba(255, 255, 255, 0.8)",
+                mixBlendMode: "difference",
+                duration: 0.3,
+                ease: "power2.out",
+              });
+              // Ensure text is hidden for button state
+              if (textElement.textContent) {
+                gsap.to(textElement, {
+                  opacity: 0,
+                  scale: 0.8,
+                  duration: 0.2,
+                  ease: "power2.out",
+                  onComplete: () => {
+                    textElement.textContent = "";
+                  },
+                });
+              }
+              break;
+
+            case "card":
+              // Card state: fade out dot, expand follower dramatically with coral fill
+              gsap.to(dotElement, {
+                opacity: 0,
+                duration: 0.4,
+                ease: "power3.out",
+              });
+              gsap.to(followerElement, {
+                width: 80,
+                height: 80,
+                borderColor: "transparent",
+                backgroundColor: "rgba(226, 121, 94, 0.3)",
+                mixBlendMode: "normal",
+                duration: 0.4,
+                ease: "power3.out",
+              });
+              // If text is provided, show it inside the coral spotlight
+              if (text) {
+                textElement.textContent = text;
+                gsap.fromTo(
+                  textElement,
+                  { opacity: 0, scale: 0.8 },
+                  {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.2,
+                    delay: 0.1,
+                    ease: "power2.out",
+                  }
+                );
+              } else if (textElement.textContent) {
+                gsap.to(textElement, {
+                  opacity: 0,
+                  scale: 0.8,
+                  duration: 0.2,
+                  ease: "power2.out",
+                  onComplete: () => {
+                    textElement.textContent = "";
+                  },
+                });
+              }
+              break;
+
+            case "text":
+              // Text state: fade out dot, expand follower with navy fill + white text
+              gsap.to(dotElement, {
+                opacity: 0,
+                duration: 0.4,
+                ease: "power3.out",
+              });
+              gsap.to(followerElement, {
+                width: 80,
+                height: 80,
+                borderColor: "transparent",
+                backgroundColor: "rgba(5, 23, 51, 0.9)",
+                mixBlendMode: "normal",
+                duration: 0.4,
+                ease: "power3.out",
+              });
+              // Show text label
+              if (text) {
+                textElement.textContent = text;
+                gsap.fromTo(
+                  textElement,
+                  { opacity: 0, scale: 0.8 },
+                  {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.2,
+                    delay: 0.1,
+                    ease: "power2.out",
+                  }
+                );
+              }
+              break;
+
+            case "default":
+            default:
+              // Default state: restore original dot + ring
+              gsap.to(dotElement, {
+                width: 8,
+                height: 8,
+                opacity: 1,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+              gsap.to(followerElement, {
+                width: 32,
+                height: 32,
+                borderColor: "#E2795E",
+                backgroundColor: "transparent",
+                mixBlendMode: "difference",
+                duration: 0.3,
+                ease: "power2.out",
+              });
+              // Hide text
+              if (textElement.textContent) {
+                gsap.to(textElement, {
+                  opacity: 0,
+                  scale: 0.8,
+                  duration: 0.2,
+                  ease: "power2.out",
+                  onComplete: () => {
+                    textElement.textContent = "";
+                  },
+                });
+              }
+              break;
+          }
+        };
+
         // Mouse move handler
         const handleMouseMove = (e: MouseEvent) => {
           // Fade in on first movement
@@ -85,10 +249,27 @@ export function CustomCursor() {
           yToFollower(e.clientY);
         };
 
+        // Hover state detection via event delegation
+        const handleMouseOver = (e: MouseEvent) => {
+          const target = e.target as HTMLElement;
+          const cursorElement = target.closest("[data-cursor]") as HTMLElement | null;
+
+          if (cursorElement) {
+            const cursorType = cursorElement.getAttribute("data-cursor") || "default";
+            const cursorText = cursorElement.getAttribute("data-cursor-text") || "";
+            setCursorState(cursorType, cursorText);
+          } else {
+            // No data-cursor element found - revert to default
+            setCursorState("default");
+          }
+        };
+
         window.addEventListener("mousemove", handleMouseMove);
+        document.addEventListener("mouseover", handleMouseOver);
 
         return () => {
           window.removeEventListener("mousemove", handleMouseMove);
+          document.removeEventListener("mouseover", handleMouseOver);
           document.documentElement.classList.remove("cursor-active");
         };
       }
@@ -142,8 +323,27 @@ export function CustomCursor() {
           opacity: 0,
           transform: "translate(-50%, -50%)",
           mixBlendMode: "difference",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
-      />
+      >
+        {/* Text label - appears on text/card states */}
+        <span
+          ref={cursorTextRef}
+          style={{
+            position: "absolute",
+            fontSize: "12px",
+            fontWeight: 600,
+            textTransform: "uppercase",
+            letterSpacing: "0.05em",
+            color: "white",
+            pointerEvents: "none",
+            whiteSpace: "nowrap",
+            opacity: 0,
+          }}
+        />
+      </div>
     </>
   );
 }
