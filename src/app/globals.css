@@ -51,6 +51,23 @@
   --color-border: var(--border);
   --color-card: var(--card);
 
+  /* Brand Colors */
+  --color-navy: #051733;
+  --color-coral: #E2795E;
+  --color-peach: #FAB383;
+  --color-blue: #27598E;
+
+  /* Typography Scale */
+  --text-display: 8rem;
+  --text-display--line-height: 0.9;
+  --text-display--letter-spacing: -0.03em;
+
+  /* Spacing Tokens */
+  --spacing-section-xs: 3rem;
+  --spacing-section-sm: 5rem;
+  --spacing-section-md: 7rem;
+  --spacing-section-lg: 10rem;
+
   /* Fonts */
   --font-heading: "Coolvetica";
   --font-body: var(--font-nunito);
