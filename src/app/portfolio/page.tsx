@@ -10,11 +10,12 @@ import {
   Heart,
   Palette,
   ShoppingBag,
+  ArrowRight,
 } from "lucide-react";
 import { Header, Footer } from "@/components/layout";
 import { Container, Section } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { TemplateShowcaseCard } from "@/components/ui/TemplateCard";
+import { PortfolioCard } from "@/components/ui/TemplateCard";
 import {
   templates,
   categoryGroups,
@@ -26,7 +27,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
+      staggerChildren: 0.08,
     },
   },
 } as const;
@@ -54,7 +55,6 @@ const groupIcons: Record<string, React.ElementType> = {
 
 export default function PortfolioPage() {
   const [activeGroup, setActiveGroup] = useState("all");
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
@@ -63,17 +63,27 @@ export default function PortfolioPage() {
 
   const filteredTemplates = (() => {
     if (activeGroup === "all") return templates;
-    if (activeCategory) {
-      return templates.filter((t) => t.category === activeCategory);
-    }
     return templates.filter((t) => subCategories.includes(t.category));
   })();
 
-  // Sort: popular first
-  const sortedTemplates = [
-    ...filteredTemplates.filter((t) => t.popular),
-    ...filteredTemplates.filter((t) => !t.popular),
-  ];
+  // Interleave popular and non-popular templates for visual rhythm
+  const popularTemplates = filteredTemplates.filter((t) => t.popular);
+  const normalTemplates = filteredTemplates.filter((t) => !t.popular);
+  const sortedTemplates: typeof templates = [];
+
+  let normalIndex = 0;
+  let popularIndex = 0;
+
+  while (normalIndex < normalTemplates.length || popularIndex < popularTemplates.length) {
+    // Add 3-4 normal templates
+    for (let i = 0; i < 3 && normalIndex < normalTemplates.length; i++) {
+      sortedTemplates.push(normalTemplates[normalIndex++]);
+    }
+    // Add 1 popular template
+    if (popularIndex < popularTemplates.length) {
+      sortedTemplates.push(popularTemplates[popularIndex++]);
+    }
+  }
 
   const groupCounts: Record<string, number> = {};
   for (const group of categoryGroups) {
@@ -88,11 +98,6 @@ export default function PortfolioPage() {
 
   const handleGroupClick = (groupId: string) => {
     setActiveGroup(groupId);
-    setActiveCategory(null);
-  };
-
-  const handleCategoryClick = (categoryId: string) => {
-    setActiveCategory(activeCategory === categoryId ? null : categoryId);
   };
 
   return (
@@ -126,20 +131,12 @@ export default function PortfolioPage() {
           </Container>
         </section>
 
-        {/* Light Grid Section */}
-        <Section background="white" padding="lg">
+        {/* Light Grid Section with Sticky Filter */}
+        <Section background="white" className="py-20 md:py-28">
           <Container>
-            <motion.div
-              ref={ref}
-              variants={containerVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-            >
-              {/* Primary Group Filter */}
-              <motion.div
-                variants={itemVariants}
-                className="flex flex-wrap justify-center gap-3 mb-4"
-              >
+            {/* Sticky Filter Bar */}
+            <div className="sticky top-0 z-20 bg-white/95 backdrop-blur-md py-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 mb-6">
+              <div className="flex flex-wrap justify-center gap-3">
                 {categoryGroups.map((group) => {
                   const Icon = groupIcons[group.id] || LayoutGrid;
                   const isActive = activeGroup === group.id;
@@ -147,83 +144,50 @@ export default function PortfolioPage() {
                     <button
                       key={group.id}
                       onClick={() => handleGroupClick(group.id)}
+                      data-cursor="button"
                       className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
                         isActive
                           ? "bg-primary text-white shadow-lg shadow-primary/25"
-                          : "bg-white text-muted-foreground hover:bg-primary/10 hover:text-primary shadow-sm"
+                          : "bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary"
                       }`}
                     >
                       <Icon size={16} />
                       {group.label}
-                      <span
-                        className={`text-xs ${
-                          isActive ? "text-white/70" : "opacity-50"
-                        }`}
-                      >
+                      <span className="text-xs opacity-50">
                         {groupCounts[group.id]}
                       </span>
                     </button>
                   );
                 })}
-              </motion.div>
-
-              {/* Secondary Sub-category Filter */}
-              <AnimatePresence>
-                {activeGroup !== "all" && subCategories.length > 0 && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="overflow-hidden"
-                  >
-                    <div className="flex flex-wrap justify-center gap-2 mb-8 pt-2">
-                      <button
-                        onClick={() => setActiveCategory(null)}
-                        className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
-                          activeCategory === null
-                            ? "bg-accent text-white shadow-md"
-                            : "bg-white text-muted-foreground hover:bg-accent/10 hover:text-accent"
-                        }`}
-                      >
-                        All {currentGroup?.label}
-                      </button>
-                      {subCategories.map((catId) => {
-                        const count = templates.filter(
-                          (t) => t.category === catId
-                        ).length;
-                        return (
-                          <button
-                            key={catId}
-                            onClick={() => handleCategoryClick(catId)}
-                            className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
-                              activeCategory === catId
-                                ? "bg-accent text-white shadow-md"
-                                : "bg-white text-muted-foreground hover:bg-accent/10 hover:text-accent"
-                            }`}
-                          >
-                            {categoryLabels[catId] || catId}{" "}
-                            <span className="opacity-50">{count}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              {activeGroup === "all" && <div className="mb-8" />}
-
-              {/* Template Showcase — two per row */}
-              <div className="grid md:grid-cols-2 gap-8">
-                {sortedTemplates.map((template, index) => (
-                  <TemplateShowcaseCard
-                    key={template.id}
-                    template={template}
-                    index={index}
-                  />
-                ))}
               </div>
+            </div>
+
+            {/* Masonry Grid */}
+            <motion.div
+              ref={ref}
+              variants={containerVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeGroup}
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-auto pt-6"
+                >
+                  {sortedTemplates.map((template) => (
+                    <motion.div
+                      key={template.id}
+                      variants={itemVariants}
+                      className={template.popular ? "md:col-span-2" : ""}
+                    >
+                      <PortfolioCard
+                        template={template}
+                        featured={template.popular}
+                      />
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
 
               {/* Empty state */}
               {filteredTemplates.length === 0 && (
