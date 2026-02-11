@@ -88,18 +88,20 @@ Plans:
 - [x] 04-03-PLAN.md — Visual verification checkpoint for overview and detail pages
 
 ### Phase 5: Pricing Pages Redesign
-**Goal**: Three pricing pages (tiers) each have distinct visual approaches matching their personality
+**Goal**: Each pricing tier page has a distinct visual approach with personality-driven layout, hover effects, animations, and copy
 **Depends on**: Phase 4 (design system extended)
 **Requirements**: LYOT-03, COPY-03
 **Success Criteria** (what must be TRUE):
   1. Each pricing tier page has a distinct visual approach (not identical cards with different text)
   2. Pricing copy for each tier has distinct personality matching the tier (e.g., starter vs enterprise tone)
   3. Pricing layouts collapse gracefully to single-column on mobile
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 05-01: TBD
-- [ ] 05-02: TBD
+- [ ] 05-01-PLAN.md — Pricing overview page: bold gateway with 3 personality-previewing tier cards, redesigned hosting/managed section
+- [ ] 05-02-PLAN.md — Social media calculator: bold/playful personality, full-width layout, scale hover, snappy animations
+- [ ] 05-03-PLAN.md — Website calculator: crafted/premium personality, refined sidebar layout, glow hover, smooth animations
+- [ ] 05-04-PLAN.md — E-commerce calculator: revenue/growth personality, split-screen layout, lift+shadow hover, spring animations + visual verification
 
 ### Phase 6: Portfolio Page Redesign
 **Goal**: Portfolio page uses masonry layout with video-on-hover project cards
@@ -158,7 +160,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | 2. Custom Cursor System | 2/2 | Complete | 2026-02-11 |
 | 3. Homepage Visual Overhaul | 3/3 | Complete | 2026-02-11 |
 | 4. Services Page Redesign | 3/3 | Complete | 2026-02-11 |
-| 5. Pricing Pages Redesign | 0/TBD | Not started | - |
+| 5. Pricing Pages Redesign | 0/4 | Planned | - |
 | 6. Portfolio Page Redesign | 0/TBD | Not started | - |
 | 7. Contact & About Pages | 0/TBD | Not started | - |
 | 8. Scroll Animations Site-Wide | 0/TBD | Not started | - |
