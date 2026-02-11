@@ -12,7 +12,7 @@ Transform the OneSquad website from templated AI-generated patterns to hand-craf
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Animation Foundation** - Install GSAP + Lenis, establish architectural patterns
+- [x] **Phase 1: Animation Foundation** - Install GSAP + Lenis, establish architectural patterns
 - [ ] **Phase 2: Custom Cursor System** - Build foundational UX element with magnetic effects
 - [ ] **Phase 3: Homepage Visual Overhaul** - Redesign homepage with asymmetric layouts, bold typography, and visual rhythm
 - [ ] **Phase 4: Services Page Redesign** - Apply design system to services with unique section treatments
@@ -35,8 +35,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 2 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Install GSAP + Lenis, create centralized config, wire SmoothScrollProvider into root layout
-- [ ] 01-02-PLAN.md — Reduced-motion accessibility, useScrollAnimation hook with useGSAP cleanup, human verification
+- [x] 01-01-PLAN.md — Install GSAP + Lenis, create centralized config, wire SmoothScrollProvider into root layout
+- [x] 01-02-PLAN.md — Reduced-motion accessibility, useScrollAnimation hook with useGSAP cleanup, human verification
 
 ### Phase 2: Custom Cursor System
 **Goal**: Custom cursor is a polished, performant design element that reacts to interactive elements site-wide
@@ -153,7 +153,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Animation Foundation | 0/2 | Planned | - |
+| 1. Animation Foundation | 2/2 | Complete | 2026-02-11 |
 | 2. Custom Cursor System | 0/TBD | Not started | - |
 | 3. Homepage Visual Overhaul | 0/TBD | Not started | - |
 | 4. Services Page Redesign | 0/TBD | Not started | - |

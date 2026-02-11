@@ -5,7 +5,7 @@
 See: .planning/PROJECT.md (updated 2026-02-10)
 
 **Core value:** Every page should feel intentionally designed — no two sections should look like they came from the same template.
-**Current focus:** Phase 1: Animation Foundation
+**Current focus:** Phase 2: Custom Cursor System (Phase 1 complete)
 
 ## Current Position
 
