@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactLenis } from "lenis/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { usePathname } from "next/navigation";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 
@@ -12,6 +12,26 @@ export function SmoothScrollProvider({
 }) {
   const lenisRef = useRef<any>(null);
   const pathname = usePathname();
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  // Detect prefers-reduced-motion and listen for changes
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    // Set initial state
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    // Listen for changes
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange);
+    };
+  }, []);
 
   // GSAP ticker sync - controls Lenis RAF
   useEffect(() => {
@@ -27,14 +47,52 @@ export function SmoothScrollProvider({
     };
   }, []);
 
+  // Compute Lenis options based on reduced-motion preference
+  const lenisOptions = useMemo(() => {
+    if (prefersReducedMotion) {
+      // Disable smooth interpolation for reduced motion
+      return {
+        lerp: 1, // instant - no interpolation
+        smoothWheel: false,
+        syncTouch: false,
+        touchMultiplier: 1,
+        wheelMultiplier: 1,
+        infinite: false,
+        orientation: "vertical" as const,
+        gestureOrientation: "vertical" as const,
+      };
+    }
+
+    // Full smooth scroll experience
+    return {
+      lerp: 0.075,
+      smoothWheel: true,
+      syncTouch: true,
+      syncTouchLerp: 0.075,
+      touchMultiplier: 1.5,
+      wheelMultiplier: 1,
+      infinite: false,
+      orientation: "vertical" as const,
+      gestureOrientation: "vertical" as const,
+    };
+  }, [prefersReducedMotion]);
+
   // Route change scroll-to-top
   useEffect(() => {
+    // Kill all ScrollTrigger instances before route change (safety net)
+    ScrollTrigger.getAll().forEach(st => st.kill());
+
     // Scroll to top instantly on route change
     lenisRef.current?.lenis?.scrollTo(0, { immediate: true });
 
     // Refresh ScrollTrigger after content loads
     const timer = setTimeout(() => {
       ScrollTrigger.refresh();
+
+      // Debug logging in development
+      if (process.env.NODE_ENV === 'development') {
+        console.debug(`[ScrollTrigger] Active instances after cleanup: ${ScrollTrigger.getAll().length}`);
+      }
     }, 100);
 
     return () => clearTimeout(timer);
@@ -44,17 +102,8 @@ export function SmoothScrollProvider({
     <ReactLenis
       ref={lenisRef}
       autoRaf={false}
-      options={{
-        lerp: 0.075,
-        smoothWheel: true,
-        syncTouch: true,
-        syncTouchLerp: 0.075,
-        touchMultiplier: 1.5,
-        wheelMultiplier: 1,
-        infinite: false,
-        orientation: "vertical",
-        gestureOrientation: "vertical",
-      }}
+      options={lenisOptions}
+      key={prefersReducedMotion ? 'reduced' : 'full'}
       root
     >
       {children}

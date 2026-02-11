@@ -23,5 +23,11 @@ ScrollTrigger.defaults({
   markers: false, // Set to true manually in dev if needed; markers clutter viewport
 });
 
+// Media queries for prefers-reduced-motion
+export const MOTION_QUERIES = {
+  reduced: '(prefers-reduced-motion: reduce)',
+  noPreference: '(prefers-reduced-motion: no-preference)',
+} as const;
+
 // Named exports - use these in all components
 export { gsap, ScrollTrigger };
