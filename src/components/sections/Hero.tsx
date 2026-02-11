@@ -1,121 +1,154 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, MotionConfig } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { stats } from "@/lib/constants";
+import { stats, siteConfig } from "@/lib/constants";
 
-const containerVariants = {
+const gridVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.1,
+      staggerChildren: 0.12,
+      delayChildren: 0.15,
     },
   },
 } as const;
 
-const itemVariants = {
+const blockVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.5,
-      ease: "easeOut" as const,
+      ease: [0.22, 1, 0.36, 1],
     },
   },
-};
+} as const;
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-primary-brand via-primary-brand to-[#27598E]">
-      {/* Single subtle background accent */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-20 -right-20 w-96 h-96 bg-accent/15 rounded-full blur-3xl" />
-      </div>
-
-      <Container className="relative z-10 pt-32 pb-20">
+    <MotionConfig reducedMotion="user">
+      <section className="relative min-h-[100vh] min-h-dvh bg-navy overflow-hidden">
         <motion.div
-          variants={containerVariants}
+          variants={gridVariants}
           initial="hidden"
           animate="visible"
-          className="max-w-4xl mx-auto text-center"
+          className="relative z-10 grid grid-cols-4 md:grid-cols-6 gap-3 md:gap-4 p-4 md:p-6 lg:p-8 min-h-[100vh] min-h-dvh"
         >
-          {/* Main Heading */}
-          <motion.h1
-            variants={itemVariants}
-            className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight"
-          >
-            Two Teams.{" "}
-            <span className="text-accent">One Mission.</span>
-            <br />
-            Your Digital{" "}
-            <span className="text-accent">Success</span>
-          </motion.h1>
-
-          {/* Subheading */}
-          <motion.p
-            variants={itemVariants}
-            className="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto"
-          >
-            Web design, marketing, and ongoing support for small businesses —
-            all from one team, for one monthly price.
-          </motion.p>
-
-          {/* CTA Buttons */}
+          {/* 1. Headline Block - Desktop: col-span-3 row-span-2 */}
           <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            variants={blockVariants}
+            className="col-span-4 md:col-span-3 md:row-span-2 flex flex-col justify-center gap-6 md:gap-8"
           >
-            <MagneticButton>
-              <Link href="/pricing">
-                <Button
-                  variant="accent"
-                  size="lg"
-                  rightIcon={<ArrowRight size={20} />}
-                >
-                  See Our Plans
-                </Button>
-              </Link>
-            </MagneticButton>
-            <MagneticButton>
-              <Link href="/contact">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-white/30 text-white hover:bg-white hover:text-primary"
-                >
-                  Get a Free Quote
-                </Button>
-              </Link>
-            </MagneticButton>
+            <h1 className="text-5xl md:text-7xl lg:text-[6rem] xl:text-display font-black leading-[0.9] text-white tracking-tight">
+              We Build Digital{" "}
+              <span className="text-coral">Empires</span>{" "}
+              For Small Businesses
+            </h1>
+            <p className="text-xl md:text-2xl text-white/70 max-w-2xl">
+              Your all-in-one team for web design, marketing, and ongoing support — without the agency price tag.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
+              <MagneticButton>
+                <Link href="/pricing">
+                  <Button
+                    variant="accent"
+                    size="lg"
+                    rightIcon={<ArrowRight size={20} />}
+                    data-cursor="button"
+                  >
+                    See Our Plans
+                  </Button>
+                </Link>
+              </MagneticButton>
+              <MagneticButton>
+                <Link href="/contact">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-white/30 text-white hover:bg-white hover:text-navy"
+                    data-cursor="button"
+                  >
+                    Get a Free Quote
+                  </Button>
+                </Link>
+              </MagneticButton>
+            </div>
           </motion.div>
 
-          {/* Trust indicators */}
+          {/* 2. Visual Accent Block - Desktop: col-span-3 row-span-2 */}
           <motion.div
-            variants={itemVariants}
-            className="mt-10 pt-6 border-t border-white/10"
+            variants={blockVariants}
+            className="col-span-4 md:col-span-3 md:row-span-2 bg-gradient-to-br from-coral to-peach rounded-3xl p-8 md:p-12 flex items-center justify-center"
+            data-cursor="card"
           >
-            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-white">
-                    {stat.value}
-                  </div>
-                  <div className="text-white/50 text-xs md:text-sm mt-1">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
+            <div className="text-center">
+              <div className="text-4xl md:text-6xl lg:text-7xl font-black text-white/95 leading-tight">
+                {siteConfig.tagline}
+              </div>
+              <div className="mt-6 text-lg md:text-xl text-white/80 font-medium">
+                OneSquad — Your digital team, simplified
+              </div>
+            </div>
+          </motion.div>
+
+          {/* 3. Stat Block - Desktop: col-span-2 row-span-1 */}
+          <motion.div
+            variants={blockVariants}
+            className="col-span-2 md:col-span-2 md:row-span-1 bg-white/5 backdrop-blur-sm rounded-2xl p-6 flex flex-col justify-center"
+            data-cursor="card"
+          >
+            <div className="text-4xl md:text-5xl font-bold text-white">
+              {stats[0].value}
+            </div>
+            <div className="text-white/60 text-sm md:text-base mt-2">
+              {stats[0].label}
+            </div>
+          </motion.div>
+
+          {/* 4. Logo/Brand Block - Desktop: col-span-1 row-span-1 */}
+          <motion.div
+            variants={blockVariants}
+            className="col-span-1 md:col-span-1 md:row-span-1 bg-coral/20 rounded-2xl p-4 flex items-center justify-center"
+            data-cursor="card"
+          >
+            <div className="text-3xl md:text-4xl font-black text-coral">
+              1S
+            </div>
+          </motion.div>
+
+          {/* 5. Quick CTA Block - Desktop: col-span-1 row-span-1 */}
+          <motion.div
+            variants={blockVariants}
+            className="col-span-1 md:col-span-1 md:row-span-1 bg-peach text-navy rounded-2xl p-4 flex items-center justify-center text-center font-bold hover:bg-peach/90 transition-colors"
+            data-cursor="card"
+          >
+            <Link href="/pricing" className="w-full h-full flex items-center justify-center gap-1">
+              <span className="text-sm md:text-base">Start Now</span>
+              <ArrowRight size={16} />
+            </Link>
+          </motion.div>
+
+          {/* 6. Trust Block - Desktop: col-span-2 row-span-1 */}
+          <motion.div
+            variants={blockVariants}
+            className="col-span-2 md:col-span-2 md:row-span-1 bg-blue/20 rounded-2xl p-6 flex flex-col justify-center"
+            data-cursor="card"
+          >
+            <div className="text-2xl md:text-3xl font-bold text-white">
+              {stats[3].value}
+            </div>
+            <div className="text-white/60 text-sm md:text-base mt-2">
+              {stats[3].label}
             </div>
           </motion.div>
         </motion.div>
-      </Container>
-    </section>
+      </section>
+    </MotionConfig>
   );
 }
