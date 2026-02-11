@@ -47,11 +47,11 @@ Plans:
   2. Cursor scales and changes color when hovering links, buttons, and cards
   3. Cursor shows contextual text ("View", "Play", "Drag") on specific interactive elements
   4. Custom cursor does not interfere with native click events or keyboard navigation
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
+- [ ] 02-01-PLAN.md — Core custom cursor component with GSAP quickTo tracking, touch detection, reduced-motion support
+- [ ] 02-02-PLAN.md — Hover state system with 4 distinct patterns + site-wide data-cursor attribute integration + visual verification
 
 ### Phase 3: Homepage Visual Overhaul
 **Goal**: Homepage feels hand-crafted with asymmetric layouts, bold typography, strategic dark/light alternation, and varied hover states
