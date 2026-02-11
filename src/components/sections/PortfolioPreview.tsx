@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Container, Section } from "@/components/ui/Container";
+import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { TemplateGridCard } from "@/components/ui/TemplateCard";
 import { templates } from "@/lib/templateData";
@@ -25,7 +25,7 @@ export function PortfolioPreview() {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <Section id="portfolio" background="muted">
+    <section id="portfolio" className="bg-peach/10 text-navy py-16 md:py-24">
       <Container>
         <motion.div
           ref={ref}
@@ -38,16 +38,12 @@ export function PortfolioPreview() {
             variants={itemVariants}
             className="text-center max-w-2xl mx-auto mb-12"
           >
-            <span className="text-accent font-semibold text-sm uppercase tracking-wider">
-              Portfolio
-            </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-4 mb-6">
-              Pick a Template.{" "}
-              <span className="text-accent">Make It Yours.</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-6">
+              Real Sites. Real Businesses.{" "}
+              <span className="text-coral">Zero Templates.</span>
             </h2>
-            <p className="text-muted-foreground text-lg">
-              Start with a professionally designed template, then customize every
-              detail to match your brand. Clear pricing included.
+            <p className="text-navy/70 text-lg">
+              Every project is built from scratch to match your brand. No cookie-cutter designs.
             </p>
           </motion.div>
 
@@ -72,11 +68,11 @@ export function PortfolioPreview() {
                 View All Templates ({templates.length})
               </Button>
             </Link>
-            <p className="text-muted-foreground">
+            <p className="text-navy/70">
               Need something unique?{" "}
               <Link
                 href="/contact"
-                className="text-accent font-semibold hover:underline"
+                className="text-coral font-semibold hover:underline"
               >
                 Request a custom design
               </Link>
@@ -84,6 +80,6 @@ export function PortfolioPreview() {
           </motion.div>
         </motion.div>
       </Container>
-    </Section>
+    </section>
   );
 }
