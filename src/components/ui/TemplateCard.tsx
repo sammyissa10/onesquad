@@ -365,7 +365,7 @@ export function TemplateGridCard({
       transition={{ duration: 0.3 }}
       className="group"
     >
-      <div className="relative rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200/60">
+      <div data-cursor="text" data-cursor-text="View" className="relative rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200/60">
         <div className={`h-0.5 bg-gradient-to-r ${theme.gradient}`} />
 
         <div className="aspect-[16/10] relative overflow-hidden">

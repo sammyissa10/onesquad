@@ -68,7 +68,7 @@ export function ServicesPreview() {
                     className={index === 0 ? "sm:col-span-2" : ""}
                   >
                     <Link href={`/services/${service.slug}`}>
-                      <div className="bg-white rounded-2xl p-6 shadow-lg shadow-primary/5 border border-transparent hover:border-highlight/30 transition-all duration-300 h-full group">
+                      <div data-cursor="card" data-cursor-text="View" className="bg-white rounded-2xl p-6 shadow-lg shadow-primary/5 border border-transparent hover:border-highlight/30 transition-all duration-300 h-full group">
                         <div className="w-12 h-12 rounded-xl bg-highlight/10 flex items-center justify-center mb-4 group-hover:bg-highlight transition-colors">
                           <DynamicIcon
                             name={service.icon}
@@ -102,7 +102,7 @@ export function ServicesPreview() {
                     transition={{ duration: 0.3 }}
                   >
                     <Link href={`/services/${service.slug}`}>
-                      <div className="bg-white rounded-2xl p-6 shadow-lg shadow-primary/5 border border-transparent hover:border-accent/30 transition-all duration-300 h-full group">
+                      <div data-cursor="card" data-cursor-text="View" className="bg-white rounded-2xl p-6 shadow-lg shadow-primary/5 border border-transparent hover:border-accent/30 transition-all duration-300 h-full group">
                         <div className="flex items-start gap-4">
                           <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent transition-colors">
                             <DynamicIcon

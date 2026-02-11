@@ -96,6 +96,7 @@ export function Footer() {
                 <button
                   type="submit"
                   disabled={newsletterStatus === "loading"}
+                  data-cursor="button"
                   className="px-5 py-2.5 rounded-lg bg-accent hover:bg-accent/90 text-white font-semibold text-sm transition-colors flex items-center gap-2 whitespace-nowrap disabled:opacity-60"
                 >
                   {newsletterStatus === "loading" ? "..." : "Subscribe"}
@@ -124,6 +125,7 @@ export function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-cursor="button"
                   className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors"
                   aria-label={social.label}
                 >
@@ -141,6 +143,7 @@ export function Footer() {
                 <li key={service.slug}>
                   <Link
                     href={`/services/${service.slug}`}
+                    data-cursor="button"
                     className="text-white/70 hover:text-accent transition-colors"
                   >
                     {service.title}
@@ -150,6 +153,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/services"
+                  data-cursor="button"
                   className="text-accent hover:text-secondary transition-colors font-medium"
                 >
                   View All Services →
@@ -165,6 +169,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/about"
+                  data-cursor="button"
                   className="text-white/70 hover:text-accent transition-colors"
                 >
                   About Us
@@ -173,6 +178,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/pricing"
+                  data-cursor="button"
                   className="text-white/70 hover:text-accent transition-colors"
                 >
                   Pricing
@@ -181,6 +187,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/contact"
+                  data-cursor="button"
                   className="text-white/70 hover:text-accent transition-colors"
                 >
                   Contact
@@ -189,6 +196,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/privacy"
+                  data-cursor="button"
                   className="text-white/70 hover:text-accent transition-colors"
                 >
                   Privacy Policy
@@ -197,6 +205,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/terms"
+                  data-cursor="button"
                   className="text-white/70 hover:text-accent transition-colors"
                 >
                   Terms of Service
@@ -213,6 +222,7 @@ export function Footer() {
                 <Mail size={18} className="text-accent mt-1 flex-shrink-0" />
                 <a
                   href={`mailto:${siteConfig.email}`}
+                  data-cursor="button"
                   className="text-white/70 hover:text-accent transition-colors"
                 >
                   {siteConfig.email}

@@ -54,7 +54,7 @@ export function Testimonials() {
 
           {/* Testimonials Carousel */}
           <motion.div variants={itemVariants} className="relative max-w-4xl mx-auto">
-            <div className="relative bg-muted rounded-3xl p-8 md:p-12">
+            <div data-cursor="card" className="relative bg-muted rounded-3xl p-8 md:p-12">
               {/* Quote icon */}
               <div className="absolute -top-6 left-8 w-12 h-12 bg-accent rounded-full flex items-center justify-center">
                 <Quote className="w-6 h-6 text-white" />
@@ -109,6 +109,7 @@ export function Testimonials() {
               <div className="absolute bottom-8 right-8 flex gap-2">
                 <button
                   onClick={prevTestimonial}
+                  data-cursor="button"
                   className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-primary hover:bg-accent hover:text-white transition-colors"
                   aria-label="Previous testimonial"
                 >
@@ -116,6 +117,7 @@ export function Testimonials() {
                 </button>
                 <button
                   onClick={nextTestimonial}
+                  data-cursor="button"
                   className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-primary hover:bg-accent hover:text-white transition-colors"
                   aria-label="Next testimonial"
                 >
@@ -130,6 +132,7 @@ export function Testimonials() {
                 <button
                   key={index}
                   onClick={() => setActiveIndex(index)}
+                  data-cursor="button"
                   className={`w-2 h-2 rounded-full transition-all ${
                     index === activeIndex
                       ? "w-8 bg-accent"

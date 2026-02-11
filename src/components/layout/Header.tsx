@@ -66,6 +66,7 @@ export function Header() {
                 <Link
                   href={item.href}
                   onClick={undefined}
+                  data-cursor="button"
                   className={cn(
                     "flex items-center gap-1 text-sm font-medium transition-colors hover:text-accent",
                     pathname === item.href ? "text-accent" : useDarkText ? "text-foreground" : "text-white"
@@ -98,6 +99,7 @@ export function Header() {
                           <Link
                             key={child.label}
                             href={child.href}
+                            data-cursor="button"
                             className="block px-4 py-2 text-sm text-foreground hover:bg-muted hover:text-accent transition-colors"
                           >
                             {child.label}
@@ -115,6 +117,7 @@ export function Header() {
           <div className="hidden lg:flex items-center gap-3">
             <Link href="/pricing-calculator">
               <button
+                data-cursor="button"
                 className={cn(
                   "flex items-center gap-1.5 p-2 rounded-lg transition-colors",
                   useDarkText
@@ -144,6 +147,7 @@ export function Header() {
 
           {/* Mobile Menu Button */}
           <button
+            data-cursor="button"
             className={cn("lg:hidden p-2", useDarkText ? "text-foreground" : "text-white")}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
@@ -170,6 +174,7 @@ export function Header() {
                     {item.children ? (
                       <div>
                         <button
+                          data-cursor="button"
                           onClick={() =>
                             setOpenDropdown(
                               openDropdown === item.label ? null : item.label
@@ -198,6 +203,7 @@ export function Header() {
                                 <Link
                                   key={child.label}
                                   href={child.href}
+                                  data-cursor="button"
                                   className="block py-2 text-sm text-muted-foreground hover:text-accent"
                                 >
                                   {child.label}
@@ -211,6 +217,7 @@ export function Header() {
                       <Link
                         href={item.href}
                         onClick={undefined}
+                        data-cursor="button"
                         className={cn(
                           "block py-3 font-medium transition-colors",
                           pathname === item.href
