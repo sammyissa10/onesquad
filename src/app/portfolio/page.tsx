@@ -4,7 +4,6 @@ import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import {
-  ArrowRight,
   LayoutGrid,
   Briefcase,
   Wrench,
@@ -15,7 +14,6 @@ import {
 import { Header, Footer } from "@/components/layout";
 import { Container, Section } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { TemplateShowcaseCard } from "@/components/ui/TemplateCard";
 import {
   templates,
@@ -100,35 +98,36 @@ export default function PortfolioPage() {
   return (
     <>
       <Header />
-      <Breadcrumb items={[{ label: "Portfolio" }]} />
       <main>
-        {/* Hero */}
-        <Section background="gradient">
+        {/* Dark Hero Section */}
+        <section
+          className="bg-[#0F172A] py-24 md:py-36"
+          data-cursor="text"
+          data-cursor-text="Explore"
+        >
           <Container>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="max-w-3xl"
+              className="max-w-4xl"
             >
-              <span className="text-secondary font-semibold text-sm uppercase tracking-wider">
-                Our Work
+              <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/20 text-secondary text-sm font-semibold mb-6">
+                {templates.length} Projects
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-4 mb-6">
-                Website Designs{" "}
-                <span className="text-secondary">Built for Results</span>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+                Our Work Speaks. Loudly.
               </h1>
-              <p className="text-xl text-white/80">
-                Browse {templates.length}+ professionally designed templates.
-                Each one includes clear pricing with a full breakdown of
-                what&apos;s included.
+              <p className="text-lg md:text-xl text-white/70">
+                Real sites. Real businesses. Zero templates. Every project below
+                was built from scratch for someone who refused to settle.
               </p>
             </motion.div>
           </Container>
-        </Section>
+        </section>
 
-        {/* Templates */}
-        <Section background="muted">
+        {/* Light Grid Section */}
+        <Section background="white" padding="lg">
           <Container>
             <motion.div
               ref={ref}
@@ -243,40 +242,45 @@ export default function PortfolioPage() {
                   </Button>
                 </motion.div>
               )}
-
-              {/* Bottom CTA */}
-              <motion.div
-                variants={itemVariants}
-                className="mt-16 bg-gradient-to-r from-primary to-primary/90 rounded-2xl p-8 md:p-12 text-center"
-              >
-                <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                  Don&apos;t See What You Need?
-                </h2>
-                <p className="text-white/80 text-lg mb-6 max-w-xl mx-auto">
-                  We&apos;ll design a custom website tailored to your brand. Use
-                  our price calculator or reach out for a free quote.
-                </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <Link href="/pricing-calculator">
-                    <Button variant="secondary" size="lg">
-                      Price Calculator
-                    </Button>
-                  </Link>
-                  <Link href="/contact">
-                    <Button
-                      variant="outline"
-                      size="lg"
-                      className="border-white/30 text-white hover:bg-white/10"
-                      rightIcon={<ArrowRight size={18} />}
-                    >
-                      Request Custom Design
-                    </Button>
-                  </Link>
-                </div>
-              </motion.div>
             </motion.div>
           </Container>
         </Section>
+
+        {/* Dark CTA Section */}
+        <section className="bg-[#0F172A] py-24 md:py-32">
+          <Container>
+            <div className="text-center max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+                Don't See What You Need? Let's Build It.
+              </h2>
+              <p className="text-lg text-white/60 mb-8">
+                Every business is unique. Your website should be too. Tell us
+                what you're building and we'll make it real.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Link href="/contact">
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    data-cursor="button"
+                  >
+                    Start a Project
+                  </Button>
+                </Link>
+                <Link href="/pricing">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-white/30 text-white hover:bg-white/10"
+                    data-cursor="button"
+                  >
+                    View Pricing
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </Container>
+        </section>
       </main>
       <Footer />
     </>
