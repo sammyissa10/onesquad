@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 3: Homepage Visual Overhaul** - Redesign homepage with asymmetric layouts, bold typography, and visual rhythm
 - [x] **Phase 4: Services Page Redesign** - Apply design system to services with unique section treatments
 - [x] **Phase 5: Pricing Pages Redesign** - Distinct visual approach per tier across three pricing pages
-- [ ] **Phase 6: Portfolio Page Redesign** - Masonry layouts with video-on-hover project cards
+- [x] **Phase 6: Portfolio Page Redesign** - Masonry layouts with video-on-hover project cards
 - [ ] **Phase 7: Contact & About Pages** - Unique layouts for final two key pages
 - [ ] **Phase 8: Scroll Animations Site-Wide** - Apply scroll-driven animations across all redesigned pages
 
@@ -115,8 +115,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 06-01-PLAN.md -- Template data (narrative copy + video URLs) + page structure (dark hero, dark CTA, section rhythm)
-- [ ] 06-02-PLAN.md -- PortfolioCard component with video hover + masonry grid + sticky filter bar + visual verification
+- [x] 06-01-PLAN.md -- Template data (narrative copy + video URLs) + page structure (dark hero, dark CTA, section rhythm)
+- [x] 06-02-PLAN.md -- PortfolioCard component with video hover + masonry grid + sticky filter bar + visual verification
 
 ### Phase 7: Contact & About Pages
 **Goal**: Final two key pages have unique layouts completing the site-wide design overhaul
@@ -161,7 +161,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | 3. Homepage Visual Overhaul | 3/3 | Complete | 2026-02-11 |
 | 4. Services Page Redesign | 3/3 | Complete | 2026-02-11 |
 | 5. Pricing Pages Redesign | 4/4 | Complete | 2026-02-11 |
-| 6. Portfolio Page Redesign | 0/TBD | Not started | - |
+| 6. Portfolio Page Redesign | 2/2 | Complete | 2026-02-11 |
 | 7. Contact & About Pages | 0/TBD | Not started | - |
 | 8. Scroll Animations Site-Wide | 0/TBD | Not started | - |
 
