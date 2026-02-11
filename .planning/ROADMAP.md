@@ -65,12 +65,12 @@ Plans:
   5. Homepage copy matches edgy creative tone (headlines and body rewritten)
   6. Testimonials have unique treatments with individual colors/layouts (not identical cards)
   7. Process or service breakdown uses numbered/narrative structure where appropriate
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 03-01: TBD
-- [ ] 03-02: TBD
-- [ ] 03-03: TBD
+- [ ] 03-01-PLAN.md — Brand color @theme setup + asymmetric bento grid hero with oversized typography
+- [ ] 03-02-PLAN.md — Middle sections overhaul (Features, Services, Comparison, Portfolio, Process) with dark/light rhythm, hover patterns, and edgy copy
+- [ ] 03-03-PLAN.md — Testimonials unique treatments, FAQ/CTA redesign, page assembly, and visual verification
 
 ### Phase 4: Services Page Redesign
 **Goal**: Services page uses unique section treatments applying homepage design patterns
@@ -155,7 +155,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 |-------|----------------|--------|-----------|
 | 1. Animation Foundation | 2/2 | Complete | 2026-02-11 |
 | 2. Custom Cursor System | 2/2 | Complete | 2026-02-11 |
-| 3. Homepage Visual Overhaul | 0/TBD | Not started | - |
+| 3. Homepage Visual Overhaul | 0/3 | Not started | - |
 | 4. Services Page Redesign | 0/TBD | Not started | - |
 | 5. Pricing Pages Redesign | 0/TBD | Not started | - |
 | 6. Portfolio Page Redesign | 0/TBD | Not started | - |
