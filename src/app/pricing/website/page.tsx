@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence, MotionConfig } from "framer-motion";
 import Link from "next/link";
 import {
   Globe,
@@ -16,39 +16,43 @@ import {
   Languages,
   Headphones,
   Clock,
-  Layers,
   Search,
   BarChart3,
 } from "lucide-react";
 import { Header, Footer } from "@/components/layout";
-import { Container, Section } from "@/components/ui/Container";
+import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
-const containerVariants = {
+// Premium animation variants - slower, smoother, more deliberate
+const premiumFadeIn = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }
+  }
+};
+
+const premiumStagger = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-} as const;
+    transition: { staggerChildren: 0.15 }
+  }
+};
 
-const itemVariants = {
+const premiumItem = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut" as const,
-    },
-  },
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }
+  }
 };
 
-// Website specific options
+// Website specific options (PRESERVED FROM ORIGINAL)
 const designComplexity = [
   { id: "professional", label: "Professional", price: 500 },
   { id: "good", label: "Good", price: 200 },
@@ -103,6 +107,7 @@ const deliveryTimes = [
 const BASE_PRICE = 700;
 
 export default function WebsitePricingPage() {
+  // State management (PRESERVED FROM ORIGINAL)
   const [currentStep, setCurrentStep] = useState(1);
   const [settings, setSettings] = useState({
     design: "basic",
@@ -118,6 +123,7 @@ export default function WebsitePricingPage() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
+  // Helper functions (PRESERVED FROM ORIGINAL)
   const toggleAdditional = (id: string) => {
     setSettings((prev) => ({
       ...prev,
@@ -145,402 +151,559 @@ export default function WebsitePricingPage() {
   const totalSteps = 3;
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <Header />
       <Breadcrumb items={[{ label: "Pricing", href: "/pricing" }, { label: "Website Plans" }]} />
       <main>
-        {/* Hero */}
-        <Section background="gradient">
+        {/* Hero - Dark Navy with generous spacing */}
+        <section className="relative bg-navy py-32 md:py-40 overflow-hidden">
+          {/* Subtle radial gradient overlay */}
+          <div
+            className="absolute inset-0 opacity-20"
+            style={{
+              background: 'radial-gradient(circle at 30% 70%, rgba(39, 89, 142, 0.2), transparent)'
+            }}
+          />
+
           <Container>
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center max-w-3xl mx-auto"
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
+              className="text-center max-w-4xl mx-auto relative z-10"
             >
-              <div className="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center mx-auto mb-6">
-                <Globe className="w-10 h-10 text-white" />
+              {/* Globe icon - larger, thin coral stroke outline */}
+              <div className="w-24 h-24 rounded-full border-2 border-coral/30 flex items-center justify-center mx-auto mb-8">
+                <Globe className="w-12 h-12 text-coral" strokeWidth={1.5} />
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                Website <span className="text-secondary">Pricing</span>
+
+              {/* Headline - confident, premium */}
+              <h1 className="text-5xl md:text-6xl xl:text-7xl font-heading text-white mb-6 leading-tight">
+                Craft Your Digital <span className="text-coral">Presence</span>
               </h1>
-              <p className="text-xl text-white/80">
-                Get a website that looks great and works for your business.
-                Configure your project below to see an estimate.
+
+              {/* Subtext - premium copy */}
+              <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto">
+                Every pixel placed with purpose. Every interaction designed to convert.
               </p>
+
+              {/* Elegant divider */}
+              <div className="w-24 h-px bg-coral/30 mx-auto" />
             </motion.div>
           </Container>
-        </Section>
+        </section>
 
-        {/* Calculator */}
-        <Section background="muted">
+        {/* Calculator - Light section with generous spacing */}
+        <section className="bg-white py-28 md:py-36">
           <Container>
             <motion.div
               ref={ref}
-              variants={containerVariants}
+              variants={premiumStagger}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
-              className="grid lg:grid-cols-[300px_1fr] gap-8"
+              className="grid lg:grid-cols-[340px_1fr] gap-12"
             >
-              {/* Summary Sidebar */}
-              <motion.div variants={itemVariants} className="lg:sticky lg:top-24 h-fit">
-                <div className="bg-white rounded-2xl shadow-xl border border-border p-6">
-                  <h3 className="text-xl font-bold text-accent mb-6 flex items-center gap-2">
-                    <Layers className="w-5 h-5" />
-                    Summary
-                  </h3>
+              {/* Sidebar Summary - elegant with subtle border */}
+              <motion.div
+                variants={premiumItem}
+                className="lg:sticky lg:top-24 h-fit"
+              >
+                <motion.div
+                  className="bg-white border border-border/50 rounded-3xl p-8 transition-shadow duration-500"
+                  whileHover={{
+                    boxShadow: "0 0 60px rgba(226, 121, 94, 0.15)"
+                  }}
+                  data-cursor="card"
+                >
+                  <div className="flex items-center gap-3 mb-8">
+                    <Globe className="w-6 h-6 text-coral" />
+                    <h3 className="text-2xl font-heading text-navy">Your Project</h3>
+                  </div>
 
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between p-3 bg-accent/5 rounded-xl">
-                      <span className="font-semibold text-accent">Website</span>
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold text-accent">${BASE_PRICE}</span>
-                        <Globe className="w-5 h-5 text-accent" />
-                      </div>
+                  {/* Base price - elegant, not boxed */}
+                  <div className="mb-6">
+                    <p className="text-sm text-muted-foreground mb-1">Starting at</p>
+                    <p className="text-3xl font-bold text-navy">${BASE_PRICE}</p>
+                  </div>
+
+                  {/* Line items with generous spacing */}
+                  <div className="space-y-3 text-sm text-navy mb-6">
+                    <div className="flex justify-between items-center">
+                      <span className="text-muted-foreground">Design</span>
+                      <span className="font-medium">${designComplexity.find((d) => d.id === settings.design)?.price || 0}</span>
                     </div>
-
-                    <div className="space-y-2 text-sm text-muted-foreground">
-                      <div className="flex justify-between">
-                        <span>${designComplexity.find((d) => d.id === settings.design)?.price || 0} — {settings.design} design</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>${pageOptions.find((p) => p.id === settings.pages)?.price || 0} — {settings.pages} pages</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>${cmsOptions.find((c) => c.id === settings.cms)?.price || 0} — {cmsOptions.find((c) => c.id === settings.cms)?.label}</span>
-                      </div>
-                      {settings.additional.map((id) => (
-                        <div key={id} className="flex justify-between">
-                          <span>${additionalServices.find((a) => a.id === id)?.price} — {additionalServices.find((a) => a.id === id)?.label}</span>
-                        </div>
-                      ))}
-                      <div className="flex justify-between">
-                        <span>${specialFeatures.find((f) => f.id === settings.features)?.price || 0} — {settings.features} custom features</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>${languageOptions.find((l) => l.id === settings.languages)?.price || 0} — {settings.languages} language(s)</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>${supportPlans.find((s) => s.id === settings.support)?.price || 0} — {supportPlans.find((s) => s.id === settings.support)?.label} support</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>${deliveryTimes.find((d) => d.id === settings.delivery)?.price || 0} — {deliveryTimes.find((d) => d.id === settings.delivery)?.label} delivery</span>
-                      </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-muted-foreground">Pages</span>
+                      <span className="font-medium">${pageOptions.find((p) => p.id === settings.pages)?.price || 0}</span>
                     </div>
-
-                    <div className="h-1 bg-gradient-to-r from-accent to-secondary rounded-full" />
-
-                    <div className="bg-muted rounded-xl p-4 text-center">
-                      <p className="text-3xl font-bold text-accent">${calculateTotal()}</p>
-                      <p className="text-sm text-muted-foreground">Total Price</p>
+                    <div className="flex justify-between items-center">
+                      <span className="text-muted-foreground">CMS</span>
+                      <span className="font-medium">${cmsOptions.find((c) => c.id === settings.cms)?.price || 0}</span>
+                    </div>
+                    {settings.additional.map((id) => (
+                      <div key={id} className="flex justify-between items-center">
+                        <span className="text-muted-foreground">{additionalServices.find((a) => a.id === id)?.label}</span>
+                        <span className="font-medium">${additionalServices.find((a) => a.id === id)?.price}</span>
+                      </div>
+                    ))}
+                    <div className="flex justify-between items-center">
+                      <span className="text-muted-foreground">Features</span>
+                      <span className="font-medium">${specialFeatures.find((f) => f.id === settings.features)?.price || 0}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-muted-foreground">Languages</span>
+                      <span className="font-medium">${languageOptions.find((l) => l.id === settings.languages)?.price || 0}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-muted-foreground">Support</span>
+                      <span className="font-medium">${supportPlans.find((s) => s.id === settings.support)?.price || 0}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-muted-foreground">Delivery</span>
+                      <span className="font-medium">${deliveryTimes.find((d) => d.id === settings.delivery)?.price || 0}</span>
                     </div>
                   </div>
-                </div>
+
+                  {/* Coral gradient divider */}
+                  <div className="h-px bg-gradient-to-r from-coral to-peach mb-6" />
+
+                  {/* Total - prominent */}
+                  <div className="text-center">
+                    <p className="text-sm text-muted-foreground mb-2">Total Investment</p>
+                    <AnimatePresence mode="wait">
+                      <motion.p
+                        key={calculateTotal()}
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.3 }}
+                        className="text-4xl font-bold text-coral"
+                      >
+                        ${calculateTotal()}
+                      </motion.p>
+                    </AnimatePresence>
+                    <p className="text-sm text-muted-foreground mt-1">one-time</p>
+                  </div>
+                </motion.div>
               </motion.div>
 
-              {/* Main Content */}
-              <motion.div
-                variants={itemVariants}
-                className="bg-white rounded-2xl shadow-xl border border-border p-8"
-              >
-                {/* Step indicators */}
-                <div className="flex items-center justify-center gap-3 mb-8">
-                  {Array.from({ length: totalSteps }).map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => index + 1 <= currentStep && setCurrentStep(index + 1)}
-                      className={cn(
-                        "w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all",
-                        currentStep === index + 1
-                          ? "bg-accent text-white"
-                          : index + 1 < currentStep
-                          ? "bg-accent/20 text-accent"
-                          : "bg-muted text-muted-foreground"
+              {/* Main Content Area */}
+              <motion.div variants={premiumItem}>
+                {currentStep < 3 && (
+                  <div className="bg-white rounded-3xl border border-border/50 p-10">
+                    {/* Step indicators - numbered badges */}
+                    <div className="flex items-center justify-center gap-4 mb-12">
+                      {Array.from({ length: totalSteps }).map((_, index) => (
+                        <div key={index} className="flex items-center">
+                          <motion.button
+                            onClick={() => index + 1 <= currentStep && setCurrentStep(index + 1)}
+                            animate={currentStep === index + 1 ? "active" : currentStep > index + 1 ? "completed" : "upcoming"}
+                            variants={{
+                              active: {
+                                scale: 1,
+                                boxShadow: "0 0 30px rgba(226, 121, 94, 0.3)"
+                              },
+                              completed: { scale: 1, boxShadow: "none" },
+                              upcoming: { scale: 1, boxShadow: "none" }
+                            }}
+                            className={cn(
+                              "w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg transition-all",
+                              currentStep === index + 1
+                                ? "bg-white border-2 border-coral text-coral"
+                                : currentStep > index + 1
+                                ? "bg-coral/10 border border-coral/20 text-coral"
+                                : "bg-muted border border-border text-muted-foreground"
+                            )}
+                            data-cursor="button"
+                          >
+                            {index + 1}
+                          </motion.button>
+                          {index < totalSteps - 1 && (
+                            <div className="w-12 h-px bg-border mx-2" />
+                          )}
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Step content with slower transitions */}
+                    <AnimatePresence mode="wait">
+                      {/* Step 1: Define Your Vision */}
+                      {currentStep === 1 && (
+                        <motion.div
+                          key="step1"
+                          initial={{ opacity: 0, y: 40 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -20 }}
+                          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] as const }}
+                        >
+                          <h3 className="text-2xl font-heading text-navy text-center mb-10">
+                            Define Your Vision
+                          </h3>
+
+                          <div className="space-y-6">
+                            {/* Design Complexity */}
+                            <div className="bg-muted/30 rounded-2xl p-6">
+                              <div className="flex items-center gap-2 mb-4">
+                                <Palette className="w-5 h-5 text-coral" />
+                                <span className="text-lg font-semibold text-navy">Design Quality</span>
+                              </div>
+                              <div className="grid md:grid-cols-3 gap-4">
+                                {designComplexity.map((option) => (
+                                  <motion.button
+                                    key={option.id}
+                                    onClick={() => setSettings({ ...settings, design: option.id })}
+                                    whileHover={{
+                                      boxShadow: "0 0 40px rgba(226, 121, 94, 0.15)"
+                                    }}
+                                    transition={{ duration: 0.3 }}
+                                    className={cn(
+                                      "py-4 px-6 rounded-xl text-sm font-medium transition-all",
+                                      settings.design === option.id
+                                        ? "bg-coral/5 border border-coral text-coral"
+                                        : "bg-white border border-border text-navy"
+                                    )}
+                                    data-cursor="card"
+                                  >
+                                    <div className="font-semibold mb-1">{option.label}</div>
+                                    <div className="text-xs opacity-70">+${option.price}</div>
+                                  </motion.button>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Pages */}
+                            <div className="bg-muted/30 rounded-2xl p-6">
+                              <div className="flex items-center gap-2 mb-4">
+                                <FileText className="w-5 h-5 text-coral" />
+                                <span className="text-lg font-semibold text-navy">Number of Pages</span>
+                              </div>
+                              <div className="grid md:grid-cols-4 gap-4">
+                                {pageOptions.map((option) => (
+                                  <motion.button
+                                    key={option.id}
+                                    onClick={() => setSettings({ ...settings, pages: option.id })}
+                                    whileHover={{
+                                      boxShadow: "0 0 40px rgba(226, 121, 94, 0.15)"
+                                    }}
+                                    transition={{ duration: 0.3 }}
+                                    className={cn(
+                                      "py-4 px-6 rounded-xl text-sm font-medium transition-all",
+                                      settings.pages === option.id
+                                        ? "bg-coral/5 border border-coral text-coral"
+                                        : "bg-white border border-border text-navy"
+                                    )}
+                                    data-cursor="card"
+                                  >
+                                    <div className="font-semibold mb-1">{option.label}</div>
+                                    <div className="text-xs opacity-70">+${option.price}</div>
+                                  </motion.button>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* CMS */}
+                            <div className="bg-muted/30 rounded-2xl p-6">
+                              <div className="flex items-center gap-2 mb-4">
+                                <Settings className="w-5 h-5 text-coral" />
+                                <span className="text-lg font-semibold text-navy">Content Management</span>
+                              </div>
+                              <div className="grid md:grid-cols-3 gap-4">
+                                {cmsOptions.map((option) => (
+                                  <motion.button
+                                    key={option.id}
+                                    onClick={() => setSettings({ ...settings, cms: option.id })}
+                                    whileHover={{
+                                      boxShadow: "0 0 40px rgba(226, 121, 94, 0.15)"
+                                    }}
+                                    transition={{ duration: 0.3 }}
+                                    className={cn(
+                                      "py-4 px-6 rounded-xl text-sm font-medium transition-all",
+                                      settings.cms === option.id
+                                        ? "bg-coral/5 border border-coral text-coral"
+                                        : "bg-white border border-border text-navy"
+                                    )}
+                                    data-cursor="card"
+                                  >
+                                    <div className="font-semibold mb-1">{option.label}</div>
+                                    <div className="text-xs opacity-70">
+                                      {option.price >= 0 ? `+$${option.price}` : `$${option.price}`}
+                                    </div>
+                                  </motion.button>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Special Features */}
+                            <div className="bg-muted/30 rounded-2xl p-6">
+                              <div className="flex items-center gap-2 mb-4">
+                                <Sparkles className="w-5 h-5 text-coral" />
+                                <span className="text-lg font-semibold text-navy">Custom Features</span>
+                              </div>
+                              <div className="grid md:grid-cols-4 gap-4">
+                                {specialFeatures.map((option) => (
+                                  <motion.button
+                                    key={option.id}
+                                    onClick={() => setSettings({ ...settings, features: option.id })}
+                                    whileHover={{
+                                      boxShadow: "0 0 40px rgba(226, 121, 94, 0.15)"
+                                    }}
+                                    transition={{ duration: 0.3 }}
+                                    className={cn(
+                                      "py-4 px-6 rounded-xl text-sm font-medium transition-all",
+                                      settings.features === option.id
+                                        ? "bg-coral/5 border border-coral text-coral"
+                                        : "bg-white border border-border text-navy"
+                                    )}
+                                    data-cursor="card"
+                                  >
+                                    <div className="font-semibold mb-1">{option.label}</div>
+                                    <div className="text-xs opacity-70">+${option.price}</div>
+                                  </motion.button>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
                       )}
-                    >
-                      {index + 1}
-                    </button>
-                  ))}
-                </div>
 
-                {/* Step 1: Website Basics */}
-                {currentStep === 1 && (
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <h3 className="text-xl font-bold text-primary text-center mb-8">
-                      Website Configuration
-                    </h3>
+                      {/* Step 2: Add Expertise */}
+                      {currentStep === 2 && (
+                        <motion.div
+                          key="step2"
+                          initial={{ opacity: 0, y: 40 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -20 }}
+                          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] as const }}
+                        >
+                          <h3 className="text-2xl font-heading text-navy text-center mb-10">
+                            Add Expertise
+                          </h3>
 
-                    <div className="grid md:grid-cols-2 gap-6">
-                      {/* Design Complexity */}
-                      <div className="bg-muted/50 rounded-xl p-4">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Palette className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Design Complexity</span>
-                        </div>
-                        <div className="flex gap-2">
-                          {designComplexity.map((option) => (
-                            <button
-                              key={option.id}
-                              onClick={() => setSettings({ ...settings, design: option.id })}
-                              className={cn(
-                                "flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all",
-                                settings.design === option.id
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
-                              )}
-                            >
-                              {option.label}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
+                          <div className="space-y-6">
+                            {/* Additional Services */}
+                            <div className="bg-muted/30 rounded-2xl p-6">
+                              <div className="flex items-center gap-2 mb-4">
+                                <Gauge className="w-5 h-5 text-coral" />
+                                <span className="text-lg font-semibold text-navy">Additional Services</span>
+                              </div>
+                              <div className="grid md:grid-cols-3 gap-4">
+                                {additionalServices.map((service) => (
+                                  <motion.button
+                                    key={service.id}
+                                    onClick={() => toggleAdditional(service.id)}
+                                    whileHover={{
+                                      boxShadow: "0 0 40px rgba(226, 121, 94, 0.15)"
+                                    }}
+                                    transition={{ duration: 0.3 }}
+                                    className={cn(
+                                      "flex flex-col items-center gap-2 p-6 rounded-xl text-sm font-medium transition-all",
+                                      settings.additional.includes(service.id)
+                                        ? "bg-coral/5 border border-coral text-coral"
+                                        : "bg-white border border-border text-navy"
+                                    )}
+                                    data-cursor="card"
+                                  >
+                                    <service.icon className="w-6 h-6" />
+                                    <div className="font-semibold text-center">{service.label}</div>
+                                    <div className="text-xs opacity-70">+${service.price}</div>
+                                  </motion.button>
+                                ))}
+                              </div>
+                            </div>
 
-                      {/* Pages */}
-                      <div className="bg-muted/50 rounded-xl p-4">
-                        <div className="flex items-center gap-2 mb-3">
-                          <FileText className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Number of Pages</span>
-                        </div>
-                        <div className="flex gap-2">
-                          {pageOptions.map((option) => (
-                            <button
-                              key={option.id}
-                              onClick={() => setSettings({ ...settings, pages: option.id })}
-                              className={cn(
-                                "flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all",
-                                settings.pages === option.id
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
-                              )}
-                            >
-                              {option.label}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
+                            {/* Languages */}
+                            <div className="bg-muted/30 rounded-2xl p-6">
+                              <div className="flex items-center gap-2 mb-4">
+                                <Languages className="w-5 h-5 text-coral" />
+                                <span className="text-lg font-semibold text-navy">Languages</span>
+                              </div>
+                              <div className="grid md:grid-cols-4 gap-4">
+                                {languageOptions.map((option) => (
+                                  <motion.button
+                                    key={option.id}
+                                    onClick={() => setSettings({ ...settings, languages: option.id })}
+                                    whileHover={{
+                                      boxShadow: "0 0 40px rgba(226, 121, 94, 0.15)"
+                                    }}
+                                    transition={{ duration: 0.3 }}
+                                    className={cn(
+                                      "py-4 px-6 rounded-xl text-sm font-medium transition-all",
+                                      settings.languages === option.id
+                                        ? "bg-coral/5 border border-coral text-coral"
+                                        : "bg-white border border-border text-navy"
+                                    )}
+                                    data-cursor="card"
+                                  >
+                                    <div className="font-semibold mb-1">{option.label}</div>
+                                    <div className="text-xs opacity-70">+${option.price}</div>
+                                  </motion.button>
+                                ))}
+                              </div>
+                            </div>
 
-                      {/* CMS */}
-                      <div className="bg-muted/50 rounded-xl p-4">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Settings className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Content Management</span>
-                        </div>
-                        <div className="flex gap-2">
-                          {cmsOptions.map((option) => (
-                            <button
-                              key={option.id}
-                              onClick={() => setSettings({ ...settings, cms: option.id })}
-                              className={cn(
-                                "flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all",
-                                settings.cms === option.id
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
-                              )}
-                            >
-                              {option.label}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
+                            {/* Support */}
+                            <div className="bg-muted/30 rounded-2xl p-6">
+                              <div className="flex items-center gap-2 mb-4">
+                                <Headphones className="w-5 h-5 text-coral" />
+                                <span className="text-lg font-semibold text-navy">Support Plan</span>
+                              </div>
+                              <div className="grid md:grid-cols-3 gap-4">
+                                {supportPlans.map((option) => (
+                                  <motion.button
+                                    key={option.id}
+                                    onClick={() => setSettings({ ...settings, support: option.id })}
+                                    whileHover={{
+                                      boxShadow: "0 0 40px rgba(226, 121, 94, 0.15)"
+                                    }}
+                                    transition={{ duration: 0.3 }}
+                                    className={cn(
+                                      "py-4 px-6 rounded-xl text-sm font-medium transition-all",
+                                      settings.support === option.id
+                                        ? "bg-coral/5 border border-coral text-coral"
+                                        : "bg-white border border-border text-navy"
+                                    )}
+                                    data-cursor="card"
+                                  >
+                                    <div className="font-semibold mb-1">{option.label}</div>
+                                    <div className="text-xs opacity-70">+${option.price}</div>
+                                  </motion.button>
+                                ))}
+                              </div>
+                            </div>
 
-                      {/* Special Features */}
-                      <div className="bg-muted/50 rounded-xl p-4">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Sparkles className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Custom Features</span>
-                        </div>
-                        <div className="flex gap-2">
-                          {specialFeatures.map((option) => (
-                            <button
-                              key={option.id}
-                              onClick={() => setSettings({ ...settings, features: option.id })}
-                              className={cn(
-                                "flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all",
-                                settings.features === option.id
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
-                              )}
-                            >
-                              {option.label}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
+                            {/* Delivery */}
+                            <div className="bg-muted/30 rounded-2xl p-6">
+                              <div className="flex items-center gap-2 mb-4">
+                                <Clock className="w-5 h-5 text-coral" />
+                                <span className="text-lg font-semibold text-navy">Delivery Timeline</span>
+                              </div>
+                              <div className="grid md:grid-cols-3 gap-4">
+                                {deliveryTimes.map((option) => (
+                                  <motion.button
+                                    key={option.id}
+                                    onClick={() => setSettings({ ...settings, delivery: option.id })}
+                                    whileHover={{
+                                      boxShadow: "0 0 40px rgba(226, 121, 94, 0.15)"
+                                    }}
+                                    transition={{ duration: 0.3 }}
+                                    className={cn(
+                                      "py-4 px-6 rounded-xl text-sm font-medium transition-all",
+                                      settings.delivery === option.id
+                                        ? "bg-coral/5 border border-coral text-coral"
+                                        : "bg-white border border-border text-navy"
+                                    )}
+                                    data-cursor="card"
+                                  >
+                                    <div className="font-semibold mb-1">{option.label}</div>
+                                    <div className="text-xs opacity-70">
+                                      {option.price >= 0 ? `+$${option.price}` : `$${option.price}`}
+                                    </div>
+                                  </motion.button>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    {/* Navigation buttons */}
+                    <div className="flex justify-center gap-4 mt-12">
+                      {currentStep > 1 && (
+                        <Button
+                          variant="outline"
+                          onClick={() => setCurrentStep(currentStep - 1)}
+                          leftIcon={<ArrowLeft size={18} />}
+                          data-cursor="button"
+                        >
+                          Back
+                        </Button>
+                      )}
+                      {currentStep < totalSteps && (
+                        <Button
+                          variant="accent"
+                          onClick={() => setCurrentStep(currentStep + 1)}
+                          rightIcon={<ArrowRight size={18} />}
+                          className="min-w-[200px]"
+                          data-cursor="button"
+                        >
+                          Continue
+                        </Button>
+                      )}
                     </div>
-                  </motion.div>
+                  </div>
                 )}
-
-                {/* Step 2: Services & Support */}
-                {currentStep === 2 && (
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <h3 className="text-xl font-bold text-primary text-center mb-8">
-                      Services & Support
-                    </h3>
-
-                    <div className="grid md:grid-cols-2 gap-6">
-                      {/* Additional Services */}
-                      <div className="bg-muted/50 rounded-xl p-4 md:col-span-2">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Gauge className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Additional Services</span>
-                        </div>
-                        <div className="grid sm:grid-cols-3 gap-3">
-                          {additionalServices.map((service) => (
-                            <button
-                              key={service.id}
-                              onClick={() => toggleAdditional(service.id)}
-                              className={cn(
-                                "flex items-center gap-3 p-3 rounded-lg text-sm font-medium transition-all",
-                                settings.additional.includes(service.id)
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
-                              )}
-                            >
-                              <service.icon className="w-5 h-5" />
-                              <span>{service.label}</span>
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Languages */}
-                      <div className="bg-muted/50 rounded-xl p-4">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Languages className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Languages</span>
-                        </div>
-                        <div className="flex gap-2">
-                          {languageOptions.map((option) => (
-                            <button
-                              key={option.id}
-                              onClick={() => setSettings({ ...settings, languages: option.id })}
-                              className={cn(
-                                "flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all",
-                                settings.languages === option.id
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
-                              )}
-                            >
-                              {option.label}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Support */}
-                      <div className="bg-muted/50 rounded-xl p-4">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Headphones className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Support Plan</span>
-                        </div>
-                        <div className="flex gap-2">
-                          {supportPlans.map((option) => (
-                            <button
-                              key={option.id}
-                              onClick={() => setSettings({ ...settings, support: option.id })}
-                              className={cn(
-                                "flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all",
-                                settings.support === option.id
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
-                              )}
-                            >
-                              {option.label}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Delivery */}
-                      <div className="bg-muted/50 rounded-xl p-4 md:col-span-2">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Clock className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Delivery Time</span>
-                        </div>
-                        <div className="flex gap-2">
-                          {deliveryTimes.map((option) => (
-                            <button
-                              key={option.id}
-                              onClick={() => setSettings({ ...settings, delivery: option.id })}
-                              className={cn(
-                                "flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all",
-                                settings.delivery === option.id
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
-                              )}
-                            >
-                              {option.label}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-
-                {/* Step 3: Confirmation */}
-                {currentStep === 3 && (
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="text-center max-w-md mx-auto"
-                  >
-                    <div className="w-20 h-20 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6">
-                      <Check className="w-10 h-10 text-accent" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-primary mb-4">
-                      Your Quote is Ready!
-                    </h3>
-                    <p className="text-muted-foreground mb-8">
-                      Your estimated website cost is{" "}
-                      <strong className="text-accent">${calculateTotal()}</strong>.
-                      Reach out and we&apos;ll finalize the details together.
-                    </p>
-                    <Link href="/contact">
-                      <Button variant="accent" size="lg" rightIcon={<ArrowRight size={18} />}>
-                        Get Started
-                      </Button>
-                    </Link>
-                  </motion.div>
-                )}
-
-                {/* Navigation */}
-                <div className="flex justify-center gap-4 mt-8">
-                  {currentStep > 1 && (
-                    <Button
-                      variant="outline"
-                      onClick={() => setCurrentStep(currentStep - 1)}
-                      leftIcon={<ArrowLeft size={18} />}
-                    >
-                      Back
-                    </Button>
-                  )}
-                  {currentStep < totalSteps && (
-                    <Button
-                      variant="accent"
-                      onClick={() => setCurrentStep(currentStep + 1)}
-                      rightIcon={<ArrowRight size={18} />}
-                      className="min-w-[200px]"
-                    >
-                      Next
-                    </Button>
-                  )}
-                </div>
               </motion.div>
             </motion.div>
           </Container>
-        </Section>
+        </section>
+
+        {/* Confirmation - Dark navy section */}
+        {currentStep === 3 && (
+          <section className="bg-navy py-24 md:py-32">
+            <Container>
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+                className="text-center max-w-2xl mx-auto"
+              >
+                {/* Elegant check icon */}
+                <motion.div
+                  className="w-24 h-24 rounded-full border-2 border-coral/30 flex items-center justify-center mx-auto mb-8"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const, delay: 0.2 }}
+                >
+                  <Check className="w-12 h-12 text-coral" strokeWidth={2} />
+                </motion.div>
+
+                <h3 className="text-3xl font-heading text-white mb-6">
+                  Your Vision, Priced
+                </h3>
+
+                <div className="mb-10">
+                  <p className="text-white/60 mb-3">Total investment:</p>
+                  <AnimatePresence mode="wait">
+                    <motion.p
+                      key={calculateTotal()}
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.3 }}
+                      className="text-5xl font-bold text-coral"
+                    >
+                      ${calculateTotal()}
+                    </motion.p>
+                  </AnimatePresence>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link href="/contact">
+                    <motion.button
+                      whileHover={{
+                        boxShadow: "0 0 40px rgba(226, 121, 94, 0.3)"
+                      }}
+                      className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-xl font-semibold hover:bg-coral hover:border-coral transition-all duration-300"
+                      data-cursor="button"
+                    >
+                      Begin Your Project
+                    </motion.button>
+                  </Link>
+                  <button
+                    onClick={() => setCurrentStep(1)}
+                    className="px-8 py-4 text-white/50 hover:text-white transition-colors"
+                    data-cursor="button"
+                  >
+                    Refine Your Choices
+                  </button>
+                </div>
+              </motion.div>
+            </Container>
+          </section>
+        )}
       </main>
       <Footer />
-    </>
+    </MotionConfig>
   );
 }
