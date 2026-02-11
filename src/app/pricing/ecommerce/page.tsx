@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence, MotionConfig } from "framer-motion";
 import Link from "next/link";
 import {
   ShoppingCart,
@@ -9,17 +9,19 @@ import {
   ArrowRight,
   ArrowLeft,
   Palette,
-  FileText,
   Gauge,
   Settings,
   Sparkles,
   Languages,
   Headphones,
   Clock,
-  Layers,
   CreditCard,
   Package,
   Truck,
+  Rocket,
+  TrendingUp,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import { Header, Footer } from "@/components/layout";
 import { Container, Section } from "@/components/ui/Container";
@@ -27,26 +29,31 @@ import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
-const containerVariants = {
+// Spring animation variants for revenue/growth personality
+const growthFadeIn = {
+  hidden: { opacity: 0, x: -20 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { type: "spring", stiffness: 100, damping: 15 }
+  }
+};
+
+const growthStagger = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-} as const;
+    transition: { staggerChildren: 0.1 }
+  }
+};
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+const growthItem = {
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut" as const,
-    },
-  },
+    transition: { type: "spring", stiffness: 200, damping: 20 }
+  }
 };
 
 // E-commerce specific options
@@ -106,6 +113,7 @@ const BASE_PRICE = 1500;
 
 export default function EcommercePricingPage() {
   const [currentStep, setCurrentStep] = useState(1);
+  const [summaryExpanded, setSummaryExpanded] = useState(false);
   const [settings, setSettings] = useState({
     design: "basic",
     products: "50",
@@ -145,405 +153,619 @@ export default function EcommercePricingPage() {
   };
 
   const totalSteps = 3;
+  const progressPercent = (currentStep / totalSteps) * 100;
+
+  // Get selected features for display
+  const getSelectedFeatures = () => {
+    const features = [];
+
+    const design = designComplexity.find((d) => d.id === settings.design);
+    if (design && design.id !== "basic") features.push(design.label + " Design");
+
+    const products = productOptions.find((p) => p.id === settings.products);
+    if (products) features.push(products.label + " Products");
+
+    const payment = paymentGateways.find((p) => p.id === settings.payment);
+    if (payment && payment.id !== "basic") features.push(payment.label);
+
+    const shipping = shippingOptions.find((s) => s.id === settings.shipping);
+    if (shipping && shipping.id !== "basic") features.push(shipping.label + " Shipping");
+
+    settings.features.forEach((id) => {
+      const feature = additionalFeatures.find((f) => f.id === id);
+      if (feature) features.push(feature.label);
+    });
+
+    const languages = languageOptions.find((l) => l.id === settings.languages);
+    if (languages && languages.id !== "1") features.push(languages.label + " Languages");
+
+    const support = supportPlans.find((s) => s.id === settings.support);
+    if (support && support.id !== "free") features.push(support.label + " Support");
+
+    return features;
+  };
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <Header />
       <Breadcrumb items={[{ label: "Pricing", href: "/pricing" }, { label: "E-Commerce Plans" }]} />
       <main>
-        {/* Hero */}
-        <Section background="gradient">
-          <Container>
+        {/* Hero - Gradient with navy/blue tones */}
+        <Section background="navy">
+          <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy to-blue/80" />
+          <div className="absolute inset-0 opacity-20" style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)`,
+            backgroundSize: '40px 40px'
+          }} />
+          <Container className="relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center max-w-3xl mx-auto"
+              transition={{ type: "spring", stiffness: 100, damping: 15 }}
+              className="text-center max-w-4xl mx-auto py-28 md:py-36"
             >
-              <div className="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center mx-auto mb-6">
+              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-coral to-peach flex items-center justify-center mx-auto mb-8 shadow-xl">
                 <ShoppingCart className="w-10 h-10 text-white" />
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                Online Store <span className="text-secondary">Pricing</span>
+              <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold text-white mb-6">
+                Built to <span className="text-coral">Sell</span>. Scaled to Grow.
               </h1>
-              <p className="text-xl text-white/80">
-                Set up an online store that&apos;s ready to take orders.
-                Configure your store below to see an estimate.
+              <p className="text-xl text-white/70 mb-8">
+                Configure your online store. Every feature you add drives revenue.
               </p>
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <div className="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm text-white/60">
+                  Avg 3x ROI
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm text-white/60">
+                  500+ stores launched
+                </div>
+              </div>
             </motion.div>
           </Container>
         </Section>
 
-        {/* Calculator */}
-        <Section background="muted">
-          <Container>
-            <motion.div
+        {/* Calculator - Split-screen layout */}
+        <section className="bg-white">
+          <div className="min-h-[calc(100vh-200px)]">
+            {/* Mobile sticky summary bar */}
+            <div className="lg:hidden sticky top-16 z-30 bg-navy">
+              <div className="p-4">
+                <button
+                  onClick={() => setSummaryExpanded(!summaryExpanded)}
+                  className="w-full flex items-center justify-between"
+                  data-cursor="button"
+                >
+                  <div className="flex items-center gap-3">
+                    <ShoppingCart className="w-5 h-5 text-white" />
+                    <span className="text-xl font-bold text-coral">${calculateTotal()}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-white/50">Step {currentStep} of {totalSteps}</span>
+                    {summaryExpanded ? (
+                      <ChevronUp className="w-5 h-5 text-white/50" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-white/50" />
+                    )}
+                  </div>
+                </button>
+
+                {summaryExpanded && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                    className="mt-4 space-y-2"
+                  >
+                    {getSelectedFeatures().map((feature, index) => (
+                      <motion.div
+                        key={feature}
+                        layout
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -10 }}
+                        className="bg-white/10 rounded-lg px-3 py-2 text-sm text-white/80"
+                      >
+                        {feature}
+                      </motion.div>
+                    ))}
+                    <p className="text-xs text-white/40 pt-2">Starting at $1,500</p>
+                  </motion.div>
+                )}
+              </div>
+            </div>
+
+            {/* Desktop split-screen */}
+            <div
               ref={ref}
-              variants={containerVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              className="grid lg:grid-cols-[300px_1fr] gap-8"
+              className="grid lg:grid-cols-2 gap-0"
             >
-              {/* Summary Sidebar */}
-              <motion.div variants={itemVariants} className="lg:sticky lg:top-24 h-fit">
-                <div className="bg-white rounded-2xl shadow-xl border border-border p-6">
-                  <h3 className="text-xl font-bold text-accent mb-6 flex items-center gap-2">
-                    <Layers className="w-5 h-5" />
-                    Summary
-                  </h3>
-
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between p-3 bg-accent/5 rounded-xl">
-                      <span className="font-semibold text-accent">Online Store</span>
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold text-accent">${BASE_PRICE}</span>
-                        <ShoppingCart className="w-5 h-5 text-accent" />
-                      </div>
+              {/* LEFT: Live preview/dashboard panel */}
+              <div className="hidden lg:block bg-navy lg:rounded-none">
+                <div className="lg:sticky lg:top-20 lg:h-[calc(100vh-5rem)] p-8 lg:p-10 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-3 mb-8">
+                      <ShoppingCart className="w-6 h-6 text-coral" />
+                      <h2 className="text-2xl font-heading text-white">Your Store</h2>
                     </div>
 
-                    <div className="space-y-2 text-sm text-muted-foreground">
-                      <div className="flex justify-between">
-                        <span>${designComplexity.find((d) => d.id === settings.design)?.price || 0} — {settings.design} design</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>${productOptions.find((p) => p.id === settings.products)?.price || 0} — {productOptions.find((p) => p.id === settings.products)?.label} products</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>${paymentGateways.find((p) => p.id === settings.payment)?.price || 0} — {paymentGateways.find((p) => p.id === settings.payment)?.label}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>${shippingOptions.find((s) => s.id === settings.shipping)?.price || 0} — {shippingOptions.find((s) => s.id === settings.shipping)?.label} shipping</span>
-                      </div>
-                      {settings.features.map((id) => (
-                        <div key={id} className="flex justify-between">
-                          <span>${additionalFeatures.find((f) => f.id === id)?.price} — {additionalFeatures.find((f) => f.id === id)?.label}</span>
-                        </div>
-                      ))}
-                      <div className="flex justify-between">
-                        <span>${languageOptions.find((l) => l.id === settings.languages)?.price || 0} — {settings.languages} language(s)</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>${supportPlans.find((s) => s.id === settings.support)?.price || 0} — {supportPlans.find((s) => s.id === settings.support)?.label} support</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>${deliveryTimes.find((d) => d.id === settings.delivery)?.price || 0} — {deliveryTimes.find((d) => d.id === settings.delivery)?.label} delivery</span>
-                      </div>
+                    {/* Investment display */}
+                    <div className="mb-8">
+                      <p className="text-sm text-white/50 mb-2">Total Investment</p>
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={calculateTotal()}
+                          initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                          animate={{ opacity: 1, scale: 1, y: 0 }}
+                          exit={{ opacity: 0, scale: 0.9, y: -10 }}
+                          transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                          className="text-5xl font-bold text-coral"
+                        >
+                          ${calculateTotal()}
+                        </motion.div>
+                      </AnimatePresence>
                     </div>
 
-                    <div className="h-1 bg-gradient-to-r from-accent to-secondary rounded-full" />
-
-                    <div className="bg-muted rounded-xl p-4 text-center">
-                      <p className="text-3xl font-bold text-accent">${calculateTotal()}</p>
-                      <p className="text-sm text-muted-foreground">Total Price</p>
+                    {/* Feature breakdown */}
+                    <div className="space-y-2">
+                      <motion.div layout className="space-y-2">
+                        <AnimatePresence>
+                          {getSelectedFeatures().map((feature) => (
+                            <motion.div
+                              key={feature}
+                              layout
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              exit={{ opacity: 0, x: -10 }}
+                              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                              className="bg-white/10 rounded-lg px-3 py-2 text-sm text-white/80"
+                            >
+                              {feature}
+                            </motion.div>
+                          ))}
+                        </AnimatePresence>
+                      </motion.div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
 
-              {/* Main Content */}
-              <motion.div
-                variants={itemVariants}
-                className="bg-white rounded-2xl shadow-xl border border-border p-8"
-              >
-                {/* Step indicators */}
-                <div className="flex items-center justify-center gap-3 mb-8">
-                  {Array.from({ length: totalSteps }).map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => index + 1 <= currentStep && setCurrentStep(index + 1)}
-                      className={cn(
-                        "w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all",
-                        currentStep === index + 1
-                          ? "bg-accent text-white"
-                          : index + 1 < currentStep
-                          ? "bg-accent/20 text-accent"
-                          : "bg-muted text-muted-foreground"
+                  {/* Progress indicator at bottom */}
+                  <div className="mt-8">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-sm text-white/50">Step {currentStep} of {totalSteps}</span>
+                      <span className="text-sm text-white/50">{Math.round(progressPercent)}%</span>
+                    </div>
+                    <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+                      <motion.div
+                        className="h-full bg-gradient-to-r from-coral to-peach"
+                        initial={{ width: 0 }}
+                        animate={{ width: `${progressPercent}%` }}
+                        transition={{ type: "spring", stiffness: 100, damping: 15 }}
+                      />
+                    </div>
+                    <p className="text-xs text-white/40 mt-4">Starting at $1,500</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* RIGHT: Configuration panel */}
+              <div className="bg-muted/30 p-8 lg:p-10 overflow-y-auto">
+                <motion.div
+                  variants={growthStagger}
+                  initial="hidden"
+                  animate={isInView ? "visible" : "hidden"}
+                >
+                  {/* Progress bar */}
+                  <motion.div variants={growthItem} className="mb-8">
+                    <div className="h-2 bg-muted rounded-full overflow-hidden mb-3">
+                      <motion.div
+                        className="h-full bg-gradient-to-r from-coral to-peach"
+                        initial={{ width: 0 }}
+                        animate={{ width: `${progressPercent}%` }}
+                        transition={{ type: "spring", stiffness: 100, damping: 15 }}
+                      />
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className={cn(
+                        "font-semibold transition-colors",
+                        currentStep >= 1 ? "text-coral" : "text-muted-foreground"
+                      )}>
+                        Build Your Foundation
+                      </span>
+                      <span className={cn(
+                        "font-semibold transition-colors",
+                        currentStep >= 2 ? "text-coral" : currentStep === 2 ? "text-navy" : "text-muted-foreground"
+                      )}>
+                        Add Growth Tools
+                      </span>
+                      <span className={cn(
+                        "font-semibold transition-colors",
+                        currentStep >= 3 ? "text-coral" : "text-muted-foreground"
+                      )}>
+                        Launch
+                      </span>
+                    </div>
+                  </motion.div>
+
+                  {/* Step content */}
+                  <AnimatePresence mode="wait">
+                    {/* Step 1: Build Your Foundation */}
+                    {currentStep === 1 && (
+                      <motion.div
+                        key="step1"
+                        initial={{ opacity: 0, x: 40 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                      >
+                        <h3 className="text-3xl font-bold text-navy mb-8">
+                          Build Your Foundation
+                        </h3>
+
+                        <div className="space-y-6">
+                          {/* Design Complexity */}
+                          <div className="bg-white rounded-2xl border border-border p-6" data-cursor="card">
+                            <div className="flex items-center gap-2 mb-4">
+                              <Palette className="w-5 h-5 text-navy" />
+                              <span className="text-lg font-semibold text-navy">Design Complexity</span>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                              {designComplexity.map((option) => (
+                                <motion.button
+                                  key={option.id}
+                                  onClick={() => setSettings({ ...settings, design: option.id })}
+                                  whileHover={{ y: -4, boxShadow: "0 12px 24px rgba(5, 23, 51, 0.1)" }}
+                                  className={cn(
+                                    "p-4 rounded-xl text-sm font-medium transition-all",
+                                    settings.design === option.id
+                                      ? "bg-navy text-white"
+                                      : "bg-muted/50 border border-border text-navy"
+                                  )}
+                                  data-cursor="button"
+                                >
+                                  <div className="font-semibold mb-1">{option.label}</div>
+                                  <div className="text-xs opacity-70">
+                                    {option.price > 0 ? `+$${option.price}` : "Included"}
+                                  </div>
+                                </motion.button>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Products */}
+                          <div className="bg-white rounded-2xl border border-border p-6" data-cursor="card">
+                            <div className="flex items-center gap-2 mb-4">
+                              <Package className="w-5 h-5 text-navy" />
+                              <span className="text-lg font-semibold text-navy">Number of Products</span>
+                            </div>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                              {productOptions.map((option) => (
+                                <motion.button
+                                  key={option.id}
+                                  onClick={() => setSettings({ ...settings, products: option.id })}
+                                  whileHover={{ y: -4, boxShadow: "0 12px 24px rgba(5, 23, 51, 0.1)" }}
+                                  className={cn(
+                                    "p-4 rounded-xl text-sm font-medium transition-all",
+                                    settings.products === option.id
+                                      ? "bg-navy text-white"
+                                      : "bg-muted/50 border border-border text-navy"
+                                  )}
+                                  data-cursor="button"
+                                >
+                                  <div className="font-semibold mb-1">{option.label}</div>
+                                  <div className="text-xs opacity-70">
+                                    {option.price > 0 ? `+$${option.price}` : "Included"}
+                                  </div>
+                                </motion.button>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Payment */}
+                          <div className="bg-white rounded-2xl border border-border p-6" data-cursor="card">
+                            <div className="flex items-center gap-2 mb-4">
+                              <CreditCard className="w-5 h-5 text-navy" />
+                              <span className="text-lg font-semibold text-navy">Payment Method</span>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                              {paymentGateways.map((option) => (
+                                <motion.button
+                                  key={option.id}
+                                  onClick={() => setSettings({ ...settings, payment: option.id })}
+                                  whileHover={{ y: -4, boxShadow: "0 12px 24px rgba(5, 23, 51, 0.1)" }}
+                                  className={cn(
+                                    "p-4 rounded-xl text-sm font-medium transition-all",
+                                    settings.payment === option.id
+                                      ? "bg-navy text-white"
+                                      : "bg-muted/50 border border-border text-navy"
+                                  )}
+                                  data-cursor="button"
+                                >
+                                  <div className="font-semibold mb-1">{option.label}</div>
+                                  <div className="text-xs opacity-70">
+                                    {option.price > 0 ? `+$${option.price}` : "Included"}
+                                  </div>
+                                </motion.button>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Shipping */}
+                          <div className="bg-white rounded-2xl border border-border p-6" data-cursor="card">
+                            <div className="flex items-center gap-2 mb-4">
+                              <Truck className="w-5 h-5 text-navy" />
+                              <span className="text-lg font-semibold text-navy">Shipping Options</span>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                              {shippingOptions.map((option) => (
+                                <motion.button
+                                  key={option.id}
+                                  onClick={() => setSettings({ ...settings, shipping: option.id })}
+                                  whileHover={{ y: -4, boxShadow: "0 12px 24px rgba(5, 23, 51, 0.1)" }}
+                                  className={cn(
+                                    "p-4 rounded-xl text-sm font-medium transition-all",
+                                    settings.shipping === option.id
+                                      ? "bg-navy text-white"
+                                      : "bg-muted/50 border border-border text-navy"
+                                  )}
+                                  data-cursor="button"
+                                >
+                                  <div className="font-semibold mb-1">{option.label}</div>
+                                  <div className="text-xs opacity-70">
+                                    {option.price > 0 ? `+$${option.price}` : "Included"}
+                                  </div>
+                                </motion.button>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {/* Step 2: Add Growth Tools */}
+                    {currentStep === 2 && (
+                      <motion.div
+                        key="step2"
+                        initial={{ opacity: 0, x: 40 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                      >
+                        <h3 className="text-3xl font-bold text-navy mb-8">
+                          Add Growth Tools
+                        </h3>
+
+                        <div className="space-y-6">
+                          {/* Additional Features */}
+                          <div className="bg-white rounded-2xl border border-border p-6" data-cursor="card">
+                            <div className="flex items-center gap-2 mb-4">
+                              <Sparkles className="w-5 h-5 text-navy" />
+                              <span className="text-lg font-semibold text-navy">Additional Features</span>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                              {additionalFeatures.map((feature) => {
+                                const Icon = feature.icon;
+                                return (
+                                  <motion.button
+                                    key={feature.id}
+                                    onClick={() => toggleFeature(feature.id)}
+                                    whileHover={{ y: -4, boxShadow: "0 12px 24px rgba(5, 23, 51, 0.1)" }}
+                                    className={cn(
+                                      "flex items-center gap-3 p-4 rounded-xl text-sm font-medium transition-all text-left",
+                                      settings.features.includes(feature.id)
+                                        ? "bg-navy text-white"
+                                        : "bg-muted/50 border border-border text-navy"
+                                    )}
+                                    data-cursor="button"
+                                  >
+                                    <Icon className="w-5 h-5 flex-shrink-0" />
+                                    <span className="flex-1">{feature.label}</span>
+                                    <span className="text-xs opacity-70">+${feature.price}</span>
+                                  </motion.button>
+                                );
+                              })}
+                            </div>
+                          </div>
+
+                          {/* Languages */}
+                          <div className="bg-white rounded-2xl border border-border p-6" data-cursor="card">
+                            <div className="flex items-center gap-2 mb-4">
+                              <Languages className="w-5 h-5 text-navy" />
+                              <span className="text-lg font-semibold text-navy">Languages</span>
+                            </div>
+                            <div className="grid grid-cols-4 gap-3">
+                              {languageOptions.map((option) => (
+                                <motion.button
+                                  key={option.id}
+                                  onClick={() => setSettings({ ...settings, languages: option.id })}
+                                  whileHover={{ y: -4, boxShadow: "0 12px 24px rgba(5, 23, 51, 0.1)" }}
+                                  className={cn(
+                                    "p-4 rounded-xl text-sm font-medium transition-all",
+                                    settings.languages === option.id
+                                      ? "bg-navy text-white"
+                                      : "bg-muted/50 border border-border text-navy"
+                                  )}
+                                  data-cursor="button"
+                                >
+                                  <div className="font-semibold mb-1">{option.label}</div>
+                                  <div className="text-xs opacity-70">
+                                    {option.price > 0 ? `+$${option.price}` : "Base"}
+                                  </div>
+                                </motion.button>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Support */}
+                          <div className="bg-white rounded-2xl border border-border p-6" data-cursor="card">
+                            <div className="flex items-center gap-2 mb-4">
+                              <Headphones className="w-5 h-5 text-navy" />
+                              <span className="text-lg font-semibold text-navy">Support Plan</span>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                              {supportPlans.map((option) => (
+                                <motion.button
+                                  key={option.id}
+                                  onClick={() => setSettings({ ...settings, support: option.id })}
+                                  whileHover={{ y: -4, boxShadow: "0 12px 24px rgba(5, 23, 51, 0.1)" }}
+                                  className={cn(
+                                    "p-4 rounded-xl text-sm font-medium transition-all",
+                                    settings.support === option.id
+                                      ? "bg-navy text-white"
+                                      : "bg-muted/50 border border-border text-navy"
+                                  )}
+                                  data-cursor="button"
+                                >
+                                  <div className="font-semibold mb-1">{option.label}</div>
+                                  <div className="text-xs opacity-70">
+                                    {option.price > 0 ? `+$${option.price}` : "Included"}
+                                  </div>
+                                </motion.button>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Delivery */}
+                          <div className="bg-white rounded-2xl border border-border p-6" data-cursor="card">
+                            <div className="flex items-center gap-2 mb-4">
+                              <Clock className="w-5 h-5 text-navy" />
+                              <span className="text-lg font-semibold text-navy">Delivery Time</span>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                              {deliveryTimes.map((option) => (
+                                <motion.button
+                                  key={option.id}
+                                  onClick={() => setSettings({ ...settings, delivery: option.id })}
+                                  whileHover={{ y: -4, boxShadow: "0 12px 24px rgba(5, 23, 51, 0.1)" }}
+                                  className={cn(
+                                    "p-4 rounded-xl text-sm font-medium transition-all",
+                                    settings.delivery === option.id
+                                      ? "bg-navy text-white"
+                                      : "bg-muted/50 border border-border text-navy"
+                                  )}
+                                  data-cursor="button"
+                                >
+                                  <div className="font-semibold mb-1">{option.label}</div>
+                                  <div className="text-xs opacity-70">
+                                    {option.price > 0 ? `+$${option.price}` : option.price < 0 ? `$${option.price}` : "Standard"}
+                                  </div>
+                                </motion.button>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {/* Step 3: Launch */}
+                    {currentStep === 3 && (
+                      <motion.div
+                        key="step3"
+                        initial={{ opacity: 0, x: 40 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                        className="text-center max-w-xl mx-auto py-12"
+                      >
+                        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-coral to-peach flex items-center justify-center mx-auto mb-8 shadow-xl">
+                          <Rocket className="w-10 h-10 text-white" />
+                        </div>
+
+                        <h3 className="text-3xl font-bold text-navy mb-6">
+                          Ready to Launch
+                        </h3>
+
+                        {/* Key stats */}
+                        <div className="grid grid-cols-3 gap-4 mb-8">
+                          <div className="bg-white rounded-xl border border-border p-4">
+                            <div className="text-2xl font-bold text-navy mb-1">
+                              {1 + settings.features.length}
+                            </div>
+                            <div className="text-xs text-muted-foreground">Features</div>
+                          </div>
+                          <div className="bg-white rounded-xl border border-border p-4">
+                            <div className="text-2xl font-bold text-navy mb-1">
+                              {settings.languages}
+                            </div>
+                            <div className="text-xs text-muted-foreground">Languages</div>
+                          </div>
+                          <div className="bg-white rounded-xl border border-border p-4">
+                            <div className="text-2xl font-bold text-navy mb-1">
+                              {supportPlans.find(s => s.id === settings.support)?.label.split(" ")[0]}
+                            </div>
+                            <div className="text-xs text-muted-foreground">Support</div>
+                          </div>
+                        </div>
+
+                        {/* Total */}
+                        <div className="bg-navy rounded-2xl p-8 mb-8">
+                          <p className="text-sm text-white/50 mb-2">Total Investment</p>
+                          <p className="text-5xl font-bold text-coral mb-4">${calculateTotal()}</p>
+                          <p className="text-sm text-white/70">
+                            Everything you need to start selling online and scale your business.
+                          </p>
+                        </div>
+
+                        {/* CTAs */}
+                        <Link href="/contact">
+                          <motion.button
+                            whileHover={{ y: -4, boxShadow: "0 20px 40px rgba(226, 121, 94, 0.3)" }}
+                            className="bg-gradient-to-r from-coral to-peach text-white rounded-xl px-8 py-4 text-lg font-semibold mb-4 w-full flex items-center justify-center gap-2"
+                            data-cursor="button"
+                          >
+                            Launch Your Store
+                            <ArrowRight className="w-5 h-5" />
+                          </motion.button>
+                        </Link>
+
+                        <button
+                          onClick={() => setCurrentStep(1)}
+                          className="text-muted-foreground hover:text-navy transition-colors text-sm"
+                          data-cursor="button"
+                        >
+                          Adjust Configuration
+                        </button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Navigation */}
+                  {currentStep < 3 && (
+                    <motion.div
+                      variants={growthItem}
+                      className="flex justify-center gap-4 mt-12"
+                    >
+                      {currentStep > 1 && (
+                        <motion.button
+                          whileHover={{ scale: 1.05 }}
+                          onClick={() => setCurrentStep(currentStep - 1)}
+                          className="px-6 py-3 rounded-xl border-2 border-navy text-navy font-medium flex items-center gap-2 transition-colors hover:bg-navy hover:text-white"
+                          data-cursor="button"
+                        >
+                          <ArrowLeft size={18} />
+                          Back
+                        </motion.button>
                       )}
-                    >
-                      {index + 1}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Step 1: Store Basics */}
-                {currentStep === 1 && (
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <h3 className="text-xl font-bold text-primary text-center mb-8">
-                      Store Configuration
-                    </h3>
-
-                    <div className="grid md:grid-cols-2 gap-6">
-                      {/* Design Complexity */}
-                      <div className="bg-muted/50 rounded-xl p-4">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Palette className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Design Complexity</span>
-                        </div>
-                        <div className="flex gap-2">
-                          {designComplexity.map((option) => (
-                            <button
-                              key={option.id}
-                              onClick={() => setSettings({ ...settings, design: option.id })}
-                              className={cn(
-                                "flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all",
-                                settings.design === option.id
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
-                              )}
-                            >
-                              {option.label}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Products */}
-                      <div className="bg-muted/50 rounded-xl p-4">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Package className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Number of Products</span>
-                        </div>
-                        <div className="flex gap-2">
-                          {productOptions.map((option) => (
-                            <button
-                              key={option.id}
-                              onClick={() => setSettings({ ...settings, products: option.id })}
-                              className={cn(
-                                "flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all",
-                                settings.products === option.id
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
-                              )}
-                            >
-                              {option.label}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Payment */}
-                      <div className="bg-muted/50 rounded-xl p-4">
-                        <div className="flex items-center gap-2 mb-3">
-                          <CreditCard className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Payment Method</span>
-                        </div>
-                        <div className="flex flex-wrap gap-2">
-                          {paymentGateways.map((option) => (
-                            <button
-                              key={option.id}
-                              onClick={() => setSettings({ ...settings, payment: option.id })}
-                              className={cn(
-                                "py-2 px-3 rounded-lg text-sm font-medium transition-all",
-                                settings.payment === option.id
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
-                              )}
-                            >
-                              {option.label}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Shipping */}
-                      <div className="bg-muted/50 rounded-xl p-4">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Truck className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Shipping Options</span>
-                        </div>
-                        <div className="flex gap-2">
-                          {shippingOptions.map((option) => (
-                            <button
-                              key={option.id}
-                              onClick={() => setSettings({ ...settings, shipping: option.id })}
-                              className={cn(
-                                "flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all",
-                                settings.shipping === option.id
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
-                              )}
-                            >
-                              {option.label}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-
-                {/* Step 2: Features & Support */}
-                {currentStep === 2 && (
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <h3 className="text-xl font-bold text-primary text-center mb-8">
-                      Features & Support
-                    </h3>
-
-                    <div className="grid md:grid-cols-2 gap-6">
-                      {/* Additional Features */}
-                      <div className="bg-muted/50 rounded-xl p-4 md:col-span-2">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Sparkles className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Additional Features</span>
-                        </div>
-                        <div className="grid sm:grid-cols-2 gap-3">
-                          {additionalFeatures.map((feature) => (
-                            <button
-                              key={feature.id}
-                              onClick={() => toggleFeature(feature.id)}
-                              className={cn(
-                                "flex items-center gap-3 p-3 rounded-lg text-sm font-medium transition-all text-left",
-                                settings.features.includes(feature.id)
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
-                              )}
-                            >
-                              <feature.icon className="w-5 h-5" />
-                              <span>{feature.label}</span>
-                              <span className="ml-auto">+${feature.price}</span>
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Languages */}
-                      <div className="bg-muted/50 rounded-xl p-4">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Languages className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Languages</span>
-                        </div>
-                        <div className="flex gap-2">
-                          {languageOptions.map((option) => (
-                            <button
-                              key={option.id}
-                              onClick={() => setSettings({ ...settings, languages: option.id })}
-                              className={cn(
-                                "flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all",
-                                settings.languages === option.id
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
-                              )}
-                            >
-                              {option.label}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Support */}
-                      <div className="bg-muted/50 rounded-xl p-4">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Headphones className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Support Plan</span>
-                        </div>
-                        <div className="flex gap-2">
-                          {supportPlans.map((option) => (
-                            <button
-                              key={option.id}
-                              onClick={() => setSettings({ ...settings, support: option.id })}
-                              className={cn(
-                                "flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all",
-                                settings.support === option.id
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
-                              )}
-                            >
-                              {option.label}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Delivery */}
-                      <div className="bg-muted/50 rounded-xl p-4 md:col-span-2">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Clock className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Delivery Time</span>
-                        </div>
-                        <div className="flex gap-2">
-                          {deliveryTimes.map((option) => (
-                            <button
-                              key={option.id}
-                              onClick={() => setSettings({ ...settings, delivery: option.id })}
-                              className={cn(
-                                "flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all",
-                                settings.delivery === option.id
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
-                              )}
-                            >
-                              {option.label}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-
-                {/* Step 3: Confirmation */}
-                {currentStep === 3 && (
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="text-center max-w-md mx-auto"
-                  >
-                    <div className="w-20 h-20 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6">
-                      <Check className="w-10 h-10 text-accent" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-primary mb-4">
-                      Your Quote is Ready!
-                    </h3>
-                    <p className="text-muted-foreground mb-8">
-                      Your estimated online store cost is{" "}
-                      <strong className="text-accent">${calculateTotal()}</strong>.
-                      Reach out and we&apos;ll finalize the details together.
-                    </p>
-                    <Link href="/contact">
-                      <Button variant="accent" size="lg" rightIcon={<ArrowRight size={18} />}>
-                        Get Started
-                      </Button>
-                    </Link>
-                  </motion.div>
-                )}
-
-                {/* Navigation */}
-                <div className="flex justify-center gap-4 mt-8">
-                  {currentStep > 1 && (
-                    <Button
-                      variant="outline"
-                      onClick={() => setCurrentStep(currentStep - 1)}
-                      leftIcon={<ArrowLeft size={18} />}
-                    >
-                      Back
-                    </Button>
+                      {currentStep < totalSteps && (
+                        <motion.button
+                          whileHover={{ y: -4, boxShadow: "0 12px 24px rgba(5, 23, 51, 0.2)" }}
+                          onClick={() => setCurrentStep(currentStep + 1)}
+                          className="px-8 py-3 rounded-xl bg-navy text-white font-medium flex items-center gap-2 min-w-[200px] justify-center"
+                          data-cursor="button"
+                        >
+                          Next
+                          <ArrowRight size={18} />
+                        </motion.button>
+                      )}
+                    </motion.div>
                   )}
-                  {currentStep < totalSteps && (
-                    <Button
-                      variant="accent"
-                      onClick={() => setCurrentStep(currentStep + 1)}
-                      rightIcon={<ArrowRight size={18} />}
-                      className="min-w-[200px]"
-                    >
-                      Next
-                    </Button>
-                  )}
-                </div>
-              </motion.div>
-            </motion.div>
-          </Container>
-        </Section>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
-    </>
+    </MotionConfig>
   );
 }
