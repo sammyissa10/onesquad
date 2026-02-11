@@ -1,8 +1,10 @@
 "use client";
 
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Eye, ExternalLink, Star, Check, Sparkles, Crown, Zap } from "lucide-react";
+import { cn } from "@/lib/utils";
 import {
   type TemplateData,
   type PriceBreakdownItem,
@@ -416,6 +418,172 @@ export function TemplateGridCard({
           </div>
           <span className="text-[11px] text-muted-foreground">
             {categoryLabels[template.category] || template.category}
+          </span>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// ── Portfolio Card (Phase 06 - Masonry Grid) ───────────────────────
+
+export function PortfolioCard({
+  template,
+  featured = false,
+}: {
+  template: TemplateData;
+  featured?: boolean;
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+
+  // Detect touch devices
+  useEffect(() => {
+    const hasTouchScreen =
+      "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    setIsMobile(hasTouchScreen);
+  }, []);
+
+  // IntersectionObserver for lazy video loading
+  useEffect(() => {
+    if (!cardRef.current || isMobile) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsInView(true);
+          } else {
+            setIsInView(false);
+            // Pause video when out of view
+            if (videoRef.current) {
+              videoRef.current.pause();
+              videoRef.current.currentTime = 0;
+            }
+          }
+        });
+      },
+      { rootMargin: "100px", threshold: 0.1 }
+    );
+
+    observer.observe(cardRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [isMobile]);
+
+  // Handle video playback on hover
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+    if (videoRef.current && template.videoUrl && !isMobile) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch(() => {
+        // Silently handle autoplay errors
+      });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
+  const hasVideo = template.videoUrl && !isMobile;
+
+  return (
+    <motion.div
+      ref={cardRef}
+      data-cursor="card"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      whileHover={{ y: -6 }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className="group h-full"
+    >
+      <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+        {/* Screenshot / Video Area */}
+        <div className="relative aspect-[16/10] overflow-hidden bg-gray-100">
+          {/* Static thumbnail (always visible, crossfades out on hover if video exists) */}
+          <img
+            src={template.screenshot}
+            alt={template.name}
+            loading="lazy"
+            className={cn(
+              "absolute inset-0 w-full h-full object-cover object-top transition-all duration-500",
+              hasVideo && isHovering
+                ? "opacity-0"
+                : "opacity-100",
+              !hasVideo && isHovering ? "scale-105" : "scale-100"
+            )}
+            style={{ transitionDuration: hasVideo ? "500ms" : "700ms" }}
+          />
+
+          {/* Video element (lazy loaded, crossfades in on hover) */}
+          {hasVideo && isInView && (
+            <video
+              ref={videoRef}
+              muted
+              loop
+              playsInline
+              preload="none"
+              className={cn(
+                "absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-500",
+                isHovering ? "opacity-100" : "opacity-0"
+              )}
+            >
+              <source src={template.videoUrl} type="video/webm" />
+              <source
+                src={template.videoUrl?.replace(".webm", ".mp4")}
+                type="video/mp4"
+              />
+            </video>
+          )}
+
+          {/* Hover overlay with narrative + CTA */}
+          <div
+            className={cn(
+              "absolute inset-0 bg-gradient-to-t from-black/60 via-black/40 to-transparent transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center gap-4",
+              isHovering ? "opacity-100" : "opacity-0"
+            )}
+          >
+            <p className="text-white text-sm font-medium max-w-md">
+              {template.narrative}
+            </p>
+            <Link
+              href={`/templates/${template.id}`}
+              className="bg-white/15 backdrop-blur-md text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-white/25 transition-colors border border-white/20"
+            >
+              View Details
+            </Link>
+          </div>
+        </div>
+
+        {/* Card Content */}
+        <div className="p-5 flex flex-col flex-1">
+          {/* Category tag chip */}
+          <span className="inline-block self-start bg-muted text-muted-foreground text-xs font-medium px-2.5 py-1 rounded-full mb-3">
+            {categoryLabels[template.category] || template.category}
+          </span>
+
+          {/* Template name */}
+          <Link href={`/templates/${template.id}`}>
+            <h3 className="text-lg font-bold text-primary hover:text-primary/70 transition-colors mb-2">
+              {template.name}
+            </h3>
+          </Link>
+
+          {/* Price badge */}
+          <span className="text-sm font-semibold text-accent">
+            {template.price}
           </span>
         </div>
       </div>
