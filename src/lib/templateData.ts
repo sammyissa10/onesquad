@@ -6,6 +6,7 @@ export interface TemplateData {
   category: string;
   description: string;
   longDescription: string;
+  narrative: string;
   features: string[];
   image: string;
   screenshot: string;
@@ -15,6 +16,7 @@ export interface TemplateData {
   techStack: string[];
   pages: string[];
   demoUrl: string;
+  videoUrl?: string;
 }
 
 export interface PriceBreakdownItem {
@@ -162,6 +164,7 @@ export const templates: TemplateData[] = [
     category: "business",
     description: "Clean and professional template for digital agencies and consultants.",
     longDescription: "The Modern Agency template is designed for forward-thinking digital agencies, marketing firms, and consultants who want to make a strong first impression. With its clean lines, bold typography, and strategic use of whitespace, this template communicates professionalism and creativity in equal measure.",
+    narrative: "We built this for agencies tired of looking like every other agency. Clean lines, bold moves, zero templates.",
     features: ["Responsive Design", "Fast Loading", "SEO Ready", "Contact Forms", "Portfolio Gallery", "Team Section"],
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
     screenshot: screenshotUrl("https://bootstrapmade.com/demo/Orbit/"),
@@ -175,6 +178,7 @@ export const templates: TemplateData[] = [
     techStack: ["Next.js", "Tailwind CSS", "Framer Motion"],
     pages: ["Home", "About", "Services", "Portfolio", "Team", "Contact"],
     demoUrl: "https://bootstrapmade.com/demo/Orbit/",
+    videoUrl: "/videos/templates/modern-agency.webm",
   },
   {
     id: "shop-starter",
@@ -182,6 +186,7 @@ export const templates: TemplateData[] = [
     category: "ecommerce",
     description: "Complete e-commerce solution with cart, checkout, and product pages.",
     longDescription: "Shop Starter is your all-in-one e-commerce solution, perfect for businesses ready to sell online. From product catalogs to secure checkout, this template has everything you need to launch a successful online store.",
+    narrative: "Your products deserve better than a Shopify default. This is the store that makes people buy.",
     features: ["Shopping Cart", "Payment Ready", "Inventory Management", "Product Filters", "Wishlist", "Order Tracking"],
     image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80",
     screenshot: screenshotUrl("https://bootstrapmade.com/demo/eStore/"),
@@ -195,6 +200,7 @@ export const templates: TemplateData[] = [
     techStack: ["Next.js", "Stripe", "Tailwind CSS"],
     pages: ["Home", "Shop", "Product Detail", "Cart", "Checkout", "Account"],
     demoUrl: "https://bootstrapmade.com/demo/eStore/",
+    videoUrl: "/videos/templates/shop-starter.webm",
   },
   {
     id: "creative-portfolio",
@@ -202,6 +208,7 @@ export const templates: TemplateData[] = [
     category: "portfolio",
     description: "Showcase your work beautifully with this stunning portfolio template.",
     longDescription: "Creative Portfolio is designed for artists, designers, photographers, and creatives who want their work to take center stage. With stunning galleries, smooth animations, and a minimalist aesthetic, your portfolio will leave a lasting impression.",
+    narrative: "For creatives who know their work speaks louder than words. No noise, no clutter—just pure portfolio.",
     features: ["Image Gallery", "Smooth Animations", "Contact Form", "Project Details", "Lightbox View", "Blog Section"],
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=800&q=80",
     screenshot: screenshotUrl("https://html5up.net/uploads/demos/paradigm-shift/"),
@@ -222,6 +229,7 @@ export const templates: TemplateData[] = [
     category: "restaurant",
     description: "Perfect for restaurants, cafes, and food businesses.",
     longDescription: "Tasty Bites brings the warmth and flavor of your restaurant to the digital world. With beautiful food photography sections, easy-to-read menus, and integrated reservation systems, your customers can discover and book their next meal with ease.",
+    narrative: "A restaurant asked for a website that makes people hungry. This is what we cooked up.",
     features: ["Menu Display", "Online Reservations", "Photo Gallery", "Location Map", "Opening Hours", "Special Offers"],
     image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
     screenshot: screenshotUrl("https://bootstrapmade.com/demo/Savora/"),
@@ -242,6 +250,7 @@ export const templates: TemplateData[] = [
     category: "healthcare",
     description: "Professional template for clinics, doctors, and healthcare providers.",
     longDescription: "Health First is tailored for medical professionals, clinics, and healthcare providers who need to establish trust and credibility online. With clean design, appointment booking features, and easy-to-navigate service pages, patients can find the care they need.",
+    narrative: "Healthcare that looks like healthcare should—clean, trustworthy, and built for patients who need real care.",
     features: ["Appointment Booking", "Services Overview", "Doctor Profiles", "Patient Portal", "Insurance Info", "Blog/Resources"],
     image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80",
     screenshot: screenshotUrl("https://bootstrapmade.com/demo/MediNest/"),
@@ -255,6 +264,7 @@ export const templates: TemplateData[] = [
     techStack: ["Next.js", "Tailwind CSS", "Calendly"],
     pages: ["Home", "Services", "Doctors", "Appointments", "Blog", "Contact"],
     demoUrl: "https://bootstrapmade.com/demo/MediNest/",
+    videoUrl: "/videos/templates/health-first.webm",
   },
   {
     id: "startup-launch",
@@ -262,6 +272,7 @@ export const templates: TemplateData[] = [
     category: "business",
     description: "Modern landing page perfect for SaaS and tech startups.",
     longDescription: "Startup Launch is built for ambitious tech startups and SaaS companies looking to make a splash. With conversion-optimized layouts, feature showcases, pricing tables, and testimonial sections, this template helps you turn visitors into customers.",
+    narrative: "Built for a SaaS founder who needed to ship fast and look professional. Conversion-first, BS-free.",
     features: ["Hero Section", "Feature Showcase", "Pricing Tables", "Testimonials", "FAQ Section", "Newsletter Signup"],
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
     screenshot: screenshotUrl("https://bootstrapmade.com/demo/Landify/"),
@@ -282,6 +293,7 @@ export const templates: TemplateData[] = [
     category: "ecommerce",
     description: "Elegant online store for fashion, jewelry, and lifestyle brands.",
     longDescription: "Boutique Store is crafted for fashion brands, jewelry designers, and lifestyle businesses that value aesthetics. With elegant product displays, lookbook features, and a sophisticated checkout experience, your brand will shine.",
+    narrative: "For a boutique owner who refused to look like every other online store. High fashion, high conversion.",
     features: ["Lookbook Galleries", "Quick View", "Wishlist", "Size Guides", "Related Products", "Customer Reviews"],
     image: "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=800&q=80",
     screenshot: screenshotUrl("https://builder.bootstrapmade.com/demo/FashionStore/"),
@@ -302,6 +314,7 @@ export const templates: TemplateData[] = [
     category: "portfolio",
     description: "Minimalist design that lets your work speak for itself.",
     longDescription: "Minimal Folio embraces the power of simplicity. With a clean, distraction-free design, this template puts your work front and center. Perfect for photographers, designers, and artists who believe less is more.",
+    narrative: "A photographer said 'just show the work'. So we did. Zero distractions, maximum impact.",
     features: ["Fullscreen Gallery", "Lightbox View", "Blog Section", "About Page", "Contact Form", "Social Links"],
     image: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=800&q=80",
     screenshot: screenshotUrl("https://bootstrapmade.com/demo/MinimalFolio/"),
@@ -322,6 +335,7 @@ export const templates: TemplateData[] = [
     category: "construction",
     description: "Robust template for construction companies and contractors.",
     longDescription: "Build Pro is designed for construction firms, general contractors, and building companies. Showcase your completed projects, highlight your services, and make it easy for clients to request quotes with this professional, trust-building template.",
+    narrative: "Construction companies build things. This is the website that proves they know how to build well.",
     features: ["Project Gallery", "Service Areas", "Quote Request", "Team Profiles", "Testimonials", "Contact Form"],
     image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
     screenshot: screenshotUrl("https://bootstrapmade.com/demo/Constructo/"),
@@ -342,6 +356,7 @@ export const templates: TemplateData[] = [
     category: "plumbing",
     description: "Clean template for plumbing and HVAC service businesses.",
     longDescription: "Pipe Works is built for plumbing, HVAC, and home service businesses that need a reliable online presence. With emergency contact features, service area maps, and easy booking, your customers can find and reach you when they need you most.",
+    narrative: "Plumbers fix emergencies. This website makes sure customers can find them when pipes burst at 2 AM.",
     features: ["Service Booking", "Emergency Contact", "Service Areas", "Customer Reviews", "FAQ Section", "Contact Form"],
     image: "https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=800&q=80",
     screenshot: screenshotUrl("https://bootstrapmade.com/demo/FlexBiz/"),
@@ -362,6 +377,7 @@ export const templates: TemplateData[] = [
     category: "retail",
     description: "Modern template for retail stores and local shops.",
     longDescription: "Shop Front brings the charm of your retail business online. Whether you run a boutique, gift shop, or specialty store, this template highlights your products, location, and brand story to attract both local and online customers.",
+    narrative: "A local shop needed to compete online without losing the neighborhood feel. This did the trick.",
     features: ["Product Showcase", "Store Locator", "Opening Hours", "Brand Story", "Newsletter Signup", "Contact Form"],
     image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80",
     screenshot: screenshotUrl("https://startbootstrap.github.io/startbootstrap-shop-homepage/"),
@@ -382,6 +398,7 @@ export const templates: TemplateData[] = [
     category: "legal",
     description: "Authoritative template for law firms and legal practices.",
     longDescription: "Legal Edge conveys trust, authority, and professionalism for law firms, attorneys, and legal consultants. With practice area pages, attorney profiles, and client testimonials, potential clients can find the legal expertise they need.",
+    narrative: "Law firms need to look like they win. This is the website that says 'we know what we're doing'.",
     features: ["Practice Areas", "Attorney Profiles", "Case Results", "Client Testimonials", "Free Consultation", "Blog Section"],
     image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
     screenshot: screenshotUrl("https://bootstrapmade.com/demo/Arsha/"),
@@ -402,6 +419,7 @@ export const templates: TemplateData[] = [
     category: "realestate",
     description: "Elegant template for real estate agents and property listings.",
     longDescription: "Prime Property is designed for real estate agents, brokers, and property management companies. With stunning property listings, virtual tour integration, and agent profiles, this template helps you close more deals and build client relationships.",
+    narrative: "Real estate agents sell dreams. This website makes every property look like the dream.",
     features: ["Property Listings", "Search & Filters", "Virtual Tours", "Agent Profiles", "Mortgage Calculator", "Contact Form"],
     image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
     screenshot: screenshotUrl("https://bootstrapmade.com/demo/TheProperty/"),
@@ -422,6 +440,7 @@ export const templates: TemplateData[] = [
     category: "fitness",
     description: "Energetic template for gyms, trainers, and fitness studios.",
     longDescription: "Fit Zone captures the energy and motivation of the fitness industry. Perfect for gyms, personal trainers, yoga studios, and fitness centers, this template showcases classes, trainer profiles, membership plans, and success stories to inspire new members.",
+    narrative: "A gym owner wanted to feel as powerful online as their members feel after a workout. Mission accomplished.",
     features: ["Class Schedule", "Trainer Profiles", "Membership Plans", "Success Stories", "Gallery", "Contact Form"],
     image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80",
     screenshot: screenshotUrl("https://themewagon.github.io/gymlife/"),
@@ -442,6 +461,7 @@ export const templates: TemplateData[] = [
     category: "education",
     description: "Friendly template for schools, tutors, and educational platforms.",
     longDescription: "Bright Minds is designed for educational institutions, tutoring services, and online learning platforms. With course catalogs, instructor profiles, and enrollment features, this template makes education accessible and engaging for students of all ages.",
+    narrative: "An education platform needed to look approachable without looking cheap. Smart, not stuffy.",
     features: ["Course Catalog", "Instructor Profiles", "Enrollment Forms", "Event Calendar", "Resource Library", "Contact Form"],
     image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80",
     screenshot: screenshotUrl("https://bootstrapmade.com/demo/Learner/"),
@@ -462,6 +482,7 @@ export const templates: TemplateData[] = [
     category: "barbershop",
     description: "Stylish template for barber shops, salons, and grooming studios.",
     longDescription: "Sharp Cuts is designed for barber shops, hair salons, and grooming studios that want to showcase their style and craftsmanship. With service menus, booking integration, gallery of cuts, and team profiles, this template helps you attract new clients and build your brand.",
+    narrative: "Built for a barbershop that wanted to feel like a brand, not a business.",
     features: ["Service Menu", "Online Booking", "Gallery of Cuts", "Team Profiles", "Price List", "Contact Form"],
     image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&q=80",
     screenshot: screenshotUrl("https://themewagon.github.io/brber/"),
@@ -482,6 +503,7 @@ export const templates: TemplateData[] = [
     category: "landscaping",
     description: "Professional template for landscaping, lawn care, and tree services.",
     longDescription: "Green Scapes is built for landscaping companies, lawn care providers, and tree service businesses. Showcase your outdoor projects, highlight seasonal services, and make it easy for homeowners to request free estimates with this nature-inspired template.",
+    narrative: "Landscapers transform yards. This website transforms their ability to book jobs online.",
     features: ["Project Gallery", "Service Areas", "Free Estimate Form", "Seasonal Services", "Before & After Photos", "Testimonials"],
     image: "https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=800&q=80",
     screenshot: screenshotUrl("https://themewagon.github.io/landscaper/"),
@@ -502,6 +524,7 @@ export const templates: TemplateData[] = [
     category: "remodeling",
     description: "Elegant template for home remodeling, renovation, and interior design.",
     longDescription: "Home Revamp is crafted for home remodeling contractors, renovation companies, and interior designers. With before-and-after project galleries, service breakdowns, and appointment scheduling, this template helps you win more renovation projects.",
+    narrative: "Renovators turn houses into homes. This website turns inquiries into signed contracts.",
     features: ["Before & After Gallery", "Appointment Booking", "Service Breakdown", "Project Portfolio", "Client Reviews", "Contact Form"],
     image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80",
     screenshot: screenshotUrl("https://themewagon.github.io/apex/"),
@@ -522,6 +545,7 @@ export const templates: TemplateData[] = [
     category: "dashboard",
     description: "Modern admin dashboard for business analytics and management.",
     longDescription: "Biz Dashboard is a sleek, data-driven admin template for businesses that need to monitor KPIs, manage operations, and visualize data. With interactive charts, data tables, and real-time widgets, this dashboard puts your business metrics at your fingertips.",
+    narrative: "Data-heavy, design-light dashboards are the worst. This one actually looks like something you'd want to use daily.",
     features: ["Analytics Charts", "Data Tables", "Real-time Widgets", "User Management", "Dark/Light Mode", "Notifications"],
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
     screenshot: screenshotUrl("https://bootstrapmade.com/demo/NiceAdmin/"),
@@ -535,6 +559,7 @@ export const templates: TemplateData[] = [
     techStack: ["Next.js", "Tailwind CSS", "Chart.js"],
     pages: ["Dashboard", "Analytics", "Users", "Settings", "Reports", "Profile"],
     demoUrl: "https://bootstrapmade.com/demo/NiceAdmin/",
+    videoUrl: "/videos/templates/biz-dashboard.webm",
   },
   {
     id: "auto-fix",
@@ -542,6 +567,7 @@ export const templates: TemplateData[] = [
     category: "automotive",
     description: "Bold template for auto repair shops, mechanics, and car services.",
     longDescription: "Auto Fix is built for auto repair shops, mechanics, and car service centers. With service listings, online booking, technician profiles, and customer testimonials, this template helps you build trust and fill your appointment book.",
+    narrative: "A mechanic who knows cars inside-out needed a site that shows they're legit. Trustworthy, bold, bookable.",
     features: ["Service Listings", "Online Booking", "Technician Profiles", "Customer Reviews", "Price Estimates", "Contact Form"],
     image: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=800&q=80",
     screenshot: screenshotUrl("https://themewagon.github.io/carserv/"),
@@ -562,6 +588,7 @@ export const templates: TemplateData[] = [
     category: "cleaning",
     description: "Fresh template for cleaning companies and maintenance services.",
     longDescription: "Sparkle Clean is designed for cleaning companies, janitorial services, and maintenance businesses. With service packages, instant quote forms, and trust-building testimonials, this template helps you stand out in a competitive market and win recurring clients.",
+    narrative: "Cleaning services make spaces spotless. This site makes booking feel effortless.",
     features: ["Service Packages", "Instant Quote", "Before & After Photos", "Trust Badges", "Testimonials", "Contact Form"],
     image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80",
     screenshot: screenshotUrl("https://themewagon.github.io/cleaning-company/"),
