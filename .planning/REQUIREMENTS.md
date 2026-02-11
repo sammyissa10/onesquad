@@ -100,48 +100,48 @@ Deferred to after v1.0 validates. Add when core overhaul is proven.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| ANIM-01 | — | Pending |
-| ANIM-02 | — | Pending |
-| ANIM-03 | — | Pending |
-| ANIM-04 | — | Pending |
-| ANIM-05 | — | Pending |
-| ANIM-06 | — | Pending |
-| CURS-01 | — | Pending |
-| CURS-02 | — | Pending |
-| CURS-03 | — | Pending |
-| CURS-04 | — | Pending |
-| CURS-05 | — | Pending |
-| LYOT-01 | — | Pending |
-| LYOT-02 | — | Pending |
-| LYOT-03 | — | Pending |
-| LYOT-04 | — | Pending |
-| LYOT-05 | — | Pending |
-| LYOT-06 | — | Pending |
-| RHYM-01 | — | Pending |
-| RHYM-02 | — | Pending |
-| RHYM-03 | — | Pending |
-| RHYM-04 | — | Pending |
-| TYPE-01 | — | Pending |
-| TYPE-02 | — | Pending |
-| TYPE-03 | — | Pending |
-| HOVR-01 | — | Pending |
-| HOVR-02 | — | Pending |
-| HOVR-03 | — | Pending |
-| HOVR-04 | — | Pending |
-| COPY-01 | — | Pending |
-| COPY-02 | — | Pending |
-| COPY-03 | — | Pending |
-| COPY-04 | — | Pending |
-| COPY-05 | — | Pending |
-| COPY-06 | — | Pending |
-| COPY-07 | — | Pending |
-| COPY-08 | — | Pending |
+| ANIM-01 | Phase 1 | Pending |
+| ANIM-02 | Phase 1 | Pending |
+| ANIM-03 | Phase 8 | Pending |
+| ANIM-04 | Phase 8 | Pending |
+| ANIM-05 | Phase 1 | Pending |
+| ANIM-06 | Phase 1 | Pending |
+| CURS-01 | Phase 2 | Pending |
+| CURS-02 | Phase 2 | Pending |
+| CURS-03 | Phase 2 | Pending |
+| CURS-04 | Phase 2 | Pending |
+| CURS-05 | Phase 2 | Pending |
+| LYOT-01 | Phase 3 | Pending |
+| LYOT-02 | Phase 4 | Pending |
+| LYOT-03 | Phase 5 | Pending |
+| LYOT-04 | Phase 6 | Pending |
+| LYOT-05 | Phase 7 | Pending |
+| LYOT-06 | Phase 7 | Pending |
+| RHYM-01 | Phase 3 | Pending |
+| RHYM-02 | Phase 3 | Pending |
+| RHYM-03 | Phase 3 | Pending |
+| RHYM-04 | Phase 3 | Pending |
+| TYPE-01 | Phase 3 | Pending |
+| TYPE-02 | Phase 3 | Pending |
+| TYPE-03 | Phase 3 | Pending |
+| HOVR-01 | Phase 3 | Pending |
+| HOVR-02 | Phase 3 | Pending |
+| HOVR-03 | Phase 3 | Pending |
+| HOVR-04 | Phase 6 | Pending |
+| COPY-01 | Phase 3 | Pending |
+| COPY-02 | Phase 4 | Pending |
+| COPY-03 | Phase 5 | Pending |
+| COPY-04 | Phase 6 | Pending |
+| COPY-05 | Phase 7 | Pending |
+| COPY-06 | Phase 7 | Pending |
+| COPY-07 | Phase 3 | Pending |
+| COPY-08 | Phase 3 | Pending |
 
 **Coverage:**
 - v1.0 requirements: 36 total
-- Mapped to phases: 0
-- Unmapped: 36 (roadmap pending)
+- Mapped to phases: 36
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-02-10*
-*Last updated: 2026-02-10 after initial definition*
+*Last updated: 2026-02-10 after roadmap creation*
