@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence, MotionConfig } from "framer-motion";
 import Link from "next/link";
 import {
   Share2,
@@ -27,26 +27,31 @@ import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
-const containerVariants = {
+// Animation variants - bold/playful personality
+const socialFadeIn = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.2, ease: "easeOut" as const }
+  }
+};
+
+const socialStagger = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-} as const;
+    transition: { staggerChildren: 0.05 }
+  }
+};
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+const socialItem = {
+  hidden: { opacity: 0, scale: 0.9 },
   visible: {
     opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut" as const,
-    },
-  },
+    scale: 1,
+    transition: { type: "spring" as const, stiffness: 400, damping: 20 }
+  }
 };
 
 // Social Media specific options
@@ -154,185 +159,142 @@ export default function SocialMediaPricingPage() {
   const totalSteps = 3;
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <Header />
       <Breadcrumb items={[{ label: "Pricing", href: "/pricing" }, { label: "Social Media Plans" }]} />
       <main>
-        {/* Hero */}
-        <Section background="gradient">
+        {/* Hero - Light section with playful energy */}
+        <section className="relative bg-gradient-to-br from-white to-peach/10 py-20 md:py-28 overflow-hidden">
+          {/* Decorative social icons */}
+          <div className="absolute top-10 left-10 opacity-5">
+            <Instagram className="w-32 h-32 text-coral" />
+          </div>
+          <div className="absolute bottom-10 right-10 opacity-5">
+            <Facebook className="w-40 h-40 text-coral" />
+          </div>
+          <div className="absolute top-1/2 right-1/4 opacity-5">
+            <Twitter className="w-24 h-24 text-coral" />
+          </div>
+
           <Container>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center max-w-3xl mx-auto"
+              transition={{ duration: 0.3 }}
+              className="text-center max-w-4xl mx-auto relative z-10"
             >
-              <div className="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center mx-auto mb-6">
-                <Share2 className="w-10 h-10 text-white" />
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                Social Media <span className="text-secondary">Pricing</span>
+              <Share2 className="w-16 h-16 text-coral mx-auto mb-6" />
+              <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold text-navy mb-6">
+                Build Your Social <span className="text-coral">Empire</span>
               </h1>
-              <p className="text-xl text-white/80">
-                Build a social media package that fits your business.
-                Pick your platforms, content, and support level below.
+              <p className="text-xl md:text-2xl text-navy/70">
+                Pick platforms. Add content. Get a price. It&apos;s that easy.
               </p>
             </motion.div>
           </Container>
-        </Section>
+        </section>
 
-        {/* Calculator */}
-        <Section background="muted">
+        {/* Calculator - Dark navy section */}
+        <section className="relative bg-navy py-24 md:py-32">
           <Container>
             <motion.div
               ref={ref}
-              variants={containerVariants}
+              variants={socialStagger}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
-              className="grid lg:grid-cols-[300px_1fr] gap-8"
+              className="max-w-5xl mx-auto"
             >
-              {/* Summary Sidebar */}
-              <motion.div variants={itemVariants} className="lg:sticky lg:top-24 h-fit">
-                <div className="bg-white rounded-2xl shadow-xl border border-border p-6">
-                  <h3 className="text-xl font-bold text-accent mb-6 flex items-center gap-2">
-                    <Layers className="w-5 h-5" />
-                    Summary
-                  </h3>
-
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between p-3 bg-accent/5 rounded-xl">
-                      <span className="font-semibold text-accent">Social Media</span>
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold text-accent">${BASE_PRICE}</span>
-                        <Share2 className="w-5 h-5 text-accent" />
-                      </div>
-                    </div>
-
-                    <div className="space-y-2 text-sm text-muted-foreground">
-                      {settings.platforms.length > 0 && (
-                        <div className="flex justify-between">
-                          <span>Platforms: {settings.platforms.map(id => platforms.find(p => p.id === id)?.label).join(", ")}</span>
-                        </div>
-                      )}
-                      {settings.platforms.map((id) => (
-                        <div key={id} className="flex justify-between">
-                          <span>${platforms.find((p) => p.id === id)?.price} — {platforms.find((p) => p.id === id)?.label}</span>
-                        </div>
-                      ))}
-                      <div className="flex justify-between">
-                        <span>${postFrequency.find((f) => f.id === settings.frequency)?.price || 0} — {postFrequency.find((f) => f.id === settings.frequency)?.label}</span>
-                      </div>
-                      {settings.content.map((id) => (
-                        <div key={id} className="flex justify-between">
-                          <span>${contentTypes.find((c) => c.id === id)?.price} — {contentTypes.find((c) => c.id === id)?.label}</span>
-                        </div>
-                      ))}
-                      {settings.engagement.map((id) => (
-                        <div key={id} className="flex justify-between">
-                          <span>${engagementServices.find((e) => e.id === id)?.price} — {engagementServices.find((e) => e.id === id)?.label}</span>
-                        </div>
-                      ))}
-                      <div className="flex justify-between">
-                        <span>${contractLength.find((c) => c.id === settings.contract)?.price || 0} — {contractLength.find((c) => c.id === settings.contract)?.label} contract</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>${supportLevel.find((s) => s.id === settings.support)?.price || 0} — {supportLevel.find((s) => s.id === settings.support)?.label} support</span>
-                      </div>
-                    </div>
-
-                    <div className="h-1 bg-gradient-to-r from-accent to-secondary rounded-full" />
-
-                    <div className="bg-muted rounded-xl p-4 text-center">
-                      <p className="text-3xl font-bold text-accent">${calculateTotal()}</p>
-                      <p className="text-sm text-muted-foreground">per month</p>
-                    </div>
-                  </div>
-                </div>
+              {/* Step indicators - filled circles with bounce */}
+              <motion.div
+                variants={socialItem}
+                className="flex items-center justify-center gap-3 mb-12"
+              >
+                {Array.from({ length: totalSteps }).map((_, index) => (
+                  <motion.button
+                    key={index}
+                    onClick={() => index + 1 <= currentStep && setCurrentStep(index + 1)}
+                    animate={currentStep === index + 1 ? { scale: 1.1 } : { scale: 1 }}
+                    transition={{ type: "spring" as const, stiffness: 400, damping: 15 }}
+                    className={cn(
+                      "w-12 h-12 rounded-full flex items-center justify-center font-bold transition-all",
+                      currentStep === index + 1
+                        ? "bg-coral text-white"
+                        : index + 1 < currentStep
+                        ? "bg-coral/30 text-white"
+                        : "bg-white/10 text-white/50"
+                    )}
+                    data-cursor="button"
+                  >
+                    {index + 1 < currentStep ? <Check className="w-6 h-6" /> : index + 1}
+                  </motion.button>
+                ))}
               </motion.div>
 
-              {/* Main Content */}
-              <motion.div
-                variants={itemVariants}
-                className="bg-white rounded-2xl shadow-xl border border-border p-8"
-              >
-                {/* Step indicators */}
-                <div className="flex items-center justify-center gap-3 mb-8">
-                  {Array.from({ length: totalSteps }).map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => index + 1 <= currentStep && setCurrentStep(index + 1)}
-                      className={cn(
-                        "w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all",
-                        currentStep === index + 1
-                          ? "bg-accent text-white"
-                          : index + 1 < currentStep
-                          ? "bg-accent/20 text-accent"
-                          : "bg-muted text-muted-foreground"
-                      )}
-                    >
-                      {index + 1}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Step 1: Platforms & Frequency */}
+              {/* Step content with AnimatePresence */}
+              <AnimatePresence mode="wait">
                 {currentStep === 1 && (
                   <motion.div
-                    initial={{ opacity: 0, x: 20 }}
+                    key="step1"
+                    initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
+                    exit={{ opacity: 0, x: -30 }}
+                    transition={{ duration: 0.2 }}
+                    className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8"
                   >
-                    <h3 className="text-xl font-bold text-primary text-center mb-8">
-                      Choose Your Platforms
+                    <h3 className="text-2xl md:text-3xl font-bold text-white text-center mb-8">
+                      Pick Your Platforms
                     </h3>
 
                     <div className="space-y-6">
-                      {/* Platforms */}
-                      <div className="bg-muted/50 rounded-xl p-4">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Share2 className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Social Platforms</span>
-                        </div>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                          {platforms.map((platform) => (
-                            <button
-                              key={platform.id}
-                              onClick={() => togglePlatform(platform.id)}
-                              className={cn(
-                                "flex flex-col items-center gap-2 p-4 rounded-lg text-sm font-medium transition-all",
-                                settings.platforms.includes(platform.id)
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
-                              )}
-                            >
-                              <platform.icon className="w-6 h-6" />
-                              <span>{platform.label}</span>
-                              <span className="text-xs">+${platform.price}/mo</span>
-                            </button>
-                          ))}
-                        </div>
+                      {/* Platforms - 2x2 on mobile, 4-col on desktop */}
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        {platforms.map((platform) => (
+                          <motion.button
+                            key={platform.id}
+                            onClick={() => togglePlatform(platform.id)}
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ duration: 0.2 }}
+                            className={cn(
+                              "flex flex-col items-center gap-3 p-4 rounded-xl text-sm font-medium transition-all",
+                              settings.platforms.includes(platform.id)
+                                ? "bg-coral text-white"
+                                : "bg-white/10 text-white/70 hover:bg-white/15"
+                            )}
+                            data-cursor="card"
+                          >
+                            <platform.icon className="w-8 h-8" />
+                            <span className="font-bold">{platform.label}</span>
+                            <span className="text-xs opacity-70">+${platform.price}/mo</span>
+                          </motion.button>
+                        ))}
                       </div>
 
                       {/* Posting Frequency */}
-                      <div className="bg-muted/50 rounded-xl p-4">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Calendar className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Posting Frequency</span>
-                        </div>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                      <div className="pt-6">
+                        <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                          <Calendar className="w-5 h-5 text-coral" />
+                          Choose Your Frequency
+                        </h4>
+                        <div className="grid grid-cols-2 gap-3">
                           {postFrequency.map((option) => (
-                            <button
+                            <motion.button
                               key={option.id}
                               onClick={() => setSettings({ ...settings, frequency: option.id })}
+                              whileHover={{ scale: 1.05 }}
+                              transition={{ duration: 0.2 }}
                               className={cn(
-                                "py-3 px-4 rounded-lg text-sm font-medium transition-all",
+                                "py-4 px-5 rounded-xl text-sm font-medium transition-all",
                                 settings.frequency === option.id
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
+                                  ? "bg-coral text-white"
+                                  : "bg-white/10 text-white/70 hover:bg-white/15"
                               )}
+                              data-cursor="button"
                             >
-                              {option.label}
-                            </button>
+                              <span className="block font-bold">{option.label}</span>
+                              <span className="text-xs opacity-70">
+                                {option.price > 0 ? `+$${option.price}` : "Included"}
+                              </span>
+                            </motion.button>
                           ))}
                         </div>
                       </div>
@@ -340,66 +302,78 @@ export default function SocialMediaPricingPage() {
                   </motion.div>
                 )}
 
-                {/* Step 2: Content & Services */}
                 {currentStep === 2 && (
                   <motion.div
-                    initial={{ opacity: 0, x: 20 }}
+                    key="step2"
+                    initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
+                    exit={{ opacity: 0, x: -30 }}
+                    transition={{ duration: 0.2 }}
+                    className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8"
                   >
-                    <h3 className="text-xl font-bold text-primary text-center mb-8">
-                      Content & Engagement
+                    <h3 className="text-2xl md:text-3xl font-bold text-white text-center mb-8">
+                      Add the Good Stuff
                     </h3>
 
                     <div className="space-y-6">
                       {/* Content Types */}
-                      <div className="bg-muted/50 rounded-xl p-4">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Camera className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Content Types</span>
-                        </div>
+                      <div>
+                        <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                          <Camera className="w-5 h-5 text-coral" />
+                          Content Types
+                        </h4>
                         <div className="grid grid-cols-2 gap-3">
                           {contentTypes.map((content) => (
-                            <button
+                            <motion.button
                               key={content.id}
                               onClick={() => toggleContent(content.id)}
+                              whileHover={{ scale: 1.05 }}
+                              transition={{ duration: 0.2 }}
                               className={cn(
-                                "flex items-center gap-3 p-3 rounded-lg text-sm font-medium transition-all",
+                                "flex items-center gap-3 p-4 rounded-xl text-sm font-medium transition-all",
                                 settings.content.includes(content.id)
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
+                                  ? "bg-coral text-white"
+                                  : "bg-white/10 text-white/70 hover:bg-white/15"
                               )}
+                              data-cursor="card"
                             >
-                              <content.icon className="w-5 h-5" />
-                              <span>{content.label}</span>
-                              <span className="ml-auto">+${content.price}</span>
-                            </button>
+                              <content.icon className="w-6 h-6" />
+                              <div className="flex-1 text-left">
+                                <span className="block font-bold">{content.label}</span>
+                                <span className="text-xs opacity-70">+${content.price}/mo</span>
+                              </div>
+                            </motion.button>
                           ))}
                         </div>
                       </div>
 
                       {/* Engagement Services */}
-                      <div className="bg-muted/50 rounded-xl p-4">
-                        <div className="flex items-center gap-2 mb-3">
-                          <MessageCircle className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Engagement Services</span>
-                        </div>
+                      <div className="pt-6">
+                        <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                          <MessageCircle className="w-5 h-5 text-coral" />
+                          Engagement Services
+                        </h4>
                         <div className="grid grid-cols-2 gap-3">
                           {engagementServices.map((service) => (
-                            <button
+                            <motion.button
                               key={service.id}
                               onClick={() => toggleEngagement(service.id)}
+                              whileHover={{ scale: 1.05 }}
+                              transition={{ duration: 0.2 }}
                               className={cn(
-                                "flex items-center gap-3 p-3 rounded-lg text-sm font-medium transition-all",
+                                "flex items-center gap-3 p-4 rounded-xl text-sm font-medium transition-all",
                                 settings.engagement.includes(service.id)
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
+                                  ? "bg-coral text-white"
+                                  : "bg-white/10 text-white/70 hover:bg-white/15"
                               )}
+                              data-cursor="card"
                             >
-                              <service.icon className="w-5 h-5" />
-                              <span>{service.label}</span>
-                              <span className="ml-auto">+${service.price}</span>
-                            </button>
+                              <service.icon className="w-6 h-6" />
+                              <div className="flex-1 text-left">
+                                <span className="block font-bold">{service.label}</span>
+                                <span className="text-xs opacity-70">+${service.price}/mo</span>
+                              </div>
+                            </motion.button>
                           ))}
                         </div>
                       </div>
@@ -407,117 +381,226 @@ export default function SocialMediaPricingPage() {
                   </motion.div>
                 )}
 
-                {/* Step 3: Contract & Confirmation */}
                 {currentStep === 3 && (
                   <motion.div
-                    initial={{ opacity: 0, x: 20 }}
+                    key="step3"
+                    initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
+                    exit={{ opacity: 0, x: -30 }}
+                    transition={{ duration: 0.2 }}
+                    className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8"
                   >
-                    <h3 className="text-xl font-bold text-primary text-center mb-8">
-                      Contract & Support
+                    <h3 className="text-2xl md:text-3xl font-bold text-white text-center mb-8">
+                      Lock It In
                     </h3>
 
-                    <div className="space-y-6 max-w-2xl mx-auto">
+                    <div className="space-y-6">
                       {/* Contract Length */}
-                      <div className="bg-muted/50 rounded-xl p-4">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Clock className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Contract Length</span>
-                        </div>
+                      <div>
+                        <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                          <Clock className="w-5 h-5 text-coral" />
+                          Contract Length
+                        </h4>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                           {contractLength.map((option) => (
-                            <button
+                            <motion.button
                               key={option.id}
                               onClick={() => setSettings({ ...settings, contract: option.id })}
+                              whileHover={{ scale: 1.05 }}
+                              transition={{ duration: 0.2 }}
                               className={cn(
-                                "py-3 px-4 rounded-lg text-sm font-medium transition-all",
+                                "py-4 px-4 rounded-xl text-sm font-medium transition-all",
                                 settings.contract === option.id
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
+                                  ? "bg-coral text-white"
+                                  : "bg-white/10 text-white/70 hover:bg-white/15"
                               )}
+                              data-cursor="button"
                             >
-                              {option.label}
-                            </button>
+                              <span className="block font-bold">{option.label}</span>
+                              <span className="text-xs opacity-70">
+                                {option.price < 0 ? `$${option.price}` : option.price > 0 ? `+$${option.price}` : "Standard"}
+                              </span>
+                            </motion.button>
                           ))}
                         </div>
                       </div>
 
                       {/* Support Level */}
-                      <div className="bg-muted/50 rounded-xl p-4">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Headphones className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Support Level</span>
-                        </div>
+                      <div className="pt-6">
+                        <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                          <Headphones className="w-5 h-5 text-coral" />
+                          Support Level
+                        </h4>
                         <div className="grid grid-cols-3 gap-3">
                           {supportLevel.map((option) => (
-                            <button
+                            <motion.button
                               key={option.id}
                               onClick={() => setSettings({ ...settings, support: option.id })}
+                              whileHover={{ scale: 1.05 }}
+                              transition={{ duration: 0.2 }}
                               className={cn(
-                                "py-3 px-4 rounded-lg text-sm font-medium transition-all",
+                                "py-4 px-4 rounded-xl text-sm font-medium transition-all",
                                 settings.support === option.id
-                                  ? "bg-accent text-white"
-                                  : "bg-white text-muted-foreground hover:bg-accent/10"
+                                  ? "bg-coral text-white"
+                                  : "bg-white/10 text-white/70 hover:bg-white/15"
                               )}
+                              data-cursor="button"
                             >
-                              {option.label}
-                            </button>
+                              <span className="block font-bold">{option.label}</span>
+                              <span className="text-xs opacity-70">
+                                {option.price > 0 ? `+$${option.price}` : "Included"}
+                              </span>
+                            </motion.button>
                           ))}
                         </div>
-                      </div>
-
-                      {/* CTA */}
-                      <div className="text-center pt-6">
-                        <div className="w-20 h-20 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6">
-                          <Check className="w-10 h-10 text-accent" />
-                        </div>
-                        <h3 className="text-2xl font-bold text-primary mb-4">
-                          Your Quote is Ready!
-                        </h3>
-                        <p className="text-muted-foreground mb-8">
-                          Your estimated monthly cost is{" "}
-                          <strong className="text-accent">${calculateTotal()}/month</strong>.
-                          Reach out and we&apos;ll get your accounts set up.
-                        </p>
-                        <Link href="/contact">
-                          <Button variant="accent" size="lg" rightIcon={<ArrowRight size={18} />}>
-                            Get Started
-                          </Button>
-                        </Link>
                       </div>
                     </div>
                   </motion.div>
                 )}
+              </AnimatePresence>
 
-                {/* Navigation */}
-                <div className="flex justify-center gap-4 mt-8">
-                  {currentStep > 1 && (
-                    <Button
-                      variant="outline"
-                      onClick={() => setCurrentStep(currentStep - 1)}
-                      leftIcon={<ArrowLeft size={18} />}
-                    >
-                      Back
-                    </Button>
-                  )}
-                  {currentStep < totalSteps && (
-                    <Button
-                      variant="accent"
-                      onClick={() => setCurrentStep(currentStep + 1)}
-                      rightIcon={<ArrowRight size={18} />}
-                      className="min-w-[200px]"
-                    >
-                      Next
-                    </Button>
-                  )}
+              {/* Inline Summary - below wizard content */}
+              <motion.div
+                variants={socialItem}
+                className="mt-8 bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-6"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-6">
+                  <div className="flex-1 min-w-[200px]">
+                    <h4 className="text-sm font-bold text-white/70 mb-2">Your Monthly Plan</h4>
+                    <div className="flex flex-wrap items-baseline gap-3 text-white/60 text-sm">
+                      <span>Base: ${BASE_PRICE}</span>
+                      {settings.platforms.length > 0 && (
+                        <span>• Platforms: {settings.platforms.length}</span>
+                      )}
+                      {settings.content.length > 0 && (
+                        <span>• Content: {settings.content.length} types</span>
+                      )}
+                      {settings.engagement.length > 0 && (
+                        <span>• Services: {settings.engagement.length}</span>
+                      )}
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={calculateTotal()}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 1.1 }}
+                        transition={{ type: "spring" as const, stiffness: 300, damping: 20 }}
+                      >
+                        <p className="text-4xl md:text-5xl font-bold text-coral">${calculateTotal()}</p>
+                        <p className="text-sm text-white/70 mt-1">per month</p>
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
                 </div>
+              </motion.div>
+
+              {/* Navigation buttons */}
+              <motion.div
+                variants={socialItem}
+                className="flex justify-center gap-4 mt-8"
+              >
+                {currentStep > 1 && (
+                  <Button
+                    variant="outline"
+                    onClick={() => setCurrentStep(currentStep - 1)}
+                    leftIcon={<ArrowLeft size={18} />}
+                    className="border-white/20 text-white hover:bg-white/10"
+                    data-cursor="button"
+                  >
+                    Back
+                  </Button>
+                )}
+                {currentStep < totalSteps && (
+                  <Button
+                    variant="accent"
+                    onClick={() => setCurrentStep(currentStep + 1)}
+                    rightIcon={<ArrowRight size={18} />}
+                    className="min-w-[200px] rounded-full"
+                    data-cursor="button"
+                  >
+                    Next Step
+                  </Button>
+                )}
               </motion.div>
             </motion.div>
           </Container>
-        </Section>
+        </section>
+
+        {/* Confirmation - Light section */}
+        {currentStep === 3 && (
+          <section className="bg-white py-20 md:py-28">
+            <Container>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.3 }}
+                className="text-center max-w-2xl mx-auto"
+              >
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring" as const, stiffness: 300, damping: 15, delay: 0.3 }}
+                  className="w-24 h-24 rounded-full bg-coral/10 flex items-center justify-center mx-auto mb-6"
+                >
+                  <Check className="w-12 h-12 text-coral" />
+                </motion.div>
+
+                <h2 className="text-4xl md:text-5xl font-bold text-navy mb-6">
+                  You&apos;re All Set!
+                </h2>
+
+                <p className="text-xl text-navy/70 mb-4">
+                  Your monthly investment:
+                </p>
+
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={calculateTotal()}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.1 }}
+                    transition={{ type: "spring" as const, stiffness: 300, damping: 20 }}
+                    className="text-6xl md:text-7xl font-bold text-coral mb-8"
+                  >
+                    ${calculateTotal()}<span className="text-3xl text-coral/70">/mo</span>
+                  </motion.div>
+                </AnimatePresence>
+
+                <p className="text-lg text-navy/60 mb-8">
+                  Ready to dominate every feed? Let&apos;s make it happen.
+                </p>
+
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <Link href="/contact">
+                    <Button
+                      variant="accent"
+                      size="lg"
+                      rightIcon={<ArrowRight size={20} />}
+                      className="rounded-full min-w-[240px]"
+                      data-cursor="button"
+                    >
+                      Let&apos;s Make It Happen
+                    </Button>
+                  </Link>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    onClick={() => setCurrentStep(1)}
+                    className="rounded-full"
+                    data-cursor="button"
+                  >
+                    Or tweak your picks
+                  </Button>
+                </div>
+              </motion.div>
+            </Container>
+          </section>
+        )}
       </main>
       <Footer />
-    </>
+    </MotionConfig>
   );
 }
