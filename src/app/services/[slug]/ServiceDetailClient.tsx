@@ -1,15 +1,89 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, ChevronDown } from "lucide-react";
 import { Header, Footer } from "@/components/layout";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import { DynamicIcon } from "@/components/ui/Icon";
+import { cn } from "@/lib/utils";
 import type { Service } from "@/types";
-import { fadeIn, stagger } from "@/lib/animations";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+} as const;
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut" as const,
+    },
+  },
+};
+
+// Service-specific taglines
+const serviceTaglines: Record<string, string> = {
+  "digital-marketing": "Campaigns that fill your pipeline, not just your dashboard.",
+  "seo": "Get found by people who are ready to buy.",
+  "social-media": "Show up where your customers actually hang out.",
+  "email-marketing": "The inbox is still king. We help you rule it.",
+  "ppc": "Every dollar tracked. Every click counts.",
+  "content-marketing": "Content that earns trust before you even shake hands.",
+  "web-design": "Websites that look like you, not like a template.",
+  "ecommerce": "Your 24/7 storefront, built to convert.",
+  "hosting": "Fast, secure, always on. We handle the boring stuff.",
+  "maintenance": "Updates, fixes, and peace of mind. On autopilot.",
+};
+
+function ServiceFAQItem({ faq, isLast }: { faq: { question: string; answer: string }; isLast: boolean }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className={cn("border-b border-navy/10", isLast && "border-0")}>
+      <button
+        data-cursor="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full py-5 flex items-center justify-between text-left group"
+      >
+        <span className="font-bold text-navy group-hover:text-coral transition-colors pr-4">
+          {faq.question}
+        </span>
+        <ChevronDown
+          className={cn(
+            "w-5 h-5 transition-all flex-shrink-0",
+            isOpen ? "rotate-180 text-coral" : "text-navy/40"
+          )}
+        />
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <p className="pb-5 text-navy/70">{faq.answer}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 interface ServiceDetailClientProps {
   service: Service;
@@ -22,178 +96,333 @@ export default function ServiceDetailClient({
   relatedServices,
   categoryName,
 }: ServiceDetailClientProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
-
-  const accentColor = service.category === "digital-marketing" ? "coral" : "blue";
-
   return (
     <>
       <Header />
       <main>
-        {/* Hero Section */}
-        <section className="bg-navy text-white py-20 md:py-28">
+        {/* Section 1 — Hero (DARK - navy) */}
+        <section className="bg-navy text-white py-24 md:py-36">
           <Container>
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-4xl"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
             >
-              <div className="flex items-center gap-2 mb-4">
+              <motion.div variants={itemVariants}>
                 <Link
                   href="/services"
-                  className="text-white/60 hover:text-white transition-colors"
+                  className="inline-flex items-center gap-2 text-white/50 hover:text-white mb-6 transition-colors"
                 >
-                  Services
+                  <ArrowLeft size={16} />
+                  Back to Services
                 </Link>
-                <span className="text-white/40">/</span>
-                <span className={`text-${accentColor}`}>{categoryName}</span>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start gap-6 mb-6">
-                <div className={`w-16 h-16 rounded-xl bg-${accentColor}/20 flex items-center justify-center flex-shrink-0`}>
+              <motion.div variants={itemVariants}>
+                <span className="inline-block bg-coral/20 text-coral text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+                  {categoryName}
+                </span>
+              </motion.div>
+
+              <motion.div variants={itemVariants} className="flex items-start gap-6 mb-6">
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl w-16 h-16 flex items-center justify-center flex-shrink-0">
                   <DynamicIcon
                     name={service.icon}
-                    className={`w-8 h-8 text-${accentColor}`}
+                    className="w-8 h-8 text-white"
                   />
                 </div>
-                <div>
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4">
+                <div className="flex-1">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white">
                     {service.title}
                   </h1>
-                  <p className="text-xl text-white/70">
-                    {service.description}
-                  </p>
                 </div>
-              </div>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <p className="text-xl text-white/60 max-w-2xl">
+                  {serviceTaglines[service.slug]}
+                </p>
+              </motion.div>
             </motion.div>
           </Container>
         </section>
 
-        {/* Features & Results Section */}
+        {/* Section 2 — Features (LIGHT - white) */}
         <section className="bg-white text-navy py-20 md:py-28">
           <Container>
             <motion.div
-              ref={ref}
-              variants={stagger(0.1)}
+              variants={containerVariants}
               initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              className="grid lg:grid-cols-2 gap-12"
+              whileInView="visible"
+              viewport={{ once: true }}
             >
-              {/* Features */}
-              <motion.div variants={fadeIn}>
-                <h2 className="text-3xl font-black mb-6">What's Included</h2>
-                <ul className="space-y-3">
-                  {service.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3">
-                      <Check className={`w-5 h-5 text-${accentColor} flex-shrink-0 mt-0.5`} />
-                      <span className="text-navy/80">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+              <motion.div variants={itemVariants} className="mb-12">
+                <h2 className="text-3xl md:text-4xl font-black text-navy">
+                  What You Get
+                </h2>
               </motion.div>
 
-              {/* Results */}
-              {service.results && service.results.length > 0 && (
-                <motion.div variants={fadeIn}>
-                  <h2 className="text-3xl font-black mb-6">Results You Can Expect</h2>
-                  <div className="space-y-6">
-                    {service.results.map((result) => (
-                      <div key={result.metric}>
-                        <div className={`text-4xl font-black text-${accentColor} mb-2`}>
-                          {result.metric}
-                        </div>
-                        <p className="text-navy/70">{result.description}</p>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {service.features.map((feature) => (
+                  <motion.div
+                    key={feature}
+                    variants={itemVariants}
+                    className="relative group"
+                  >
+                    {/* Glow hover effect */}
+                    <div className="absolute inset-0 bg-coral/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300" />
+                    <div className="relative bg-peach/5 border border-peach/20 rounded-2xl p-6 flex items-start gap-4">
+                      <div className="w-8 h-8 rounded-full bg-coral/10 flex items-center justify-center flex-shrink-0">
+                        <Check className="w-4 h-4 text-coral" />
                       </div>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
+                      <span className="font-medium text-navy">
+                        {feature}
+                      </span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </motion.div>
           </Container>
         </section>
 
-        {/* FAQs Section */}
-        {service.serviceFaqs && service.serviceFaqs.length > 0 && (
-          <section className="bg-gray-50 text-navy py-20 md:py-28">
+        {/* Section 3 — Results (DARK - navy) */}
+        {service.results && service.results.length > 0 && (
+          <section className="bg-navy text-white py-24 md:py-36">
             <Container>
-              <h2 className="text-3xl md:text-4xl font-black mb-12">
-                Frequently Asked Questions
-              </h2>
-              <div className="space-y-6 max-w-3xl">
-                {service.serviceFaqs.map((faq, index) => (
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                <motion.div variants={itemVariants} className="mb-12">
+                  <h2 className="text-3xl md:text-5xl font-black text-white">
+                    The Numbers Don&apos;t{" "}
+                    <span className="text-coral">Lie</span>
+                  </h2>
+                </motion.div>
+
+                <div className="grid md:grid-cols-3 gap-12">
+                  {service.results.map((result) => (
+                    <motion.div
+                      key={result.description}
+                      variants={itemVariants}
+                      className="text-center md:text-left"
+                    >
+                      <div className="text-5xl md:text-7xl font-black text-coral mb-3">
+                        {result.metric}
+                      </div>
+                      <p className="text-white/60 text-lg">{result.description}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </Container>
+          </section>
+        )}
+
+        {/* Section 4 — Why Choose Us (LIGHT - peach tinted) */}
+        <section className="bg-peach/10 text-navy py-16 md:py-24">
+          <Container>
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid lg:grid-cols-2 gap-12 items-center"
+            >
+              <motion.div variants={itemVariants}>
+                <h2 className="text-3xl md:text-4xl font-black text-navy mb-6">
+                  Why OneSquad?
+                </h2>
+                <div className="space-y-4 mb-8">
+                  <p className="text-navy/70 text-lg">
+                    We&apos;re not a faceless agency with a ticket queue. We&apos;re a small team that actually picks up the phone and knows your business by name.
+                  </p>
+                  <p className="text-navy/70 text-lg">
+                    No 12-month contracts. No jargon. No surprises on the invoice. Just results you can measure and a team you can trust.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-4">
+                  <MagneticButton>
+                    <Link href="/contact">
+                      <Button variant="accent" size="lg" data-cursor="button">
+                        Get Started
+                      </Button>
+                    </Link>
+                  </MagneticButton>
+                  <MagneticButton>
+                    <Link href="/pricing">
+                      <Button variant="outline" size="lg" data-cursor="button">
+                        View Pricing
+                      </Button>
+                    </Link>
+                  </MagneticButton>
+                </div>
+              </motion.div>
+
+              <motion.div
+                variants={itemVariants}
+                className="grid grid-cols-2 gap-4"
+              >
+                {[
+                  { value: "29+", label: "Websites Launched" },
+                  { value: "24/7", label: "Support Available" },
+                  { value: "2-4 wk", label: "Avg Launch Time" },
+                  { value: "0", label: "Long-term Contracts" },
+                ].map((stat) => (
                   <div
-                    key={index}
-                    className="bg-white rounded-xl p-6 shadow-sm border border-gray-100"
+                    key={stat.label}
+                    className="bg-white rounded-xl p-6 text-center shadow-lg"
                   >
-                    <h3 className="font-bold text-lg mb-3">{faq.question}</h3>
-                    <p className="text-navy/70">{faq.answer}</p>
+                    <div className="text-3xl font-bold text-coral mb-2">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm text-navy/60">
+                      {stat.label}
+                    </div>
                   </div>
                 ))}
-              </div>
-            </Container>
-          </section>
-        )}
+              </motion.div>
+            </motion.div>
+          </Container>
+        </section>
 
-        {/* Related Services */}
+        {/* Section 5 — Related Services (DARK - navy) */}
         {relatedServices.length > 0 && (
-          <section className="bg-white text-navy py-20 md:py-28">
+          <section className="bg-navy text-white py-20 md:py-28">
             <Container>
-              <h2 className="text-3xl font-black mb-8">
-                More {categoryName} Services
-              </h2>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {relatedServices.map((relatedService) => (
-                  <Link key={relatedService.slug} href={`/services/${relatedService.slug}`}>
-                    <div className="group bg-white rounded-xl p-6 border border-gray-200 hover:border-gray-300 transition-all">
-                      <div className={`w-12 h-12 rounded-xl bg-${accentColor}/10 flex items-center justify-center mb-4`}>
-                        <DynamicIcon
-                          name={relatedService.icon}
-                          className={`w-6 h-6 text-${accentColor}`}
-                        />
-                      </div>
-                      <h3 className="font-bold mb-2 group-hover:text-${accentColor} transition-colors">
-                        {relatedService.title}
-                      </h3>
-                      <p className="text-sm text-navy/60">
-                        {relatedService.shortDescription}
-                      </p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                <motion.div variants={itemVariants} className="mb-12">
+                  <h2 className="text-2xl md:text-3xl font-bold text-white">
+                    More From {categoryName}
+                  </h2>
+                </motion.div>
+
+                <div className="grid md:grid-cols-3 gap-6">
+                  {relatedServices.map((relatedService) => (
+                    <motion.div
+                      key={relatedService.slug}
+                      variants={itemVariants}
+                      whileHover={{ y: -6 }}
+                    >
+                      <Link href={`/services/${relatedService.slug}`}>
+                        <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 h-full hover:shadow-lg hover:shadow-coral/10 transition-shadow">
+                          <div className="w-12 h-12 rounded-xl bg-coral/10 flex items-center justify-center mb-4">
+                            <DynamicIcon
+                              name={relatedService.icon}
+                              className="w-6 h-6 text-coral"
+                            />
+                          </div>
+                          <h3 className="text-lg font-bold text-white mb-2">
+                            {relatedService.title}
+                          </h3>
+                          <p className="text-white/60 text-sm mb-4">
+                            {relatedService.shortDescription}
+                          </p>
+                          <span className="inline-flex items-center gap-2 text-coral font-medium text-sm">
+                            Learn More <ArrowRight size={14} />
+                          </span>
+                        </div>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
             </Container>
           </section>
         )}
 
-        {/* CTA Section */}
-        <section className="bg-navy text-white py-20 md:py-28">
+        {/* Section 6 — Service FAQs (LIGHT - white) */}
+        {service.serviceFaqs && service.serviceFaqs.length > 0 && (
+          <section className="bg-white text-navy py-16 md:py-24">
+            <Container size="md">
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                <motion.div variants={itemVariants} className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-black text-navy">
+                    Questions About{" "}
+                    <span className="text-coral">{service.title}</span>?
+                  </h2>
+                </motion.div>
+
+                <motion.div variants={itemVariants}>
+                  <div className="bg-muted rounded-3xl p-6 md:p-10">
+                    {service.serviceFaqs.map((faq, index) => (
+                      <ServiceFAQItem
+                        key={faq.question}
+                        faq={faq}
+                        isLast={index === service.serviceFaqs!.length - 1}
+                      />
+                    ))}
+                  </div>
+                </motion.div>
+              </motion.div>
+            </Container>
+          </section>
+        )}
+
+        {/* Bottom CTA — inline in page (DARK - navy) */}
+        <section className="bg-navy text-white py-24 md:py-36">
           <Container>
-            <div className="text-center max-w-2xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-black mb-6">
-                Ready to Get Started?
-              </h2>
-              <p className="text-white/70 text-lg mb-8">
-                Let's talk about your business and how we can help you grow.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link href="/pricing">
-                  <Button variant="accent" size="lg" rightIcon={<ArrowRight />}>
-                    See Our Plans
-                  </Button>
-                </Link>
-                <Link href="/contact">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="border-white/30 text-white hover:bg-white hover:text-navy"
-                  >
-                    Get a Free Quote
-                  </Button>
-                </Link>
-              </div>
-            </div>
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="text-center"
+            >
+              <motion.div variants={itemVariants}>
+                <h2 className="text-3xl md:text-5xl font-black text-white mb-4">
+                  Ready To Get{" "}
+                  <span className="text-coral">{service.title}</span>{" "}
+                  Working For You?
+                </h2>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <p className="text-white/60 text-lg mb-8 max-w-2xl mx-auto">
+                  No contracts. No jargon. Just results.
+                </p>
+              </motion.div>
+
+              <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <MagneticButton>
+                  <Link href="/contact">
+                    <Button
+                      variant="accent"
+                      size="lg"
+                      rightIcon={<ArrowRight size={20} />}
+                      data-cursor="button"
+                    >
+                      Let&apos;s Talk
+                    </Button>
+                  </Link>
+                </MagneticButton>
+                <MagneticButton>
+                  <Link href="/pricing">
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="border-white/30 text-white hover:bg-white hover:text-navy"
+                      data-cursor="button"
+                    >
+                      See Our Plans
+                    </Button>
+                  </Link>
+                </MagneticButton>
+              </motion.div>
+            </motion.div>
           </Container>
         </section>
       </main>
