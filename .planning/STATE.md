@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-10)
 
 **Core value:** Every page should feel intentionally designed — no two sections should look like they came from the same template.
-**Current focus:** Phase 5: Pricing Pages Redesign (Complete)
+**Current focus:** Phase 6: Portfolio Page Redesign (In Progress)
 
 ## Current Position
 
-Phase: 5 of 8 (Pricing Pages Redesign)
-Plan: 4 of 4
-Status: Complete
-Last activity: 2026-02-11 - Completed Phase 05: All 4 pricing pages redesigned and human-verified
+Phase: 6 of 8 (Portfolio Page Redesign)
+Plan: 1 of 4
+Status: In Progress
+Last activity: 2026-02-11 - Completed 06-01: Template data layer and page structure redesign
 
-Progress: [████████████████] 100%
+Progress: [████████████████░░] 25%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 15
-- Average duration: 3.1 minutes
-- Total execution time: 0.78 hours
+- Total plans completed: 16
+- Average duration: 3.3 minutes
+- Total execution time: 0.90 hours
 
 **By Phase:**
 
@@ -32,10 +32,11 @@ Progress: [████████████████] 100%
 | 03 | 3 | 8m | 2.7m |
 | 04 | 3 | 11m | 3.7m |
 | 05 | 4 | 19m | 4.8m |
+| 06 | 1 | 7m | 7m |
 
 **Recent Trend:**
-- Last 5 plans: 04-03 (<1m), 05-01 (3m), 05-02 (4m), 05-03 (7m), 05-04 (5m)
-- Trend: Phase 05 complete with visual verification
+- Last 5 plans: 05-01 (3m), 05-02 (4m), 05-03 (7m), 05-04 (5m), 06-01 (7m)
+- Trend: Phase 06 started - portfolio page data layer and structure complete
 
 *Updated after each plan completion*
 
@@ -90,6 +91,11 @@ Recent decisions affecting current work:
 - **05-04:** Navy-fill selected states (not coral) differentiates ecommerce from social/website at interaction level
 - **05-04:** Progress bar step indicators (gradient fill) — unique to ecommerce, reinforces data visualization
 - [Phase 05-04]: Human verified all 4 pricing pages visually distinct — different layouts, hovers, animations, copy
+- **06-01:** Narrative copy frames templates as custom builds for real businesses (anti-template positioning)
+- **06-01:** Only 4 popular templates get video URLs initially (modern-agency, shop-starter, health-first, biz-dashboard)
+- **06-01:** Dark sections use bg-[#0F172A] directly (not Section component preset for exact color consistency)
+- **06-01:** Removed Breadcrumb from portfolio hero to keep focus on bold headline
+- **06-01:** Grid section uses Section component with background="white" and padding="lg"
 
 ### Pending Todos
 
@@ -108,15 +114,14 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-11 (phase execution)
-Stopped at: Completed Phase 05: Pricing Pages Redesign (human-verified)
-Resume file: .planning/phases/05-pricing-pages-redesign/05-04-SUMMARY.md
+Stopped at: Completed 06-01: Template data layer and page structure redesign
+Resume file: .planning/phases/06-portfolio-page-redesign/06-01-SUMMARY.md
 
-**Phase 05 Status:** COMPLETE (4 of 4 plans complete)
-- 05-01: Pricing overview redesign (complete)
-- 05-02: Social media calculator redesign (complete)
-- 05-03: Website calculator redesign (complete)
-- 05-04: E-commerce calculator redesign + visual verification (complete)
-- Next: Verify phase goal → update roadmap
+**Phase 06 Status:** IN PROGRESS (1 of 4 plans complete)
+- 06-01: Template data layer and page structure redesign (complete)
+- 06-02: Grid redesign with video previews (next)
+- 06-03: Template detail page enhancement (pending)
+- 06-04: Visual verification (pending)
 
 ---
 *Last updated: 2026-02-11*
