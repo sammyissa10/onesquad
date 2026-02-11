@@ -65,6 +65,19 @@ Every page should feel intentionally designed — no two sections should look li
 - **Color palette**: Keep navy/coral/peach base but use it boldly and unpredictably. Add edge, not new colors.
 - **Existing functionality**: Contact form, newsletter, navigation, routing — all must continue working.
 
+## Current Milestone: v1.0 Visual Overhaul
+
+**Goal:** Transform every key page from templated AI-generated patterns to hand-crafted, design-forward layouts with scroll-driven animations, bold typography, and intentional visual rhythm.
+
+**Target features:**
+- GSAP + ScrollTrigger animation foundation (pinning, parallax, timelines)
+- Custom cursor as a design element
+- Strategic dark/light section alternation
+- Asymmetric, non-grid layouts (homepage-first, then extend)
+- Varied typography, card styles, spacing, and color usage
+- Full copy refresh matching edgy creative tone
+- Hover micro-interactions and motion elements
+
 ## Key Decisions
 
 | Decision | Rationale | Outcome |
@@ -76,4 +89,4 @@ Every page should feel intentionally designed — no two sections should look li
 | Full copy refresh | Edgy creative vibe needs copy that matches — safe corporate copy undermines the visual work | -- Pending |
 
 ---
-*Last updated: 2026-02-10 after initialization*
+*Last updated: 2026-02-10 after milestone v1.0 start*
