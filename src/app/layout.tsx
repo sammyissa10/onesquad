@@ -4,6 +4,7 @@ import "./globals.css";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
 import { ChatWidget } from "@/components/ui/ChatWidget";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
+import { SmoothScrollProvider } from "@/lib/providers/SmoothScrollProvider";
 import { siteConfig } from "@/lib/constants";
 
 const nunito = Nunito({
@@ -84,9 +85,11 @@ export default function RootLayout({
       </head>
       <body className={`${nunito.variable} antialiased`}>
         <ThemeProvider>
-          {children}
-          <ScrollToTop />
-          <ChatWidget />
+          <SmoothScrollProvider>
+            {children}
+            <ScrollToTop />
+            <ChatWidget />
+          </SmoothScrollProvider>
         </ThemeProvider>
       </body>
     </html>
