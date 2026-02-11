@@ -36,7 +36,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 Plans:
 - [ ] 01-01-PLAN.md — Install GSAP + Lenis, create centralized config, wire SmoothScrollProvider into root layout
-- [ ] 01-02-PLAN.md — Add reduced motion accessibility support, verify ScrollTrigger cleanup on route changes
+- [ ] 01-02-PLAN.md — Reduced-motion accessibility, useScrollAnimation hook with useGSAP cleanup, human verification
 
 ### Phase 2: Custom Cursor System
 **Goal**: Custom cursor is a polished, performant design element that reacts to interactive elements site-wide
@@ -149,7 +149,7 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
