@@ -13,7 +13,7 @@ Transform the OneSquad website from templated AI-generated patterns to hand-craf
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Animation Foundation** - Install GSAP + Lenis, establish architectural patterns
-- [ ] **Phase 2: Custom Cursor System** - Build foundational UX element with magnetic effects
+- [x] **Phase 2: Custom Cursor System** - Build foundational UX element with magnetic effects
 - [ ] **Phase 3: Homepage Visual Overhaul** - Redesign homepage with asymmetric layouts, bold typography, and visual rhythm
 - [ ] **Phase 4: Services Page Redesign** - Apply design system to services with unique section treatments
 - [ ] **Phase 5: Pricing Pages Redesign** - Distinct visual approach per tier across three pricing pages
@@ -50,8 +50,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Core custom cursor component with GSAP quickTo tracking, touch detection, reduced-motion support
-- [ ] 02-02-PLAN.md — Hover state system with 4 distinct patterns + site-wide data-cursor attribute integration + visual verification
+- [x] 02-01-PLAN.md — Core custom cursor component with GSAP quickTo tracking, touch detection, reduced-motion support
+- [x] 02-02-PLAN.md — Hover state system with 4 distinct patterns + site-wide data-cursor attribute integration + visual verification
 
 ### Phase 3: Homepage Visual Overhaul
 **Goal**: Homepage feels hand-crafted with asymmetric layouts, bold typography, strategic dark/light alternation, and varied hover states
@@ -154,7 +154,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Animation Foundation | 2/2 | Complete | 2026-02-11 |
-| 2. Custom Cursor System | 0/TBD | Not started | - |
+| 2. Custom Cursor System | 2/2 | Complete | 2026-02-11 |
 | 3. Homepage Visual Overhaul | 0/TBD | Not started | - |
 | 4. Services Page Redesign | 0/TBD | Not started | - |
 | 5. Pricing Pages Redesign | 0/TBD | Not started | - |
@@ -164,4 +164,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 
 ---
 *Roadmap created: 2026-02-10*
-*Last updated: 2026-02-10*
+*Last updated: 2026-02-11*
