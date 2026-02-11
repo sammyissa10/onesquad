@@ -168,8 +168,7 @@ export default function ServicePage() {
                   What's Included
                 </h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Our {service.title.toLowerCase()} service includes everything
-                  you need to succeed.
+                  Here&apos;s what you get with our {service.title.toLowerCase()} service.
                 </p>
               </motion.div>
 
@@ -205,7 +204,7 @@ export default function ServicePage() {
               >
                 <motion.div variants={itemVariants} className="text-center mb-12">
                   <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                    Results That Speak
+                    Results That Speak for Themselves
                   </h2>
                   <p className="text-white/70 text-lg">
                     What our clients typically see with our {service.title.toLowerCase()} services.
@@ -246,15 +245,14 @@ export default function ServicePage() {
                 </h2>
                 <div className="space-y-4">
                   <p className="text-muted-foreground text-lg">
-                    At OneSquad, we don't just deliver services—we deliver
-                    results. Our team of experts brings years of experience and
-                    a passion for helping small and medium businesses thrive in
-                    the digital landscape.
+                    We don&apos;t just check boxes — we focus on results. Our team
+                    brings years of hands-on experience helping small and
+                    midsize businesses grow their presence online.
                   </p>
                   <p className="text-muted-foreground text-lg">
-                    We take the time to understand your unique business goals
-                    and create customized strategies that drive real,
-                    measurable outcomes.
+                    We take the time to understand your goals and build a
+                    strategy that actually works for your business — not a
+                    one-size-fits-all approach.
                   </p>
                 </div>
                 <div className="mt-8 flex flex-wrap gap-4">
@@ -386,8 +384,8 @@ export default function ServicePage() {
                 Ready to Get Started with {service.title}?
               </h2>
               <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
-                Let's discuss how our {service.title.toLowerCase()} services can
-                help your business grow.
+                Tell us about your business and we&apos;ll show you how
+                {" "}{service.title.toLowerCase()} can make a difference.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link href="/contact">

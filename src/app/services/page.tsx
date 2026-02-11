@@ -56,9 +56,9 @@ function ServicesContent() {
           <h2 className="text-3xl font-bold text-primary">Digital Marketing</h2>
         </div>
         <p className="text-muted-foreground text-lg mb-10 max-w-3xl">
-          Drive traffic, engagement, and conversions with our comprehensive
-          digital marketing services. We create data-driven strategies tailored
-          to your business goals.
+          Bring more visitors to your website and turn them into customers. We
+          build marketing strategies around your goals and adjust based on
+          what the numbers tell us.
         </p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -112,8 +112,8 @@ function ServicesContent() {
           <h2 className="text-3xl font-bold text-primary">Web Solutions</h2>
         </div>
         <p className="text-muted-foreground text-lg mb-10 max-w-3xl">
-          Build and maintain a powerful online presence with our web solutions.
-          From stunning designs to secure hosting, we've got you covered.
+          Build and maintain a professional online presence with our web
+          services. From custom designs to secure hosting, we handle it all.
         </p>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -183,8 +183,8 @@ export default function ServicesPage() {
                 Our Services
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-4 mb-6">
-                Digital Solutions That{" "}
-                <span className="text-secondary">Drive Results</span>
+                Digital Services That{" "}
+                <span className="text-secondary">Move the Needle</span>
               </h1>
               <p className="text-xl text-white/80">
                 From your first website to a full-scale digital marketing
@@ -210,7 +210,7 @@ export default function ServicesPage() {
                 Ready to Get Started?
               </h2>
               <p className="text-muted-foreground text-lg mb-8">
-                Let's discuss how our services can help your business grow.
+                Tell us about your business and we&apos;ll recommend the right services for you.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link href="/pricing">

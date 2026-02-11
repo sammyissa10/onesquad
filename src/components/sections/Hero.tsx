@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import { stats } from "@/lib/constants";
 
 const containerVariants = {
@@ -62,8 +63,8 @@ export function Hero() {
             variants={itemVariants}
             className="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto"
           >
-            Web design, marketing, and ongoing support for small businesses.
-            One team. One monthly price.
+            Web design, marketing, and ongoing support for small businesses —
+            all from one team, for one monthly price.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -71,24 +72,28 @@ export function Hero() {
             variants={itemVariants}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <Link href="/pricing">
-              <Button
-                variant="accent"
-                size="lg"
-                rightIcon={<ArrowRight size={20} />}
-              >
-                See Our Plans
-              </Button>
-            </Link>
-            <Link href="/contact">
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-white/30 text-white hover:bg-white hover:text-primary"
-              >
-                Get a Free Quote
-              </Button>
-            </Link>
+            <MagneticButton>
+              <Link href="/pricing">
+                <Button
+                  variant="accent"
+                  size="lg"
+                  rightIcon={<ArrowRight size={20} />}
+                >
+                  See Our Plans
+                </Button>
+              </Link>
+            </MagneticButton>
+            <MagneticButton>
+              <Link href="/contact">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-white/30 text-white hover:bg-white hover:text-primary"
+                >
+                  Get a Free Quote
+                </Button>
+              </Link>
+            </MagneticButton>
           </motion.div>
 
           {/* Trust indicators */}

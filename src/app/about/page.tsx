@@ -17,7 +17,7 @@ const values = [
     icon: Heart,
     title: "We remember your name",
     description:
-      "You're not a ticket number. Your account manager knows your business, your goals, and what you had for lunch (okay, maybe not that last one).",
+      "You're not a ticket number. Your account manager knows your business, your goals, and your preferences (okay, maybe not your lunch order — but close).",
   },
   {
     icon: Award,
@@ -122,7 +122,7 @@ export default function AboutPage() {
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed">
                 Help small businesses look and perform like big ones online —
-                without needing a big budget or an in-house tech team.
+                without needing a big budget or a dedicated tech team.
               </p>
             </div>
           </Container>

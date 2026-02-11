@@ -107,30 +107,29 @@ export default function ContactPage() {
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
 
-    const subject = encodeURIComponent(
-      `New inquiry from ${data.name}${data.company ? ` (${data.company})` : ""}`
-    );
-    const bodyParts = [
-      `Name: ${data.name}`,
-      `Email: ${data.email}`,
-      data.phone ? `Phone: ${data.phone}` : "",
-      data.company ? `Company: ${data.company}` : "",
-      data.service ? `Service: ${data.service}` : "",
-      "",
-      `Message:`,
-      data.message,
-    ].filter(Boolean);
-    const body = encodeURIComponent(bodyParts.join("\n"));
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-    window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`;
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to send message");
+      }
 
-    // Clear quote data after submission
-    localStorage.removeItem(QUOTE_STORAGE_KEY);
-    setQuoteData(null);
+      // Clear quote data after submission
+      localStorage.removeItem(QUOTE_STORAGE_KEY);
+      setQuoteData(null);
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    reset();
+      setIsSubmitted(true);
+      reset();
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -154,9 +153,9 @@ export default function ContactPage() {
                 Let&apos;s Start a <span className="text-secondary">Conversation</span>
               </h1>
               <p className="text-xl text-white/80">
-                Have a question or ready to get started? We&apos;d love to hear from
-                you. Reach out and let&apos;s discuss how we can help your business
-                grow.
+                Whether you have a question or you&apos;re ready to get started,
+                we&apos;re here to help. Tell us about your business and we&apos;ll
+                figure out the best path forward together.
               </p>
             </motion.div>
           </Container>
@@ -349,8 +348,8 @@ export default function ContactPage() {
                 Not Sure Where to Start?
               </h2>
               <p className="text-white/80 text-lg mb-8">
-                Try our price calculator to get an instant estimate for your project,
-                or browse our plans to find the perfect fit for your business.
+                Use our price calculator to get an instant estimate, or browse our
+                plans to find the right fit for your business.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link href="/pricing-calculator">

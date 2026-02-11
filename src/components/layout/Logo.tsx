@@ -56,29 +56,10 @@ export function Logo({ className, variant = "default", showTagline = false }: Lo
               variant === "default" ? "text-muted-foreground" : "text-white/90"
             )}
           >
-            <span className="text-accent">Your team,</span> amplified.
+            <span className="text-accent">Your digital</span> team, on demand
           </span>
         )}
       </div>
     </Link>
-  );
-}
-
-// Standalone logo icon for favicon or small displays
-export function LogoIcon({
-  className,
-  size = 40,
-}: {
-  className?: string;
-  size?: number;
-}) {
-  return (
-    <Image
-      src="/onesquadlogo.png"
-      alt="OneSquad Logo"
-      width={size}
-      height={size}
-      className={className}
-    />
   );
 }

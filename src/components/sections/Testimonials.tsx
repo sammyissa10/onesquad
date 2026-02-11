@@ -6,10 +6,10 @@ import { Quote, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { Container, Section } from "@/components/ui/Container";
 import { testimonials } from "@/lib/constants";
 
-import { fadeIn, stagger } from "@/lib/animations";
+import { scaleIn, stagger } from "@/lib/animations";
 
 const containerVariants = stagger(0.15);
-const itemVariants = fadeIn;
+const itemVariants = scaleIn;
 
 export function Testimonials() {
   const ref = useRef(null);
@@ -44,11 +44,11 @@ export function Testimonials() {
               Testimonials
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-4 mb-6">
-              What Our Clients Say
+              Don&apos;t take our{" "}
+              <span className="text-accent">word for it</span>
             </h2>
             <p className="text-muted-foreground text-lg">
-              Don't just take our word for it. Here's what our partners have to
-              say about working with OneSquad.
+              Real businesses. Real results.
             </p>
           </motion.div>
 

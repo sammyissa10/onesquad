@@ -27,12 +27,12 @@ const homeFAQs = [
   {
     question: "Do I need to sign a long-term contract?",
     answer:
-      "Nope. Month-to-month, cancel anytime with 30 days notice. If we're not earning your business, you should be free to leave.",
+      "No long-term contracts. It's month-to-month, and you can cancel anytime with 30 days' notice. If we're not earning your business, you should be free to leave.",
   },
   {
     question: "What makes OneSquad different from other agencies?",
     answer:
-      "Honestly? We're smaller and we like it that way. You won't get passed between departments. The person you talk to on day one is the same person managing your account on day 100.",
+      "We're smaller, and we like it that way. You won't get passed between departments. The person you talk to on day one is the same person managing your account on day 100.",
   },
 ];
 

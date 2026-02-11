@@ -10,9 +10,9 @@ import type {
 // Site Configuration
 export const siteConfig = {
   name: "OneSquad",
-  tagline: "Your team, amplified.",
+  tagline: "Unlock your digital potential",
   description:
-    "We handle the websites, marketing, and tech stuff so you can focus on running your business. Think of us as the digital department you never had to hire.",
+    "We handle websites, marketing, and everything in between so you can focus on running your business. Think of us as the digital team you never had to hire.",
   url: "https://www.onesquads.com",
   email: "ayaz.onesquad@outlook.com",
   phone: "",
@@ -67,7 +67,7 @@ export const services: Service[] = [
     title: "Digital Marketing",
     category: "digital-marketing",
     description:
-      "Comprehensive digital marketing strategies that drive traffic, engagement, and conversions. We create data-driven campaigns tailored to your business goals.",
+      "Marketing that actually brings people through the door. We build campaigns around your goals, track what works, and cut what doesn't.",
     shortDescription:
       "Strategic campaigns that drive growth and engagement.",
     icon: "Megaphone",
@@ -75,14 +75,14 @@ export const services: Service[] = [
       "Custom marketing strategy development",
       "Multi-channel campaign management",
       "Performance tracking and analytics",
-      "Conversion rate optimization",
+      "Turning more visitors into customers",
       "Competitor analysis",
       "Monthly reporting and insights",
     ],
     results: [
-      { metric: "150%", description: "Average increase in lead generation" },
+      { metric: "150%", description: "Average increase in new inquiries" },
       { metric: "3x", description: "Return on ad spend" },
-      { metric: "40%", description: "Reduction in cost per acquisition" },
+      { metric: "40%", description: "Lower cost to acquire new customers" },
     ],
     serviceFaqs: [
       { question: "How long before I see results from digital marketing?", answer: "Most clients see measurable improvements within 60-90 days. PPC campaigns can generate leads immediately, while organic strategies like SEO build momentum over 3-6 months." },
@@ -94,26 +94,26 @@ export const services: Service[] = [
     title: "Search Engine Optimization",
     category: "digital-marketing",
     description:
-      "Boost your online visibility and rank higher in search results. Our SEO experts use proven techniques to drive organic traffic to your website.",
+      "Help more customers find you when they search online. We optimize your website so it shows up higher in search results, bringing in more visitors without paying for ads.",
     shortDescription:
-      "Rank higher and get found by your target audience.",
+      "Get found by the right people when they search online.",
     icon: "Search",
     features: [
       "Keyword research and strategy",
-      "On-page SEO optimization",
-      "Technical SEO audits",
-      "Link building campaigns",
-      "Local SEO optimization",
+      "Website content optimization",
+      "Technical site health audits",
+      "Building your site's reputation online",
+      "Local search optimization",
       "Monthly ranking reports",
     ],
     results: [
-      { metric: "200%", description: "Average organic traffic increase" },
-      { metric: "Top 10", description: "Google rankings for target keywords" },
-      { metric: "85%", description: "Client keyword improvement rate" },
+      { metric: "200%", description: "Average increase in search traffic" },
+      { metric: "Top 10", description: "Google rankings for key search terms" },
+      { metric: "85%", description: "Of clients see ranking improvements" },
     ],
     serviceFaqs: [
-      { question: "How long does SEO take to show results?", answer: "SEO is a long-term strategy. You'll typically see initial improvements in 3-4 months, with significant results in 6-12 months. We provide monthly reports so you can track progress." },
-      { question: "Do you guarantee first page rankings?", answer: "No ethical SEO company can guarantee specific rankings. What we do guarantee is proven strategies, transparent reporting, and consistent improvement in your organic visibility." },
+      { question: "How long does SEO take to show results?", answer: "SEO is a long-term play. You'll typically see early improvements in 3-4 months, with stronger results building over 6-12 months. We send monthly reports so you can track progress along the way." },
+      { question: "Do you guarantee first page rankings?", answer: "No one can honestly guarantee a specific ranking. What we do guarantee is a proven approach, transparent reporting, and steady improvement in how easily people find you online." },
     ],
   },
   {
@@ -121,9 +121,9 @@ export const services: Service[] = [
     title: "Social Media Marketing",
     category: "digital-marketing",
     description:
-      "Build your brand presence and engage with your audience across all major social platforms. We create content that resonates and converts.",
+      "Show up where your customers spend their time. We create and manage social media content that builds trust, starts conversations, and brings people back to your business.",
     shortDescription:
-      "Grow your brand and connect with your audience.",
+      "Grow your following and turn engagement into customers.",
     icon: "Share2",
     features: [
       "Social media strategy development",
@@ -135,12 +135,12 @@ export const services: Service[] = [
     ],
     results: [
       { metric: "300%", description: "Average follower growth" },
-      { metric: "5x", description: "Increase in engagement rate" },
-      { metric: "60%", description: "More website traffic from social" },
+      { metric: "5x", description: "More likes, comments, and shares" },
+      { metric: "60%", description: "More website visits from social media" },
     ],
     serviceFaqs: [
-      { question: "Which social media platforms should my business be on?", answer: "It depends on your target audience. We'll analyze where your customers spend time and focus efforts there. Most B2C businesses benefit from Instagram and Facebook, while B2B does well on LinkedIn." },
-      { question: "How often will you post on my accounts?", answer: "Posting frequency depends on your plan. Our managed plans include 10-15 posts per month, with options to increase. We focus on quality and consistency over volume." },
+      { question: "Which social media platforms should my business be on?", answer: "It depends on where your customers spend their time. We'll figure that out together and focus there. Most businesses that sell directly to consumers do well on Instagram and Facebook, while service-based and professional businesses often see better results on LinkedIn." },
+      { question: "How often will you post on my accounts?", answer: "That depends on your plan. Our managed plans include 10-15 posts per month, with options to increase. We focus on quality and consistency over volume." },
     ],
   },
   {
@@ -148,26 +148,26 @@ export const services: Service[] = [
     title: "Email Marketing",
     category: "digital-marketing",
     description:
-      "Connect directly with your customers through targeted email campaigns that nurture leads and drive sales.",
+      "Stay in touch with your customers through well-timed emails that keep them coming back. From welcome messages to promotions, we handle the strategy and execution.",
     shortDescription:
-      "Nurture leads and drive conversions via email.",
+      "Keep customers engaged and coming back for more.",
     icon: "Mail",
     features: [
       "Email strategy and planning",
       "Template design and development",
-      "List segmentation and management",
+      "Audience grouping and list management",
       "Automated email sequences",
-      "A/B testing and optimization",
-      "Detailed campaign analytics",
+      "Testing and optimizing for better results",
+      "Clear campaign performance reports",
     ],
     results: [
-      { metric: "42%", description: "Average open rate" },
-      { metric: "4x", description: "ROI on email campaigns" },
+      { metric: "42%", description: "Average email open rate" },
+      { metric: "4x", description: "Return on email campaigns" },
       { metric: "25%", description: "Increase in repeat purchases" },
     ],
     serviceFaqs: [
-      { question: "How do you build an email list?", answer: "We use proven list-building strategies including opt-in forms, lead magnets, and landing pages. We never buy email lists — all subscribers are genuinely interested in your business." },
-      { question: "How often should I email my customers?", answer: "We typically recommend 1-4 emails per month depending on your industry. We'll test different frequencies and optimize based on engagement metrics." },
+      { question: "How do you build an email list?", answer: "We use signup forms, special offers, and other strategies to attract people who are genuinely interested in your business. We never buy email lists — every subscriber opts in." },
+      { question: "How often should I email my customers?", answer: "We typically recommend 1-4 emails per month depending on your industry. We'll test different frequencies and adjust based on what gets the best response." },
     ],
   },
   {
@@ -175,26 +175,26 @@ export const services: Service[] = [
     title: "Pay-Per-Click Advertising",
     category: "digital-marketing",
     description:
-      "Maximize your ROI with targeted PPC campaigns across Google, Bing, and social platforms. We optimize every click to drive results.",
+      "Get your business in front of the right people with paid ads on Google and social media. We manage every detail so your ad budget works harder for you.",
     shortDescription:
-      "Targeted ads that maximize your return on investment.",
+      "Paid ads that bring in real leads without wasting your budget.",
     icon: "MousePointerClick",
     features: [
       "Google Ads management",
       "Social media advertising",
-      "Display and retargeting campaigns",
+      "Display ads and retargeting past visitors",
       "Landing page optimization",
-      "Bid management and optimization",
-      "Conversion tracking setup",
+      "Ad budget management and tuning",
+      "Tracking what leads to actual customers",
     ],
     results: [
       { metric: "250%", description: "Average return on ad spend" },
-      { metric: "35%", description: "Lower cost per click vs industry avg" },
-      { metric: "2x", description: "Conversion rate improvement" },
+      { metric: "35%", description: "Lower ad costs vs. industry average" },
+      { metric: "2x", description: "More customers from the same budget" },
     ],
     serviceFaqs: [
-      { question: "How much should I budget for PPC?", answer: "We recommend starting with at least $500-$1,000/month in ad spend plus management fees. We'll optimize your budget to maximize ROI and scale up as results come in." },
-      { question: "How quickly can PPC generate leads?", answer: "PPC can drive traffic and leads within days of launching. We typically see campaigns fully optimized within 2-4 weeks for best performance." },
+      { question: "How much should I budget for paid ads?", answer: "We recommend starting with at least $500-$1,000/month in ad spend plus management fees. We'll make every dollar count and scale up as results come in." },
+      { question: "How quickly can paid ads generate leads?", answer: "Paid ads can start driving visitors and inquiries within days of launching. We typically see campaigns fully dialed in within 2-4 weeks for the best results." },
     ],
   },
   {
@@ -202,9 +202,9 @@ export const services: Service[] = [
     title: "Content Marketing",
     category: "digital-marketing",
     description:
-      "Create compelling content that attracts, engages, and converts your target audience. From blog posts to videos, we tell your brand story.",
+      "Share your expertise and build trust with content that speaks to your audience. From blog posts to videos, we help you tell your story in a way that brings people in.",
     shortDescription:
-      "Compelling content that attracts and converts.",
+      "Useful content that builds trust and brings in business.",
     icon: "FileText",
     features: [
       "Content strategy development",
@@ -215,13 +215,13 @@ export const services: Service[] = [
       "Content calendar management",
     ],
     results: [
-      { metric: "3x", description: "More leads than traditional marketing" },
-      { metric: "70%", description: "Increase in website engagement" },
-      { metric: "45%", description: "Growth in organic search traffic" },
+      { metric: "3x", description: "More inquiries than traditional marketing" },
+      { metric: "70%", description: "Increase in time spent on site" },
+      { metric: "45%", description: "Growth in search traffic" },
     ],
     serviceFaqs: [
-      { question: "What types of content do you create?", answer: "We create blog posts, articles, infographics, videos, case studies, whitepapers, and social media content. Everything is tailored to your brand voice and audience." },
-      { question: "How do you measure content marketing success?", answer: "We track metrics like organic traffic, time on page, social shares, lead generation, and conversions. Monthly reports show exactly how content is impacting your business." },
+      { question: "What types of content do you create?", answer: "We create blog posts, articles, infographics, videos, case studies, guides, and social media content. Everything is written in your brand's voice and tailored to your audience." },
+      { question: "How do you measure if content is working?", answer: "We track website traffic, how long people stay on your pages, social shares, and new inquiries. Monthly reports show exactly how your content is performing and where we can improve." },
     ],
   },
   // Web Solutions
@@ -230,21 +230,21 @@ export const services: Service[] = [
     title: "Web Design",
     category: "web-solutions",
     description:
-      "Beautiful, responsive websites that capture your brand essence and convert visitors into customers. We design with purpose and precision.",
+      "Websites that look like you, not like a template. We design fast, mobile-friendly sites that turn visitors into customers.",
     shortDescription:
-      "Stunning websites that convert visitors into customers.",
+      "Professional websites that turn visitors into customers.",
     icon: "Palette",
     features: [
       "Custom website design",
       "Mobile-responsive development",
-      "UI/UX best practices",
-      "Brand integration",
+      "Clean, intuitive layouts",
+      "Your branding front and center",
       "Speed optimization",
       "Cross-browser compatibility",
     ],
     results: [
-      { metric: "500+", description: "Websites designed and launched" },
-      { metric: "95%", description: "Mobile responsiveness score" },
+      { metric: "29+", description: "Websites designed and launched" },
+      { metric: "95%", description: "Mobile-friendly score" },
       { metric: "2-4 wks", description: "Average delivery time" },
     ],
     serviceFaqs: [
@@ -257,9 +257,9 @@ export const services: Service[] = [
     title: "E-commerce Solutions",
     category: "web-solutions",
     description:
-      "Launch and grow your online store with powerful e-commerce solutions. From product pages to checkout, we build stores that sell.",
+      "Sell online with a store that's built to grow with you. From product pages to checkout, we handle the setup so you can focus on your products.",
     shortDescription:
-      "Powerful online stores built to drive sales.",
+      "Online stores built to make selling easy.",
     icon: "ShoppingCart",
     features: [
       "Custom e-commerce development",
@@ -284,16 +284,16 @@ export const services: Service[] = [
     title: "Website Hosting & Security",
     category: "web-solutions",
     description:
-      "Reliable, secure hosting that keeps your website fast and protected. We handle the technical details so you can focus on your business.",
+      "Your website stays online, loads fast, and stays protected. We handle server management, backups, and security updates so you don't have to worry about the technical side.",
     shortDescription:
-      "Secure, reliable hosting with 24/7 monitoring.",
+      "Fast, secure hosting with around-the-clock monitoring.",
     icon: "Shield",
     features: [
       "Secure server hosting",
-      "SSL certificate management",
-      "Daily automated backups",
+      "Secure connection (SSL) included",
+      "Daily automatic backups",
       "24/7 uptime monitoring",
-      "DDoS protection",
+      "Protection against online attacks",
       "Regular security updates",
     ],
     results: [
@@ -302,8 +302,8 @@ export const services: Service[] = [
       { metric: "<1 sec", description: "Average server response time" },
     ],
     serviceFaqs: [
-      { question: "What happens if my site goes down?", answer: "Our 24/7 monitoring detects issues within seconds. Our team is automatically alerted and begins resolution immediately. Most issues are resolved within minutes." },
-      { question: "Are backups included?", answer: "Yes, daily automated backups are included with all hosting plans. We retain backups for 30 days, so you can restore to any point within the last month." },
+      { question: "What happens if my site goes down?", answer: "Our monitoring catches issues within seconds and alerts our team right away. Most problems are resolved within minutes, often before you even notice." },
+      { question: "Are backups included?", answer: "Yes, daily backups are included with all hosting plans. We keep 30 days of backups, so we can restore your site to any point within the last month if needed." },
     ],
   },
   {
@@ -311,26 +311,26 @@ export const services: Service[] = [
     title: "Ongoing Maintenance",
     category: "web-solutions",
     description:
-      "Keep your website running smoothly with our proactive maintenance services. Updates, fixes, and improvements—all handled for you.",
+      "We keep your website up to date, secure, and running smoothly. Software updates, fixes, and improvements are all taken care of so you never have to think about it.",
     shortDescription:
-      "Proactive updates to keep your site running smoothly.",
+      "Regular updates and fixes so your site stays in top shape.",
     icon: "Wrench",
     features: [
       "Regular software updates",
-      "Security patches",
-      "Performance optimization",
+      "Security updates",
+      "Speed and performance improvements",
       "Content updates",
       "Bug fixes and troubleshooting",
       "Monthly health reports",
     ],
     results: [
-      { metric: "100%", description: "Security patch compliance" },
+      { metric: "100%", description: "Security updates applied on time" },
       { metric: "40%", description: "Faster load times after optimization" },
       { metric: "0", description: "Downtime from missed updates" },
     ],
     serviceFaqs: [
-      { question: "What does maintenance include?", answer: "Our maintenance covers software updates, security patches, performance optimization, content updates, bug fixes, and monthly health reports. Think of us as your website's dedicated IT team." },
-      { question: "Can I request changes to my website anytime?", answer: "Yes! Your plan includes monthly work hours for updates and changes. Simply submit a request and our team will handle it, usually within 24-48 hours." },
+      { question: "What does maintenance include?", answer: "We handle software updates, security patches, speed improvements, content changes, bug fixes, and monthly health reports. Basically, we're your website's dedicated support team." },
+      { question: "Can I request changes to my website anytime?", answer: "Absolutely. Your plan includes monthly work hours for updates and changes. Just send us a request and we'll take care of it, usually within 24-48 hours." },
     ],
   },
 ];
@@ -361,19 +361,20 @@ export const pricingPlans: PricingPlan[] = [
     name: "Pro",
     price: 220,
     category: "hosting",
-    focus: "Basic + Analytics & SEO",
+    focus: "Basic + Analytics & Search Optimization",
     storage: "40 GB",
     hours: "7 hrs/month",
     highlighted: true,
     badge: "Popular",
     features: [
       "Everything in Basic",
-      "Standard analytics dashboard",
-      "SEO management",
+      "Website analytics dashboard",
+      "Search engine optimization",
+      "Accept payments",
       "40 GB storage",
       "7 hours of work per month",
-      "Performance optimization",
-      "Monthly SEO reports",
+      "Speed optimization",
+      "Monthly search ranking reports",
     ],
   },
   {
@@ -420,16 +421,16 @@ export const pricingPlans: PricingPlan[] = [
     category: "managed",
     focus: "Website & Social Media Marketing",
     storage: "50 GB",
-    hours: "5 hrs/month",
+    hours: "15 hrs/month",
     highlighted: true,
-    badge: "Best Value",
+    badge: "Most Popular",
     features: [
       "Everything in WebSquad",
       "10 social media posts/month",
       "Free analytics dashboard",
       "Local SEO optimization",
       "50 GB total storage",
-      "5 hours of extra work per month",
+      "15 hours of work per month",
       "Social media management",
     ],
   },
@@ -438,15 +439,16 @@ export const pricingPlans: PricingPlan[] = [
     price: 550,
     category: "managed",
     focus: "Website, Social & Branding",
-    storage: "50 GB",
+    storage: "75 GB",
     hours: "15 hrs/month",
+    badge: "Best Overall",
     features: [
       "Everything in DigitalSquad",
       "Brand design package",
       "5 flyers per month",
       "5 custom images per month",
       "15 social media posts/month",
-      "50 GB total storage",
+      "75 GB total storage",
       "15 hours of work per month",
       "Dedicated account manager",
     ],
@@ -463,9 +465,9 @@ export const pricingPlans: PricingPlan[] = [
       "Tailored to your needs",
       "Mix and match any services",
       "Flexible pricing",
-      "Custom SLA agreements",
+      "Custom service agreements",
       "Dedicated support team",
-      "Enterprise-grade solutions",
+      "Scalable, professional solutions",
     ],
   },
 ];
@@ -473,19 +475,19 @@ export const pricingPlans: PricingPlan[] = [
 // Value Propositions
 export const valueProps: ValueProp[] = [
   {
-    title: "One vendor. Everything handled.",
+    title: "One team. Everything handled.",
     description:
-      "Website, SEO, social, email, hosting, maintenance. All from the same people who already know your business.",
+      "Website, search optimization, social media, email, hosting, maintenance — all from the same people who already know your business.",
     icon: "Layers",
   },
   {
-    title: "Start small, scale up.",
+    title: "Start small, scale when you're ready.",
     description:
-      "Our plans flex with you. Most clients start with a website and add marketing once they're ready. No pressure.",
+      "Our plans grow with you. Most clients start with a website and add marketing later. No pressure, no upsells.",
     icon: "TrendingUp",
   },
   {
-    title: "We pick up the phone.",
+    title: "We actually pick up the phone.",
     description:
       "No ticket queues, no chatbots, no 'we'll get back to you in 3-5 business days.' Your account manager knows your name.",
     icon: "Users",
@@ -500,7 +502,7 @@ export const testimonials: Testimonial[] = [
     role: "Owner",
     company: "Bloom Boutique",
     content:
-      "OneSquad transformed our online presence completely. Our website traffic increased by 200% and our e-commerce sales have never been better. They truly understand small business needs.",
+      "OneSquad completely changed how we show up online. Our website traffic jumped by 200% and our online sales have never been better. They really get what small businesses need.",
     rating: 5,
   },
   {
@@ -528,7 +530,7 @@ export const faqs: FAQ[] = [
   {
     question: "What happens if I exceed my monthly work hours?",
     answer:
-      "If you need additional work beyond your included hours, we bill at a competitive hourly rate. We'll always notify you before any extra charges are incurred, and you can easily upgrade your plan if you consistently need more hours.",
+      "If you need more work beyond your included hours, we charge a straightforward hourly rate. We'll always let you know before any extra charges come up, and you can upgrade your plan anytime if you consistently need more time.",
   },
   {
     question: "Can I upgrade or downgrade my plan?",
@@ -538,7 +540,7 @@ export const faqs: FAQ[] = [
   {
     question: "What does '24/7 monitoring' include?",
     answer:
-      "Our 24/7 monitoring includes uptime checks every minute, performance monitoring, security scanning, and instant alerts. If anything goes wrong, our team is notified immediately and begins resolution.",
+      "We check your site every minute around the clock for uptime, speed, and security threats. If anything goes wrong, our team is notified instantly and starts fixing it right away.",
   },
   {
     question: "Do I own my website if I cancel?",
@@ -553,7 +555,7 @@ export const faqs: FAQ[] = [
   {
     question: "Is there a contract or commitment?",
     answer:
-      "Nope. Month-to-month, cancel anytime with 30 days notice. If we're not earning your business, you should be free to leave.",
+      "No long-term contracts. It's month-to-month, and you can cancel anytime with 30 days' notice. If we're not earning your business, you should be free to leave.",
   },
 ];
 

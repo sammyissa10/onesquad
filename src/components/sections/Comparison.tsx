@@ -29,12 +29,12 @@ const withoutUsItems = [
   {
     icon: TrendingDown,
     title: "Poor Results",
-    description: "Low conversion rates, no traffic growth, and campaigns that don't deliver ROI",
+    description: "Few visitors turning into customers, flat traffic, and marketing that doesn't pay off",
   },
   {
     icon: AlertTriangle,
     title: "Constant Stress",
-    description: "Dealing with technical issues, security vulnerabilities, and site crashes",
+    description: "Dealing with technical problems, security scares, and unexpected site outages",
   },
 ];
 
@@ -52,12 +52,12 @@ const withUsItems = [
   {
     icon: TrendingUp,
     title: "Real Growth",
-    description: "Data-driven strategies that increase traffic, leads, and revenue consistently",
+    description: "Proven strategies that bring in more visitors, more inquiries, and more revenue",
   },
   {
     icon: Shield,
     title: "Peace of Mind",
-    description: "Enterprise-grade security, daily backups, and 99.9% uptime guaranteed",
+    description: "Reliable security, daily backups, and 99.9% uptime — all handled for you",
   },
 ];
 
@@ -79,12 +79,12 @@ function ComparisonCard({
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true, margin: "-50px" }}
       className={`flex items-start gap-4 p-4 rounded-xl ${
-        isWithout ? "bg-red-50" : "bg-accent/5"
+        isWithout ? "bg-red-50 dark:bg-red-950/30" : "bg-accent/5 shadow-md"
       }`}
     >
       <div
         className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-          isWithout ? "bg-red-100" : "bg-accent/10"
+          isWithout ? "bg-red-100 dark:bg-red-900/40" : "bg-accent/10"
         }`}
       >
         <item.icon
@@ -137,8 +137,8 @@ export function Comparison() {
               <span className="text-accent">With OneSquad</span>
             </h2>
             <p className="text-muted-foreground text-lg">
-              Stop struggling alone. Partner with us and transform your digital presence
-              from a source of stress into your competitive advantage.
+              You&apos;ve tried doing it all yourself. Here&apos;s what changes
+              when you hand it off to a team that does this every day.
             </p>
           </motion.div>
 

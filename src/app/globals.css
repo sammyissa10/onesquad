@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Coolvetica";
+  src: url("/fonts/coolvetica-rg.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Brand Colors */
   --primary: #051733;
@@ -44,7 +52,7 @@
   --color-card: var(--card);
 
   /* Fonts */
-  --font-heading: var(--font-nunito);
+  --font-heading: "Coolvetica";
   --font-body: var(--font-nunito);
 }
 
@@ -52,12 +60,12 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-body), ui-rounded, system-ui, sans-serif;
+  font-family: var(--font-body), "Arial Rounded MT Bold", "Arial Rounded MT", ui-rounded, system-ui, sans-serif;
 }
 
 /* Heading styles */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading), ui-rounded, system-ui, sans-serif;
+  font-family: var(--font-heading), "Arial Rounded MT Bold", ui-rounded, system-ui, sans-serif;
   font-weight: 700;
   line-height: 1.2;
 }

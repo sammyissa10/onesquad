@@ -1,14 +1,10 @@
 export { Hero } from "./Hero";
 export { Features } from "./Features";
 export { ServicesPreview } from "./ServicesPreview";
-export { Stats } from "./Stats";
 export { Testimonials } from "./Testimonials";
 export { CTABanner } from "./CTABanner";
-export { PricingPreview } from "./PricingPreview";
 export { Process } from "./Process";
 export { HomeFAQ } from "./HomeFAQ";
-export { TemplateShowcase } from "./TemplateShowcase";
 export { PortfolioPreview } from "./PortfolioPreview";
 export { PricingCalculator } from "./PricingCalculator";
 export { Comparison } from "./Comparison";
-export { MidPageCTA } from "./MidPageCTA";

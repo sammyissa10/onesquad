@@ -3,7 +3,6 @@ import { Nunito } from "next/font/google";
 import "./globals.css";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
 import { ChatWidget } from "@/components/ui/ChatWidget";
-import { CookieConsent } from "@/components/ui/CookieConsent";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { siteConfig } from "@/lib/constants";
 
@@ -15,11 +14,11 @@ const nunito = Nunito({
 
 export const metadata: Metadata = {
   title: {
-    default: "OneSquad - Your Digital Partner",
+    default: "OneSquad - Unlock Your Digital Potential",
     template: "%s | OneSquad",
   },
   description:
-    "OneSquad is a one-stop-shop digital agency helping small-to-midsize businesses unlock their full potential in the digital world. Web design, SEO, social media marketing, and more.",
+    "OneSquad is a digital agency for small and midsize businesses. We handle web design, search optimization, social media marketing, hosting, and more — all under one roof.",
   keywords: [
     "digital agency",
     "web design",
@@ -42,16 +41,16 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://www.onesquads.com",
     siteName: "OneSquad",
-    title: "OneSquad - Your Digital Partner",
+    title: "OneSquad - Unlock Your Digital Potential",
     description:
-      "A one-stop-shop digital agency for small-to-midsize businesses to unlock their full potential in the digital world.",
+      "A digital agency for small and midsize businesses looking to grow online. Web design, marketing, hosting, and support — all in one place.",
     images: ["/onesquadlogo.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "OneSquad - Your Digital Partner",
+    title: "OneSquad - Unlock Your Digital Potential",
     description:
-      "A one-stop-shop digital agency for small-to-midsize businesses.",
+      "A digital agency for small and midsize businesses. Web design, marketing, and support — all in one place.",
   },
   robots: {
     index: true,
@@ -88,7 +87,6 @@ export default function RootLayout({
           {children}
           <ScrollToTop />
           <ChatWidget />
-          <CookieConsent />
         </ThemeProvider>
       </body>
     </html>

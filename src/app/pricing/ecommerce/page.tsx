@@ -79,7 +79,7 @@ const shippingOptions = [
 const additionalFeatures = [
   { id: "inventory", label: "Inventory Management", price: 300, icon: Package },
   { id: "analytics", label: "Sales Analytics", price: 200, icon: Gauge },
-  { id: "seo", label: "SEO Optimization", price: 400, icon: Settings },
+  { id: "seo", label: "Search Optimization", price: 400, icon: Settings },
   { id: "reviews", label: "Customer Reviews", price: 150, icon: Sparkles },
 ];
 
@@ -167,8 +167,8 @@ export default function EcommercePricingPage() {
                 Online Store <span className="text-secondary">Pricing</span>
               </h1>
               <p className="text-xl text-white/80">
-                Build a professional e-commerce store with all the features you need
-                to sell online. Configure your store below.
+                Set up an online store that&apos;s ready to take orders.
+                Configure your store below to see an estimate.
               </p>
             </motion.div>
           </Container>
@@ -329,7 +329,7 @@ export default function EcommercePricingPage() {
                       <div className="bg-muted/50 rounded-xl p-4">
                         <div className="flex items-center gap-2 mb-3">
                           <CreditCard className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Payment Gateway</span>
+                          <span className="font-semibold text-primary">Payment Method</span>
                         </div>
                         <div className="flex flex-wrap gap-2">
                           {paymentGateways.map((option) => (
@@ -353,7 +353,7 @@ export default function EcommercePricingPage() {
                       <div className="bg-muted/50 rounded-xl p-4">
                         <div className="flex items-center gap-2 mb-3">
                           <Truck className="w-5 h-5 text-accent" />
-                          <span className="font-semibold text-primary">Shipping Integration</span>
+                          <span className="font-semibold text-primary">Shipping Options</span>
                         </div>
                         <div className="flex gap-2">
                           {shippingOptions.map((option) => (
@@ -506,7 +506,7 @@ export default function EcommercePricingPage() {
                     <p className="text-muted-foreground mb-8">
                       Your estimated online store cost is{" "}
                       <strong className="text-accent">${calculateTotal()}</strong>.
-                      Contact us to finalize your quote and get started.
+                      Reach out and we&apos;ll finalize the details together.
                     </p>
                     <Link href="/contact">
                       <Button variant="accent" size="lg" rightIcon={<ArrowRight size={18} />}>

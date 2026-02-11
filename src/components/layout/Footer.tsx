@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import {
   Facebook,
@@ -12,10 +13,11 @@ import {
   Clock,
   FileCheck,
   ArrowRight,
+  Check,
 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "./Logo";
-import { siteConfig, services, navItems } from "@/lib/constants";
+import { siteConfig, services } from "@/lib/constants";
 
 const socialLinks = [
   { icon: Facebook, href: siteConfig.socials.facebook, label: "Facebook" },
@@ -24,15 +26,38 @@ const socialLinks = [
   { icon: Linkedin, href: siteConfig.socials.linkedin, label: "LinkedIn" },
 ];
 
-const digitalMarketingServices = services.filter(
-  (s) => s.category === "digital-marketing"
-);
-const webSolutionServices = services.filter(
-  (s) => s.category === "web-solutions"
-);
-
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [newsletterError, setNewsletterError] = useState("");
+
+  const handleNewsletterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setNewsletterStatus("loading");
+    setNewsletterError("");
+
+    const form = e.target as HTMLFormElement;
+    const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || "Failed to subscribe");
+      }
+
+      setNewsletterStatus("success");
+      form.reset();
+    } catch (err) {
+      setNewsletterStatus("error");
+      setNewsletterError(err instanceof Error ? err.message : "Something went wrong");
+    }
+  };
 
   return (
     <footer className="bg-primary-brand text-white">
@@ -41,35 +66,43 @@ export function Footer() {
         <Container>
           <div className="py-10 flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <h3 className="font-bold text-lg">Get Digital Tips & Updates</h3>
+              <h3 className="font-bold text-lg">Tips & Updates for Your Business</h3>
               <p className="text-white/70 text-sm mt-1">
-                Join our newsletter for the latest insights on growing your business online.
+                Join our newsletter for practical advice on growing your business online.
               </p>
             </div>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                const form = e.target as HTMLFormElement;
-                const email = (form.elements.namedItem("email") as HTMLInputElement).value;
-                window.location.href = `mailto:${siteConfig.email}?subject=${encodeURIComponent("Newsletter Signup")}&body=${encodeURIComponent(`Please add me to the newsletter: ${email}`)}`;
-              }}
-              className="flex gap-2 w-full md:w-auto"
-            >
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="Enter your email"
-                className="px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/40 text-sm focus:outline-none focus:border-accent w-full md:w-64"
-              />
-              <button
-                type="submit"
-                className="px-5 py-2.5 rounded-lg bg-accent hover:bg-accent/90 text-white font-semibold text-sm transition-colors flex items-center gap-2 whitespace-nowrap"
+            {newsletterStatus === "success" ? (
+              <div className="flex items-center gap-2 text-green-400 text-sm font-medium">
+                <Check size={18} />
+                <span>Thanks! We&apos;ll be in touch.</span>
+              </div>
+            ) : (
+              <form
+                onSubmit={handleNewsletterSubmit}
+                className="flex gap-2 w-full md:w-auto"
               >
-                Subscribe
-                <ArrowRight size={14} />
-              </button>
-            </form>
+                <div className="flex flex-col gap-1">
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="Enter your email"
+                    className="px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/40 text-sm focus:outline-none focus:border-accent w-full md:w-64"
+                  />
+                  {newsletterStatus === "error" && (
+                    <span className="text-red-400 text-xs">{newsletterError}</span>
+                  )}
+                </div>
+                <button
+                  type="submit"
+                  disabled={newsletterStatus === "loading"}
+                  className="px-5 py-2.5 rounded-lg bg-accent hover:bg-accent/90 text-white font-semibold text-sm transition-colors flex items-center gap-2 whitespace-nowrap disabled:opacity-60"
+                >
+                  {newsletterStatus === "loading" ? "..." : "Subscribe"}
+                  {newsletterStatus !== "loading" && <ArrowRight size={14} />}
+                </button>
+              </form>
+            )}
           </div>
         </Container>
       </div>

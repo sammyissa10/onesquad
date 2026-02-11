@@ -63,15 +63,15 @@ const pageOptions = [
 ];
 
 const cmsOptions = [
-  { id: "custom", label: "Custom CMS", price: 300 },
+  { id: "custom", label: "Custom Built", price: 300 },
   { id: "wordpress", label: "WordPress", price: 0 },
-  { id: "none", label: "No CMS", price: -100 },
+  { id: "none", label: "Static Site", price: -100 },
 ];
 
 const additionalServices = [
   { id: "performance", label: "Performance Optimization", price: 200, icon: Gauge },
   { id: "analytics", label: "Google Analytics", price: 100, icon: BarChart3 },
-  { id: "seo", label: "SEO Optimization", price: 400, icon: Search },
+  { id: "seo", label: "Search Optimization", price: 400, icon: Search },
 ];
 
 const specialFeatures = [
@@ -165,8 +165,8 @@ export default function WebsitePricingPage() {
                 Website <span className="text-secondary">Pricing</span>
               </h1>
               <p className="text-xl text-white/80">
-                Create a stunning website that represents your brand perfectly.
-                Configure your project below.
+                Get a website that looks great and works for your business.
+                Configure your project below to see an estimate.
               </p>
             </motion.div>
           </Container>
@@ -503,7 +503,7 @@ export default function WebsitePricingPage() {
                     <p className="text-muted-foreground mb-8">
                       Your estimated website cost is{" "}
                       <strong className="text-accent">${calculateTotal()}</strong>.
-                      Contact us to finalize your quote and get started.
+                      Reach out and we&apos;ll finalize the details together.
                     </p>
                     <Link href="/contact">
                       <Button variant="accent" size="lg" rightIcon={<ArrowRight size={18} />}>

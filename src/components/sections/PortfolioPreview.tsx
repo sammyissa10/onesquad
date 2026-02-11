@@ -47,7 +47,7 @@ export function PortfolioPreview() {
             </h2>
             <p className="text-muted-foreground text-lg">
               Start with a professionally designed template, then customize every
-              detail to match your brand. Transparent pricing included.
+              detail to match your brand. Clear pricing included.
             </p>
           </motion.div>
 

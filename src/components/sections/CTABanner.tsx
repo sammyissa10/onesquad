@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowRight, Calendar } from "lucide-react";
 import { Container, Section } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import { fadeIn, stagger } from "@/lib/animations";
 
 export function CTABanner() {
@@ -43,26 +44,30 @@ export function CTABanner() {
                 variants={fadeIn}
                 className="flex flex-col sm:flex-row items-center justify-center gap-4"
               >
-                <Link href="/pricing">
-                  <Button
-                    variant="secondary"
-                    size="lg"
-                    rightIcon={<ArrowRight size={20} />}
-                    className="text-primary"
-                  >
-                    View Pricing Plans
-                  </Button>
-                </Link>
-                <Link href="/contact">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    leftIcon={<Calendar size={20} />}
-                    className="border-white/30 text-white hover:bg-white hover:text-primary"
-                  >
-                    Schedule a Call
-                  </Button>
-                </Link>
+                <MagneticButton>
+                  <Link href="/pricing">
+                    <Button
+                      variant="secondary"
+                      size="lg"
+                      rightIcon={<ArrowRight size={20} />}
+                      className="text-primary"
+                    >
+                      View Pricing Plans
+                    </Button>
+                  </Link>
+                </MagneticButton>
+                <MagneticButton>
+                  <Link href="/contact">
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      leftIcon={<Calendar size={20} />}
+                      className="border-white/30 text-white hover:bg-white hover:text-primary"
+                    >
+                      Schedule a Call
+                    </Button>
+                  </Link>
+                </MagneticButton>
               </motion.div>
 
               <motion.div

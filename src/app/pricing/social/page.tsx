@@ -174,8 +174,8 @@ export default function SocialMediaPricingPage() {
                 Social Media <span className="text-secondary">Pricing</span>
               </h1>
               <p className="text-xl text-white/80">
-                Grow your brand&apos;s presence with our social media management services.
-                Build your custom package below.
+                Build a social media package that fits your business.
+                Pick your platforms, content, and support level below.
               </p>
             </motion.div>
           </Container>
@@ -478,7 +478,7 @@ export default function SocialMediaPricingPage() {
                         <p className="text-muted-foreground mb-8">
                           Your estimated monthly cost is{" "}
                           <strong className="text-accent">${calculateTotal()}/month</strong>.
-                          Contact us to get started.
+                          Reach out and we&apos;ll get your accounts set up.
                         </p>
                         <Link href="/contact">
                           <Button variant="accent" size="lg" rightIcon={<ArrowRight size={18} />}>

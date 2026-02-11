@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, Calculator } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -10,6 +10,7 @@ import { navItems } from "@/lib/constants";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import { Logo } from "./Logo";
 
 export function Header() {
@@ -17,17 +18,6 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const pathname = usePathname();
-  const router = useRouter();
-
-  const handleHomeClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (pathname === "/") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      router.push("/");
-      window.scrollTo({ top: 0 });
-    }
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -75,7 +65,7 @@ export function Header() {
               >
                 <Link
                   href={item.href}
-                  onClick={item.href === "/" ? handleHomeClick : undefined}
+                  onClick={undefined}
                   className={cn(
                     "flex items-center gap-1 text-sm font-medium transition-colors hover:text-accent",
                     pathname === item.href ? "text-accent" : useDarkText ? "text-foreground" : "text-white"
@@ -143,11 +133,13 @@ export function Header() {
                   : "text-white hover:bg-white/10"
               )}
             />
-            <Link href="/contact">
-              <Button variant="accent" size="md">
-                Get Started
-              </Button>
-            </Link>
+            <MagneticButton>
+              <Link href="/contact">
+                <Button variant="accent" size="md">
+                  Get Started
+                </Button>
+              </Link>
+            </MagneticButton>
           </div>
 
           {/* Mobile Menu Button */}
@@ -218,7 +210,7 @@ export function Header() {
                     ) : (
                       <Link
                         href={item.href}
-                        onClick={item.href === "/" ? handleHomeClick : undefined}
+                        onClick={undefined}
                         className={cn(
                           "block py-3 font-medium transition-colors",
                           pathname === item.href

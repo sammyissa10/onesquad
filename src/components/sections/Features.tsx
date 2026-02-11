@@ -28,8 +28,8 @@ export function Features() {
                 Why businesses switch to us
               </h2>
               <p className="text-muted-foreground text-lg">
-                We understand the unique challenges small and medium businesses
-                face online. Here&apos;s what makes working with us different.
+                We know the challenges small and midsize businesses face online.
+                Here&apos;s what makes working with us different.
               </p>
             </motion.div>
 

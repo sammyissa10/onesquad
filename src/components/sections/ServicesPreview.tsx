@@ -41,8 +41,8 @@ export function ServicesPreview() {
               What We Do
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-4 mb-6">
-              Digital Solutions That{" "}
-              <span className="text-accent">Drive Results</span>
+              Everything you need.{" "}
+              <span className="text-accent">Nothing you don&apos;t.</span>
             </h2>
             <p className="text-muted-foreground text-lg">
               From your first website to a full-scale digital marketing
@@ -60,11 +60,12 @@ export function ServicesPreview() {
                 Web Solutions
               </h3>
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {webSolutions.map((service) => (
+                {webSolutions.map((service, index) => (
                   <motion.div
                     key={service.slug}
                     whileHover={{ y: -8 }}
                     transition={{ duration: 0.3 }}
+                    className={index === 0 ? "sm:col-span-2" : ""}
                   >
                     <Link href={`/services/${service.slug}`}>
                       <div className="bg-white rounded-2xl p-6 shadow-lg shadow-primary/5 border border-transparent hover:border-highlight/30 transition-all duration-300 h-full group">

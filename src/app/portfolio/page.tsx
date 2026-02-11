@@ -115,12 +115,12 @@ export default function PortfolioPage() {
                 Our Work
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-4 mb-6">
-                Website Templates{" "}
-                <span className="text-secondary">That Convert</span>
+                Website Designs{" "}
+                <span className="text-secondary">Built for Results</span>
               </h1>
               <p className="text-xl text-white/80">
                 Browse {templates.length}+ professionally designed templates.
-                Each one includes transparent pricing with a full breakdown of
+                Each one includes clear pricing with a full breakdown of
                 what&apos;s included.
               </p>
             </motion.div>
@@ -175,7 +175,7 @@ export default function PortfolioPage() {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
                     className="overflow-hidden"
                   >
                     <div className="flex flex-wrap justify-center gap-2 mb-8 pt-2">

@@ -311,8 +311,8 @@ export default function PricingPage() {
                 className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto"
               >
                 {activeTab === "hosting"
-                  ? "Perfect for businesses that need reliable hosting with professional support and incremental features."
-                  : "Let us handle everything—your website, marketing, and brand management with full-service solutions."}
+                  ? "For businesses that need reliable hosting with professional support. Add features as you grow."
+                  : "Let us handle everything — your website, marketing, and brand management, all in one plan."}
               </motion.p>
 
               {/* Plans grid */}
