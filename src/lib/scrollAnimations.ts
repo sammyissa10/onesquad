@@ -28,7 +28,7 @@ export interface AnimationConfig {
   ease?: string;
   stagger?: {
     each?: number;
-    from?: string | number;
+    from?: number | "start" | "center" | "end" | "edges" | "random" | [number, number];
     ease?: string;
   };
   [key: string]: unknown; // Allow any GSAP property
@@ -151,12 +151,12 @@ export function slideFromRight(opts?: Partial<AnimationConfig>): AnimationConfig
  */
 export function staggerFadeUp(opts?: {
   each?: number;
-  from?: string | number;
+  from?: number | "start" | "center" | "end" | "edges" | "random" | [number, number];
   ease?: string;
-}): { each: number; from: string | number; ease?: string } {
+}) {
   return {
-    each: 0.08,
-    from: 'start',
-    ...opts,
+    each: opts?.each ?? 0.08,
+    from: opts?.from ?? 'start' as const,
+    ...(opts?.ease ? { ease: opts.ease } : {}),
   };
 }
