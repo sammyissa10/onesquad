@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 Phase: 8 of 8 (Scroll Animations Site-wide)
 Plan: 5 of 5
 Status: Complete
-Last activity: 2026-02-12 - Completed quick task 11: Audit and rewrite AI-sounding copy across entire site
+Last activity: 2026-02-12 - Completed quick task 12: Add pricing calculator to main pricing overview page
 
 Progress: [████████████████████] 100%
 
@@ -193,6 +193,7 @@ None yet.
 | 9 | Fix persistent scroll jank - reduce ScrollTrigger overhead | 2026-02-12 | ca8c7ba | [9-fix-persistent-scroll-jank-reduce-scroll](./quick/9-fix-persistent-scroll-jank-reduce-scroll/) |
 | 10 | Replace hero right-side visual with interactive results dashboard | 2026-02-12 | f83901d | [10-replace-hero-right-side-visual-with-inte](./quick/10-replace-hero-right-side-visual-with-inte/) |
 | 11 | Audit and rewrite AI-sounding copy across entire site | 2026-02-12 | 412a7a7 | [11-audit-and-rewrite-ai-sounding-copy-acros](./quick/11-audit-and-rewrite-ai-sounding-copy-acros/) |
+| 12 | Add pricing calculator to main pricing overview page | 2026-02-12 | 55ba2da | [12-add-pricing-calculator-to-main-pricing-o](./quick/12-add-pricing-calculator-to-main-pricing-o/) |
 
 ## Session Continuity
 
