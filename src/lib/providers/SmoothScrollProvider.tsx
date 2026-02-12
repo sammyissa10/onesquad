@@ -67,7 +67,7 @@ export function SmoothScrollProvider({
 
     // Full smooth scroll experience
     return {
-      lerp: 0.12, // Increased from 0.1 to reduce scroll lag with ScrollTrigger
+      lerp: 0.18, // Increased from 0.12 for tighter scroll-animation sync
       smoothWheel: true,
       syncTouch: false,
       wheelMultiplier: 1,

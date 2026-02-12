@@ -11,6 +11,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 // Register plugins
 gsap.registerPlugin(ScrollTrigger);
 
+// Configure ScrollTrigger to reduce per-frame callback overhead
+ScrollTrigger.config({ limitCallbacks: true });
+
 // Set GSAP global defaults
 gsap.defaults({
   ease: "power2.out",
