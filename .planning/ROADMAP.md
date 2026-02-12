@@ -144,11 +144,14 @@ Plans:
   2. List and grid scroll reveals use varied stagger timing (0.05-0.1s delay, not uniform stagger(0.1))
   3. Scroll animations feel smooth and intentional (not distracting or janky)
   4. All scroll animations respect prefers-reduced-motion (already enforced by Phase 1 infrastructure)
-**Plans**: TBD
+**Plans**: 5 plans
 
 Plans:
-- [ ] 08-01: TBD
-- [ ] 08-02: TBD
+- [ ] 08-01-PLAN.md — Animation presets library + Homepage first half (Hero, Features, ServicesPreview, Comparison) converted to GSAP ScrollTrigger
+- [ ] 08-02-PLAN.md — Homepage second half (PortfolioPreview, Process, Testimonials, CTABanner) + Services overview page converted to GSAP
+- [ ] 08-03-PLAN.md — Service detail pages + Pricing overview page converted to GSAP ScrollTrigger
+- [ ] 08-04-PLAN.md — Portfolio, Contact, and About pages converted to GSAP ScrollTrigger
+- [ ] 08-05-PLAN.md — Visual verification checkpoint for all scroll animations site-wide
 
 ## Progress
 
@@ -164,7 +167,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | 5. Pricing Pages Redesign | 4/4 | Complete | 2026-02-11 |
 | 6. Portfolio Page Redesign | 2/2 | Complete | 2026-02-11 |
 | 7. Contact & About Pages | 0/3 | Not started | - |
-| 8. Scroll Animations Site-Wide | 0/TBD | Not started | - |
+| 8. Scroll Animations Site-Wide | 0/5 | Not started | - |
 
 ---
 *Roadmap created: 2026-02-10*
