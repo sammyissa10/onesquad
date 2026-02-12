@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-10)
 
 **Core value:** Every page should feel intentionally designed — no two sections should look like they came from the same template.
-**Current focus:** Phase 7: Contact & About Pages (Complete)
+**Current focus:** Phase 8: Scroll Animations Site-wide (In Progress)
 
 ## Current Position
 
-Phase: 7 of 8 (Contact & About Pages)
-Plan: 3 of 3
-Status: Complete
-Last activity: 2026-02-12 - Completed 07-03: Visual verification of contact and about pages
+Phase: 8 of 8 (Scroll Animations Site-wide)
+Plan: 1 of 5
+Status: In Progress
+Last activity: 2026-02-12 - Completed 08-01: GSAP scroll animation presets and homepage conversion
 
-Progress: [███████████████░] 75%
+Progress: [████████████████] 80%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 20
-- Average duration: 3.2 minutes
-- Total execution time: 1.05 hours
+- Total plans completed: 21
+- Average duration: 3.5 minutes
+- Total execution time: 1.22 hours
 
 **By Phase:**
 
@@ -34,10 +34,11 @@ Progress: [███████████████░] 75%
 | 05 | 4 | 19m | 4.8m |
 | 06 | 2 | 12m | 6m |
 | 07 | 3 | 5.6m | 1.9m |
+| 08 | 1 | 10m | 10m |
 
 **Recent Trend:**
-- Last 5 plans: 06-01 (7m), 06-02 (5.5m), 07-01 (2.7m), 07-02 (2.4m), 07-03 (0.5m)
-- Trend: Phase 07 complete - contact and about pages verified
+- Last 5 plans: 06-02 (5.5m), 07-01 (2.7m), 07-02 (2.4m), 07-03 (0.5m), 08-01 (10m)
+- Trend: Phase 08 started - GSAP scroll animation presets created and homepage sections converted
 
 *Updated after each plan completion*
 
@@ -117,6 +118,10 @@ Recent decisions affecting current work:
 - **07-03:** Contact page asymmetric layout creates distinct personality vs centered layouts
 - **07-03:** About page typography-driven values achieve manifesto feel without icon cards or stats
 - [Phase 07-03]: Human verified both pages break uniform section pattern successfully
+- **08-01:** Created preset library with pure functions (not ScrollTrigger creators) - sections call gsap.from() with spread configs
+- **08-01:** Individual ScrollTriggers per card in Features (not single staggerChildren) - more granular control, better timing
+- **08-01:** Stagger 'from' variants: Web Solutions from 'start', Digital Marketing from 'center' - creates distinct animation personalities
+- **08-01:** Comparison divider uses scrub: 1 for organic scroll-linked animation - visual feedback tied to scroll position
 
 ### Pending Todos
 
@@ -135,11 +140,13 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-12 (phase execution)
-Stopped at: Completed 07-03-PLAN.md
-Resume file: .planning/phases/07-contact-about-pages/07-03-SUMMARY.md
+Stopped at: Completed 08-01-PLAN.md
+Resume file: .planning/phases/08-scroll-animations-site-wide/08-01-SUMMARY.md
 
-**Phase 07 Status:** COMPLETE (3 of 3 plans complete)
-- 07-01: Contact page with asymmetric layout (complete)
-- 07-02: About page typography-driven redesign (complete)
-- 07-03: Visual verification checkpoint (complete)
-- Next: Ready for Phase 08 (Scroll Animation Integration)
+**Phase 08 Status:** IN PROGRESS (1 of 5 plans complete)
+- 08-01: GSAP scroll animation presets and homepage conversion (complete)
+- 08-02: Homepage remaining sections animation (pending)
+- 08-03: Services and pricing pages animation (pending)
+- 08-04: Portfolio and about pages animation (pending)
+- 08-05: Visual verification checkpoint (pending)
+- Next: Ready for 08-02 (Apply animations to remaining homepage sections)
