@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { slideFromLeft, slideFromRight, TRIGGERS } from "@/lib/scrollAnimations";
+import { fadeUp, scaleReveal, staggerFadeUp, TRIGGERS } from "@/lib/scrollAnimations";
 
 const withoutUsItems = [
   {
@@ -61,49 +61,6 @@ const withUsItems = [
   },
 ];
 
-function ComparisonCard({
-  item,
-  type,
-}: {
-  item: typeof withoutUsItems[0];
-  type: "without" | "with";
-}) {
-  const isWithout = type === "without";
-
-  return (
-    <div
-      className={`comparison-card flex items-start gap-4 p-5 rounded-2xl transition-all duration-200 hover:-translate-y-1 ${
-        isWithout
-          ? "bg-red-50 border border-red-200/60"
-          : "bg-emerald-50 border border-emerald-200/60"
-      }`}
-      data-animate
-    >
-      <div
-        className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-          isWithout ? "bg-red-100" : "bg-emerald-100"
-        }`}
-      >
-        <item.icon
-          className={`w-6 h-6 ${isWithout ? "text-red-500" : "text-emerald-600"}`}
-        />
-      </div>
-      <div>
-        <h4
-          className={`font-bold mb-1 ${
-            isWithout ? "text-red-600" : "text-emerald-700"
-          }`}
-        >
-          {item.title}
-        </h4>
-        <p className={`text-sm ${isWithout ? "text-red-500/70" : "text-emerald-600/70"}`}>
-          {item.description}
-        </p>
-      </div>
-    </div>
-  );
-}
-
 export function Comparison() {
   const { scope } = useScrollAnimation(({ gsap }) => {
     // Header: scale in
@@ -118,129 +75,140 @@ export function Comparison() {
       },
     });
 
-    // Left column: slide from left
-    gsap.from('.comparison-left', {
-      ...slideFromLeft(),
+    // "Without" items: fast stagger fade up (they're being dismissed)
+    gsap.from('.without-item', {
+      ...fadeUp({ duration: 0.3 }),
+      stagger: staggerFadeUp({ each: 0.06 }),
       scrollTrigger: {
-        trigger: '.comparison-grid',
+        trigger: '.without-section',
         start: TRIGGERS.standard,
       },
     });
 
-    // Left column cards: fade up within left column
-    gsap.from('.comparison-left .comparison-card', {
-      y: 20,
-      duration: 0.5,
-      stagger: 0.1,
-      scrollTrigger: {
-        trigger: '.comparison-grid',
-        start: TRIGGERS.late,
-      },
-    });
-
-    // Right column: slide from right with delay
-    gsap.from('.comparison-right', {
-      ...slideFromRight({ delay: 0.2 }),
-      scrollTrigger: {
-        trigger: '.comparison-grid',
-        start: TRIGGERS.standard,
-      },
-    });
-
-    // Right column cards: fade up within right column
-    gsap.from('.comparison-right .comparison-card', {
-      y: 20,
-      duration: 0.5,
-      stagger: 0.1,
-      scrollTrigger: {
-        trigger: '.comparison-grid',
-        start: TRIGGERS.late,
-      },
-    });
-
-    // Divider: scrubbed to scroll position
-    gsap.from('.comparison-divider-fill', {
-      scaleY: 0,
-      transformOrigin: 'top',
+    // Coral divider: scrub-linked animation
+    gsap.from('.comparison-divider', {
+      scaleX: 0,
+      transformOrigin: 'left',
       duration: 1.5,
       ease: 'power1.inOut',
       scrollTrigger: {
-        trigger: '.comparison-grid',
+        trigger: '.comparison-divider',
         start: TRIGGERS.standard,
         end: 'bottom 30%',
         scrub: 1,
       },
     });
+
+    // "With" cards: slower stagger scale reveal from center (premium feel)
+    gsap.from('.with-card', {
+      ...scaleReveal({ duration: 0.5 }),
+      stagger: staggerFadeUp({ each: 0.1, from: 'center' }),
+      scrollTrigger: {
+        trigger: '.with-section',
+        start: TRIGGERS.standard,
+      },
+    });
   });
 
   return (
-    <section ref={scope} className="bg-white text-navy py-20 md:py-28 overflow-hidden">
+    <section ref={scope} className="relative bg-[#0e1e36] text-white py-24 md:py-36 overflow-hidden">
+      {/* Top gradient border for visual separation from ServicesPreview */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-coral/20 to-transparent" />
+
       <Container>
         {/* Section Header */}
-        <div className="comparison-header text-center max-w-2xl mx-auto mb-12" data-animate>
-          <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">
+        <div className="comparison-header text-center max-w-3xl mx-auto mb-16 md:mb-20" data-animate>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             What Changes When You Stop{" "}
             <span className="text-coral">Doing It Alone</span>
           </h2>
-          <p className="text-navy/60 text-lg">
+          <p className="text-white/60 text-lg md:text-xl">
             You&apos;ve tried doing it all yourself. Here&apos;s what changes when you hand it off to a team that does this every day.
           </p>
         </div>
 
-        {/* Comparison Grid */}
-        <div className="comparison-grid grid lg:grid-cols-[1fr_auto_1fr] gap-8 lg:gap-6">
-          {/* Without Us Column */}
-          <div className="comparison-left space-y-4" data-animate>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center">
-                <X className="w-6 h-6 text-red-500" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-red-600">Without OneSquad</h3>
-                <p className="text-sm text-red-500/60">Sound familiar?</p>
-              </div>
+        {/* Without Section - Compact, Dismissed Items */}
+        <div className="without-section mb-12 md:mb-16">
+          <div className="flex items-center gap-3 mb-8 justify-center">
+            <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center">
+              <X className="w-5 h-5 text-red-400" />
             </div>
+            <h3 className="text-xl md:text-2xl font-bold text-red-400">Without OneSquad</h3>
+          </div>
 
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {withoutUsItems.map((item) => (
-              <ComparisonCard
+              <div
                 key={item.title}
-                item={item}
-                type="without"
-              />
+                className="without-item flex items-start gap-4 border-l-2 border-red-500/30 pl-4"
+                data-animate
+              >
+                <div className="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-1">
+                  <item.icon className="w-5 h-5 text-red-400" />
+                </div>
+                <div>
+                  <h4 className="font-bold mb-1 text-white/80 line-through decoration-red-500/40">
+                    {item.title}
+                  </h4>
+                  <p className="text-sm text-white/40">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
             ))}
           </div>
+        </div>
 
-          {/* Center Divider */}
-          <div className="hidden lg:flex flex-col items-center self-stretch py-8">
-            <div className="w-px flex-1 bg-gradient-to-b from-red-200 via-border to-emerald-200 relative">
-              <div
-                className="comparison-divider-fill absolute top-0 left-0 w-full h-full bg-gradient-to-b from-red-400 via-emerald-400 to-emerald-500"
-              />
+        {/* Coral Divider - Dramatic Visual Break */}
+        <div className="comparison-divider relative h-16 flex items-center justify-center mb-12 md:mb-16" data-animate>
+          <div className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-coral to-transparent" />
+          <div className="relative bg-[#0e1e36] px-6">
+            <div className="w-12 h-12 rounded-full bg-coral/10 border-2 border-coral flex items-center justify-center">
+              <svg className="w-6 h-6 text-coral" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
             </div>
           </div>
+        </div>
 
-          {/* With Us Column */}
-          <div className="comparison-right space-y-4" data-animate>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center">
-                <Check className="w-6 h-6 text-emerald-600" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-emerald-700">With OneSquad</h3>
-                <p className="text-sm text-navy/60">What working with us looks like</p>
-              </div>
+        {/* With Section - Elevated Premium Cards */}
+        <div className="with-section">
+          <div className="flex items-center gap-3 mb-8 justify-center">
+            <div className="w-10 h-10 rounded-xl bg-coral/10 border border-coral/20 flex items-center justify-center">
+              <Check className="w-5 h-5 text-coral" />
             </div>
+            <h3 className="text-xl md:text-2xl font-bold text-coral">With OneSquad</h3>
+          </div>
 
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {withUsItems.map((item) => (
-              <ComparisonCard
+              <div
                 key={item.title}
-                item={item}
-                type="with"
-              />
+                className="with-card bg-white/5 border border-white/10 rounded-2xl p-6 hover:-translate-y-1.5 hover:shadow-lg hover:shadow-coral/10 transition-all duration-300"
+                data-cursor="card"
+                data-animate
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-coral/10 flex items-center justify-center flex-shrink-0">
+                    <item.icon className="w-6 h-6 text-coral" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg mb-2 text-white">
+                      {item.title}
+                    </h4>
+                    <p className="text-sm text-white/60">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </Container>
+
+      {/* Bottom gradient border for visual separation from PortfolioPreview */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-coral/20 to-transparent" />
     </section>
   );
 }
