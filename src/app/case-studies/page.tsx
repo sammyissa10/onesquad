@@ -100,14 +100,19 @@ function CaseStudyCard({ study }: { study: typeof caseStudies[0] }) {
       <div
         className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full flex flex-col"
       >
-        {/* Image Placeholder */}
+        {/* Industry Visual */}
         <div
-          className="h-48 bg-gradient-to-br from-primary/10 to-highlight/10 flex items-center justify-center relative overflow-hidden"
+          className="h-48 bg-gradient-to-br from-[#0e1e36] to-[#1a3a5c] flex items-center justify-center relative overflow-hidden"
         >
           <study.icon
-            className="w-16 h-16 text-primary/20 group-hover:scale-110 transition-transform"
+            className="w-16 h-16 text-coral/60 group-hover:scale-110 transition-transform relative z-10"
+            strokeWidth={1.5}
           />
-          <div className="absolute top-4 left-4">
+          <study.icon
+            className="w-32 h-32 text-white/5 absolute -bottom-4 -right-4 rotate-12"
+            strokeWidth={1}
+          />
+          <div className="absolute top-4 left-4 z-10">
             <Badge variant="accent">{study.industry}</Badge>
           </div>
         </div>

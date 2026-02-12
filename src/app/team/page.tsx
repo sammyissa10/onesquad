@@ -129,10 +129,11 @@ function TeamMemberCard({ member }: { member: typeof teamMembers[0] }) {
     <motion.div variants={itemVariants} whileHover={{ y: -8 }} className="group">
       <div className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
         {/* Avatar Placeholder */}
-        <div className="h-48 bg-gradient-to-br from-primary to-highlight flex items-center justify-center">
-          <span className="text-6xl font-bold text-white/30">
+        <div className="h-48 bg-gradient-to-br from-[#0e1e36] to-[#1a3a5c] flex items-center justify-center relative overflow-hidden">
+          <span className="text-6xl font-bold text-white/20 relative z-10 group-hover:text-coral/40 transition-colors duration-300">
             {member.name.split(" ").map((n) => n[0]).join("")}
           </span>
+          <div className="absolute inset-0 bg-gradient-to-t from-coral/10 to-transparent" />
         </div>
 
         {/* Content */}

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Calendar, Clock, User } from "lucide-react";
+import { ArrowRight, Calendar, Clock, User, Search, Layout, Share2, Mail, Target, FileText } from "lucide-react";
 import { Header, Footer } from "@/components/layout";
 import { Container, Section } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -116,6 +116,15 @@ const categories = [
   "Content Marketing",
 ];
 
+const categoryStyles: Record<string, { icon: typeof Search; gradient: string }> = {
+  "SEO": { icon: Search, gradient: "from-blue-600 to-cyan-500" },
+  "Web Design": { icon: Layout, gradient: "from-violet-600 to-purple-500" },
+  "Social Media": { icon: Share2, gradient: "from-pink-500 to-rose-500" },
+  "Email Marketing": { icon: Mail, gradient: "from-amber-500 to-orange-500" },
+  "PPC": { icon: Target, gradient: "from-emerald-500 to-teal-500" },
+  "Content Marketing": { icon: FileText, gradient: "from-indigo-500 to-blue-500" },
+};
+
 function BlogCard({ post, featured = false }: { post: typeof blogPosts[0]; featured?: boolean }) {
   return (
     <motion.div
@@ -131,14 +140,21 @@ function BlogCard({ post, featured = false }: { post: typeof blogPosts[0]; featu
           featured ? "md:flex-row" : "flex-col"
         } block`}
       >
-        {/* Image Placeholder */}
-        <div
-          className={`bg-gradient-to-br from-primary/10 to-highlight/10 flex items-center justify-center ${
-            featured ? "md:w-1/2 h-48 md:h-auto" : "h-48"
-          }`}
-        >
-          <div className="text-6xl">📝</div>
-        </div>
+        {/* Category Visual */}
+        {(() => {
+          const style = categoryStyles[post.category] || { icon: FileText, gradient: "from-gray-500 to-gray-600" };
+          const Icon = style.icon;
+          return (
+            <div
+              className={`bg-gradient-to-br ${style.gradient} flex items-center justify-center relative overflow-hidden ${
+                featured ? "md:w-1/2 h-48 md:h-auto" : "h-48"
+              }`}
+            >
+              <Icon className="w-16 h-16 text-white/30" strokeWidth={1.5} />
+              <Icon className="w-32 h-32 text-white/10 absolute -bottom-4 -right-4 rotate-12" strokeWidth={1} />
+            </div>
+          );
+        })()}
 
         {/* Content */}
         <div className={`p-6 flex flex-col ${featured ? "md:w-1/2" : ""}`}>
