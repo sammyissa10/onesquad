@@ -17,16 +17,14 @@ export function Features() {
       },
     });
 
-    // Cards (right column): individual ScrollTriggers with staggered delay
-    gsap.utils.toArray('.feature-card').forEach((card, i) => {
-      gsap.from(card as gsap.DOMTarget, {
-        ...scaleReveal(),
-        delay: i * 0.12,
-        scrollTrigger: {
-          trigger: card as gsap.DOMTarget,
-          start: TRIGGERS.late,
-        },
-      });
+    // Cards (right column): single ScrollTrigger with stagger
+    gsap.from('.feature-card', {
+      ...scaleReveal(),
+      stagger: 0.12,
+      scrollTrigger: {
+        trigger: '.feature-card',
+        start: TRIGGERS.late,
+      },
     });
   });
 

@@ -109,16 +109,13 @@ export default function PortfolioPage() {
 
   // Grid animations - GSAP handles scroll reveal, Framer handles filter transitions
   const { scope: gridScope } = useScrollAnimation(({ gsap }) => {
-    const cards = gsap.utils.toArray('.portfolio-card-wrapper');
-    cards.forEach((card, i) => {
-      gsap.from(card as HTMLElement, {
-        ...fadeUp({ y: 30, duration: 0.5 }),
-        delay: i * 0.06,
-        scrollTrigger: {
-          trigger: '.portfolio-grid',
-          start: TRIGGERS.late,
-        },
-      });
+    gsap.from('.portfolio-card-wrapper', {
+      ...fadeUp({ y: 30, duration: 0.5 }),
+      stagger: 0.06,
+      scrollTrigger: {
+        trigger: '.portfolio-grid',
+        start: TRIGGERS.late,
+      },
     });
   });
 

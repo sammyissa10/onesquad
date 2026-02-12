@@ -193,16 +193,14 @@ export default function ContactPage() {
     });
 
     // Contact info items stagger
-    const contactItems = gsap.utils.toArray('.contact-info-item');
-    contactItems.forEach((item, i) => {
-      gsap.from(item as HTMLElement, {
-        ...fadeUp(),
-        delay: 0.2 + (i * 0.1),
-        scrollTrigger: {
-          trigger: '.contact-sidebar',
-          start: TRIGGERS.standard,
-        },
-      });
+    gsap.from('.contact-info-item', {
+      ...fadeUp(),
+      stagger: 0.1,
+      delay: 0.2,
+      scrollTrigger: {
+        trigger: '.contact-sidebar',
+        start: TRIGGERS.standard,
+      },
     });
 
     // Quick response badge

@@ -176,12 +176,10 @@ export default function PricingPage() {
     });
 
     // Tier Gateway Cards - staggered scaleReveal
-    const tierCards = gsap.utils.toArray('.pricing-tier-card');
-    tierCards.forEach((card, i) => {
-      gsap.from(card as HTMLElement, {
-        ...scaleReveal({ delay: i * 0.12 }),
-        scrollTrigger: { trigger: '.pricing-tiers', start: TRIGGERS.late },
-      });
+    gsap.from('.pricing-tier-card', {
+      ...scaleReveal(),
+      stagger: 0.12,
+      scrollTrigger: { trigger: '.pricing-tiers', start: TRIGGERS.late },
     });
 
     // Hosting/Managed section
@@ -201,12 +199,10 @@ export default function PricingPage() {
     });
 
     // Plan cards - staggered fadeUp
-    const planCards = gsap.utils.toArray('.pricing-plan-card');
-    planCards.forEach((card, i) => {
-      gsap.from(card as HTMLElement, {
-        ...fadeUp({ delay: i * 0.1 }),
-        scrollTrigger: { trigger: '.pricing-plans-grid', start: TRIGGERS.standard },
-      });
+    gsap.from('.pricing-plan-card', {
+      ...fadeUp(),
+      stagger: 0.1,
+      scrollTrigger: { trigger: '.pricing-plans-grid', start: TRIGGERS.standard },
     });
 
     gsap.from('.pricing-included', {

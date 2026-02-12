@@ -136,18 +136,16 @@ export function Comparison() {
       },
     });
 
-    // Individual cards within columns: stagger
-    gsap.utils.toArray('.comparison-card').forEach((card, i) => {
-      gsap.from(card as gsap.DOMTarget, {
-        opacity: 0,
-        y: 20,
-        duration: 0.5,
-        delay: i * 0.1,
-        scrollTrigger: {
-          trigger: card as gsap.DOMTarget,
-          start: TRIGGERS.late,
-        },
-      });
+    // Individual cards within columns: single ScrollTrigger with stagger
+    gsap.from('.comparison-card', {
+      opacity: 0,
+      y: 20,
+      duration: 0.5,
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: '.comparison-grid',
+        start: TRIGGERS.late,
+      },
     });
 
     // Divider: scrubbed to scroll position

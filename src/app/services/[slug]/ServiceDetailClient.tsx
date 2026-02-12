@@ -99,21 +99,17 @@ export default function ServiceDetailClient({
     });
 
     // Features section - cards stagger with scaleReveal
-    const featureCards = gsap.utils.toArray('.detail-feature-card');
-    featureCards.forEach((card, i) => {
-      gsap.from(card as HTMLElement, {
-        ...scaleReveal({ delay: i * 0.1 }),
-        scrollTrigger: { trigger: '.detail-features', start: TRIGGERS.late },
-      });
+    gsap.from('.detail-feature-card', {
+      ...scaleReveal(),
+      stagger: 0.1,
+      scrollTrigger: { trigger: '.detail-features', start: TRIGGERS.late },
     });
 
-    // Results section - metrics fade up with increasing delays
-    const metrics = gsap.utils.toArray('.detail-metric');
-    metrics.forEach((metric, i) => {
-      gsap.from(metric as HTMLElement, {
-        ...fadeUp({ delay: i * 0.15 }),
-        scrollTrigger: { trigger: '.detail-results', start: TRIGGERS.standard },
-      });
+    // Results section - metrics fade up with stagger
+    gsap.from('.detail-metric', {
+      ...fadeUp(),
+      stagger: 0.15,
+      scrollTrigger: { trigger: '.detail-results', start: TRIGGERS.standard },
     });
 
     // Why Choose Us section - heading + stats stagger
@@ -122,21 +118,17 @@ export default function ServiceDetailClient({
       scrollTrigger: { trigger: '.detail-why', start: TRIGGERS.early },
     });
 
-    const statCards = gsap.utils.toArray('.detail-stat-card');
-    statCards.forEach((card, i) => {
-      gsap.from(card as HTMLElement, {
-        ...scaleReveal({ delay: i * 0.1 }),
-        scrollTrigger: { trigger: '.detail-why', start: TRIGGERS.standard },
-      });
+    gsap.from('.detail-stat-card', {
+      ...scaleReveal(),
+      stagger: 0.1,
+      scrollTrigger: { trigger: '.detail-why', start: TRIGGERS.standard },
     });
 
     // Related Services section - slideFromRight stagger
-    const relatedCards = gsap.utils.toArray('.detail-related-card');
-    relatedCards.forEach((card, i) => {
-      gsap.from(card as HTMLElement, {
-        ...slideFromRight({ delay: i * 0.12 }),
-        scrollTrigger: { trigger: '.detail-related', start: TRIGGERS.standard },
-      });
+    gsap.from('.detail-related-card', {
+      ...slideFromRight(),
+      stagger: 0.12,
+      scrollTrigger: { trigger: '.detail-related', start: TRIGGERS.standard },
     });
 
     // FAQ section - heading fadeUp, container scaleReveal
