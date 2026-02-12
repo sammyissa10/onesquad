@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Check, HelpCircle, ChevronDown } from "lucide-react";
+import { Check, HelpCircle, ChevronDown, ExternalLink } from "lucide-react";
 import { Header, Footer } from "@/components/layout";
 import { Container, Section } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -13,6 +13,9 @@ import { formatPrice, cn } from "@/lib/utils";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { fadeUp, scaleReveal, TRIGGERS } from "@/lib/scrollAnimations";
+import SocialCalculator from "@/components/pricing/SocialCalculator";
+import WebsiteCalculator from "@/components/pricing/WebsiteCalculator";
+import EcommerceCalculator from "@/components/pricing/EcommerceCalculator";
 
 function PricingCard({
   plan,
@@ -154,6 +157,7 @@ function FAQItem({ faq, index }: { faq: (typeof faqs)[0]; index: number }) {
 export default function PricingPage() {
   const [isAnnual, setIsAnnual] = useState(false);
   const [activeTab, setActiveTab] = useState<"hosting" | "managed">("hosting");
+  const [activeTier, setActiveTier] = useState<"social" | "website" | "ecommerce" | null>(null);
 
   const hostingPlans = pricingPlans.filter((p) => p.category === "hosting");
   const managedPlans = pricingPlans.filter((p) => p.category === "managed");
@@ -299,106 +303,176 @@ export default function PricingPage() {
             </Container>
           </section>
 
-          {/* Tier Gateway Cards - White background with distinct cards */}
-          <section className="bg-white py-24 md:py-32">
+          {/* Tier Gateway Cards - Interactive selector + calculator */}
+          <section className="bg-white py-24 md:py-32 pricing-tiers">
             <Container>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                 {/* Social Media Card - Coral stripe, scale hover */}
                 <div>
-                  <Link href="/pricing/social">
-                    <div
-                      data-cursor="card"
-                      className="relative bg-white rounded-3xl border-2 border-border shadow-lg overflow-hidden h-full hover:scale-[1.03] transition-transform duration-300"
-                    >
-                      {/* Coral accent stripe */}
-                      <div className="h-2 bg-coral" />
+                  <div
+                    data-cursor="card"
+                    onClick={() => setActiveTier(activeTier === "social" ? null : "social")}
+                    className={cn(
+                      "relative bg-white rounded-3xl border-2 shadow-lg overflow-hidden h-full cursor-pointer transition-all duration-300 pricing-tier-card",
+                      activeTier === "social"
+                        ? "ring-2 ring-coral border-coral scale-[1.03]"
+                        : "border-border hover:scale-[1.03]",
+                      activeTier && activeTier !== "social" && "opacity-80"
+                    )}
+                  >
+                    {/* Coral accent stripe */}
+                    <div className="h-2 bg-coral" />
 
-                      {/* Content */}
-                      <div className="p-8">
-                        <div className="text-3xl mb-3">📱</div>
-                        <h3 className="text-2xl font-heading font-bold text-primary mb-2">
-                          Social Media
-                        </h3>
-                        <p className="text-muted-foreground mb-6">
-                          Custom posts, scheduling, and reporting.
-                        </p>
-                        <div className="mb-6">
-                          <span className="text-sm text-muted-foreground">From </span>
-                          <span className="text-3xl font-bold text-primary">$300</span>
-                          <span className="text-muted-foreground">/mo</span>
-                        </div>
-                        <Button variant="accent" className="w-full">
-                          Build Your Package
-                        </Button>
+                    {/* Content */}
+                    <div className="p-8">
+                      <div className="text-3xl mb-3">📱</div>
+                      <h3 className="text-2xl font-heading font-bold text-primary mb-2">
+                        Social Media
+                      </h3>
+                      <p className="text-muted-foreground mb-6">
+                        Custom posts, scheduling, and reporting.
+                      </p>
+                      <div className="mb-6">
+                        <span className="text-sm text-muted-foreground">From </span>
+                        <span className="text-3xl font-bold text-primary">$300</span>
+                        <span className="text-muted-foreground">/mo</span>
                       </div>
+                      <Button variant="accent" className="w-full" onClick={(e) => { e.stopPropagation(); }}>
+                        {activeTier === "social" ? "Configure Below" : "Build Your Package"}
+                      </Button>
+                      <Link href="/pricing/social" className="block mt-3 text-center text-sm text-coral hover:underline flex items-center justify-center gap-1" onClick={(e) => e.stopPropagation()}>
+                        Open full page <ExternalLink className="w-3 h-3" />
+                      </Link>
                     </div>
-                  </Link>
+                  </div>
                 </div>
 
                 {/* Website Card - Taller with glow hover, -mt-4 on desktop */}
                 <div className="md:-mt-4">
-                  <Link href="/pricing/website">
-                    <div
-                      data-cursor="card"
-                      className="relative bg-navy/5 rounded-3xl border border-navy/20 shadow-lg overflow-hidden h-full hover:shadow-[0_0_80px_rgba(226,121,94,0.3)] transition-shadow duration-300"
-                    >
-                      {/* Content */}
-                      <div className="p-8 md:p-10">
-                        <div className="text-3xl mb-3">💻</div>
-                        <h3 className="text-2xl font-heading font-bold text-primary mb-2">
-                          Websites
-                        </h3>
-                        <p className="text-muted-foreground mb-6">
-                          Custom design that turns visitors into customers.
-                        </p>
-                        <div className="mb-6">
-                          <span className="text-sm text-muted-foreground">From </span>
-                          <span className="text-3xl font-bold text-primary">$700</span>
-                        </div>
-                        <Button
-                          variant="outline"
-                          className="w-full border-2 hover:bg-coral hover:text-white hover:border-coral transition-colors"
-                        >
-                          Configure Your Site
-                        </Button>
+                  <div
+                    data-cursor="card"
+                    onClick={() => setActiveTier(activeTier === "website" ? null : "website")}
+                    className={cn(
+                      "relative bg-navy/5 rounded-3xl shadow-lg overflow-hidden h-full cursor-pointer transition-all duration-300 pricing-tier-card",
+                      activeTier === "website"
+                        ? "ring-2 ring-coral border-coral shadow-[0_0_80px_rgba(226,121,94,0.3)]"
+                        : "border border-navy/20 hover:shadow-[0_0_80px_rgba(226,121,94,0.3)]",
+                      activeTier && activeTier !== "website" && "opacity-80"
+                    )}
+                  >
+                    {/* Content */}
+                    <div className="p-8 md:p-10">
+                      <div className="text-3xl mb-3">💻</div>
+                      <h3 className="text-2xl font-heading font-bold text-primary mb-2">
+                        Websites
+                      </h3>
+                      <p className="text-muted-foreground mb-6">
+                        Custom design that turns visitors into customers.
+                      </p>
+                      <div className="mb-6">
+                        <span className="text-sm text-muted-foreground">From </span>
+                        <span className="text-3xl font-bold text-primary">$700</span>
                       </div>
+                      <Button
+                        variant="outline"
+                        className="w-full border-2 hover:bg-coral hover:text-white hover:border-coral transition-colors"
+                        onClick={(e) => { e.stopPropagation(); }}
+                      >
+                        {activeTier === "website" ? "Configure Below" : "Configure Your Site"}
+                      </Button>
+                      <Link href="/pricing/website" className="block mt-3 text-center text-sm text-coral hover:underline flex items-center justify-center gap-1" onClick={(e) => e.stopPropagation()}>
+                        Open full page <ExternalLink className="w-3 h-3" />
+                      </Link>
                     </div>
-                  </Link>
+                  </div>
                 </div>
 
                 {/* E-commerce Card - Gradient border, lift+shadow hover */}
                 <div>
-                  <Link href="/pricing/ecommerce">
-                    <div
-                      data-cursor="card"
-                      className="relative bg-white rounded-3xl shadow-lg overflow-hidden h-full hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(5,23,51,0.15)] transition-all duration-300"
-                      style={{
-                        background: "linear-gradient(white, white) padding-box, linear-gradient(135deg, #E2795E, #FAB383) border-box",
-                        border: "2px solid transparent",
-                      }}
-                    >
-                      {/* Content */}
-                      <div className="p-8">
-                        <div className="text-3xl mb-3">🛒</div>
-                        <h3 className="text-2xl font-heading font-bold text-primary mb-2">
-                          E-Commerce
-                        </h3>
-                        <p className="text-muted-foreground mb-6">
-                          Online stores that handle growth without breaking.
-                        </p>
-                        <div className="mb-6">
-                          <span className="text-sm text-muted-foreground">From </span>
-                          <span className="text-3xl font-bold text-primary">$1,500</span>
-                        </div>
-                        <Button variant="accent" className="w-full">
-                          Build Your Store
-                        </Button>
+                  <div
+                    data-cursor="card"
+                    onClick={() => setActiveTier(activeTier === "ecommerce" ? null : "ecommerce")}
+                    className={cn(
+                      "relative bg-white rounded-3xl shadow-lg overflow-hidden h-full cursor-pointer transition-all duration-300 pricing-tier-card",
+                      activeTier === "ecommerce"
+                        ? "ring-2 ring-coral -translate-y-2 shadow-[0_20px_40px_rgba(5,23,51,0.15)]"
+                        : "hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(5,23,51,0.15)]",
+                      activeTier && activeTier !== "ecommerce" && "opacity-80"
+                    )}
+                    style={{
+                      background: activeTier === "ecommerce"
+                        ? "linear-gradient(white, white) padding-box, linear-gradient(135deg, #E2795E, #FAB383) border-box"
+                        : "linear-gradient(white, white) padding-box, linear-gradient(135deg, #E2795E, #FAB383) border-box",
+                      border: "2px solid transparent",
+                    }}
+                  >
+                    {/* Content */}
+                    <div className="p-8">
+                      <div className="text-3xl mb-3">🛒</div>
+                      <h3 className="text-2xl font-heading font-bold text-primary mb-2">
+                        E-Commerce
+                      </h3>
+                      <p className="text-muted-foreground mb-6">
+                        Online stores that handle growth without breaking.
+                      </p>
+                      <div className="mb-6">
+                        <span className="text-sm text-muted-foreground">From </span>
+                        <span className="text-3xl font-bold text-primary">$1,500</span>
                       </div>
+                      <Button variant="accent" className="w-full" onClick={(e) => { e.stopPropagation(); }}>
+                        {activeTier === "ecommerce" ? "Configure Below" : "Build Your Store"}
+                      </Button>
+                      <Link href="/pricing/ecommerce" className="block mt-3 text-center text-sm text-coral hover:underline flex items-center justify-center gap-1" onClick={(e) => e.stopPropagation()}>
+                        Open full page <ExternalLink className="w-3 h-3" />
+                      </Link>
                     </div>
-                  </Link>
+                  </div>
                 </div>
               </div>
             </Container>
+
+            {/* Calculator Section - conditionally rendered below cards */}
+            <AnimatePresence mode="wait">
+              {activeTier && (
+                <motion.div
+                  key={activeTier}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="mt-12"
+                >
+                  <Container>
+                    {/* Different background per tier */}
+                    <div
+                      className={cn(
+                        "rounded-3xl overflow-hidden",
+                        activeTier === "social" && "bg-navy py-24 md:py-32",
+                        activeTier === "website" && "bg-white py-28 md:py-36",
+                        activeTier === "ecommerce" && "bg-white"
+                      )}
+                    >
+                      <div className={activeTier === "ecommerce" ? "" : "container mx-auto px-4"}>
+                        {activeTier === "social" && <SocialCalculator />}
+                        {activeTier === "website" && <WebsiteCalculator />}
+                        {activeTier === "ecommerce" && <EcommerceCalculator />}
+                      </div>
+                    </div>
+
+                    {/* Switch tier button */}
+                    <div className="text-center mt-8">
+                      <button
+                        onClick={() => setActiveTier(null)}
+                        className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                        data-cursor="button"
+                      >
+                        Choose a different service
+                      </button>
+                    </div>
+                  </Container>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </section>
 
           {/* Hosting & Managed Plans - Navy background with glass cards */}
