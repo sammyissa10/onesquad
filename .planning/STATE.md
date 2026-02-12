@@ -176,6 +176,9 @@ Recent decisions affecting current work:
 - **Quick-14:** Single GSAP timeline with scrub:1 for all divider elements (ring, lines, text) ensures cohesive scroll-linked playback
 - **Quick-14:** clipPath inset animation for text reveal (center-outward wipe) more dramatic than simple fade
 - **Quick-14:** Ring pulse as two sequential .to() calls instead of yoyo (yoyo unpredictable in scrub mode)
+- [Phase quick-15]: Pain-point hero headline: 'You Didn't Start a Business to Fight With Your Website' establishes empathy immediately
+- [Phase quick-15]: Conversion-focused CTAs with specificity and urgency ('Get a Free Mockup in 24hrs', 'Pick Your Plan — Cancel Anytime')
+- [Phase quick-15]: Stat callout badges on testimonials provide immediate visual proof of results (3x Traffic Growth, 180% Organic Growth)
 
 ### Pending Todos
 
@@ -203,12 +206,13 @@ None yet.
 | 12 | Add pricing calculator to main pricing overview page | 2026-02-12 | 55ba2da | [12-add-pricing-calculator-to-main-pricing-o](./quick/12-add-pricing-calculator-to-main-pricing-o/) |
 | 13 | Add missing content from old onesquads.com | 2026-02-12 | d16363d | [13-add-missing-content-from-old-onesquads-c](./quick/13-add-missing-content-from-old-onesquads-c/) |
 | 14 | Redesign comparison section divider animation | 2026-02-12 | 3c67c58 | [14-redesign-comparison-section-divider-anim](./quick/14-redesign-comparison-section-divider-anim/) |
+| 15 | Phase 1 copy rewrite - hero headline, CTA buttons, testimonial badges | 2026-02-12 | 97f4982 | [15-phase-1-copy-rewrite-hero-headline-cta-b](./quick/15-phase-1-copy-rewrite-hero-headline-cta-b/) |
 
 ## Session Continuity
 
 Last session: 2026-02-12 (quick task execution)
-Stopped at: Completed quick-14-PLAN.md (redesign comparison divider animation)
-Resume file: .planning/quick/14-redesign-comparison-section-divider-anim/14-SUMMARY.md
+Stopped at: Completed quick-15-PLAN.md (Phase 1 copy rewrite)
+Resume file: .planning/quick/15-phase-1-copy-rewrite-hero-headline-cta-b/15-SUMMARY.md
 
 **Phase 08 Status:** COMPLETE (5 of 5 plans complete)
 - 08-01: GSAP scroll animation presets and homepage conversion (complete)
