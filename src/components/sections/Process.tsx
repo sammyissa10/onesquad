@@ -56,17 +56,15 @@ export function Process() {
       },
     });
 
-    // Animate the timeline progress line (scrub-based)
+    // Animate the timeline progress line (timed to match step stagger)
     gsap.from('.timeline-progress', {
       scaleX: 0,
       transformOrigin: 'left center',
-      duration: 1.5,
-      ease: 'power1.inOut',
+      duration: 1.2,
+      ease: 'power2.inOut',
       scrollTrigger: {
         trigger: '.process-grid',
         start: TRIGGERS.standard,
-        end: 'bottom 40%',
-        scrub: 1,
       },
     });
 
