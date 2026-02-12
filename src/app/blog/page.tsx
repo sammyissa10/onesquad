@@ -116,13 +116,13 @@ const categories = [
   "Content Marketing",
 ];
 
-const categoryStyles: Record<string, { icon: typeof Search; from: string; to: string }> = {
-  "SEO": { icon: Search, from: "#2563eb", to: "#06b6d4" },
-  "Web Design": { icon: Layout, from: "#7c3aed", to: "#a855f7" },
-  "Social Media": { icon: Share2, from: "#ec4899", to: "#f43f5e" },
-  "Email Marketing": { icon: Mail, from: "#f59e0b", to: "#f97316" },
-  "PPC": { icon: Target, from: "#10b981", to: "#14b8a6" },
-  "Content Marketing": { icon: FileText, from: "#6366f1", to: "#3b82f6" },
+const categoryStyles: Record<string, { icon: typeof Search; color: string }> = {
+  "SEO": { icon: Search, color: "#06b6d4" },
+  "Web Design": { icon: Layout, color: "#a855f7" },
+  "Social Media": { icon: Share2, color: "#f43f5e" },
+  "Email Marketing": { icon: Mail, color: "#f97316" },
+  "PPC": { icon: Target, color: "#10b981" },
+  "Content Marketing": { icon: FileText, color: "#3b82f6" },
 };
 
 function BlogCard({ post, featured = false }: { post: typeof blogPosts[0]; featured?: boolean }) {
@@ -142,17 +142,16 @@ function BlogCard({ post, featured = false }: { post: typeof blogPosts[0]; featu
       >
         {/* Category Visual */}
         {(() => {
-          const style = categoryStyles[post.category] || { icon: FileText, from: "#6b7280", to: "#4b5563" };
+          const style = categoryStyles[post.category] || { icon: FileText, color: "#6b7280" };
           const Icon = style.icon;
           return (
             <div
-              className={`flex items-center justify-center relative overflow-hidden ${
-                featured ? "md:w-1/2 h-48 md:h-auto" : "h-48"
+              className={`bg-[#0e1e36] flex items-center justify-center relative overflow-hidden ${
+                featured ? "md:w-1/2 h-48 md:h-auto min-h-[12rem]" : "h-48"
               }`}
-              style={{ background: `linear-gradient(135deg, ${style.from}, ${style.to})` }}
             >
-              <Icon className="w-16 h-16 text-white/30" strokeWidth={1.5} />
-              <Icon className="w-32 h-32 text-white/10 absolute -bottom-4 -right-4 rotate-12" strokeWidth={1} />
+              <Icon className="w-16 h-16 relative z-10" style={{ color: style.color, opacity: 0.6 }} strokeWidth={1.5} />
+              <Icon className="w-32 h-32 absolute -bottom-4 -right-4 rotate-12" style={{ color: style.color, opacity: 0.1 }} strokeWidth={1} />
             </div>
           );
         })()}
