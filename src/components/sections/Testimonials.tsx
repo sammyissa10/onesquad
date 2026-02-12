@@ -6,6 +6,12 @@ import { testimonials } from "@/lib/constants";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { fadeUp, TRIGGERS } from "@/lib/scrollAnimations";
 
+const statBadges: Record<string, string> = {
+  "1": "3x Traffic Growth",
+  "2": "180% Organic Growth",
+  "3": "Zero Stress",
+};
+
 export function Testimonials() {
   const { scope } = useScrollAnimation(({ gsap }) => {
     gsap.from('.testimonials-heading', {
@@ -52,6 +58,13 @@ export function Testimonials() {
               data-animate
               className="testimonial-card bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 hover:-translate-y-1 transition-transform duration-200"
             >
+              {/* Stat badge */}
+              {statBadges[testimonial.id] && (
+                <div className="inline-block bg-coral/15 text-coral text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full mb-3">
+                  {statBadges[testimonial.id]}
+                </div>
+              )}
+
               {/* Star rating */}
               <div className="flex gap-1 mb-4">
                 {Array.from({ length: testimonial.rating }).map((_, i) => (
