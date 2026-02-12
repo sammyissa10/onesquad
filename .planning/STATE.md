@@ -147,6 +147,10 @@ Recent decisions affecting current work:
 - **Quick-03:** Dual ScrollTrigger refresh (300ms + 800ms) handles both fast content and lazy-loaded images on route change
 - **Quick-03:** GPU layer promotion via will-change applied automatically to all [data-animate] elements before animations start
 - **Quick-03:** Converted per-element ScrollTrigger forEach loops to single-trigger stagger patterns (40-50% reduction in total instances)
+- **Quick-05:** Asymmetric stacked layout for comparison section (compact dismissed "Without" items + coral divider + elevated 2x2 "With" cards)
+- **Quick-05:** Strikethrough on "Without" items creates visual metaphor of crossing out problems (more effective than flat red cards)
+- **Quick-05:** Dark navy #0e1e36 with coral gradient borders creates visual separation from adjacent navy sections
+- **Quick-05:** Scale reveal from center for "With" cards (emanating effect) draws attention to solutions as hero items
 
 ### Pending Todos
 
@@ -164,12 +168,13 @@ None yet.
 | 2 | Fix night mode button not working | 2026-02-12 | f1e79e0 | [2-fix-night-mode-button-not-working](./quick/2-fix-night-mode-button-not-working/) |
 | 3 | Fix scroll glitching on pages | 2026-02-12 | b808eaf | [3-fix-scroll-glitching-on-pages](./quick/3-fix-scroll-glitching-on-pages/) |
 | 4 | Fix With/Without OneSquad comparison section animations | 2026-02-12 | 7730b51 | [4-fix-with-without-onesquad-comparison-ani](./quick/4-fix-with-without-onesquad-comparison-ani/) |
+| 5 | Redesign comparison section with more visual personality | 2026-02-12 | 04c3b6f | [5-redesign-comparison-section-with-more-vi](./quick/5-redesign-comparison-section-with-more-vi/) |
 
 ## Session Continuity
 
 Last session: 2026-02-12 (quick task execution)
-Stopped at: Completed quick-04-PLAN.md
-Resume file: .planning/quick/4-fix-with-without-onesquad-comparison-ani/4-SUMMARY.md
+Stopped at: Completed quick-05-PLAN.md
+Resume file: .planning/quick/5-redesign-comparison-section-with-more-vi/5-SUMMARY.md
 
 **Phase 08 Status:** COMPLETE (5 of 5 plans complete)
 - 08-01: GSAP scroll animation presets and homepage conversion (complete)
