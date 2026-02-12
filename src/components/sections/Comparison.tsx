@@ -127,6 +127,17 @@ export function Comparison() {
       },
     });
 
+    // Left column cards: fade up within left column
+    gsap.from('.comparison-left .comparison-card', {
+      y: 20,
+      duration: 0.5,
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: '.comparison-grid',
+        start: TRIGGERS.late,
+      },
+    });
+
     // Right column: slide from right with delay
     gsap.from('.comparison-right', {
       ...slideFromRight({ delay: 0.2 }),
@@ -136,9 +147,8 @@ export function Comparison() {
       },
     });
 
-    // Individual cards within columns: single ScrollTrigger with stagger
-    gsap.from('.comparison-card', {
-      opacity: 0,
+    // Right column cards: fade up within right column
+    gsap.from('.comparison-right .comparison-card', {
       y: 20,
       duration: 0.5,
       stagger: 0.1,
@@ -178,7 +188,7 @@ export function Comparison() {
         </div>
 
         {/* Comparison Grid */}
-        <div className="comparison-grid grid lg:grid-cols-[1fr_auto_1fr] gap-8 lg:gap-6 items-start">
+        <div className="comparison-grid grid lg:grid-cols-[1fr_auto_1fr] gap-8 lg:gap-6">
           {/* Without Us Column */}
           <div className="comparison-left space-y-4" data-animate>
             <div className="flex items-center gap-3 mb-6">
@@ -201,10 +211,10 @@ export function Comparison() {
           </div>
 
           {/* Center Divider */}
-          <div className="hidden lg:flex flex-col items-center py-8">
-            <div className="w-px h-full bg-gradient-to-b from-red-200 via-border to-emerald-200 relative">
+          <div className="hidden lg:flex flex-col items-center self-stretch py-8">
+            <div className="w-px flex-1 bg-gradient-to-b from-red-200 via-border to-emerald-200 relative">
               <div
-                className="comparison-divider-fill absolute top-0 left-0 w-full bg-gradient-to-b from-red-400 via-emerald-400 to-emerald-500"
+                className="comparison-divider-fill absolute top-0 left-0 w-full h-full bg-gradient-to-b from-red-400 via-emerald-400 to-emerald-500"
               />
             </div>
           </div>
