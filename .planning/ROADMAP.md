@@ -128,11 +128,12 @@ Plans:
   3. Contact copy is inviting and human (not generic "get in touch")
   4. About copy is personality-driven (not corporate team bios)
   5. Both pages collapse gracefully to single-column on mobile
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 07-01: TBD
-- [ ] 07-02: TBD
+- [ ] 07-01-PLAN.md -- Contact page redesign: asymmetric bento layout, warm humanized form with budget/timeline fields, restyled quote card, dark/light rhythm
+- [ ] 07-02-PLAN.md -- About page redesign: typography-driven editorial layout, manifesto values, logo story integration, no stats section
+- [ ] 07-03-PLAN.md -- Visual verification checkpoint for both pages
 
 ### Phase 8: Scroll Animations Site-Wide
 **Goal**: All redesigned pages have scroll-driven reveal animations with varied timing and effects
@@ -162,7 +163,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | 4. Services Page Redesign | 3/3 | Complete | 2026-02-11 |
 | 5. Pricing Pages Redesign | 4/4 | Complete | 2026-02-11 |
 | 6. Portfolio Page Redesign | 2/2 | Complete | 2026-02-11 |
-| 7. Contact & About Pages | 0/TBD | Not started | - |
+| 7. Contact & About Pages | 0/3 | Not started | - |
 | 8. Scroll Animations Site-Wide | 0/TBD | Not started | - |
 
 ---
