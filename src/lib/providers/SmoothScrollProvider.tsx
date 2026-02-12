@@ -67,13 +67,14 @@ export function SmoothScrollProvider({
 
     // Full smooth scroll experience
     return {
-      lerp: 0.1, // Increased from 0.075 to reduce scroll lag with ScrollTrigger
+      lerp: 0.12, // Increased from 0.1 to reduce scroll lag with ScrollTrigger
       smoothWheel: true,
       syncTouch: true,
-      syncTouchLerp: 0.1, // Match lerp value
+      syncTouchLerp: 0.12, // Match lerp value
       touchMultiplier: 1.5,
       wheelMultiplier: 1,
       infinite: false,
+      autoResize: true, // Recalculate dimensions on resize to prevent stale measurements
       orientation: "vertical" as const,
       gestureOrientation: "vertical" as const,
     };
@@ -87,6 +88,9 @@ export function SmoothScrollProvider({
   useEffect(() => {
     // Scroll to top instantly on route change
     lenisRef.current?.lenis?.scrollTo(0, { immediate: true });
+
+    // Clear cached scroll positions from previous route
+    ScrollTrigger.clearScrollMemory();
 
     // Refresh ScrollTrigger after new page content loads
     // First refresh after initial render settles

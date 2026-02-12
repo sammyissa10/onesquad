@@ -56,14 +56,9 @@ export function useScrollAnimation(
 
       // Animation branch - runs only when reduced motion is NOT active
       mm.add(MOTION_QUERIES.noPreference, () => {
-        // Promote animated elements to GPU layer before animations start
-        // This prevents compositor thrashing when transforms/opacity change mid-scroll
-        if (scopeRef.current) {
-          gsap.set(scopeRef.current.querySelectorAll('[data-animate]'), {
-            willChange: 'transform, opacity',
-          });
-        }
-
+        // GSAP handles GPU promotion automatically during tweens
+        // Blanket will-change promotion causes excessive GPU memory usage
+        // and compositor thrashing (100+ elements promoted = jank)
         animate({ gsap, ScrollTrigger });
       });
 
