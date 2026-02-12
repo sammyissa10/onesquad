@@ -151,7 +151,7 @@ export function Comparison() {
             {withoutUsItems.map((item) => (
               <div
                 key={item.title}
-                className="without-item flex items-start gap-4 border-l-2 border-red-500/30 pl-4"
+                className="without-item flex items-start gap-4 bg-white/[0.03] border border-red-500/15 rounded-2xl p-6"
                 data-animate
               >
                 <div className="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-1">
