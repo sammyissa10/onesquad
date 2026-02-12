@@ -1,215 +1,239 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, MotionConfig } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
-import { Target, Heart, Award, Zap } from "lucide-react";
 import { Header, Footer } from "@/components/layout";
-import { Container, Section } from "@/components/ui/Container";
+import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { stats } from "@/lib/constants";
-import { Breadcrumb } from "@/components/ui/Breadcrumb";
-import { fadeIn, stagger } from "@/lib/animations";
-
-const values = [
-  {
-    icon: Heart,
-    title: "We remember your name",
-    description:
-      "You're not a ticket number. Your account manager knows your business, your goals, and your preferences (okay, maybe not your lunch order — but close).",
-  },
-  {
-    icon: Award,
-    title: "We'd rather say no",
-    description:
-      "If something won't work for your business, we'll tell you. We'd rather lose a sale than waste your money on something that won't deliver.",
-  },
-  {
-    icon: Zap,
-    title: "We keep learning",
-    description:
-      "The digital world changes fast. We stay on top of it so you don't have to. What worked last year might not work this year, and we adapt accordingly.",
-  },
-];
 
 export default function AboutPage() {
+  const heroRef = useRef(null);
   const storyRef = useRef(null);
-  const valuesRef = useRef(null);
-  const isStoryInView = useInView(storyRef, { once: true, margin: "-50px" });
-  const isValuesInView = useInView(valuesRef, { once: true, margin: "-50px" });
+  const isHeroInView = useInView(heroRef, { once: true });
+  const isStoryInView = useInView(storyRef, { once: true, margin: "-100px" });
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <Header />
-      <Breadcrumb items={[{ label: "About Us" }]} />
       <main>
-        {/* Hero */}
-        <Section background="gradient">
-          <Container>
+        {/* Section 1: Dark Hero - Mission First */}
+        <section className="bg-[#0F172A] py-28 md:py-40" data-cursor="text" data-cursor-text="Read On">
+          <Container size="xl">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="max-w-3xl"
+              ref={heroRef}
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.15,
+                  },
+                },
+              }}
+              initial="hidden"
+              animate={isHeroInView ? "visible" : "hidden"}
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-4 mb-6">
-                Two Become <span className="text-secondary">One</span>
-              </h1>
-              <p className="text-xl text-white/80">
-                The story behind our name, our mission, and why we do what we do.
-              </p>
+              <motion.h1
+                variants={{
+                  hidden: { opacity: 0, y: 40 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      duration: 0.8,
+                      ease: [0.22, 1, 0.36, 1],
+                    },
+                  },
+                }}
+                className="text-5xl md:text-7xl lg:text-[6rem] xl:text-display font-black text-white leading-[0.9] tracking-tight"
+              >
+                We Don&apos;t Do Average.
+              </motion.h1>
+              <motion.p
+                variants={{
+                  hidden: { opacity: 0, y: 40 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      duration: 0.8,
+                      ease: [0.22, 1, 0.36, 1],
+                    },
+                  },
+                }}
+                className="text-xl md:text-2xl text-white/70 leading-relaxed max-w-3xl mt-8"
+              >
+                We&apos;re a small squad building digital empires for businesses that refuse to blend in. No templates. No shortcuts. Just work that actually works.
+              </motion.p>
             </motion.div>
           </Container>
-        </Section>
+        </section>
 
-        {/* Story Section */}
-        <Section background="white">
-          <Container>
+        {/* Section 2: Logo Origin Story */}
+        <section className="bg-card py-24 md:py-36">
+          <Container size="xl">
             <motion.div
               ref={storyRef}
-              variants={stagger(0.15)}
-              initial="hidden"
-              animate={isStoryInView ? "visible" : "hidden"}
-              className="grid lg:grid-cols-2 gap-12 items-center"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isStoryInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16"
             >
-              <motion.div variants={fadeIn}>
-                <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
-                  The Meaning Behind Our Logo
+              {/* Left column - Story */}
+              <div className="lg:col-span-7">
+                <p className="text-sm font-semibold text-coral uppercase tracking-widest mb-6">
+                  The Story
+                </p>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-navy leading-[0.9] tracking-tight mb-8">
+                  Two Become One.
                 </h2>
-                <div className="space-y-4 text-muted-foreground">
+                <div className="space-y-6 text-lg text-navy/70 leading-relaxed">
                   <p>
-                    Our logo tells the story of who we are. Two number 1s merge
-                    together to form the letter S in negative space — symbolizing
-                    the union of two teams becoming one.
+                    Our logo tells the story of who we are. Two number 1s merge together to form the letter S in negative space — symbolizing the union of two teams becoming one.
                   </p>
                   <p>
-                    When you partner with OneSquad, your team and our team unite
-                    with a single mission: your digital success. We&apos;re not just
-                    another vendor or service provider. We become an extension
-                    of your business.
+                    When you partner with OneSquad, your team and our team unite with a single mission: your digital success. We&apos;re not just another vendor. We become an extension of your business.
                   </p>
                   <p>
-                    This philosophy drives everything we do — from how we
-                    communicate with you, to how we approach your projects, to
-                    how we measure our success (hint: it&apos;s measured by yours).
+                    This philosophy drives everything — how we communicate, how we approach projects, and how we measure success. Hint: we measure it by yours.
                   </p>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div variants={fadeIn} className="relative">
-                <div className="aspect-square bg-gradient-to-br from-primary-brand to-[#27598E] rounded-3xl flex items-center justify-center p-12">
-                  <Image
-                    src="/onesquadlogo.png"
-                    alt="OneSquad Logo"
-                    width={400}
-                    height={400}
-                    className="w-full h-full object-contain"
-                  />
+              {/* Right column - Decorative brand mark */}
+              <div className="lg:col-span-5">
+                <div
+                  className="aspect-square bg-gradient-to-br from-coral to-peach rounded-3xl flex items-center justify-center"
+                  data-cursor="card"
+                >
+                  <div className="text-[8rem] md:text-[10rem] font-black text-white/20 select-none">
+                    1S
+                  </div>
                 </div>
-              </motion.div>
-            </motion.div>
-          </Container>
-        </Section>
-
-        {/* Mission Section */}
-        <Section background="muted">
-          <Container size="md">
-            <div className="text-center">
-              <Target className="w-16 h-16 text-accent mx-auto mb-6" />
-              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
-                Our Mission
-              </h2>
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                Help small businesses look and perform like big ones online —
-                without needing a big budget or a dedicated tech team.
-              </p>
-            </div>
-          </Container>
-        </Section>
-
-        {/* Values Section */}
-        <Section background="white">
-          <Container>
-            <motion.div
-              ref={valuesRef}
-              variants={stagger(0.15)}
-              initial="hidden"
-              animate={isValuesInView ? "visible" : "hidden"}
-            >
-              <motion.div
-                variants={fadeIn}
-                className="text-center max-w-2xl mx-auto mb-16"
-              >
-                <h2 className="text-3xl md:text-4xl font-bold text-primary mt-4">
-                  What We Stand For
-                </h2>
-              </motion.div>
-
-              <div className="grid md:grid-cols-3 gap-8">
-                {values.map((value) => (
-                  <motion.div
-                    key={value.title}
-                    variants={fadeIn}
-                    className="text-center"
-                  >
-                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent to-secondary flex items-center justify-center mx-auto mb-6">
-                      <value.icon className="w-10 h-10 text-white" />
-                    </div>
-                    <h3 className="text-xl font-bold text-primary mb-4">
-                      {value.title}
-                    </h3>
-                    <p className="text-muted-foreground">{value.description}</p>
-                  </motion.div>
-                ))}
               </div>
             </motion.div>
           </Container>
-        </Section>
+        </section>
 
-        {/* Stats Section */}
-        <Section background="gradient">
-          <Container>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2">
-                    {stat.value}
-                  </div>
-                  <div className="text-white/70 font-medium">{stat.label}</div>
-                </div>
-              ))}
+        {/* Section 3: Values - Typography Statements */}
+        <section className="bg-[#0F172A] py-28 md:py-40">
+          <Container size="xl">
+            <div className="space-y-20 md:space-y-28">
+              {/* Value 1 */}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <h3 className="text-5xl md:text-7xl lg:text-[5.5rem] font-black text-white leading-[0.9] tracking-tight">
+                  We Remember <span className="text-coral">Your Name.</span>
+                </h3>
+                <p className="text-xl md:text-2xl text-white/50 max-w-3xl leading-relaxed mt-6">
+                  You&apos;re not a ticket number. Your account manager knows your business, your goals, and what keeps you up at night. We build relationships, not just websites.
+                </p>
+              </motion.div>
+
+              {/* Value 2 */}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <h3 className="text-5xl md:text-7xl lg:text-[5.5rem] font-black text-white leading-[0.9] tracking-tight">
+                  We&apos;d Rather <span className="text-coral">Say No.</span>
+                </h3>
+                <p className="text-xl md:text-2xl text-white/50 max-w-3xl leading-relaxed mt-6">
+                  If something won&apos;t work for your business, we&apos;ll tell you straight. We&apos;d rather lose a sale than waste your money on something that won&apos;t deliver. That&apos;s not noble — it&apos;s just good business.
+                </p>
+              </motion.div>
+
+              {/* Value 3 */}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <h3 className="text-5xl md:text-7xl lg:text-[5.5rem] font-black text-white leading-[0.9] tracking-tight">
+                  We Never Stop <span className="text-coral">Learning.</span>
+                </h3>
+                <p className="text-xl md:text-2xl text-white/50 max-w-3xl leading-relaxed mt-6">
+                  The digital world moves fast and we move with it. What worked last year might not work today. We stay sharp so you don&apos;t have to — and we bring those insights to every project.
+                </p>
+              </motion.div>
             </div>
           </Container>
-        </Section>
+        </section>
 
-        {/* CTA */}
-        <Section background="muted">
-          <Container>
-            <div className="text-center max-w-2xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
-                Ready to Join the Squad?
+        {/* Section 4: What Makes Us Different */}
+        <section className="bg-peach/10 py-20 md:py-28">
+          <Container size="xl">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-4xl mx-auto"
+            >
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-navy leading-[0.9] tracking-tight text-center mb-10">
+                Small Team. Big Standards.
               </h2>
-              <p className="text-muted-foreground text-lg mb-8">
-                Let&apos;s start a conversation about your digital goals.
+              <div className="space-y-6">
+                <p className="text-lg md:text-xl text-navy/70 leading-relaxed">
+                  We&apos;re deliberately small. No account managers playing telephone. No junior devs learning on your dime. When you hire OneSquad, you get the people who actually do the work.
+                </p>
+                <p className="text-lg md:text-xl text-navy/70 leading-relaxed">
+                  We take on fewer projects so we can give each one the attention it deserves. Your business isn&apos;t a line item — it&apos;s our focus.
+                </p>
+                <p className="text-lg md:text-xl text-navy/70 leading-relaxed">
+                  And yeah, we remember your name. Every single time.
+                </p>
+              </div>
+            </motion.div>
+          </Container>
+        </section>
+
+        {/* Section 5: Manifesto Closer / CTA */}
+        <section className="bg-[#0F172A] py-24 md:py-36">
+          <Container size="xl">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="text-center"
+            >
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[0.9] tracking-tight">
+                Ready to Join <span className="text-coral">the Squad</span>?
+              </h2>
+              <p className="text-xl text-white/60 mt-6 mb-10">
+                Let&apos;s stop talking about what we could build and start building it.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link href="/contact">
-                  <Button variant="accent" size="lg">
-                    Get in Touch
+                  <Button variant="accent" size="lg" data-cursor="button">
+                    Start a Project
                   </Button>
                 </Link>
-                <Link href="/pricing">
-                  <Button variant="outline" size="lg">
-                    View Our Plans
+                <Link href="/portfolio">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-white text-white hover:bg-white hover:text-navy"
+                    data-cursor="button"
+                  >
+                    See Our Work
                   </Button>
                 </Link>
               </div>
-            </div>
+            </motion.div>
           </Container>
-        </Section>
+        </section>
       </main>
       <Footer />
-    </>
+    </MotionConfig>
   );
 }
