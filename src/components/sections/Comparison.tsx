@@ -169,9 +169,9 @@ export function Comparison() {
           </div>
         </div>
 
-        {/* Coral Divider - Simple Gradient Wipe */}
-        <div className="comparison-divider relative h-16 flex items-center justify-center mb-12 md:mb-16" data-animate>
-          <div className="divider-line w-full h-px bg-gradient-to-r from-transparent via-coral to-transparent" />
+        {/* Coral Divider - Gradient Wipe */}
+        <div className="comparison-divider relative h-20 md:h-24 flex items-center justify-center mb-12 md:mb-16" data-animate>
+          <div className="divider-line w-full h-[3px] rounded-full bg-gradient-to-r from-transparent from-5% via-coral to-transparent to-95% shadow-[0_0_12px_rgba(255,107,107,0.4)]" />
         </div>
 
         {/* With Section - Elevated Premium Cards */}
