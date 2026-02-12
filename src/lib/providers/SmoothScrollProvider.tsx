@@ -69,9 +69,7 @@ export function SmoothScrollProvider({
     return {
       lerp: 0.12, // Increased from 0.1 to reduce scroll lag with ScrollTrigger
       smoothWheel: true,
-      syncTouch: true,
-      syncTouchLerp: 0.12, // Match lerp value
-      touchMultiplier: 1.5,
+      syncTouch: false,
       wheelMultiplier: 1,
       infinite: false,
       autoResize: true, // Recalculate dimensions on resize to prevent stale measurements
