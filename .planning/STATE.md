@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 Phase: 8 of 8 (Scroll Animations Site-wide)
 Plan: 5 of 5
 Status: Complete
-Last activity: 2026-02-12 - Completed quick task 13: Add missing content from old onesquads.com
+Last activity: 2026-02-12 - Completed quick task 14: Redesign comparison section divider animation
 
 Progress: [████████████████████] 100%
 
@@ -48,6 +48,7 @@ Progress: [████████████████████] 100%
 | Phase quick-9 P1 | 3 | 3 tasks | 6 files |
 | Phase quick-10 P01 | 2.7 | 2 tasks | 3 files |
 | Phase quick-13 P01 | 3 | 2 tasks | 4 files |
+| Phase quick-14 P01 | 1.2 | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -172,6 +173,9 @@ Recent decisions affecting current work:
 - [Phase quick-12]: Extracted three separate calculator components to preserve each tier's distinct visual personality
 - **Quick-13:** Added border-t border-white/10 to Values section to visually separate from adjacent Vision section (both bg-[#0F172A])
 - **Quick-13:** Phone contactInfo entry falls back to mailto since siteConfig.phone is empty
+- **Quick-14:** Single GSAP timeline with scrub:1 for all divider elements (ring, lines, text) ensures cohesive scroll-linked playback
+- **Quick-14:** clipPath inset animation for text reveal (center-outward wipe) more dramatic than simple fade
+- **Quick-14:** Ring pulse as two sequential .to() calls instead of yoyo (yoyo unpredictable in scrub mode)
 
 ### Pending Todos
 
@@ -198,12 +202,13 @@ None yet.
 | 11 | Audit and rewrite AI-sounding copy across entire site | 2026-02-12 | 412a7a7 | [11-audit-and-rewrite-ai-sounding-copy-acros](./quick/11-audit-and-rewrite-ai-sounding-copy-acros/) |
 | 12 | Add pricing calculator to main pricing overview page | 2026-02-12 | 55ba2da | [12-add-pricing-calculator-to-main-pricing-o](./quick/12-add-pricing-calculator-to-main-pricing-o/) |
 | 13 | Add missing content from old onesquads.com | 2026-02-12 | d16363d | [13-add-missing-content-from-old-onesquads-c](./quick/13-add-missing-content-from-old-onesquads-c/) |
+| 14 | Redesign comparison section divider animation | 2026-02-12 | 3c67c58 | [14-redesign-comparison-section-divider-anim](./quick/14-redesign-comparison-section-divider-anim/) |
 
 ## Session Continuity
 
 Last session: 2026-02-12 (quick task execution)
-Stopped at: Completed quick-13-PLAN.md (add missing old-site content)
-Resume file: .planning/quick/13-add-missing-content-from-old-onesquads-c/13-SUMMARY.md
+Stopped at: Completed quick-14-PLAN.md (redesign comparison divider animation)
+Resume file: .planning/quick/14-redesign-comparison-section-divider-anim/14-SUMMARY.md
 
 **Phase 08 Status:** COMPLETE (5 of 5 plans complete)
 - 08-01: GSAP scroll animation presets and homepage conversion (complete)
