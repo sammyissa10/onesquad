@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Calendar, Clock, User, Search, Layout, Share2, Mail, Target, FileText } from "lucide-react";
+import { ArrowRight, Calendar, Clock, User } from "lucide-react";
 import { Header, Footer } from "@/components/layout";
 import { Container, Section } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -116,14 +116,6 @@ const categories = [
   "Content Marketing",
 ];
 
-const categoryStyles: Record<string, { icon: typeof Search; color: string }> = {
-  "SEO": { icon: Search, color: "#06b6d4" },
-  "Web Design": { icon: Layout, color: "#a855f7" },
-  "Social Media": { icon: Share2, color: "#f43f5e" },
-  "Email Marketing": { icon: Mail, color: "#f97316" },
-  "PPC": { icon: Target, color: "#10b981" },
-  "Content Marketing": { icon: FileText, color: "#3b82f6" },
-};
 
 function BlogCard({ post, featured = false }: { post: typeof blogPosts[0]; featured?: boolean }) {
   return (
@@ -136,28 +128,10 @@ function BlogCard({ post, featured = false }: { post: typeof blogPosts[0]; featu
         href={post.url}
         target="_blank"
         rel="noopener noreferrer"
-        className={`bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full flex ${
-          featured ? "md:flex-row" : "flex-col"
-        } block`}
+        className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full flex flex-col block"
       >
-        {/* Category Visual */}
-        {(() => {
-          const style = categoryStyles[post.category] || { icon: FileText, color: "#6b7280" };
-          const Icon = style.icon;
-          return (
-            <div
-              className={`bg-[#0e1e36] flex items-center justify-center relative overflow-hidden ${
-                featured ? "md:w-1/2 h-48 md:h-auto min-h-[12rem]" : "h-48"
-              }`}
-            >
-              <Icon className="w-16 h-16 relative z-10" style={{ color: style.color, opacity: 0.6 }} strokeWidth={1.5} />
-              <Icon className="w-32 h-32 absolute -bottom-4 -right-4 rotate-12" style={{ color: style.color, opacity: 0.1 }} strokeWidth={1} />
-            </div>
-          );
-        })()}
-
         {/* Content */}
-        <div className={`p-6 flex flex-col ${featured ? "md:w-1/2" : ""}`}>
+        <div className="p-6 flex flex-col flex-1">
           <div className="flex items-center gap-3 mb-3">
             <Badge variant="accent">{post.category}</Badge>
             {post.featured && <Badge variant="secondary">Featured</Badge>}
