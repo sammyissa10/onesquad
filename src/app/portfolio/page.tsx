@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import {
   LayoutGrid,
@@ -21,28 +21,8 @@ import {
   categoryGroups,
   categoryLabels,
 } from "@/lib/templateData";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-    },
-  },
-} as const;
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut" as const,
-    },
-  },
-};
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { fadeUp, scaleReveal, TRIGGERS } from "@/lib/scrollAnimations";
 
 const groupIcons: Record<string, React.ElementType> = {
   all: LayoutGrid,
@@ -55,8 +35,9 @@ const groupIcons: Record<string, React.ElementType> = {
 
 export default function PortfolioPage() {
   const [activeGroup, setActiveGroup] = useState("all");
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  // Track if initial scroll animation has happened
+  const [hasInitiallyAnimated, setHasInitiallyAnimated] = useState(false);
 
   const currentGroup = categoryGroups.find((g) => g.id === activeGroup);
   const subCategories = currentGroup?.categories || [];
@@ -100,41 +81,124 @@ export default function PortfolioPage() {
     setActiveGroup(groupId);
   };
 
+  // Hero animations
+  const { scope: heroScope } = useScrollAnimation(({ gsap }) => {
+    gsap.from('.hero-badge', {
+      ...scaleReveal(),
+      delay: 0.1,
+      scrollTrigger: {
+        trigger: '.hero-section',
+        start: TRIGGERS.hero,
+      },
+    });
+
+    gsap.from('.hero-headline', {
+      ...fadeUp({ y: 40, duration: 0.7 }),
+      scrollTrigger: {
+        trigger: '.hero-section',
+        start: TRIGGERS.hero,
+      },
+    });
+
+    gsap.from('.hero-subtitle', {
+      ...fadeUp({ y: 40, duration: 0.7 }),
+      delay: 0.2,
+      scrollTrigger: {
+        trigger: '.hero-section',
+        start: TRIGGERS.hero,
+      },
+    });
+  });
+
+  // Grid animations (only on initial scroll, not on filter changes)
+  const { scope: gridScope } = useScrollAnimation(({ gsap }) => {
+    // Only animate on first appearance
+    if (!hasInitiallyAnimated) {
+      const cards = gsap.utils.toArray('.portfolio-card-wrapper');
+      cards.forEach((card, i) => {
+        gsap.from(card as HTMLElement, {
+          ...fadeUp({ y: 30, duration: 0.5 }),
+          delay: i * 0.06, // Dense grid = faster stagger
+          scrollTrigger: {
+            trigger: '.portfolio-grid',
+            start: TRIGGERS.late,
+          },
+        });
+      });
+      setHasInitiallyAnimated(true);
+    }
+  }, { deps: [hasInitiallyAnimated] });
+
+  // CTA animations
+  const { scope: ctaScope } = useScrollAnimation(({ gsap }) => {
+    gsap.from('.cta-heading', {
+      ...fadeUp(),
+      scrollTrigger: {
+        trigger: '.cta-section',
+        start: TRIGGERS.standard,
+      },
+    });
+
+    gsap.from('.cta-subtitle', {
+      ...fadeUp(),
+      delay: 0.15,
+      scrollTrigger: {
+        trigger: '.cta-section',
+        start: TRIGGERS.standard,
+      },
+    });
+
+    gsap.from('.cta-buttons', {
+      ...fadeUp(),
+      delay: 0.3,
+      scrollTrigger: {
+        trigger: '.cta-section',
+        start: TRIGGERS.standard,
+      },
+    });
+  });
+
   return (
     <>
       <Header />
       <main>
         {/* Dark Hero Section */}
         <section
-          className="bg-[#0F172A] py-24 md:py-36"
+          ref={heroScope}
+          className="hero-section bg-[#0F172A] py-24 md:py-36"
           data-cursor="text"
           data-cursor-text="Explore"
+          data-animate
         >
           <Container>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-4xl"
-            >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/20 text-secondary text-sm font-semibold mb-6">
+            <div className="max-w-4xl">
+              <span
+                className="hero-badge inline-block px-4 py-1.5 rounded-full bg-secondary/20 text-secondary text-sm font-semibold mb-6"
+                data-animate
+              >
                 {templates.length} Projects
               </span>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+              <h1
+                className="hero-headline text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
+                data-animate
+              >
                 Our Work Speaks. Loudly.
               </h1>
-              <p className="text-lg md:text-xl text-white/70">
+              <p
+                className="hero-subtitle text-lg md:text-xl text-white/70"
+                data-animate
+              >
                 Real sites. Real businesses. Zero templates. Every project below
                 was built from scratch for someone who refused to settle.
               </p>
-            </motion.div>
+            </div>
           </Container>
         </section>
 
         {/* Light Grid Section with Sticky Filter */}
         <Section background="white" className="py-20 md:py-28">
           <Container>
-            {/* Sticky Filter Bar */}
+            {/* Sticky Filter Bar - NO animation, immediately available */}
             <div className="sticky top-0 z-20 bg-white/95 backdrop-blur-md py-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 mb-6">
               <div className="flex flex-wrap justify-center gap-3">
                 {categoryGroups.map((group) => {
@@ -163,38 +227,35 @@ export default function PortfolioPage() {
             </div>
 
             {/* Masonry Grid */}
-            <motion.div
-              ref={ref}
-              variants={containerVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-            >
+            <div ref={gridScope}>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeGroup}
-                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-auto pt-6"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="portfolio-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-auto pt-6"
+                  data-animate
                 >
                   {sortedTemplates.map((template) => (
-                    <motion.div
+                    <div
                       key={template.id}
-                      variants={itemVariants}
-                      className={template.popular ? "md:col-span-2" : ""}
+                      className={`portfolio-card-wrapper ${template.popular ? "md:col-span-2" : ""}`}
+                      data-animate
                     >
                       <PortfolioCard
                         template={template}
                         featured={template.popular}
                       />
-                    </motion.div>
+                    </div>
                   ))}
                 </motion.div>
               </AnimatePresence>
 
               {/* Empty state */}
               {filteredTemplates.length === 0 && (
-                <motion.div
-                  variants={itemVariants}
-                  className="text-center py-16"
-                >
+                <div className="text-center py-16" data-animate>
                   <p className="text-muted-foreground text-lg mb-4">
                     No templates found in this category.
                   </p>
@@ -204,24 +265,37 @@ export default function PortfolioPage() {
                   >
                     View All Templates
                   </Button>
-                </motion.div>
+                </div>
               )}
-            </motion.div>
+            </div>
           </Container>
         </Section>
 
         {/* Dark CTA Section */}
-        <section className="bg-[#0F172A] py-24 md:py-32">
+        <section
+          ref={ctaScope}
+          className="cta-section bg-[#0F172A] py-24 md:py-32"
+          data-animate
+        >
           <Container>
             <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+              <h2
+                className="cta-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6"
+                data-animate
+              >
                 Don't See What You Need? Let's Build It.
               </h2>
-              <p className="text-lg text-white/60 mb-8">
+              <p
+                className="cta-subtitle text-lg text-white/60 mb-8"
+                data-animate
+              >
                 Every business is unique. Your website should be too. Tell us
                 what you're building and we'll make it real.
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <div
+                className="cta-buttons flex flex-col sm:flex-row items-center justify-center gap-4"
+                data-animate
+              >
                 <Link href="/contact">
                   <Button
                     variant="primary"
