@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 Phase: 8 of 8 (Scroll Animations Site-wide)
 Plan: 5 of 5
 Status: Complete
-Last activity: 2026-02-12 - Completed quick task 8: Replace hero gradient box with animated website builder sequence
+Last activity: 2026-02-12 - Completed quick task 9: Fix persistent scroll jank with ScrollTrigger optimizations
 
 Progress: [████████████████████] 100%
 
@@ -44,6 +44,8 @@ Progress: [████████████████████] 100%
 | Phase 08 P05 | 2 | 2 tasks | 0 files |
 | Phase quick-7 P1 | 1 | 1 tasks | 1 files |
 | Phase quick-8 P1 | 163 | 2 tasks | 2 files |
+| Phase quick-9 P1 | 3 | 3 tasks | 6 files |
+| Phase quick-9 P1 | 3 | 3 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -160,6 +162,10 @@ Recent decisions affecting current work:
 - [Phase quick-7]: Disabled syncTouch to prevent Lenis from intercepting native mobile momentum scrolling
 - [Phase quick-8]: WebsiteBuilderAnimation uses autoAlpha for visibility animations (opacity + display cleanup)
 - [Phase quick-8]: Browser chrome #0e1e36 provides depth against navy hero, mock elements use abstract shapes not real content
+- [Phase quick-9]: limitCallbacks: true reduces ScrollTrigger per-frame work to only state-change callbacks
+- [Phase quick-9]: Lenis lerp 0.18 balances smooth feel with responsive scroll-animation sync
+- [Phase quick-9]: WebsiteBuilderAnimation pauses when offscreen to eliminate wasted main thread cycles
+- [Phase quick-9]: Timeline consolidation reduces ScrollTrigger instances without changing visual behavior
 
 ### Pending Todos
 
@@ -181,11 +187,12 @@ None yet.
 | 6 | Fix invisible With OneSquad cards and scroll jank | 2026-02-12 | a5b9b4c | [6-fix-invisible-with-onesquad-cards-and-re](./quick/6-fix-invisible-with-onesquad-cards-and-re/) |
 | 7 | Fix mobile scroll jank - disable Lenis on touch devices | 2026-02-12 | 71268f9 | [7-fix-mobile-scroll-jank-disable-lenis-on-](./quick/7-fix-mobile-scroll-jank-disable-lenis-on-/) |
 | 8 | Replace hero gradient box with animated website builder | 2026-02-12 | 816479a | [8-replace-hero-gradient-box-with-animated-](./quick/8-replace-hero-gradient-box-with-animated-/) |
+| 9 | Fix persistent scroll jank - reduce ScrollTrigger overhead | 2026-02-12 | ca8c7ba | [9-fix-persistent-scroll-jank-reduce-scroll](./quick/9-fix-persistent-scroll-jank-reduce-scroll/) |
 
 ## Session Continuity
 
 Last session: 2026-02-12 (quick task execution)
-Stopped at: Completed quick-8-PLAN.md (animated website builder in hero)
+Stopped at: Completed quick-9-PLAN.md (scroll jank fixes)
 Resume file: .planning/quick/7-fix-mobile-scroll-jank-disable-lenis-on-/7-SUMMARY.md
 
 **Phase 08 Status:** COMPLETE (5 of 5 plans complete)
