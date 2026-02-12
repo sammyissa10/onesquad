@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 Phase: 8 of 8 (Scroll Animations Site-wide)
 Plan: 5 of 5
 Status: Complete
-Last activity: 2026-02-12 - Completed quick task 12: Add pricing calculator to main pricing overview page
+Last activity: 2026-02-12 - Completed quick task 13: Add missing content from old onesquads.com
 
 Progress: [████████████████████] 100%
 
@@ -47,6 +47,7 @@ Progress: [████████████████████] 100%
 | Phase quick-9 P1 | 3 | 3 tasks | 6 files |
 | Phase quick-9 P1 | 3 | 3 tasks | 6 files |
 | Phase quick-10 P01 | 2.7 | 2 tasks | 3 files |
+| Phase quick-13 P01 | 3 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -169,6 +170,8 @@ Recent decisions affecting current work:
 - [Phase quick-9]: Timeline consolidation reduces ScrollTrigger instances without changing visual behavior
 - [Phase quick-10]: ResultsDashboardAnimation uses animated counters (traffic/conversions/revenue) to communicate outcomes vs static tagline
 - [Phase quick-12]: Extracted three separate calculator components to preserve each tier's distinct visual personality
+- **Quick-13:** Added border-t border-white/10 to Values section to visually separate from adjacent Vision section (both bg-[#0F172A])
+- **Quick-13:** Phone contactInfo entry falls back to mailto since siteConfig.phone is empty
 
 ### Pending Todos
 
@@ -194,12 +197,13 @@ None yet.
 | 10 | Replace hero right-side visual with interactive results dashboard | 2026-02-12 | f83901d | [10-replace-hero-right-side-visual-with-inte](./quick/10-replace-hero-right-side-visual-with-inte/) |
 | 11 | Audit and rewrite AI-sounding copy across entire site | 2026-02-12 | 412a7a7 | [11-audit-and-rewrite-ai-sounding-copy-acros](./quick/11-audit-and-rewrite-ai-sounding-copy-acros/) |
 | 12 | Add pricing calculator to main pricing overview page | 2026-02-12 | 55ba2da | [12-add-pricing-calculator-to-main-pricing-o](./quick/12-add-pricing-calculator-to-main-pricing-o/) |
+| 13 | Add missing content from old onesquads.com | 2026-02-12 | d16363d | [13-add-missing-content-from-old-onesquads-c](./quick/13-add-missing-content-from-old-onesquads-c/) |
 
 ## Session Continuity
 
 Last session: 2026-02-12 (quick task execution)
-Stopped at: Completed quick-9-PLAN.md (scroll jank fixes)
-Resume file: .planning/quick/7-fix-mobile-scroll-jank-disable-lenis-on-/7-SUMMARY.md
+Stopped at: Completed quick-13-PLAN.md (add missing old-site content)
+Resume file: .planning/quick/13-add-missing-content-from-old-onesquads-c/13-SUMMARY.md
 
 **Phase 08 Status:** COMPLETE (5 of 5 plans complete)
 - 08-01: GSAP scroll animation presets and homepage conversion (complete)
