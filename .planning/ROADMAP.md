@@ -18,8 +18,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 4: Services Page Redesign** - Apply design system to services with unique section treatments
 - [x] **Phase 5: Pricing Pages Redesign** - Distinct visual approach per tier across three pricing pages
 - [x] **Phase 6: Portfolio Page Redesign** - Masonry layouts with video-on-hover project cards
-- [ ] **Phase 7: Contact & About Pages** - Unique layouts for final two key pages
-- [ ] **Phase 8: Scroll Animations Site-Wide** - Apply scroll-driven animations across all redesigned pages
+- [x] **Phase 7: Contact & About Pages** - Unique layouts for final two key pages
+- [x] **Phase 8: Scroll Animations Site-Wide** - Apply scroll-driven animations across all redesigned pages
 
 ## Phase Details
 
@@ -131,9 +131,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 07-01-PLAN.md -- Contact page redesign: asymmetric bento layout, warm humanized form with budget/timeline fields, restyled quote card, dark/light rhythm
-- [ ] 07-02-PLAN.md -- About page redesign: typography-driven editorial layout, manifesto values, logo story integration, no stats section
-- [ ] 07-03-PLAN.md -- Visual verification checkpoint for both pages
+- [x] 07-01-PLAN.md -- Contact page redesign: asymmetric bento layout, warm humanized form with budget/timeline fields, restyled quote card, dark/light rhythm
+- [x] 07-02-PLAN.md -- About page redesign: typography-driven editorial layout, manifesto values, logo story integration, no stats section
+- [x] 07-03-PLAN.md -- Visual verification checkpoint for both pages
 
 ### Phase 8: Scroll Animations Site-Wide
 **Goal**: All redesigned pages have scroll-driven reveal animations with varied timing and effects
@@ -147,11 +147,11 @@ Plans:
 **Plans**: 5 plans
 
 Plans:
-- [ ] 08-01-PLAN.md — Animation presets library + Homepage first half (Hero, Features, ServicesPreview, Comparison) converted to GSAP ScrollTrigger
-- [ ] 08-02-PLAN.md — Homepage second half (PortfolioPreview, Process, Testimonials, CTABanner) + Services overview page converted to GSAP
-- [ ] 08-03-PLAN.md — Service detail pages + Pricing overview page converted to GSAP ScrollTrigger
-- [ ] 08-04-PLAN.md — Portfolio, Contact, and About pages converted to GSAP ScrollTrigger
-- [ ] 08-05-PLAN.md — Visual verification checkpoint for all scroll animations site-wide
+- [x] 08-01-PLAN.md — Animation presets library + Homepage first half (Hero, Features, ServicesPreview, Comparison) converted to GSAP ScrollTrigger
+- [x] 08-02-PLAN.md — Homepage second half (PortfolioPreview, Process, Testimonials, CTABanner) + Services overview page converted to GSAP
+- [x] 08-03-PLAN.md — Service detail pages + Pricing overview page converted to GSAP ScrollTrigger
+- [x] 08-04-PLAN.md — Portfolio, Contact, and About pages converted to GSAP ScrollTrigger
+- [x] 08-05-PLAN.md — Visual verification checkpoint for all scroll animations site-wide
 
 ## Progress
 
@@ -166,9 +166,9 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | 4. Services Page Redesign | 3/3 | Complete | 2026-02-11 |
 | 5. Pricing Pages Redesign | 4/4 | Complete | 2026-02-11 |
 | 6. Portfolio Page Redesign | 2/2 | Complete | 2026-02-11 |
-| 7. Contact & About Pages | 0/3 | Not started | - |
-| 8. Scroll Animations Site-Wide | 0/5 | Not started | - |
+| 7. Contact & About Pages | 3/3 | Complete | 2026-02-12 |
+| 8. Scroll Animations Site-Wide | 5/5 | Complete | 2026-02-12 |
 
 ---
 *Roadmap created: 2026-02-10*
-*Last updated: 2026-02-11*
+*Last updated: 2026-02-12*
