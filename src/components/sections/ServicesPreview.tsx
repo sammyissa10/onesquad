@@ -78,8 +78,8 @@ export function ServicesPreview() {
               Web Solutions
             </h3>
             <div className="ws-cards grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {webSolutions.map((service, index) => (
-                <div key={service.slug} className={index === 0 ? "sm:col-span-2" : ""}>
+              {webSolutions.map((service) => (
+                <div key={service.slug}>
                   <Link href={`/services/${service.slug}`}>
                     <div className="ws-card relative group" data-animate>
                       <div

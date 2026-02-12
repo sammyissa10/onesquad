@@ -75,28 +75,28 @@ function ComparisonCard({
       className={`comparison-card flex items-start gap-4 p-5 rounded-2xl transition-all duration-200 hover:-translate-y-1 ${
         isWithout
           ? "bg-red-50 border border-red-200/60"
-          : "bg-coral/5 border border-coral/15"
+          : "bg-emerald-50 border border-emerald-200/60"
       }`}
       data-animate
     >
       <div
         className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-          isWithout ? "bg-red-100" : "bg-coral/15"
+          isWithout ? "bg-red-100" : "bg-emerald-100"
         }`}
       >
         <item.icon
-          className={`w-6 h-6 ${isWithout ? "text-red-500" : "text-coral"}`}
+          className={`w-6 h-6 ${isWithout ? "text-red-500" : "text-emerald-600"}`}
         />
       </div>
       <div>
         <h4
           className={`font-bold mb-1 ${
-            isWithout ? "text-red-600" : "text-coral"
+            isWithout ? "text-red-600" : "text-emerald-700"
           }`}
         >
           {item.title}
         </h4>
-        <p className={`text-sm ${isWithout ? "text-red-500/70" : "text-navy/60"}`}>
+        <p className={`text-sm ${isWithout ? "text-red-500/70" : "text-emerald-600/70"}`}>
           {item.description}
         </p>
       </div>
@@ -204,9 +204,9 @@ export function Comparison() {
 
           {/* Center Divider */}
           <div className="hidden lg:flex flex-col items-center py-8">
-            <div className="w-px h-full bg-gradient-to-b from-red-200 via-border to-coral/30 relative">
+            <div className="w-px h-full bg-gradient-to-b from-red-200 via-border to-emerald-200 relative">
               <div
-                className="comparison-divider-fill absolute top-0 left-0 w-full bg-gradient-to-b from-red-400 via-coral to-coral"
+                className="comparison-divider-fill absolute top-0 left-0 w-full bg-gradient-to-b from-red-400 via-emerald-400 to-emerald-500"
               />
             </div>
           </div>
@@ -214,11 +214,11 @@ export function Comparison() {
           {/* With Us Column */}
           <div className="comparison-right space-y-4" data-animate>
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-coral/15 flex items-center justify-center">
-                <Check className="w-6 h-6 text-coral" />
+              <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center">
+                <Check className="w-6 h-6 text-emerald-600" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-coral">With OneSquad</h3>
+                <h3 className="text-xl font-bold text-emerald-700">With OneSquad</h3>
                 <p className="text-sm text-navy/60">What working with us looks like</p>
               </div>
             </div>

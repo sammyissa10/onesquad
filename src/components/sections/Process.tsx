@@ -46,9 +46,36 @@ export function Process() {
       },
     });
 
+    // Animate each step sequentially
     gsap.from('.process-step', {
       ...fadeUp({ y: 30 }),
-      stagger: 0.15,
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: '.process-grid',
+        start: TRIGGERS.standard,
+      },
+    });
+
+    // Animate the timeline progress line (scrub-based)
+    gsap.from('.timeline-progress', {
+      scaleX: 0,
+      transformOrigin: 'left center',
+      duration: 1.5,
+      ease: 'power1.inOut',
+      scrollTrigger: {
+        trigger: '.process-grid',
+        start: TRIGGERS.standard,
+        end: 'bottom 40%',
+        scrub: 1,
+      },
+    });
+
+    // Animate step dots appearing
+    gsap.from('.timeline-dot', {
+      scale: 0,
+      duration: 0.4,
+      stagger: 0.2,
+      ease: 'back.out(2)',
       scrollTrigger: {
         trigger: '.process-grid',
         start: TRIGGERS.standard,
@@ -60,7 +87,7 @@ export function Process() {
     <section ref={scope} className="bg-white text-navy py-20 md:py-28">
       <Container>
         {/* Section Header */}
-        <div className="process-heading text-center max-w-2xl mx-auto mb-12" data-animate>
+        <div className="process-heading text-center max-w-2xl mx-auto mb-16" data-animate>
           <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">
             Four Steps. No Bureaucracy. No Surprises.
           </h2>
@@ -69,33 +96,46 @@ export function Process() {
           </p>
         </div>
 
-        {/* Process Steps - clean 4-column grid */}
-        <div className="process-grid grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {processSteps.map((step) => (
-            <div
-              key={step.number}
-              className="process-step text-center p-6"
-              data-animate
-            >
-              {/* Step number */}
-              <div className="text-sm font-bold text-coral mb-4">
-                {step.number}
-              </div>
+        {/* Timeline Process Steps */}
+        <div className="process-grid relative">
+          {/* Horizontal timeline line (desktop only) */}
+          <div className="hidden lg:block absolute top-[52px] left-[calc(12.5%+24px)] right-[calc(12.5%+24px)] h-0.5 bg-navy/10">
+            <div className="timeline-progress absolute inset-0 bg-gradient-to-r from-coral via-coral to-peach rounded-full" />
+          </div>
 
-              {/* Icon */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+            {processSteps.map((step, index) => (
               <div
-                className="process-icon w-12 h-12 rounded-xl bg-coral/10 flex items-center justify-center mx-auto mb-4"
+                key={step.number}
+                className="process-step relative text-center"
+                data-animate
               >
-                <step.icon className="w-6 h-6 text-coral" />
-              </div>
+                {/* Vertical connector for mobile/tablet */}
+                {index < processSteps.length - 1 && (
+                  <div className="lg:hidden absolute left-1/2 top-[104px] w-0.5 h-8 bg-gradient-to-b from-coral/40 to-transparent -translate-x-1/2 sm:hidden" />
+                )}
 
-              {/* Content */}
-              <h3 className="text-lg font-bold text-navy mb-2">
-                {step.title}
-              </h3>
-              <p className="text-navy/60 text-sm">{step.description}</p>
-            </div>
-          ))}
+                {/* Step number */}
+                <div className="text-sm font-bold text-coral mb-3">
+                  {step.number}
+                </div>
+
+                {/* Timeline dot + icon */}
+                <div className="relative flex flex-col items-center mb-5">
+                  {/* Dot on the timeline */}
+                  <div className="timeline-dot w-12 h-12 rounded-full bg-coral/10 border-2 border-coral/30 flex items-center justify-center relative z-10 bg-white">
+                    <step.icon className="w-5 h-5 text-coral" />
+                  </div>
+                </div>
+
+                {/* Content */}
+                <h3 className="text-lg font-bold text-navy mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-navy/60 text-sm max-w-[220px] mx-auto">{step.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </Container>
     </section>

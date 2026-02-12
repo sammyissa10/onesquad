@@ -37,39 +37,37 @@ const caseStudies = [
     title: "Bloom Boutique",
     subtitle: "E-commerce Transformation",
     description:
-      "How we helped a local flower shop increase online sales by 340% and expand their delivery radius to 5 new cities.",
+      "A local flower shop struggling with a dated Wix site came to us wanting to sell arrangements online. We built a custom Shopify store with local delivery integration, ran targeted Instagram ads, and optimized their Google Business Profile. Within 6 months, online orders became their primary revenue channel.",
     industry: "Retail / E-commerce",
     services: ["Web Design", "E-commerce", "SEO", "Social Media"],
     results: [
-      { label: "Increase in Sales", value: "340%" },
-      { label: "New Customers", value: "1,200+" },
-      { label: "Website Traffic", value: "+180%" },
+      { label: "Online Revenue", value: "+340%" },
+      { label: "Monthly Orders", value: "1,200+" },
+      { label: "Organic Traffic", value: "+180%" },
     ],
     icon: ShoppingCart,
-    url: "https://www.optimonk.com/ecommerce-case-studies/",
   },
   {
     id: "techstart-solutions",
     title: "TechStart Solutions",
     subtitle: "B2B Lead Generation",
     description:
-      "Comprehensive digital marketing strategy that generated 500+ qualified leads in 6 months for a growing tech startup.",
+      "A SaaS startup burning $8K/month on unfocused Google Ads with almost no qualified leads. We rebuilt their landing pages, restructured ad campaigns around buyer intent keywords, and launched a content funnel with gated whitepapers. Cost per qualified lead dropped 45% while volume tripled.",
     industry: "Technology / B2B",
     services: ["SEO", "PPC", "Content Marketing", "Email Marketing"],
     results: [
       { label: "Qualified Leads", value: "500+" },
       { label: "Cost Per Lead", value: "-45%" },
-      { label: "Organic Rankings", value: "Top 3" },
+      { label: "Google Rankings", value: "Top 3" },
     ],
     icon: TrendingUp,
-    url: "https://sproutsocial.com/insights/case-studies/plaid/",
   },
   {
     id: "green-living",
     title: "Green Living Co.",
     subtitle: "Brand Identity & Growth",
     description:
-      "Complete brand refresh and digital presence overhaul that doubled their social media following and tripled engagement.",
+      "An eco-friendly home goods brand with great products but zero online presence. We designed a brand identity from scratch, built their website, and created a content-driven social media strategy focused on sustainability education. Their Instagram became a genuine community hub.",
     industry: "Sustainability / Lifestyle",
     services: ["Web Design", "Social Media", "Content Marketing"],
     results: [
@@ -78,34 +76,29 @@ const caseStudies = [
       { label: "Brand Awareness", value: "+150%" },
     ],
     icon: Users,
-    url: "https://www.socialpilot.co/blog/social-media-case-study",
   },
   {
     id: "metro-dental",
     title: "Metro Dental Group",
     subtitle: "Local SEO Dominance",
     description:
-      "Local SEO campaign that made this dental practice the #1 search result in their city, driving 80+ new patient appointments monthly.",
+      "A multi-location dental practice invisible in local search results despite great patient reviews. We optimized all Google Business Profiles, fixed NAP inconsistencies across 40+ directories, built location-specific landing pages, and implemented a review generation system. They now own the top 3 spots for every target keyword in their city.",
     industry: "Healthcare / Dental",
     services: ["Local SEO", "Web Design", "PPC", "Reputation Management"],
     results: [
-      { label: "New Patients/Month", value: "80+" },
+      { label: "New Patients/Mo", value: "80+" },
       { label: "Google Rankings", value: "#1" },
       { label: "Review Score", value: "4.9★" },
     ],
     icon: Globe,
-    url: "https://www.seoraf.com/local-seo-case-studies/",
   },
 ];
 
 function CaseStudyCard({ study }: { study: typeof caseStudies[0] }) {
   return (
     <motion.div variants={itemVariants} whileHover={{ y: -8 }} className="group">
-      <a
-        href={study.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full flex flex-col block"
+      <div
+        className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full flex flex-col"
       >
         {/* Image Placeholder */}
         <div
@@ -155,11 +148,14 @@ function CaseStudyCard({ study }: { study: typeof caseStudies[0] }) {
           </div>
 
           {/* CTA */}
-          <span className="inline-flex items-center gap-2 text-accent font-medium text-sm group-hover:gap-3 transition-all">
-            Read Full Case Study <ArrowRight size={16} />
-          </span>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 text-accent font-medium text-sm hover:gap-3 transition-all"
+          >
+            Get Similar Results <ArrowRight size={16} />
+          </Link>
         </div>
-      </a>
+      </div>
     </motion.div>
   );
 }
