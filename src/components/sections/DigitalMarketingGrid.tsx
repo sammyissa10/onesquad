@@ -41,9 +41,9 @@ export function DigitalMarketingGrid() {
       <Container>
         {/* Category Header */}
         <div className="dm-header mb-12" data-animate>
-          <div className="flex items-center gap-3 mb-4">
-            <span className="w-12 h-1 bg-coral rounded-full" />
-            <h2 className="text-3xl md:text-4xl font-black">
+          <div className="flex items-center gap-4 mb-4">
+            <span className="w-12 h-1 bg-coral rounded-full flex-shrink-0" />
+            <h2 className="text-2xl md:text-3xl font-black">
               Marketing That Actually Works
             </h2>
           </div>

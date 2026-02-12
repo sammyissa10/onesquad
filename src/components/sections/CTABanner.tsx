@@ -56,7 +56,7 @@ export function CTABanner() {
       <Container>
         <div className="cta-content text-center max-w-4xl mx-auto">
           <h2
-            className="cta-heading text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6"
+            className="cta-heading text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6"
             data-animate
           >
             Ready To Stop Guessing And{" "}

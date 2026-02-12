@@ -35,13 +35,13 @@ export function Hero() {
 
   return (
     <section ref={scope} className="relative min-h-[100vh] min-h-dvh bg-navy overflow-hidden">
-      <div className="hero-grid relative z-10 grid grid-cols-4 md:grid-cols-6 gap-3 md:gap-4 p-4 md:p-6 lg:p-8 min-h-[100vh] min-h-dvh">
+      <div className="hero-grid relative z-10 grid grid-cols-4 md:grid-cols-6 gap-4 md:gap-5 lg:gap-6 p-4 md:p-6 lg:p-8 min-h-[100vh] min-h-dvh">
         {/* 1. Headline Block - Desktop: col-span-3 row-span-2 */}
         <div
           className="hero-headline col-span-4 md:col-span-3 md:row-span-2 flex flex-col justify-center gap-6 md:gap-8"
           data-animate
         >
-          <h1 className="text-5xl md:text-7xl lg:text-[6rem] xl:text-display font-black leading-[0.9] text-white tracking-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-display font-black leading-[0.9] text-white tracking-tight">
             We Build Digital{" "}
             <span className="text-coral">Empires</span>{" "}
             For Small Businesses
@@ -84,7 +84,7 @@ export function Hero() {
           data-animate
         >
           <div className="text-center">
-            <div className="text-4xl md:text-6xl lg:text-7xl font-black text-white/95 leading-tight">
+            <div className="text-3xl md:text-4xl lg:text-5xl font-black text-white/95 leading-tight">
               {siteConfig.tagline}
             </div>
             <div className="mt-6 text-lg md:text-xl text-white/80 font-medium">
@@ -99,7 +99,7 @@ export function Hero() {
           data-cursor="card"
           data-animate
         >
-          <div className="text-4xl md:text-5xl font-bold text-white">
+          <div className="text-3xl md:text-4xl font-bold text-white">
             {stats[0].value}
           </div>
           <div className="text-white/60 text-sm md:text-base mt-2">

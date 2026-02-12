@@ -90,7 +90,7 @@ export function Testimonials() {
           className="testimonials-heading text-center max-w-2xl mx-auto mb-16"
           data-animate
         >
-          <h2 className="text-3xl md:text-5xl font-black text-navy mb-6">
+          <h2 className="text-3xl md:text-4xl font-black text-navy mb-6">
             Don&apos;t Take Our Word For It.{" "}
             <span className="text-coral">Take Theirs.</span>
           </h2>
@@ -112,7 +112,7 @@ export function Testimonials() {
                 className={`testimonial-card-${index} ${style.bg} ${style.text} ${style.padding} ${style.rounded} ${style.colSpan} hover:scale-[1.02] transition-transform duration-300`}
               >
                 {/* Large decorative quote mark */}
-                <div className={`text-6xl md:text-7xl font-serif leading-none mb-4 ${style.quoteColor}`}>
+                <div className={`text-5xl md:text-6xl font-serif leading-none mb-3 ${style.quoteColor}`}>
                   &ldquo;
                 </div>
 

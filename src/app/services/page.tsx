@@ -42,7 +42,7 @@ export default function ServicesPage() {
               className="services-cta text-center max-w-3xl mx-auto"
               data-animate
             >
-              <h2 className="text-3xl md:text-5xl font-black mb-6">
+              <h2 className="text-3xl md:text-4xl font-black mb-6">
                 Ready To Stop{" "}
                 <span className="text-coral">Doing Everything Yourself?</span>
               </h2>

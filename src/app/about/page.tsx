@@ -150,7 +150,7 @@ export default function AboutPage() {
           <Container size="xl">
             <div>
               <h1
-                className="about-hero-headline text-5xl md:text-7xl lg:text-[6rem] xl:text-display font-black text-white leading-[0.9] tracking-tight"
+                className="about-hero-headline text-4xl md:text-5xl lg:text-6xl xl:text-display font-black text-white leading-[0.9] tracking-tight"
                 data-animate
               >
                 We Don&apos;t Do Average.
@@ -178,7 +178,7 @@ export default function AboutPage() {
                 <p className="text-sm font-semibold text-coral uppercase tracking-widest mb-6">
                   The Story
                 </p>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-navy leading-[0.9] tracking-tight mb-8">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-navy leading-[0.9] tracking-tight mb-8">
                   Two Become One.
                 </h2>
                 <div className="space-y-6 text-lg text-navy/70 leading-relaxed">
@@ -200,7 +200,7 @@ export default function AboutPage() {
                   className="aspect-square bg-gradient-to-br from-coral to-peach rounded-3xl flex items-center justify-center"
                   data-cursor="card"
                 >
-                  <div className="text-[8rem] md:text-[10rem] font-black text-white/20 select-none">
+                  <div className="text-[5rem] md:text-[7rem] font-black text-white/20 select-none">
                     1S
                   </div>
                 </div>
@@ -219,7 +219,7 @@ export default function AboutPage() {
             <div className="space-y-20 md:space-y-28">
               {/* Value 1 */}
               <div className="about-value" data-animate>
-                <h3 className="about-value-headline text-5xl md:text-7xl lg:text-[5.5rem] font-black text-white leading-[0.9] tracking-tight" data-animate>
+                <h3 className="about-value-headline text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[0.9] tracking-tight" data-animate>
                   We Remember <span className="text-coral">Your Name.</span>
                 </h3>
                 <p className="about-value-subtitle text-xl md:text-2xl text-white/50 max-w-3xl leading-relaxed mt-6" data-animate>
@@ -229,7 +229,7 @@ export default function AboutPage() {
 
               {/* Value 2 */}
               <div className="about-value" data-animate>
-                <h3 className="about-value-headline text-5xl md:text-7xl lg:text-[5.5rem] font-black text-white leading-[0.9] tracking-tight" data-animate>
+                <h3 className="about-value-headline text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[0.9] tracking-tight" data-animate>
                   We&apos;d Rather <span className="text-coral">Say No.</span>
                 </h3>
                 <p className="about-value-subtitle text-xl md:text-2xl text-white/50 max-w-3xl leading-relaxed mt-6" data-animate>
@@ -239,7 +239,7 @@ export default function AboutPage() {
 
               {/* Value 3 */}
               <div className="about-value" data-animate>
-                <h3 className="about-value-headline text-5xl md:text-7xl lg:text-[5.5rem] font-black text-white leading-[0.9] tracking-tight" data-animate>
+                <h3 className="about-value-headline text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[0.9] tracking-tight" data-animate>
                   We Never Stop <span className="text-coral">Learning.</span>
                 </h3>
                 <p className="about-value-subtitle text-xl md:text-2xl text-white/50 max-w-3xl leading-relaxed mt-6" data-animate>
@@ -258,7 +258,7 @@ export default function AboutPage() {
         >
           <Container size="xl">
             <div className="max-w-4xl mx-auto">
-              <h2 className="about-editorial-heading text-4xl md:text-5xl lg:text-6xl font-black text-navy leading-[0.9] tracking-tight text-center mb-10" data-animate>
+              <h2 className="about-editorial-heading text-3xl md:text-4xl lg:text-5xl font-black text-navy leading-[0.9] tracking-tight text-center mb-10" data-animate>
                 Small Team. Big Standards.
               </h2>
               <div className="space-y-6">
@@ -284,7 +284,7 @@ export default function AboutPage() {
         >
           <Container size="xl">
             <div className="text-center">
-              <h2 className="about-cta-heading text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[0.9] tracking-tight" data-animate>
+              <h2 className="about-cta-heading text-3xl md:text-4xl lg:text-5xl font-black text-white leading-[0.9] tracking-tight" data-animate>
                 Ready to Join <span className="text-coral">the Squad</span>?
               </h2>
               <p className="about-cta-text text-xl text-white/60 mt-6 mb-10" data-animate>

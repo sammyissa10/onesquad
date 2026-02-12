@@ -72,7 +72,7 @@ function ComparisonCard({
 
   return (
     <div
-      className={`comparison-card flex items-start gap-4 p-4 rounded-xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 ${
+      className={`comparison-card flex items-start gap-5 p-5 rounded-xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 ${
         isWithout
           ? "bg-red-500/10 border border-red-500/20 hover:shadow-red-500/10"
           : "bg-coral/10 border border-coral/20 hover:shadow-coral/10"
@@ -170,7 +170,7 @@ export function Comparison() {
       <Container>
         {/* Section Header */}
         <div className="comparison-header text-center max-w-3xl mx-auto mb-16" data-animate>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-6">
             What Changes When You Stop{" "}
             <span className="text-coral">Doing It Alone</span>
           </h2>
@@ -180,7 +180,7 @@ export function Comparison() {
         </div>
 
         {/* Comparison Grid */}
-        <div className="comparison-grid grid lg:grid-cols-[1fr_auto_1fr] gap-8 lg:gap-4 items-start">
+        <div className="comparison-grid grid lg:grid-cols-[1fr_auto_1fr] gap-8 lg:gap-6 items-start">
           {/* Without Us Column */}
           <div className="comparison-left space-y-4" data-animate>
             <div className="flex items-center gap-3 mb-6">

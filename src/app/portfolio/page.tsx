@@ -172,7 +172,7 @@ export default function PortfolioPage() {
                 {templates.length} Projects
               </span>
               <h1
-                className="hero-headline text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
+                className="hero-headline text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
                 data-animate
               >
                 Our Work Speaks. Loudly.
@@ -273,7 +273,7 @@ export default function PortfolioPage() {
           <Container>
             <div className="text-center max-w-3xl mx-auto">
               <h2
-                className="cta-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6"
+                className="cta-heading text-3xl md:text-4xl font-bold text-white mb-6"
                 data-animate
               >
                 Don't See What You Need? Let's Build It.

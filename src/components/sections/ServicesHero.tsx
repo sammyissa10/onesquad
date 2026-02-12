@@ -46,7 +46,7 @@ export function ServicesHero() {
       <Container>
         <div className="services-hero-content max-w-5xl">
           <h1
-            className="services-hero-headline text-4xl md:text-6xl lg:text-7xl xl:text-display font-black leading-[0.9] mb-8"
+            className="services-hero-headline text-3xl md:text-5xl lg:text-6xl xl:text-display font-black leading-[0.9] mb-8"
             data-animate
           >
             Digital Services That Actually{" "}

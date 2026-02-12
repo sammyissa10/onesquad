@@ -253,7 +253,7 @@ export default function PricingPage() {
             <Container>
               <div className="text-center max-w-4xl mx-auto">
                 <h1
-                  className="text-5xl md:text-6xl xl:text-7xl font-heading font-bold text-white mb-6 pricing-hero-h1"
+                  className="text-4xl md:text-5xl xl:text-6xl font-heading font-bold text-white mb-6 pricing-hero-h1"
                   data-animate
                 >
                   Stop Guessing.{" "}
@@ -306,7 +306,7 @@ export default function PricingPage() {
           {/* Tier Gateway Cards - White background with distinct cards */}
           <section className="bg-white py-24 md:py-32">
             <Container>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                 {/* Social Media Card - Coral stripe, scale hover */}
                 <div>
                   <Link href="/pricing/social">
@@ -319,7 +319,7 @@ export default function PricingPage() {
 
                       {/* Content */}
                       <div className="p-8">
-                        <div className="text-4xl mb-4">📱</div>
+                        <div className="text-3xl mb-3">📱</div>
                         <h3 className="text-2xl font-heading font-bold text-primary mb-2">
                           Social Media
                         </h3>
@@ -348,7 +348,7 @@ export default function PricingPage() {
                     >
                       {/* Content */}
                       <div className="p-8 md:p-10">
-                        <div className="text-4xl mb-4">💻</div>
+                        <div className="text-3xl mb-3">💻</div>
                         <h3 className="text-2xl font-heading font-bold text-primary mb-2">
                           Websites
                         </h3>
@@ -383,7 +383,7 @@ export default function PricingPage() {
                     >
                       {/* Content */}
                       <div className="p-8">
-                        <div className="text-4xl mb-4">🛒</div>
+                        <div className="text-3xl mb-3">🛒</div>
                         <h3 className="text-2xl font-heading font-bold text-primary mb-2">
                           E-Commerce
                         </h3>
@@ -411,10 +411,10 @@ export default function PricingPage() {
               <div>
                 {/* Section heading */}
                 <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-white mb-4">
                     Looking for Hosting or Managed Services?
                   </h2>
-                  <p className="text-xl text-white/70 max-w-2xl mx-auto">
+                  <p className="text-lg text-white/70 max-w-2xl mx-auto">
                     Full-service plans with everything handled for you.
                   </p>
                 </div>

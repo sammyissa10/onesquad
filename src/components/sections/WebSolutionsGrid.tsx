@@ -46,9 +46,9 @@ export function WebSolutionsGrid() {
       <Container>
         {/* Category Header */}
         <div className="ws-header mb-12" data-animate>
-          <div className="flex items-center gap-3 mb-4">
-            <span className="w-12 h-1 bg-blue rounded-full" />
-            <h2 className="text-3xl md:text-5xl font-black">
+          <div className="flex items-center gap-4 mb-4">
+            <span className="w-12 h-1 bg-blue rounded-full flex-shrink-0" />
+            <h2 className="text-2xl md:text-4xl font-black">
               Web Solutions Built To Last
             </h2>
           </div>

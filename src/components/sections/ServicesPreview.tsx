@@ -60,7 +60,7 @@ export function ServicesPreview() {
       <Container>
         {/* Section Header */}
         <div className="services-heading text-center max-w-2xl mx-auto mb-16" data-animate>
-          <h2 className="text-3xl md:text-5xl font-bold text-navy mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy mb-6">
             Everything You Need.{" "}
             <span className="text-coral">Zero Bloat.</span>
           </h2>
@@ -73,8 +73,8 @@ export function ServicesPreview() {
         <div className="space-y-16">
           {/* Web Solutions */}
           <div>
-            <h3 className="text-2xl font-black text-navy mb-8 flex items-center gap-3">
-              <span className="w-12 h-1 bg-blue rounded-full" />
+            <h3 className="text-2xl font-black text-navy mb-8 flex items-center gap-4">
+              <span className="w-12 h-1 bg-blue rounded-full flex-shrink-0" />
               Web Solutions
             </h3>
             <div className="ws-cards grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -110,8 +110,8 @@ export function ServicesPreview() {
 
           {/* Digital Marketing */}
           <div>
-            <h3 className="text-xl font-bold text-navy mb-8 flex items-center gap-3">
-              <span className="w-12 h-1 bg-coral rounded-full" />
+            <h3 className="text-xl font-bold text-navy mb-8 flex items-center gap-4">
+              <span className="w-12 h-1 bg-coral rounded-full flex-shrink-0" />
               Digital Marketing
             </h3>
             <div className="dm-cards grid sm:grid-cols-2 lg:grid-cols-3 gap-6">

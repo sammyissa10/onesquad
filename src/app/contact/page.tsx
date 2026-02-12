@@ -262,7 +262,7 @@ export default function ContactPage() {
               data-cursor-text="Say Hi"
             >
               <h1
-                className="contact-hero-headline text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[0.9] mb-6"
+                className="contact-hero-headline text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[0.9] mb-6"
                 data-animate
               >
                 Let&apos;s Build Something <span className="text-coral">Together.</span>

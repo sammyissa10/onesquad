@@ -37,7 +37,7 @@ export function Features() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left — heading and description */}
           <div className="features-heading lg:sticky lg:top-32" data-animate>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6">
               Why Businesses Ditch Their Old Agency For Us
             </h2>
             <p className="text-white/60 text-lg">

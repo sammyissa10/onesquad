@@ -78,7 +78,7 @@ export function Process() {
       <Container size="md">
         {/* Section Header */}
         <div className="process-heading text-center max-w-2xl mx-auto mb-16" data-animate>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-6">
             Four Steps. No Bureaucracy. No Surprises.
           </h2>
           <p className="text-white/60 text-lg">
@@ -102,9 +102,9 @@ export function Process() {
                 data-animate
               >
                 {/* Content with oversized number watermark */}
-                <div className={`flex-1 pl-20 md:pl-0 ${isLeft ? "md:text-right" : "md:text-left"} relative`}>
+                <div className={`flex-1 pl-22 md:pl-0 ${isLeft ? "md:text-right" : "md:text-left"} relative`}>
                   {/* Oversized watermark number */}
-                  <div className={`absolute ${isLeft ? "md:-right-4" : "md:-left-4"} -top-8 text-7xl md:text-8xl font-black text-white/5 pointer-events-none`}>
+                  <div className={`absolute ${isLeft ? "md:-right-4" : "md:-left-4"} -top-6 text-6xl md:text-7xl font-black text-white/5 pointer-events-none`}>
                     {step.number}
                   </div>
 
@@ -118,7 +118,7 @@ export function Process() {
 
                 {/* Icon node on the line */}
                 <div
-                  className="process-icon absolute left-2 md:left-1/2 md:-translate-x-1/2 w-14 h-14 rounded-xl bg-coral/20 flex items-center justify-center z-10 border-4 border-navy"
+                  className="process-icon absolute left-3 md:left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-xl bg-coral/20 flex items-center justify-center z-10 border-4 border-navy"
                   data-animate
                 >
                   <step.icon className="w-6 h-6 text-coral" />
