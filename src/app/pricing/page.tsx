@@ -461,17 +461,14 @@ export default function PricingPage() {
                       )}
                     </button>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Tab description */}
-                <motion.p
-                  variants={hostingCardVariants}
-                  className="text-center text-white/70 mb-12 max-w-2xl mx-auto"
-                >
+                <p className="text-center text-white/70 mb-12 max-w-2xl mx-auto">
                   {activeTab === "hosting"
                     ? "For businesses that need reliable hosting with professional support. Add features as you grow."
                     : "Let us handle everything — your website, marketing, and brand management, all in one plan."}
-                </motion.p>
+                </p>
 
                 {/* Plans grid */}
                 <div
@@ -495,10 +492,7 @@ export default function PricingPage() {
                 </div>
 
                 {/* Included with every plan - small line at bottom */}
-                <motion.div
-                  variants={hostingCardVariants}
-                  className="mt-12 pt-8 border-t border-white/10"
-                >
+                <div className="mt-12 pt-8 border-t border-white/10">
                   <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
                     <span className="text-sm text-white/60 font-medium">
                       Included with every plan:
@@ -510,8 +504,8 @@ export default function PricingPage() {
                       </div>
                     ))}
                   </div>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             </Container>
           </section>
 
@@ -546,7 +540,6 @@ export default function PricingPage() {
             </Container>
           </section>
         </main>
-      </MotionConfig>
       <Footer />
     </>
   );

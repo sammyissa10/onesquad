@@ -1,19 +1,31 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { Header, Footer } from "@/components/layout";
 import { ServicesHero, DigitalMarketingGrid, WebSolutionsGrid } from "@/components/sections";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { fadeUp, TRIGGERS } from "@/lib/scrollAnimations";
 
 export default function ServicesPage() {
+  const { scope } = useScrollAnimation(({ gsap }) => {
+    // CTA section: simple fadeUp
+    gsap.from('.services-cta', {
+      ...fadeUp(),
+      scrollTrigger: {
+        trigger: '.services-cta',
+        start: TRIGGERS.standard,
+      },
+    });
+  });
+
   return (
     <>
       <Header />
 
-      <main>
+      <main ref={scope}>
         {/* Hero Section - Dark (Navy) */}
         <ServicesHero />
 
@@ -26,12 +38,9 @@ export default function ServicesPage() {
         {/* CTA Section - Light (Peach Tinted) */}
         <section className="bg-peach/10 text-navy py-20 md:py-28">
           <Container>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center max-w-3xl mx-auto"
+            <div
+              className="services-cta text-center max-w-3xl mx-auto"
+              data-animate
             >
               <h2 className="text-3xl md:text-5xl font-black mb-6">
                 Ready To Stop{" "}
@@ -60,7 +69,7 @@ export default function ServicesPage() {
                   </Link>
                 </MagneticButton>
               </div>
-            </motion.div>
+            </div>
           </Container>
         </section>
       </main>

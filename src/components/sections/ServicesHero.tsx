@@ -1,45 +1,69 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { fadeIn, stagger } from "@/lib/animations";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { fadeUp, TRIGGERS } from "@/lib/scrollAnimations";
 
 export function ServicesHero() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const { scope } = useScrollAnimation(({ gsap }) => {
+    // Headline: dramatic fadeUp with power3 easing
+    gsap.from('.services-hero-headline', {
+      opacity: 0,
+      y: 60,
+      duration: 0.9,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.services-hero-content',
+        start: TRIGGERS.hero,
+      },
+    });
+
+    // Subtext: fadeUp with 0.15s delay
+    gsap.from('.services-hero-subtext', {
+      ...fadeUp(),
+      delay: 0.15,
+      scrollTrigger: {
+        trigger: '.services-hero-content',
+        start: TRIGGERS.hero,
+      },
+    });
+
+    // Buttons: fadeUp with 0.3s delay
+    gsap.from('.services-hero-buttons', {
+      ...fadeUp(),
+      delay: 0.3,
+      scrollTrigger: {
+        trigger: '.services-hero-content',
+        start: TRIGGERS.hero,
+      },
+    });
+  });
 
   return (
-    <section className="bg-navy text-white py-28 md:py-40">
+    <section ref={scope} className="bg-navy text-white py-28 md:py-40">
       <Container>
-        <motion.div
-          ref={ref}
-          variants={stagger(0.12)}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="max-w-5xl"
-        >
-          <motion.h1
-            variants={fadeIn}
-            className="text-4xl md:text-6xl lg:text-7xl xl:text-display font-black leading-[0.9] mb-8"
+        <div className="services-hero-content max-w-5xl">
+          <h1
+            className="services-hero-headline text-4xl md:text-6xl lg:text-7xl xl:text-display font-black leading-[0.9] mb-8"
+            data-animate
           >
             Digital Services That Actually{" "}
             <span className="text-coral">Move The Needle</span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeIn}
-            className="text-white/60 text-xl mb-12 max-w-2xl"
+          <p
+            className="services-hero-subtext text-white/60 text-xl mb-12 max-w-2xl"
+            data-animate
           >
             Two categories. Ten services. One team that knows your name.
-          </motion.p>
+          </p>
 
-          <motion.div
-            variants={fadeIn}
-            className="flex flex-col sm:flex-row gap-4"
+          <div
+            className="services-hero-buttons flex flex-col sm:flex-row gap-4"
+            data-animate
           >
             <MagneticButton>
               <Link href="#digital-marketing">
@@ -65,8 +89,8 @@ export function ServicesHero() {
                 </Button>
               </Link>
             </MagneticButton>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </Container>
     </section>
   );
