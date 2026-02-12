@@ -87,20 +87,59 @@ export function Comparison() {
       },
     });
 
-    // Coral divider: scrub-linked animation
-    gsap.from('.comparison-divider', {
-      scaleX: 0,
-      transformOrigin: 'left',
-      duration: 1.5,
-      ease: 'power1.inOut',
+    // Coral divider: scrub-linked multi-element timeline
+    const dividerTl = gsap.timeline({
       scrollTrigger: {
         trigger: '.comparison-divider',
         start: TRIGGERS.standard,
-        end: 'bottom 30%',
+        end: 'bottom 20%',
         scrub: 1,
         invalidateOnRefresh: true,
       },
     });
+
+    // Ring scales in from nothing
+    dividerTl.from('.divider-ring', {
+      scale: 0,
+      autoAlpha: 0,
+      duration: 0.5,
+      ease: 'back.out(1.4)',
+    }, 0);
+
+    // Horizontal lines grow outward from center
+    dividerTl.from('.divider-line-left', {
+      scaleX: 0,
+      transformOrigin: 'right',
+      duration: 0.6,
+      ease: 'power2.inOut',
+    }, 0.2);
+
+    dividerTl.from('.divider-line-right', {
+      scaleX: 0,
+      transformOrigin: 'left',
+      duration: 0.6,
+      ease: 'power2.inOut',
+    }, 0.2);
+
+    // Text clips in from center outward
+    dividerTl.from('.divider-text', {
+      clipPath: 'inset(0 50% 0 50%)',
+      autoAlpha: 0,
+      duration: 0.5,
+      ease: 'power2.out',
+    }, 0.3);
+
+    // Ring pulses slightly
+    dividerTl.to('.divider-ring', {
+      scale: 1.15,
+      duration: 0.15,
+      ease: 'power1.inOut',
+    }, 0.5);
+    dividerTl.to('.divider-ring', {
+      scale: 1,
+      duration: 0.15,
+      ease: 'power1.inOut',
+    }, 0.65);
 
     // Ensure cards start visible - GSAP will manage opacity via ScrollTrigger
     gsap.set('.with-card', { autoAlpha: 1 });
@@ -170,16 +209,19 @@ export function Comparison() {
           </div>
         </div>
 
-        {/* Coral Divider - Dramatic Visual Break */}
-        <div className="comparison-divider relative h-16 flex items-center justify-center mb-12 md:mb-16" data-animate>
-          <div className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-coral to-transparent" />
-          <div className="relative bg-[#0e1e36] px-6">
-            <div className="w-12 h-12 rounded-full bg-coral/10 border-2 border-coral flex items-center justify-center">
-              <svg className="w-6 h-6 text-coral" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </div>
-          </div>
+        {/* Coral Divider - Dramatic Narrative Pivot */}
+        <div className="comparison-divider relative h-32 md:h-40 flex flex-col items-center justify-center mb-12 md:mb-16" data-animate>
+          {/* Horizontal lines extending from ring */}
+          <div className="absolute left-0 right-[calc(50%+2.5rem)] top-1/2 -translate-y-1/2 h-px divider-line-left bg-coral/40" />
+          <div className="absolute right-0 left-[calc(50%+2.5rem)] top-1/2 -translate-y-1/2 h-px divider-line-right bg-coral/40" />
+
+          {/* Expanding glow ring */}
+          <div className="divider-ring w-20 h-20 rounded-full border-2 border-coral shadow-[0_0_30px_rgba(255,107,107,0.3)] flex items-center justify-center relative z-10 bg-[#0e1e36]" />
+
+          {/* Text reveal */}
+          <p className="divider-text font-serif italic text-2xl md:text-3xl text-coral mt-3 relative z-10">
+            but what if&hellip;
+          </p>
         </div>
 
         {/* With Section - Elevated Premium Cards */}
