@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 Phase: 8 of 8 (Scroll Animations Site-wide)
 Plan: 5 of 5
 Status: Complete
-Last activity: 2026-02-12 - Completed 08-05: Visual verification of scroll animations across all pages
+Last activity: 2026-02-12 - Completed quick task 8: Replace hero gradient box with animated website builder sequence
 
 Progress: [████████████████████] 100%
 
