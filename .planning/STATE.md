@@ -156,12 +156,13 @@ None yet.
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
 | 1 | Add Playwright e2e testing with GitHub Actions CI | 2026-02-11 | 2279d83 | [1-add-playwright-e2e-testing-with-github-a](./quick/1-add-playwright-e2e-testing-with-github-a/) |
+| 2 | Fix night mode button not working | 2026-02-12 | f1e79e0 | [2-fix-night-mode-button-not-working](./quick/2-fix-night-mode-button-not-working/) |
 
 ## Session Continuity
 
-Last session: 2026-02-12 (phase execution)
-Stopped at: Completed 08-05-PLAN.md
-Resume file: .planning/phases/08-scroll-animations-site-wide/08-05-SUMMARY.md
+Last session: 2026-02-12 (quick task execution)
+Stopped at: Completed quick-02-PLAN.md
+Resume file: .planning/quick/2-fix-night-mode-button-not-working/2-SUMMARY.md
 
 **Phase 08 Status:** COMPLETE (5 of 5 plans complete)
 - 08-01: GSAP scroll animation presets and homepage conversion (complete)
