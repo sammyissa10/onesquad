@@ -185,6 +185,30 @@ html.lenis.lenis-smooth {
   background-color: var(--muted);
 }
 
+/* Dark mode: navy sections use slightly lighter dark shade for contrast */
+.dark .bg-navy {
+  background-color: #0e1e36;
+}
+.dark .bg-\[#0F172A\] {
+  background-color: #0e1e36;
+}
+.dark .bg-\[#051733\] {
+  background-color: #0e1e36;
+}
+
+/* Dark mode: ensure coral/peach accents stay vibrant */
+.dark .border-coral {
+  border-color: var(--accent);
+}
+
+/* Smooth theme transition - only applied during manual toggle via .transitioning class */
+html.transitioning,
+html.transitioning *,
+html.transitioning *::before,
+html.transitioning *::after {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
 /* Custom cursor: hide on touch devices */
 @media (pointer: coarse) and (hover: none) {
   .custom-cursor {
