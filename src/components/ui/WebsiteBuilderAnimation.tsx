@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
-import { gsap, MOTION_QUERIES } from "@/lib/gsap";
+import { gsap, ScrollTrigger, MOTION_QUERIES } from "@/lib/gsap";
 
 interface WebsiteBuilderAnimationProps {
   className?: string;
@@ -95,6 +95,17 @@ export function WebsiteBuilderAnimation({ className = "" }: WebsiteBuilderAnimat
         tl.to(".mock-el", { autoAlpha: 0, duration: 0.4 });
 
         // Timeline automatically repeats due to repeat: -1 and repeatDelay: 1.5
+
+        // Pause timeline when scrolled out of viewport to reduce main thread work
+        ScrollTrigger.create({
+          trigger: containerRef.current,
+          start: 'top bottom',    // element top reaches viewport bottom (entering)
+          end: 'bottom top',      // element bottom passes viewport top (leaving)
+          onEnter: () => tl.play(),
+          onLeave: () => tl.pause(),
+          onEnterBack: () => tl.play(),
+          onLeaveBack: () => tl.pause(),
+        });
       });
 
       // Reduced motion branch - show static completed state
