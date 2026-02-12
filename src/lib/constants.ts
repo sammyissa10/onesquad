@@ -243,7 +243,7 @@ export const services: Service[] = [
       "Cross-browser compatibility",
     ],
     results: [
-      { metric: "29+", description: "Websites designed and launched" },
+      { metric: "21+", description: "Websites designed and launched" },
       { metric: "95%", description: "Mobile-friendly score" },
       { metric: "2-4 wks", description: "Average delivery time" },
     ],
@@ -571,7 +571,7 @@ export const includedWithEveryPlan = [
 
 // Stats for social proof
 export const stats = [
-  { value: "29+", label: "Websites Launched" },
+  { value: "21+", label: "Websites Launched" },
   { value: "2–4 wk", label: "Avg. Launch Time" },
   { value: "24/7", label: "Uptime Monitoring" },
   { value: "0", label: "Long-term Contracts" },
