@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 ## Current Position
 
 Phase: 8 of 8 (Scroll Animations Site-wide)
-Plan: 3 of 5
+Plan: 4 of 5
 Status: In Progress
-Last activity: 2026-02-12 - Completed 08-03: Service detail and pricing pages scroll animations
+Last activity: 2026-02-12 - Completed 08-04: Portfolio, contact, and about pages GSAP scroll animations
 
-Progress: [██████████████████] 90%
+Progress: [███████████████████] 90%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 23
+- Total plans completed: 24
 - Average duration: 3.6 minutes
-- Total execution time: 1.38 hours
+- Total execution time: 1.58 hours
 
 **By Phase:**
 
@@ -34,13 +34,14 @@ Progress: [██████████████████] 90%
 | 05 | 4 | 19m | 4.8m |
 | 06 | 2 | 12m | 6m |
 | 07 | 3 | 5.6m | 1.9m |
-| 08 | 3 | 19m | 6.3m |
+| 08 | 4 | 31m | 7.8m |
 
 **Recent Trend:**
 - Last 5 plans: 07-02 (2.4m), 07-03 (0.5m), 08-01 (10m), 08-02 (est. 0m), 08-03 (9m)
 - Trend: Phase 08 in progress - Service detail and pricing pages converted to GSAP scroll animations
 
 *Updated after each plan completion*
+| Phase 08 P02 | 11 | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -125,6 +126,16 @@ Recent decisions affecting current work:
 - **08-03:** Service detail sections use 5+ distinct animation effects for varied personality (fadeUp with power3, scaleReveal stagger, slideFromRight, cascade delays)
 - **08-03:** Pricing tier cards use different hover patterns per tier (scale for Social, glow for Website, lift+shadow for Ecommerce) via CSS Tailwind classes
 - **08-03:** Keep Framer Motion for interactive animations only (FAQ accordion expand/collapse, tab indicator layoutId spring) - GSAP for scroll reveals
+- [Phase 08-02]: PortfolioPreview uses clip-path reveal (bottom) for heading - creates dramatic upward reveal effect
+- **08-04:** Portfolio filter bar NOT animated - navigation elements should be immediately available
+- **08-04:** Portfolio cards animate only on initial scroll, not on filter changes (AnimatePresence handles filter transitions)
+- **08-04:** Contact sidebar slides from left, form from right with 0.15s delay (asymmetric panels opening effect)
+- **08-04:** About values use dramatic y:80 fadeUp with power3.out (manifesto unfolding - most dramatic on site)
+- **08-04:** Kept motion.div for contact quote summary and success state (conditional mount animations, not scroll)
+- [Phase 08-02]: Process steps use alternating slide-in (left/right) with individual ScrollTriggers per step for natural scroll-linked reveals
+- [Phase 08-02]: Testimonials use varied-timing reveals (mixed scaleReveal/fadeUp with staggered delays) - popcorn effect prevents uniform grid feel
+- [Phase 08-02]: ServicesHero uses power3.out easing (heavier than default power2) for bold, confident headline entrance
+- [Phase 08-02]: DigitalMarketingGrid cards stagger from center - emanating effect fits marketing theme
 
 ### Pending Todos
 
