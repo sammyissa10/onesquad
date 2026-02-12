@@ -163,12 +163,13 @@ None yet.
 | 1 | Add Playwright e2e testing with GitHub Actions CI | 2026-02-11 | 2279d83 | [1-add-playwright-e2e-testing-with-github-a](./quick/1-add-playwright-e2e-testing-with-github-a/) |
 | 2 | Fix night mode button not working | 2026-02-12 | f1e79e0 | [2-fix-night-mode-button-not-working](./quick/2-fix-night-mode-button-not-working/) |
 | 3 | Fix scroll glitching on pages | 2026-02-12 | b808eaf | [3-fix-scroll-glitching-on-pages](./quick/3-fix-scroll-glitching-on-pages/) |
+| 4 | Fix With/Without OneSquad comparison section animations | 2026-02-12 | 7730b51 | [4-fix-with-without-onesquad-comparison-ani](./quick/4-fix-with-without-onesquad-comparison-ani/) |
 
 ## Session Continuity
 
 Last session: 2026-02-12 (quick task execution)
-Stopped at: Completed quick-03-PLAN.md
-Resume file: .planning/quick/3-fix-scroll-glitching-on-pages/3-SUMMARY.md
+Stopped at: Completed quick-04-PLAN.md
+Resume file: .planning/quick/4-fix-with-without-onesquad-comparison-ani/4-SUMMARY.md
 
 **Phase 08 Status:** COMPLETE (5 of 5 plans complete)
 - 08-01: GSAP scroll animation presets and homepage conversion (complete)
