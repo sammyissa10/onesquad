@@ -16,16 +16,16 @@ import { fadeUp, scaleReveal, slideFromRight, TRIGGERS } from "@/lib/scrollAnima
 
 // Service-specific taglines
 const serviceTaglines: Record<string, string> = {
-  "digital-marketing": "Campaigns that fill your pipeline, not just your dashboard.",
-  "seo": "Get found by people who are ready to buy.",
-  "social-media": "Show up where your customers actually hang out.",
-  "email-marketing": "The inbox is still king. We help you rule it.",
-  "ppc": "Every dollar tracked. Every click counts.",
-  "content-marketing": "Content that earns trust before you even shake hands.",
+  "digital-marketing": "Marketing that brings in customers, not just likes and clicks.",
+  "seo": "Get found when people search for what you sell.",
+  "social-media": "Show up where your customers spend their time scrolling.",
+  "email-marketing": "Stay in their inbox without being annoying.",
+  "ppc": "Paid ads that don&apos;t waste your budget.",
+  "content-marketing": "Write stuff people want to read, not marketing fluff.",
   "web-design": "Websites that look like you, not like a template.",
-  "ecommerce": "Your 24/7 storefront, built to convert.",
-  "hosting": "Fast, secure, always on. We handle the boring stuff.",
-  "maintenance": "Updates, fixes, and peace of mind. On autopilot.",
+  "ecommerce": "An online store that&apos;s easy to run and easier to buy from.",
+  "hosting": "Fast, secure, always online. We handle the technical stuff.",
+  "maintenance": "We keep your site updated so you don&apos;t have to think about it.",
 };
 
 function ServiceFAQItem({ faq, isLast }: { faq: { question: string; answer: string }; isLast: boolean }) {

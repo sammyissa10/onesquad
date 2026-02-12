@@ -34,7 +34,7 @@ const teamMembers = [
   {
     name: "Alex Johnson",
     role: "Founder & CEO",
-    bio: "10+ years in digital marketing. Former agency director at a Fortune 500 company. Passionate about helping SMBs compete with enterprise brands.",
+    bio: "Started OneSquad after getting tired of seeing small businesses getting sold overpriced junk by agencies. Spent a decade running marketing at a Fortune 500 before deciding to do this instead.",
     specialties: ["Strategy", "Business Development", "Leadership"],
     image: "/team/alex.jpg",
     socials: {
@@ -46,7 +46,7 @@ const teamMembers = [
   {
     name: "Sarah Mitchell",
     role: "Head of SEO",
-    bio: "SEO specialist with a track record of ranking 200+ websites on page one. Google-certified with expertise in technical SEO and content strategy.",
+    bio: "Helped over 200 websites hit page one of Google. Used to work at an agency where clients never got straight answers — now I explain SEO like a normal person.",
     specialties: ["Technical SEO", "Content Strategy", "Analytics"],
     image: "/team/sarah.jpg",
     socials: {
@@ -58,7 +58,7 @@ const teamMembers = [
   {
     name: "James Chen",
     role: "Lead Web Developer",
-    bio: "Full-stack developer specializing in modern web technologies. Has built 100+ websites ranging from simple portfolios to complex e-commerce platforms.",
+    bio: "Built over 100 websites in the last 8 years — everything from simple landing pages to full online stores. I write code that works and doesn&apos;t break when you look at it wrong.",
     specialties: ["React", "Next.js", "E-commerce"],
     image: "/team/james.jpg",
     socials: {
@@ -70,7 +70,7 @@ const teamMembers = [
   {
     name: "Emily Rodriguez",
     role: "Social Media Manager",
-    bio: "Creative strategist who has managed social accounts with 500K+ combined followers. Expert at turning engagement into conversions.",
+    bio: "Managed accounts with over 500K followers total. I create posts that people actually want to see, not the boring corporate stuff that gets ignored.",
     specialties: ["Content Creation", "Community Management", "Paid Social"],
     image: "/team/emily.jpg",
     socials: {
@@ -82,7 +82,7 @@ const teamMembers = [
   {
     name: "Michael Torres",
     role: "PPC Specialist",
-    bio: "Google Ads certified professional who has managed $2M+ in ad spend. Obsessed with optimizing campaigns for maximum ROI.",
+    bio: "Managed over $2M in ad spend without wasting a dime. I run campaigns like it&apos;s my own money on the line, because honestly that&apos;s how it should be done.",
     specialties: ["Google Ads", "Meta Ads", "Conversion Tracking"],
     image: "/team/michael.jpg",
     socials: {
@@ -94,7 +94,7 @@ const teamMembers = [
   {
     name: "Lisa Park",
     role: "UX/UI Designer",
-    bio: "Award-winning designer with a background in psychology. Creates user experiences that are both beautiful and conversion-focused.",
+    bio: "Psychology degree, design career. I figure out why people click what they click, then design sites that guide them exactly where you want them to go.",
     specialties: ["UI Design", "UX Research", "Prototyping"],
     image: "/team/lisa.jpg",
     socials: {
@@ -107,20 +107,20 @@ const teamMembers = [
 
 const values = [
   {
-    title: "Partnership First",
-    description: "Your success is our success. We're invested in long-term relationships, not quick transactions.",
+    title: "No Contracts",
+    description: "Month-to-month. If we&apos;re not earning your business every month, you shouldn&apos;t be stuck with us.",
   },
   {
-    title: "Transparent Always",
-    description: "No hidden fees, no jargon, no black boxes. You'll always know exactly what we're doing and why.",
+    title: "Plain English",
+    description: "We don&apos;t hide behind jargon. If you can&apos;t understand what we&apos;re doing, we&apos;re doing it wrong.",
   },
   {
-    title: "Results Driven",
-    description: "We measure our work by your outcomes. If it doesn't move the needle, we don't do it.",
+    title: "Your Budget Matters",
+    description: "We treat your money like it&apos;s ours. No upsells, no bloated proposals, no wasting budget on vanity metrics.",
   },
   {
-    title: "Continuously Learning",
-    description: "Digital never stops evolving. Neither do we. We stay ahead so you don't fall behind.",
+    title: "We Pick Up",
+    description: "Email, text, call — you&apos;ll reach a real person who knows your account. No ticket queues.",
   },
 ];
 
@@ -205,9 +205,9 @@ export default function TeamPage() {
                 Meet the <span className="text-secondary">Squad</span>
               </h1>
               <p className="text-xl text-white/80">
-                A team of digital experts passionate about helping small
-                businesses succeed online. Together, we bring decades of
-                experience across every aspect of digital marketing.
+                Six people who left bigger agencies because we were tired of
+                selling small businesses things they didn&apos;t need. Now we just
+                build good websites and run marketing that works.
               </p>
             </motion.div>
           </Container>
@@ -284,8 +284,8 @@ export default function TeamPage() {
                 Want to Join the Squad?
               </h2>
               <p className="text-white/80 text-lg mb-8">
-                We're always looking for talented individuals who share our
-                passion for digital excellence.
+                We&apos;re always looking for people who know their stuff and don&apos;t
+                talk like a LinkedIn post.
               </p>
               <Link href="/contact">
                 <Button variant="secondary" size="lg" className="text-primary">

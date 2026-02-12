@@ -211,8 +211,8 @@ export default function BlogPage() {
                 <span className="text-secondary">Insights</span>
               </h1>
               <p className="text-xl text-white/80">
-                Expert tips, industry trends, and actionable strategies to help
-                your business thrive online.
+                Real articles about what&apos;s changing in SEO, social media, and
+                web design. No fluff, no AI slop.
               </p>
             </motion.div>
           </Container>
@@ -303,11 +303,11 @@ export default function BlogPage() {
               className="text-center"
             >
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Get Marketing Tips in Your Inbox
+                Get Updates When We Publish
               </h2>
               <p className="text-white/80 text-lg mb-8">
-                Join 5,000+ business owners who receive weekly digital marketing
-                insights.
+                One email a week with new articles and what&apos;s actually changing
+                in digital marketing. Unsubscribe anytime.
               </p>
               <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                 <input

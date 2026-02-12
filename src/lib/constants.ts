@@ -10,7 +10,7 @@ import type {
 // Site Configuration
 export const siteConfig = {
   name: "OneSquad",
-  tagline: "Unlock your digital potential",
+  tagline: "Your website, marketing, and support team — without the agency price tag",
   description:
     "We handle websites, marketing, and everything in between so you can focus on running your business. Think of us as the digital team you never had to hire.",
   url: "https://www.onesquads.com",
@@ -69,15 +69,15 @@ export const services: Service[] = [
     description:
       "Marketing that actually brings people through the door. We build campaigns around your goals, track what works, and cut what doesn't.",
     shortDescription:
-      "Strategic campaigns that drive growth and engagement.",
+      "Campaigns that bring real customers, not just clicks.",
     icon: "Megaphone",
     features: [
-      "Custom marketing strategy development",
-      "Multi-channel campaign management",
-      "Performance tracking and analytics",
+      "Marketing plan built for your business",
+      "We run campaigns across search, social, and email",
+      "Track what&apos;s working in plain English",
       "Turning more visitors into customers",
-      "Competitor analysis",
-      "Monthly reporting and insights",
+      "See what your competitors are doing (and beat them)",
+      "Monthly reports that make sense",
     ],
     results: [
       { metric: "150%", description: "Average increase in new inquiries" },
@@ -150,15 +150,15 @@ export const services: Service[] = [
     description:
       "Stay in touch with your customers through well-timed emails that keep them coming back. From welcome messages to promotions, we handle the strategy and execution.",
     shortDescription:
-      "Keep customers engaged and coming back for more.",
+      "Stay top-of-mind with emails that don&apos;t feel like spam.",
     icon: "Mail",
     features: [
-      "Email strategy and planning",
-      "Template design and development",
-      "Audience grouping and list management",
-      "Automated email sequences",
-      "Testing and optimizing for better results",
-      "Clear campaign performance reports",
+      "Email plan that fits your business",
+      "Templates that look professional, not corporate",
+      "Send the right message to the right people",
+      "Automated welcome and follow-up emails",
+      "Test different versions to see what clicks",
+      "Reports that show what&apos;s bringing people back",
     ],
     results: [
       { metric: "42%", description: "Average email open rate" },
@@ -180,12 +180,12 @@ export const services: Service[] = [
       "Paid ads that bring in real leads without wasting your budget.",
     icon: "MousePointerClick",
     features: [
-      "Google Ads management",
-      "Social media advertising",
-      "Display ads and retargeting past visitors",
-      "Landing page optimization",
-      "Ad budget management and tuning",
-      "Tracking what leads to actual customers",
+      "We run your Google Ads so you don&apos;t have to",
+      "Facebook and Instagram ads that convert",
+      "Retarget people who visited but didn&apos;t buy",
+      "Landing pages designed to turn clicks into leads",
+      "We watch your budget like it&apos;s our own",
+      "Track every dollar from click to customer",
     ],
     results: [
       { metric: "250%", description: "Average return on ad spend" },
@@ -204,15 +204,15 @@ export const services: Service[] = [
     description:
       "Share your expertise and build trust with content that speaks to your audience. From blog posts to videos, we help you tell your story in a way that brings people in.",
     shortDescription:
-      "Useful content that builds trust and brings in business.",
+      "Content that shows you know your stuff without the sales pitch.",
     icon: "FileText",
     features: [
-      "Content strategy development",
-      "Blog writing and management",
-      "Video content production",
-      "Infographic design",
-      "E-book and whitepaper creation",
-      "Content calendar management",
+      "Plan what to publish and when",
+      "Blog posts written by real people, not AI",
+      "Video scripts and production",
+      "Infographics that actually get shared",
+      "Guides and resources your audience wants",
+      "We keep your content schedule on track",
     ],
     results: [
       { metric: "3x", description: "More inquiries than traditional marketing" },
@@ -235,12 +235,12 @@ export const services: Service[] = [
       "Professional websites that turn visitors into customers.",
     icon: "Palette",
     features: [
-      "Custom website design",
-      "Mobile-responsive development",
-      "Clean, intuitive layouts",
-      "Your branding front and center",
-      "Speed optimization",
-      "Cross-browser compatibility",
+      "Designed from scratch to match your brand",
+      "Works perfectly on phones, tablets, and desktops",
+      "Easy to navigate, hard to mess up",
+      "Your logo, your colors, your voice",
+      "Optimized so pages load in under 3 seconds",
+      "Looks great in every browser",
     ],
     results: [
       { metric: "21+", description: "Websites designed and launched" },
@@ -262,12 +262,12 @@ export const services: Service[] = [
       "Online stores built to make selling easy.",
     icon: "ShoppingCart",
     features: [
-      "Custom e-commerce development",
-      "Shopping cart integration",
-      "Payment gateway setup",
-      "Product catalog management",
-      "Inventory tracking",
-      "Order management systems",
+      "Online store built for your products",
+      "Shopping cart that actually works",
+      "Accept credit cards, Apple Pay, Google Pay",
+      "Easy product uploads and updates",
+      "Track what&apos;s in stock automatically",
+      "Manage orders without a spreadsheet",
     ],
     results: [
       { metric: "180%", description: "Average increase in online sales" },
@@ -289,12 +289,12 @@ export const services: Service[] = [
       "Fast, secure hosting with around-the-clock monitoring.",
     icon: "Shield",
     features: [
-      "Secure server hosting",
-      "Secure connection (SSL) included",
-      "Daily automatic backups",
-      "24/7 uptime monitoring",
-      "Protection against online attacks",
-      "Regular security updates",
+      "Your site hosted on fast, reliable servers",
+      "SSL certificate included (the padlock in the browser)",
+      "Daily backups so nothing&apos;s ever lost",
+      "We check your site every minute, all day and night",
+      "Firewalls and security to block the bad guys",
+      "Software stays patched and up-to-date",
     ],
     results: [
       { metric: "99.9%", description: "Uptime guarantee" },
@@ -316,12 +316,12 @@ export const services: Service[] = [
       "Regular updates and fixes so your site stays in top shape.",
     icon: "Wrench",
     features: [
-      "Regular software updates",
-      "Security updates",
-      "Speed and performance improvements",
-      "Content updates",
-      "Bug fixes and troubleshooting",
-      "Monthly health reports",
+      "Software updates handled for you",
+      "Security patches applied as soon as they&apos;re available",
+      "We tune things to keep your site fast",
+      "Text and image changes when you need them",
+      "Fix anything that breaks",
+      "Monthly reports on your site&apos;s health",
     ],
     results: [
       { metric: "100%", description: "Security updates applied on time" },
@@ -462,12 +462,12 @@ export const pricingPlans: PricingPlan[] = [
     storage: "Varies",
     hours: "Varies",
     features: [
-      "Tailored to your needs",
-      "Mix and match any services",
-      "Flexible pricing",
-      "Custom service agreements",
-      "Dedicated support team",
-      "Scalable, professional solutions",
+      "Built around what you actually need",
+      "Pick the services that make sense for you",
+      "Pricing that fits your budget",
+      "No cookie-cutter plans",
+      "Direct line to your account manager",
+      "Grows with your business",
     ],
   },
 ];
@@ -502,7 +502,7 @@ export const testimonials: Testimonial[] = [
     role: "Owner",
     company: "Bloom Boutique",
     content:
-      "OneSquad completely changed how we show up online. Our website traffic jumped by 200% and our online sales have never been better. They really get what small businesses need.",
+      "We went from barely showing up in Google to getting about 3x the traffic we had before. Online orders are way up. OneSquad gets what small businesses actually need.",
     rating: 5,
   },
   {

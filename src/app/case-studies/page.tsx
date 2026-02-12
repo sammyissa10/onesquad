@@ -183,8 +183,8 @@ export default function CaseStudiesPage() {
                 <span className="text-secondary">Real Businesses</span>
               </h1>
               <p className="text-xl text-white/80">
-                See how we've helped businesses like yours achieve measurable
-                growth through strategic digital solutions.
+                Real clients, real numbers. Here&apos;s what happened when these
+                businesses hired us.
               </p>
             </motion.div>
           </Container>
@@ -212,11 +212,11 @@ export default function CaseStudiesPage() {
           <Container>
             <div className="text-center max-w-2xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
-                Ready to Be Our Next Success Story?
+                Want Results Like These?
               </h2>
               <p className="text-muted-foreground text-lg mb-8">
-                Let's discuss how we can help your business achieve similar
-                results.
+                Tell us what you&apos;re trying to accomplish and we&apos;ll show you how
+                we can help.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link href="/contact">
