@@ -10,45 +10,18 @@ import { fadeUp, TRIGGERS } from "@/lib/scrollAnimations";
 
 export function CTABanner() {
   const { scope } = useScrollAnimation(({ gsap }) => {
-    // Heading: dramatic fadeUp
-    gsap.from('.cta-heading', {
-      ...fadeUp({ y: 40, duration: 0.8 }),
+    // Consolidate 4 ScrollTriggers into 1 timeline
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: '.cta-content',
         start: TRIGGERS.standard,
       },
     });
 
-    // Subtext: fadeUp with 0.15s delay
-    gsap.from('.cta-subtext', {
-      ...fadeUp(),
-      delay: 0.15,
-      scrollTrigger: {
-        trigger: '.cta-content',
-        start: TRIGGERS.standard,
-      },
-    });
-
-    // Buttons: fadeUp with 0.3s delay
-    gsap.from('.cta-buttons', {
-      ...fadeUp(),
-      delay: 0.3,
-      scrollTrigger: {
-        trigger: '.cta-content',
-        start: TRIGGERS.standard,
-      },
-    });
-
-    // Trust badges: fadeUp with 0.45s delay, slight scale
-    gsap.from('.cta-badges', {
-      ...fadeUp({ y: 30 }),
-      scale: 0.95,
-      delay: 0.45,
-      scrollTrigger: {
-        trigger: '.cta-content',
-        start: TRIGGERS.standard,
-      },
-    });
+    tl.from('.cta-heading', { ...fadeUp({ y: 40, duration: 0.8 }) })
+      .from('.cta-subtext', { ...fadeUp() }, '-=0.45')
+      .from('.cta-buttons', { ...fadeUp() }, '-=0.3')
+      .from('.cta-badges', { ...fadeUp({ y: 30 }), scale: 0.95 }, '-=0.15');
   });
 
   return (

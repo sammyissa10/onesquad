@@ -38,6 +38,7 @@ const processSteps = [
 
 export function Process() {
   const { scope } = useScrollAnimation(({ gsap }) => {
+    // Keep heading as separate ScrollTrigger (different trigger element)
     gsap.from('.process-heading', {
       ...fadeUp({ duration: 0.8 }),
       scrollTrigger: {
@@ -46,37 +47,28 @@ export function Process() {
       },
     });
 
-    // Animate each step sequentially
-    gsap.from('.process-step', {
-      ...fadeUp({ y: 30 }),
-      stagger: 0.2,
+    // Consolidate 3 ScrollTriggers on .process-grid into 1 timeline
+    const gridTl = gsap.timeline({
       scrollTrigger: {
         trigger: '.process-grid',
         start: TRIGGERS.standard,
       },
     });
 
-    // Animate the timeline progress line (timed to match step stagger)
+    gridTl.from('.process-step', { ...fadeUp({ y: 30 }), stagger: 0.2 })
+      .from('.timeline-dot', { scale: 0, duration: 0.4, stagger: 0.2, ease: 'back.out(2)' }, 0);
+
+    // Keep timeline-progress as separate ScrollTrigger (scrub requires its own trigger)
     gsap.from('.timeline-progress', {
       scaleX: 0,
       transformOrigin: 'left center',
-      duration: 1.2,
-      ease: 'power2.inOut',
+      duration: 1.5,
+      ease: 'power1.inOut',
       scrollTrigger: {
         trigger: '.process-grid',
         start: TRIGGERS.standard,
-      },
-    });
-
-    // Animate step dots appearing
-    gsap.from('.timeline-dot', {
-      scale: 0,
-      duration: 0.4,
-      stagger: 0.2,
-      ease: 'back.out(2)',
-      scrollTrigger: {
-        trigger: '.process-grid',
-        start: TRIGGERS.standard,
+        end: 'center 60%',
+        scrub: 1,
       },
     });
   });

@@ -17,7 +17,7 @@ const previewTemplates = [
 
 export function PortfolioPreview() {
   const { scope } = useScrollAnimation(({ gsap }) => {
-    // Section heading: clip-path reveal from bottom
+    // Section heading: clip-path reveal from bottom (separate trigger)
     gsap.from('.portfolio-heading', {
       ...clipReveal('bottom'),
       scrollTrigger: {
@@ -26,25 +26,16 @@ export function PortfolioPreview() {
       },
     });
 
-    // Grid cards: staggered fadeUp
-    gsap.from('.portfolio-card', {
-      ...fadeUp({ y: 40 }),
-      stagger: 0.08,
+    // Consolidate 2 ScrollTriggers on .portfolio-grid into 1 timeline
+    const gridTl = gsap.timeline({
       scrollTrigger: {
         trigger: '.portfolio-grid',
         start: TRIGGERS.late,
       },
     });
 
-    // CTA: fadeUp with delay
-    gsap.from('.portfolio-cta', {
-      ...fadeUp(),
-      delay: 0.3,
-      scrollTrigger: {
-        trigger: '.portfolio-grid',
-        start: TRIGGERS.late,
-      },
-    });
+    gridTl.from('.portfolio-card', { ...fadeUp({ y: 40 }), stagger: 0.08 })
+      .from('.portfolio-cta', { ...fadeUp() }, 0.3);
   });
 
   return (
