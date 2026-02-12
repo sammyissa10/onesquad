@@ -151,6 +151,10 @@ Recent decisions affecting current work:
 - **Quick-05:** Strikethrough on "Without" items creates visual metaphor of crossing out problems (more effective than flat red cards)
 - **Quick-05:** Dark navy #0e1e36 with coral gradient borders creates visual separation from adjacent navy sections
 - **Quick-05:** Scale reveal from center for "With" cards (emanating effect) draws attention to solutions as hero items
+- [Phase quick-6]: invalidateOnRefresh required on all ScrollTriggers to handle Lenis-GSAP timing mismatches
+- [Phase quick-6]: Removed blanket will-change promotion - GSAP handles GPU layers automatically (100+ elements promoted = compositor thrashing)
+- [Phase quick-6]: Lenis lerp increased to 0.12 (from 0.1) for tighter scroll-animation sync without losing smooth feel
+- [Phase quick-6]: Use autoAlpha instead of opacity for GSAP visibility animations (combines opacity + visibility for better cleanup)
 
 ### Pending Todos
 
@@ -169,12 +173,13 @@ None yet.
 | 3 | Fix scroll glitching on pages | 2026-02-12 | b808eaf | [3-fix-scroll-glitching-on-pages](./quick/3-fix-scroll-glitching-on-pages/) |
 | 4 | Fix With/Without OneSquad comparison section animations | 2026-02-12 | 7730b51 | [4-fix-with-without-onesquad-comparison-ani](./quick/4-fix-with-without-onesquad-comparison-ani/) |
 | 5 | Redesign comparison section with more visual personality | 2026-02-12 | 04c3b6f | [5-redesign-comparison-section-with-more-vi](./quick/5-redesign-comparison-section-with-more-vi/) |
+| 6 | Fix invisible With OneSquad cards and scroll jank | 2026-02-12 | a5b9b4c | [6-fix-invisible-with-onesquad-cards-and-re](./quick/6-fix-invisible-with-onesquad-cards-and-re/) |
 
 ## Session Continuity
 
 Last session: 2026-02-12 (quick task execution)
-Stopped at: Completed quick-05-PLAN.md
-Resume file: .planning/quick/5-redesign-comparison-section-with-more-vi/5-SUMMARY.md
+Stopped at: Completed quick-6-PLAN.md
+Resume file: .planning/quick/6-fix-invisible-with-onesquad-cards-and-re/6-SUMMARY.md
 
 **Phase 08 Status:** COMPLETE (5 of 5 plans complete)
 - 08-01: GSAP scroll animation presets and homepage conversion (complete)
