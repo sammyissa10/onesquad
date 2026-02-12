@@ -110,12 +110,14 @@ html.lenis body {
   overflow: hidden;
 }
 
-/* Hide scrollbar — both inspiration sites hide theirs */
-html.lenis.lenis-smooth::-webkit-scrollbar {
+/* Hide scrollbar — Lenis manages scroll, native bar is redundant.
+   Target html.lenis (not html.lenis.lenis-smooth) so the scrollbar
+   stays hidden even when Lenis toggles the lenis-smooth class. */
+html.lenis::-webkit-scrollbar {
   display: none;
 }
 
-html.lenis.lenis-smooth {
+html.lenis {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
