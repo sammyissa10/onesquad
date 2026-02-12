@@ -43,6 +43,7 @@ Progress: [████████████████████] 100%
 *Updated after each plan completion*
 | Phase 08 P05 | 2 | 2 tasks | 0 files |
 | Phase quick-7 P1 | 1 | 1 tasks | 1 files |
+| Phase quick-8 P1 | 163 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -157,6 +158,8 @@ Recent decisions affecting current work:
 - [Phase quick-6]: Lenis lerp increased to 0.12 (from 0.1) for tighter scroll-animation sync without losing smooth feel
 - [Phase quick-6]: Use autoAlpha instead of opacity for GSAP visibility animations (combines opacity + visibility for better cleanup)
 - [Phase quick-7]: Disabled syncTouch to prevent Lenis from intercepting native mobile momentum scrolling
+- [Phase quick-8]: WebsiteBuilderAnimation uses autoAlpha for visibility animations (opacity + display cleanup)
+- [Phase quick-8]: Browser chrome #0e1e36 provides depth against navy hero, mock elements use abstract shapes not real content
 
 ### Pending Todos
 
@@ -177,11 +180,12 @@ None yet.
 | 5 | Redesign comparison section with more visual personality | 2026-02-12 | 04c3b6f | [5-redesign-comparison-section-with-more-vi](./quick/5-redesign-comparison-section-with-more-vi/) |
 | 6 | Fix invisible With OneSquad cards and scroll jank | 2026-02-12 | a5b9b4c | [6-fix-invisible-with-onesquad-cards-and-re](./quick/6-fix-invisible-with-onesquad-cards-and-re/) |
 | 7 | Fix mobile scroll jank - disable Lenis on touch devices | 2026-02-12 | 71268f9 | [7-fix-mobile-scroll-jank-disable-lenis-on-](./quick/7-fix-mobile-scroll-jank-disable-lenis-on-/) |
+| 8 | Replace hero gradient box with animated website builder | 2026-02-12 | 816479a | [8-replace-hero-gradient-box-with-animated-](./quick/8-replace-hero-gradient-box-with-animated-/) |
 
 ## Session Continuity
 
 Last session: 2026-02-12 (quick task execution)
-Stopped at: Completed quick-7-PLAN.md
+Stopped at: Completed quick-8-PLAN.md (animated website builder in hero)
 Resume file: .planning/quick/7-fix-mobile-scroll-jank-disable-lenis-on-/7-SUMMARY.md
 
 **Phase 08 Status:** COMPLETE (5 of 5 plans complete)
