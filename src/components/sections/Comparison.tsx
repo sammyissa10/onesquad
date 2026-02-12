@@ -72,6 +72,7 @@ export function Comparison() {
       scrollTrigger: {
         trigger: '.comparison-header',
         start: TRIGGERS.standard,
+        invalidateOnRefresh: true,
       },
     });
 
@@ -82,6 +83,7 @@ export function Comparison() {
       scrollTrigger: {
         trigger: '.without-section',
         start: TRIGGERS.standard,
+        invalidateOnRefresh: true,
       },
     });
 
@@ -96,16 +98,25 @@ export function Comparison() {
         start: TRIGGERS.standard,
         end: 'bottom 30%',
         scrub: 1,
+        invalidateOnRefresh: true,
       },
     });
 
+    // Ensure cards start visible - GSAP will manage opacity via ScrollTrigger
+    gsap.set('.with-card', { autoAlpha: 1 });
+
     // "With" cards: slower stagger scale reveal from center (premium feel)
     gsap.from('.with-card', {
-      ...scaleReveal({ duration: 0.5 }),
+      autoAlpha: 0,
+      scale: 0.92,
+      duration: 0.5,
+      ease: 'power2.out',
+      immediateRender: false,
       stagger: staggerFadeUp({ each: 0.1, from: 'center' }),
       scrollTrigger: {
         trigger: '.with-section',
         start: TRIGGERS.standard,
+        invalidateOnRefresh: true,
       },
     });
   });
