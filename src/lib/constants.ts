@@ -16,7 +16,7 @@ export const siteConfig = {
   url: "https://www.onesquads.com",
   email: "ayaz.onesquad@outlook.com",
   phone: "",
-  address: "Remote-first, serving businesses nationwide",
+  address: "Based in Northwest Indiana. Remote-first, serving businesses nationwide.",
   socials: {
     facebook: "https://facebook.com/onesquad",
     twitter: "https://twitter.com/onesquad",

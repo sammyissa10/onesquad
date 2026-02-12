@@ -49,6 +49,35 @@ export default function AboutPage() {
     });
   });
 
+  // Vision/mission section animations (fadeUp for heading and body)
+  const { scope: visionScope } = useScrollAnimation(({ gsap }) => {
+    gsap.from('.about-vision-eyebrow', {
+      ...fadeUp({ duration: 0.6 }),
+      scrollTrigger: {
+        trigger: '.about-vision',
+        start: TRIGGERS.early,
+      },
+    });
+
+    gsap.from('.about-vision-headline', {
+      ...fadeUp({ y: 60, duration: 1.0, ease: 'power3.out' }),
+      delay: 0.15,
+      scrollTrigger: {
+        trigger: '.about-vision',
+        start: TRIGGERS.early,
+      },
+    });
+
+    gsap.from('.about-vision-body', {
+      ...fadeUp(),
+      delay: 0.3,
+      scrollTrigger: {
+        trigger: '.about-vision',
+        start: TRIGGERS.standard,
+      },
+    });
+  });
+
   // Values section animations (dramatic typography statements)
   const { scope: valuesScope } = useScrollAnimation(({ gsap }) => {
     // Each value block gets its own dramatic entrance
@@ -191,6 +220,9 @@ export default function AboutPage() {
                   <p>
                     This philosophy drives everything — how we communicate, how we approach projects, and how we measure success. Hint: we measure it by yours.
                   </p>
+                  <p>
+                    We started as locals from Northwest Indiana — graduates who saw businesses in our backyard getting ripped off by agencies that didn&apos;t understand them. So we became the team we wished existed. Local roots, digital expertise, no pretense.
+                  </p>
                 </div>
               </div>
 
@@ -209,10 +241,31 @@ export default function AboutPage() {
           </Container>
         </section>
 
-        {/* Section 3: Values - Typography Statements */}
+        {/* Section 3: Vision / Mission */}
+        <section
+          ref={visionScope}
+          className="about-vision bg-[#0F172A] py-24 md:py-36"
+          data-animate
+        >
+          <Container size="xl">
+            <div className="max-w-4xl">
+              <p className="about-vision-eyebrow text-sm font-semibold text-coral uppercase tracking-widest mb-6" data-animate>
+                Our Vision
+              </p>
+              <h2 className="about-vision-headline text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[0.9] tracking-tight mb-8" data-animate>
+                Your Personalized Digital Team.
+              </h2>
+              <p className="about-vision-body text-xl text-white/70 max-w-3xl leading-relaxed" data-animate>
+                We exist to be the digital team your business deserves but could never afford to hire. Not a vendor. Not an agency. Your squad — building a platform where your business reaches its digital potential without the enterprise price tag.
+              </p>
+            </div>
+          </Container>
+        </section>
+
+        {/* Section 4: Values - Typography Statements */}
         <section
           ref={valuesScope}
-          className="about-values bg-[#0F172A] py-28 md:py-40"
+          className="about-values bg-[#0F172A] py-28 md:py-40 border-t border-white/10"
           data-animate
         >
           <Container size="xl">
@@ -250,7 +303,7 @@ export default function AboutPage() {
           </Container>
         </section>
 
-        {/* Section 4: What Makes Us Different */}
+        {/* Section 5: What Makes Us Different */}
         <section
           ref={editorialScope}
           className="about-editorial bg-peach/10 py-20 md:py-28"
@@ -276,7 +329,7 @@ export default function AboutPage() {
           </Container>
         </section>
 
-        {/* Section 5: Manifesto Closer / CTA */}
+        {/* Section 6: Manifesto Closer / CTA */}
         <section
           ref={ctaScope}
           className="about-cta bg-[#0F172A] py-24 md:py-36"
