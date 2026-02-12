@@ -142,6 +142,11 @@ Recent decisions affecting current work:
 - **08-05:** Verified interactive Framer Motion animations preserved (accordions, filter transitions, tab indicators)
 - **08-05:** Confirmed no two adjacent sections use identical animation patterns
 - [Phase 08-05]: Phase 8 complete - All site-wide scroll animations converted from Framer Motion to GSAP ScrollTrigger with distinct personalities per section
+- **Quick-03:** Lenis lerp increased from 0.075 to 0.1 for better ScrollTrigger timing sync (reduces scroll lag)
+- **Quick-03:** GSAP lagSmoothing re-enabled (500ms/33ms) to prevent jarring frame catch-up on heavy frames
+- **Quick-03:** Dual ScrollTrigger refresh (300ms + 800ms) handles both fast content and lazy-loaded images on route change
+- **Quick-03:** GPU layer promotion via will-change applied automatically to all [data-animate] elements before animations start
+- **Quick-03:** Converted per-element ScrollTrigger forEach loops to single-trigger stagger patterns (40-50% reduction in total instances)
 
 ### Pending Todos
 
@@ -157,12 +162,13 @@ None yet.
 |---|-------------|------|--------|-----------|
 | 1 | Add Playwright e2e testing with GitHub Actions CI | 2026-02-11 | 2279d83 | [1-add-playwright-e2e-testing-with-github-a](./quick/1-add-playwright-e2e-testing-with-github-a/) |
 | 2 | Fix night mode button not working | 2026-02-12 | f1e79e0 | [2-fix-night-mode-button-not-working](./quick/2-fix-night-mode-button-not-working/) |
+| 3 | Fix scroll glitching on pages | 2026-02-12 | b808eaf | [3-fix-scroll-glitching-on-pages](./quick/3-fix-scroll-glitching-on-pages/) |
 
 ## Session Continuity
 
 Last session: 2026-02-12 (quick task execution)
-Stopped at: Completed quick-02-PLAN.md
-Resume file: .planning/quick/2-fix-night-mode-button-not-working/2-SUMMARY.md
+Stopped at: Completed quick-03-PLAN.md
+Resume file: .planning/quick/3-fix-scroll-glitching-on-pages/3-SUMMARY.md
 
 **Phase 08 Status:** COMPLETE (5 of 5 plans complete)
 - 08-01: GSAP scroll animation presets and homepage conversion (complete)
