@@ -168,6 +168,7 @@ Recent decisions affecting current work:
 - [Phase quick-9]: WebsiteBuilderAnimation pauses when offscreen to eliminate wasted main thread cycles
 - [Phase quick-9]: Timeline consolidation reduces ScrollTrigger instances without changing visual behavior
 - [Phase quick-10]: ResultsDashboardAnimation uses animated counters (traffic/conversions/revenue) to communicate outcomes vs static tagline
+- [Phase quick-12]: Extracted three separate calculator components to preserve each tier's distinct visual personality
 
 ### Pending Todos
 
