@@ -75,7 +75,7 @@ export function PortfolioPreview() {
               size="lg"
               rightIcon={<ArrowRight size={18} />}
             >
-              View All Templates ({templates.length})
+              Browse Real Client Sites ({templates.length})
             </Button>
           </Link>
           <p className="text-white/60">

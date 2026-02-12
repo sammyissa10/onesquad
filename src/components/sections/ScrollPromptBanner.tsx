@@ -90,7 +90,7 @@ export function ScrollPromptBanner() {
             className="inline-block bg-peach text-[#0e1e36] font-semibold text-sm px-6 py-2.5 rounded-full hover:bg-white transition-colors duration-200"
             data-cursor="button"
           >
-            Get a Free Mockup
+            Send Me My Free Mockup →
           </Link>
         </div>
       </div>

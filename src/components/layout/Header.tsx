@@ -139,7 +139,7 @@ export function Header() {
             <MagneticButton>
               <Link href="/contact">
                 <Button variant="accent" size="md">
-                  Hire Us
+                  Get Started
                 </Button>
               </Link>
             </MagneticButton>
@@ -244,7 +244,7 @@ export function Header() {
                   </Link>
                   <Link href="/contact">
                     <Button variant="accent" size="md" className="w-full">
-                      Hire Us
+                      Get Started
                     </Button>
                   </Link>
                 </div>

@@ -45,12 +45,11 @@ export function Hero() {
             data-animate
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[0.95] text-white tracking-tight">
-              We Build Websites That{" "}
-              <span className="text-coral">Work</span>{" "}
-              For Small Businesses
+              You Didn&apos;t Start a Business to Fight With Your{" "}
+              <span className="text-coral">Website</span>
             </h1>
             <p className="text-lg md:text-xl text-white/70 max-w-lg">
-              Design, marketing, and support — all from one team, for one monthly price.
+              Hand off the digital stuff to a team that does this every day. Design, SEO, ads, hosting — handled. You just approve and grow.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <MagneticButton>
@@ -61,7 +60,7 @@ export function Hero() {
                     rightIcon={<ArrowRight size={20} />}
                     data-cursor="button"
                   >
-                    See Our Plans
+                    See What You&apos;d Pay
                   </Button>
                 </Link>
               </MagneticButton>
@@ -73,7 +72,7 @@ export function Hero() {
                     className="border-white/30 text-white hover:bg-white hover:text-navy"
                     data-cursor="button"
                   >
-                    Get a Free Quote
+                    Get a Free Mockup in 24hrs
                   </Button>
                 </Link>
               </MagneticButton>

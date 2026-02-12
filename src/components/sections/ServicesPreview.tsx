@@ -156,7 +156,7 @@ export function ServicesPreview() {
         <div className="services-cta text-center mt-10" data-animate>
           <Link href="/services">
             <Button variant="accent" size="lg" rightIcon={<ArrowRight />}>
-              View All Services
+              Find Your Perfect Plan
             </Button>
           </Link>
         </div>
