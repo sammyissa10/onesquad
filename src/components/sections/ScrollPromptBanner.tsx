@@ -79,14 +79,18 @@ export function ScrollPromptBanner() {
           </div>
         </div>
 
-        {/* Get Free Demo button */}
+        <p className="text-sm md:text-base font-semibold text-[#0e1e36]/80 text-center mt-3 max-w-4xl mx-auto px-8 md:px-12">
+          Drop us your business name and email — we&apos;ll send you a free website mockup within 24 hours. No strings, no credit card.
+        </p>
+
+        {/* Get a Free Mockup button */}
         <div className="relative flex justify-end max-w-4xl mx-auto px-8 md:px-12 mt-6">
           <Link
             href="/contact"
             className="inline-block bg-peach text-[#0e1e36] font-semibold text-sm px-6 py-2.5 rounded-full hover:bg-white transition-colors duration-200"
             data-cursor="button"
           >
-            Get Free Demo
+            Get a Free Mockup
           </Link>
         </div>
       </div>

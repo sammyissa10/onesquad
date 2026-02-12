@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import {
   Mail,
+  Phone,
   Globe,
   Clock,
   Send,
@@ -62,6 +63,12 @@ const contactInfo = [
     icon: Mail,
     label: "Email",
     value: siteConfig.email,
+    href: `mailto:${siteConfig.email}`,
+  },
+  {
+    icon: Phone,
+    label: "Call or Text",
+    value: "Call, text, or email — your choice",
     href: `mailto:${siteConfig.email}`,
   },
   {
@@ -269,7 +276,7 @@ export default function ContactPage() {
                 className="contact-hero-subtitle text-xl text-white/70"
                 data-animate
               >
-                Tell us what you need and we&apos;ll send you a quote. Most responses go out same-day.
+                Tell us what you need and we&apos;ll send you a quote — or just your business name for a free website mockup within 24 hours.
               </p>
             </div>
           </Container>
@@ -323,6 +330,9 @@ export default function ContactPage() {
                   </p>
                   <p className="text-sm text-navy/60">
                     No automated replies, just real people.
+                  </p>
+                  <p className="text-sm text-navy/60 mt-1">
+                    Call, text, or email your OneSquad rep directly.
                   </p>
                 </div>
               </div>
