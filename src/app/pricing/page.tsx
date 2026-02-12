@@ -304,11 +304,11 @@ export default function PricingPage() {
           </section>
 
           {/* Tier Gateway Cards - White background with distinct cards */}
-          <section className="bg-white py-24 md:py-32 pricing-tiers">
+          <section className="bg-white py-24 md:py-32">
             <Container>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* Social Media Card - Coral stripe, scale hover */}
-                <div className="pricing-tier-card" data-animate>
+                <div>
                   <Link href="/pricing/social">
                     <div
                       data-cursor="card"
@@ -340,7 +340,7 @@ export default function PricingPage() {
                 </div>
 
                 {/* Website Card - Taller with glow hover, -mt-4 on desktop */}
-                <div className="md:-mt-4 pricing-tier-card" data-animate>
+                <div className="md:-mt-4">
                   <Link href="/pricing/website">
                     <div
                       data-cursor="card"
@@ -371,7 +371,7 @@ export default function PricingPage() {
                 </div>
 
                 {/* E-commerce Card - Gradient border, lift+shadow hover */}
-                <div className="pricing-tier-card" data-animate>
+                <div>
                   <Link href="/pricing/ecommerce">
                     <div
                       data-cursor="card"
@@ -406,11 +406,11 @@ export default function PricingPage() {
           </section>
 
           {/* Hosting & Managed Plans - Navy background with glass cards */}
-          <section className="bg-navy py-24 md:py-32 pricing-hosting">
+          <section className="bg-navy py-24 md:py-32">
             <Container>
-              <div className="pricing-hosting-heading" data-animate>
+              <div>
                 {/* Section heading */}
-                <div className="text-center mb-12 pricing-faq-heading" data-animate>
+                <div className="text-center mb-12">
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
                     Looking for Hosting or Managed Services?
                   </h2>
@@ -420,7 +420,7 @@ export default function PricingPage() {
                 </div>
 
                 {/* Tabs - navy background with coral underline */}
-                <div className="flex justify-center mb-12 pricing-hosting-tabs" data-animate>
+                <div className="flex justify-center mb-12">
                   <div className="inline-flex bg-white/5 backdrop-blur-sm rounded-xl p-2">
                     <button
                       onClick={() => setActiveTab("hosting")}
@@ -461,19 +461,22 @@ export default function PricingPage() {
                       )}
                     </button>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Tab description */}
-                <p className="text-center text-white/70 mb-12 max-w-2xl mx-auto pricing-hosting-desc" data-animate>
+                <motion.p
+                  variants={hostingCardVariants}
+                  className="text-center text-white/70 mb-12 max-w-2xl mx-auto"
+                >
                   {activeTab === "hosting"
                     ? "For businesses that need reliable hosting with professional support. Add features as you grow."
                     : "Let us handle everything — your website, marketing, and brand management, all in one plan."}
-                </p>
+                </motion.p>
 
                 {/* Plans grid */}
                 <div
                   className={cn(
-                    "grid gap-8 pricing-plans-grid",
+                    "grid gap-8",
                     activeTab === "hosting"
                       ? "md:grid-cols-3"
                       : "md:grid-cols-2 lg:grid-cols-4"
@@ -492,7 +495,10 @@ export default function PricingPage() {
                 </div>
 
                 {/* Included with every plan - small line at bottom */}
-                <div className="mt-12 pt-8 border-t border-white/10 pricing-included" data-animate>
+                <motion.div
+                  variants={hostingCardVariants}
+                  className="mt-12 pt-8 border-t border-white/10"
+                >
                   <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
                     <span className="text-sm text-white/60 font-medium">
                       Included with every plan:
@@ -504,15 +510,15 @@ export default function PricingPage() {
                       </div>
                     ))}
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </Container>
           </section>
 
           {/* FAQ - White background with edgy copy */}
-          <section className="bg-white py-20 md:py-28 pricing-faq">
+          <section className="bg-white py-20 md:py-28">
             <Container size="md">
-              <div className="text-center mb-12 pricing-faq-heading" data-animate>
+              <div className="text-center mb-12">
                 <span className="text-coral font-semibold text-sm uppercase tracking-wider">
                   FAQ
                 </span>
@@ -521,7 +527,7 @@ export default function PricingPage() {
                 </h2>
               </div>
 
-              <div className="bg-muted rounded-3xl p-8 md:p-10 pricing-faq-container" data-animate>
+              <div className="bg-muted rounded-3xl p-8 md:p-10">
                 {faqs.map((faq, index) => (
                   <FAQItem key={faq.question} faq={faq} index={index} />
                 ))}
@@ -540,6 +546,7 @@ export default function PricingPage() {
             </Container>
           </section>
         </main>
+      </MotionConfig>
       <Footer />
     </>
   );
