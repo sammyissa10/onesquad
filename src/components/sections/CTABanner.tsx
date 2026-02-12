@@ -32,8 +32,8 @@ export function CTABanner() {
             className="cta-heading text-3xl md:text-4xl font-bold text-white mb-4"
             data-animate
           >
-            Ready To Stop Guessing And{" "}
-            <span className="text-coral">Start Growing?</span>
+            Ready To Get Your Website{" "}
+            <span className="text-coral">Actually Working?</span>
           </h2>
 
           <p

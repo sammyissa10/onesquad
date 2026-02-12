@@ -263,13 +263,13 @@ export default function ContactPage() {
                 className="contact-hero-headline text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[0.9] mb-6"
                 data-animate
               >
-                Let&apos;s Build Something <span className="text-coral">Together.</span>
+                Have a Project? <span className="text-coral">Let&apos;s Talk.</span>
               </h1>
               <p
                 className="contact-hero-subtitle text-xl text-white/70"
                 data-animate
               >
-                You&apos;ve got the vision. We&apos;ve got the skills. Tell us what you&apos;re dreaming up and we&apos;ll make it real.
+                Tell us what you need and we&apos;ll send you a quote. Most responses go out same-day.
               </p>
             </div>
           </Container>

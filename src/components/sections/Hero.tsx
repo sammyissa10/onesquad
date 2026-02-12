@@ -45,12 +45,12 @@ export function Hero() {
             data-animate
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[0.95] text-white tracking-tight">
-              We Build Digital{" "}
-              <span className="text-coral">Empires</span>{" "}
+              We Build Websites That{" "}
+              <span className="text-coral">Work</span>{" "}
               For Small Businesses
             </h1>
             <p className="text-lg md:text-xl text-white/70 max-w-lg">
-              Your all-in-one team for web design, marketing, and ongoing support — without the agency price tag.
+              Design, marketing, and support — all from one team, for one monthly price.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <MagneticButton>

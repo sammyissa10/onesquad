@@ -172,7 +172,7 @@ export default function PortfolioPage() {
                 className="hero-headline text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
                 data-animate
               >
-                Our Work Speaks. Loudly.
+                Our Work Speaks For Itself.
               </h1>
               <p
                 className="hero-subtitle text-lg md:text-xl text-white/70"
@@ -279,8 +279,8 @@ export default function PortfolioPage() {
                 className="cta-subtitle text-lg text-white/60 mb-8"
                 data-animate
               >
-                Every business is unique. Your website should be too. Tell us
-                what you're building and we'll make it real.
+                Don&apos;t see your industry? We build custom sites for all kinds of
+                businesses. Tell us what you need.
               </p>
               <div
                 className="cta-buttons flex flex-col sm:flex-row items-center justify-center gap-4"

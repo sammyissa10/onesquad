@@ -36,10 +36,10 @@ export function Features() {
           {/* Left — heading and description */}
           <div className="features-heading lg:sticky lg:top-32" data-animate>
             <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">
-              Why Businesses Ditch Their Old Agency For Us
+              Why People Switch to OneSquad
             </h2>
             <p className="text-navy/60 text-lg">
-              Because we&apos;re faster, cheaper, and we actually give a damn about your results.
+              We&apos;re faster, more affordable, and we treat your business like it matters.
             </p>
           </div>
 

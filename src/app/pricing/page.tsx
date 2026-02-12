@@ -259,7 +259,7 @@ export default function PricingPage() {
                   className="text-xl md:text-2xl text-white/80 mb-10 max-w-2xl mx-auto pricing-hero-subtitle"
                   data-animate
                 >
-                  Three ways to level up. Each one built different.
+                  Three ways to get started. Pick what fits your business.
                 </p>
 
                 {/* Billing toggle - pill style on navy */}
@@ -320,7 +320,7 @@ export default function PricingPage() {
                           Social Media
                         </h3>
                         <p className="text-muted-foreground mb-6">
-                          Feed the algorithm. Own the conversation.
+                          Custom posts, scheduling, and reporting.
                         </p>
                         <div className="mb-6">
                           <span className="text-sm text-muted-foreground">From </span>
@@ -349,7 +349,7 @@ export default function PricingPage() {
                           Websites
                         </h3>
                         <p className="text-muted-foreground mb-6">
-                          Crafted to convert. Designed to impress.
+                          Custom design that turns visitors into customers.
                         </p>
                         <div className="mb-6">
                           <span className="text-sm text-muted-foreground">From </span>
@@ -384,7 +384,7 @@ export default function PricingPage() {
                           E-Commerce
                         </h3>
                         <p className="text-muted-foreground mb-6">
-                          Built to sell. Scaled to grow.
+                          Online stores that handle growth without breaking.
                         </p>
                         <div className="mb-6">
                           <span className="text-sm text-muted-foreground">From </span>

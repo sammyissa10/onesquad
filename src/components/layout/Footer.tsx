@@ -66,9 +66,9 @@ export function Footer() {
         <Container>
           <div className="py-10 flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <h3 className="font-bold text-lg">Tips & Updates for Your Business</h3>
+              <h3 className="font-bold text-lg">Get Updates When We Publish</h3>
               <p className="text-white/70 text-sm mt-1">
-                Join our newsletter for practical advice on growing your business online.
+                New articles, tips, and what&apos;s actually changing in web design and marketing. Once a week, max.
               </p>
             </div>
             {newsletterStatus === "success" ? (

@@ -52,7 +52,7 @@ const withUsItems = [
   {
     icon: TrendingUp,
     title: "Real Growth",
-    description: "Proven strategies that bring in more visitors, more inquiries, and more revenue",
+    description: "More people finding you in Google, more inquiries coming in, more sales closing",
   },
   {
     icon: Shield,

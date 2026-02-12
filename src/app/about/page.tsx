@@ -159,7 +159,7 @@ export default function AboutPage() {
                 className="about-hero-subtitle text-xl md:text-2xl text-white/70 leading-relaxed max-w-3xl mt-8"
                 data-animate
               >
-                We&apos;re a small squad building digital empires for businesses that refuse to blend in. No templates. No shortcuts. Just work that actually works.
+                We&apos;re a small team building websites for businesses that deserve better than templates. No shortcuts. No cookie-cutter designs. Just solid work.
               </p>
             </div>
           </Container>
@@ -186,7 +186,7 @@ export default function AboutPage() {
                     Our logo tells the story of who we are. Two number 1s merge together to form the letter S in negative space — symbolizing the union of two teams becoming one.
                   </p>
                   <p>
-                    When you partner with OneSquad, your team and our team unite with a single mission: your digital success. We&apos;re not just another vendor. We become an extension of your business.
+                    When you work with OneSquad, we&apos;re on your team. Not a vendor sending invoices — we&apos;re the people you call when something needs to get done.
                   </p>
                   <p>
                     This philosophy drives everything — how we communicate, how we approach projects, and how we measure success. Hint: we measure it by yours.
