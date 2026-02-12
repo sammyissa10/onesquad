@@ -4,7 +4,8 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { stats, siteConfig } from "@/lib/constants";
+import { ResultsDashboardAnimation } from "@/components/ui/ResultsDashboardAnimation";
+import { stats } from "@/lib/constants";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { fadeUp, TRIGGERS } from "@/lib/scrollAnimations";
 
@@ -79,20 +80,13 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right: Visual Accent Block */}
+          {/* Right: Animated Results Dashboard */}
           <div
-            className="hero-block bg-gradient-to-br from-coral to-peach rounded-2xl p-10 md:p-12 flex items-center justify-center min-h-[280px] md:min-h-[340px]"
+            className="hero-block"
             data-cursor="card"
             data-animate
           >
-            <div className="text-center">
-              <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-white/95 leading-tight">
-                {siteConfig.tagline}
-              </div>
-              <div className="mt-4 text-base md:text-lg text-white/80 font-medium">
-                OneSquad — Your digital team, simplified
-              </div>
-            </div>
+            <ResultsDashboardAnimation />
           </div>
         </div>
 
