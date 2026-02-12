@@ -75,7 +75,7 @@ function FAQItem({ faq }: { faq: typeof homeFAQs[0] }) {
 
 export function HomeFAQ() {
   return (
-    <section className="bg-white text-navy py-16 md:py-24">
+    <section className="bg-white text-navy py-20 md:py-28">
       <Container size="md">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -89,7 +89,7 @@ export function HomeFAQ() {
         </div>
 
         {/* FAQ List */}
-        <div className="bg-muted rounded-3xl p-6 md:p-10">
+        <div className="bg-muted rounded-2xl p-6 md:p-8">
           {homeFAQs.map((faq) => (
             <FAQItem key={faq.question} faq={faq} />
           ))}

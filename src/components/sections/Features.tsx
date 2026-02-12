@@ -31,38 +31,38 @@ export function Features() {
   });
 
   return (
-    <section ref={scope} className="bg-navy text-white py-32 md:py-40">
+    <section ref={scope} className="bg-white text-navy py-20 md:py-28">
       <Container>
         {/* Asymmetric layout: heading left, cards right */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left — heading and description */}
           <div className="features-heading lg:sticky lg:top-32" data-animate>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">
               Why Businesses Ditch Their Old Agency For Us
             </h2>
-            <p className="text-white/60 text-lg">
-              Because we're faster, cheaper, and we actually give a damn about your results.
+            <p className="text-navy/60 text-lg">
+              Because we&apos;re faster, cheaper, and we actually give a damn about your results.
             </p>
           </div>
 
           {/* Right — stacked cards */}
-          <div className="space-y-6">
+          <div className="space-y-5">
             {valueProps.map((prop) => (
               <div
                 key={prop.title}
                 data-cursor="card"
                 data-animate
-                className="feature-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 transition-transform duration-200 hover:scale-[1.03]"
+                className="feature-card bg-muted border border-border rounded-2xl p-6 transition-transform duration-200 hover:-translate-y-1"
               >
-                <div className="flex items-start gap-5">
-                  <div className="w-14 h-14 rounded-2xl bg-coral/20 flex items-center justify-center flex-shrink-0">
-                    <DynamicIcon name={prop.icon} className="w-7 h-7 text-coral" />
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-coral/10 flex items-center justify-center flex-shrink-0">
+                    <DynamicIcon name={prop.icon} className="w-6 h-6 text-coral" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-white mb-2">
+                    <h3 className="text-lg font-bold text-navy mb-1">
                       {prop.title}
                     </h3>
-                    <p className="text-white/70">{prop.description}</p>
+                    <p className="text-navy/60 text-sm">{prop.description}</p>
                   </div>
                 </div>
               </div>

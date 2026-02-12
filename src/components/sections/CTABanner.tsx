@@ -52,11 +52,11 @@ export function CTABanner() {
   });
 
   return (
-    <section ref={scope} className="bg-navy text-white py-24 md:py-36">
+    <section ref={scope} className="bg-navy text-white py-20 md:py-28">
       <Container>
-        <div className="cta-content text-center max-w-4xl mx-auto">
+        <div className="cta-content text-center max-w-3xl mx-auto">
           <h2
-            className="cta-heading text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6"
+            className="cta-heading text-3xl md:text-4xl font-bold text-white mb-4"
             data-animate
           >
             Ready To Stop Guessing And{" "}
@@ -64,7 +64,7 @@ export function CTABanner() {
           </h2>
 
           <p
-            className="cta-subtext text-xl text-white/60 mb-10"
+            className="cta-subtext text-lg text-white/60 mb-8"
             data-animate
           >
             No 12-month contracts. No corporate jargon. Just results.
@@ -102,19 +102,19 @@ export function CTABanner() {
           </div>
 
           <div
-            className="cta-badges mt-10 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-center gap-6 text-white/50"
+            className="cta-badges mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-center gap-6 text-white/50 text-sm"
             data-animate
           >
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-400" />
+              <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
               <span>No long-term contracts</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-400" />
+              <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
               <span>Response within 24 hours</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-400" />
+              <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
               <span>Cancel anytime</span>
             </div>
           </div>

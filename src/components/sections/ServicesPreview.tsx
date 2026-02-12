@@ -56,25 +56,25 @@ export function ServicesPreview() {
   });
 
   return (
-    <section ref={scope} className="bg-white text-navy py-20 md:py-28">
+    <section ref={scope} className="bg-navy text-white py-20 md:py-28">
       <Container>
         {/* Section Header */}
-        <div className="services-heading text-center max-w-2xl mx-auto mb-16" data-animate>
-          <h2 className="text-3xl md:text-4xl font-bold text-navy mb-6">
+        <div className="services-heading text-center max-w-2xl mx-auto mb-12" data-animate>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Everything You Need.{" "}
             <span className="text-coral">Zero Bloat.</span>
           </h2>
-          <p className="text-navy/70 text-lg">
+          <p className="text-white/60 text-lg">
             Your entire digital team on one monthly bill. No contracts. No surprises.
           </p>
         </div>
 
         {/* Services Categories */}
-        <div className="space-y-16">
+        <div className="space-y-12">
           {/* Web Solutions */}
           <div>
-            <h3 className="text-2xl font-black text-navy mb-8 flex items-center gap-4">
-              <span className="w-12 h-1 bg-blue rounded-full flex-shrink-0" />
+            <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-4">
+              <span className="w-10 h-0.5 bg-blue rounded-full flex-shrink-0" />
               Web Solutions
             </h3>
             <div className="ws-cards grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -82,22 +82,21 @@ export function ServicesPreview() {
                 <div key={service.slug} className={index === 0 ? "sm:col-span-2" : ""}>
                   <Link href={`/services/${service.slug}`}>
                     <div className="ws-card relative group" data-animate>
-                      <div className="absolute -inset-1 bg-coral/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <div
                         data-cursor="card"
                         data-cursor-text="View"
-                        className="relative bg-white rounded-2xl p-6 border border-gray-200 h-full"
+                        className="relative bg-white/5 border border-white/10 rounded-2xl p-6 h-full hover:-translate-y-1 transition-transform duration-200"
                       >
-                        <div className="w-12 h-12 rounded-xl bg-blue/10 flex items-center justify-center mb-4 group-hover:bg-blue transition-colors">
+                        <div className="w-12 h-12 rounded-xl bg-blue/15 flex items-center justify-center mb-4">
                           <DynamicIcon
                             name={service.icon}
-                            className="w-6 h-6 text-blue group-hover:text-white transition-colors"
+                            className="w-6 h-6 text-blue"
                           />
                         </div>
-                        <h4 className="font-bold text-navy mb-2 group-hover:text-blue transition-colors">
+                        <h4 className="font-bold text-white mb-2">
                           {service.title}
                         </h4>
-                        <p className="text-sm text-navy/60">
+                        <p className="text-sm text-white/60">
                           {service.shortDescription}
                         </p>
                       </div>
@@ -110,8 +109,8 @@ export function ServicesPreview() {
 
           {/* Digital Marketing */}
           <div>
-            <h3 className="text-xl font-bold text-navy mb-8 flex items-center gap-4">
-              <span className="w-12 h-1 bg-coral rounded-full flex-shrink-0" />
+            <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-4">
+              <span className="w-10 h-0.5 bg-coral rounded-full flex-shrink-0" />
               Digital Marketing
             </h3>
             <div className="dm-cards grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -119,30 +118,29 @@ export function ServicesPreview() {
                 <div key={service.slug}>
                   <Link href={`/services/${service.slug}`}>
                     <div className="dm-card relative group" data-animate>
-                      <div className="absolute -inset-1 bg-coral/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <div
                         data-cursor="card"
                         data-cursor-text="View"
-                        className="relative bg-white rounded-2xl p-6 border border-gray-200 h-full"
+                        className="relative bg-white/5 border border-white/10 rounded-2xl p-6 h-full hover:-translate-y-1 transition-transform duration-200"
                       >
                         <div className="flex items-start gap-4">
-                          <div className="w-12 h-12 rounded-xl bg-coral/10 flex items-center justify-center flex-shrink-0 group-hover:bg-coral transition-colors">
+                          <div className="w-12 h-12 rounded-xl bg-coral/15 flex items-center justify-center flex-shrink-0">
                             <DynamicIcon
                               name={service.icon}
-                              className="w-6 h-6 text-coral group-hover:text-white transition-colors"
+                              className="w-6 h-6 text-coral"
                             />
                           </div>
                           <div className="flex-1">
-                            <h4 className="font-bold text-navy mb-2 group-hover:text-coral transition-colors">
+                            <h4 className="font-bold text-white mb-2">
                               {service.title}
                             </h4>
-                            <p className="text-sm text-navy/60">
+                            <p className="text-sm text-white/60">
                               {service.shortDescription}
                             </p>
                           </div>
                           <ArrowRight
                             size={20}
-                            className="text-navy/40 group-hover:text-coral group-hover:translate-x-1 transition-all flex-shrink-0"
+                            className="text-white/40 group-hover:text-coral group-hover:translate-x-1 transition-all flex-shrink-0"
                           />
                         </div>
                       </div>
@@ -155,9 +153,9 @@ export function ServicesPreview() {
         </div>
 
         {/* CTA */}
-        <div className="services-cta text-center mt-12" data-animate>
+        <div className="services-cta text-center mt-10" data-animate>
           <Link href="/services">
-            <Button variant="primary" size="lg" rightIcon={<ArrowRight />}>
+            <Button variant="accent" size="lg" rightIcon={<ArrowRight />}>
               View All Services
             </Button>
           </Link>

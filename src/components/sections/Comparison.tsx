@@ -72,31 +72,31 @@ function ComparisonCard({
 
   return (
     <div
-      className={`comparison-card flex items-start gap-5 p-5 rounded-xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 ${
+      className={`comparison-card flex items-start gap-4 p-5 rounded-2xl transition-all duration-200 hover:-translate-y-1 ${
         isWithout
-          ? "bg-red-500/10 border border-red-500/20 hover:shadow-red-500/10"
-          : "bg-coral/10 border border-coral/20 hover:shadow-coral/10"
+          ? "bg-red-50 border border-red-200/60"
+          : "bg-coral/5 border border-coral/15"
       }`}
       data-animate
     >
       <div
         className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-          isWithout ? "bg-red-500/20" : "bg-coral/20"
+          isWithout ? "bg-red-100" : "bg-coral/15"
         }`}
       >
         <item.icon
-          className={`w-6 h-6 ${isWithout ? "text-red-300" : "text-coral"}`}
+          className={`w-6 h-6 ${isWithout ? "text-red-500" : "text-coral"}`}
         />
       </div>
       <div>
         <h4
           className={`font-bold mb-1 ${
-            isWithout ? "text-red-300" : "text-coral"
+            isWithout ? "text-red-600" : "text-coral"
           }`}
         >
           {item.title}
         </h4>
-        <p className={`text-sm ${isWithout ? "text-red-200/70" : "text-white/70"}`}>
+        <p className={`text-sm ${isWithout ? "text-red-500/70" : "text-navy/60"}`}>
           {item.description}
         </p>
       </div>
@@ -166,16 +166,16 @@ export function Comparison() {
   });
 
   return (
-    <section ref={scope} className="bg-navy text-white py-24 md:py-36 overflow-hidden">
+    <section ref={scope} className="bg-white text-navy py-20 md:py-28 overflow-hidden">
       <Container>
         {/* Section Header */}
-        <div className="comparison-header text-center max-w-3xl mx-auto mb-16" data-animate>
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-6">
+        <div className="comparison-header text-center max-w-2xl mx-auto mb-12" data-animate>
+          <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">
             What Changes When You Stop{" "}
             <span className="text-coral">Doing It Alone</span>
           </h2>
-          <p className="text-white/60 text-lg">
-            You've tried doing it all yourself. Here's what changes when you hand it off to a team that does this every day.
+          <p className="text-navy/60 text-lg">
+            You&apos;ve tried doing it all yourself. Here&apos;s what changes when you hand it off to a team that does this every day.
           </p>
         </div>
 
@@ -184,12 +184,12 @@ export function Comparison() {
           {/* Without Us Column */}
           <div className="comparison-left space-y-4" data-animate>
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center">
-                <X className="w-6 h-6 text-red-300" />
+              <div className="w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center">
+                <X className="w-6 h-6 text-red-500" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-red-300">Without OneSquad</h3>
-                <p className="text-sm text-red-200/70">Sound familiar?</p>
+                <h3 className="text-xl font-bold text-red-600">Without OneSquad</h3>
+                <p className="text-sm text-red-500/60">Sound familiar?</p>
               </div>
             </div>
 
@@ -204,9 +204,9 @@ export function Comparison() {
 
           {/* Center Divider */}
           <div className="hidden lg:flex flex-col items-center py-8">
-            <div className="w-px h-full bg-gradient-to-b from-red-300/20 via-white/10 to-coral/20 relative">
+            <div className="w-px h-full bg-gradient-to-b from-red-200 via-border to-coral/30 relative">
               <div
-                className="comparison-divider-fill absolute top-0 left-0 w-full bg-gradient-to-b from-red-300 via-coral to-coral"
+                className="comparison-divider-fill absolute top-0 left-0 w-full bg-gradient-to-b from-red-400 via-coral to-coral"
               />
             </div>
           </div>
@@ -214,12 +214,12 @@ export function Comparison() {
           {/* With Us Column */}
           <div className="comparison-right space-y-4" data-animate>
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-full bg-coral/20 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-xl bg-coral/15 flex items-center justify-center">
                 <Check className="w-6 h-6 text-coral" />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-coral">With OneSquad</h3>
-                <p className="text-sm text-white/70">What working with us looks like</p>
+                <p className="text-sm text-navy/60">What working with us looks like</p>
               </div>
             </div>
 

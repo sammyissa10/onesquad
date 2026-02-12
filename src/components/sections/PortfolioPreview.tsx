@@ -48,18 +48,18 @@ export function PortfolioPreview() {
   });
 
   return (
-    <section ref={scope} id="portfolio" className="bg-peach/10 text-navy py-16 md:py-24">
+    <section ref={scope} id="portfolio" className="bg-navy text-white py-20 md:py-28">
       <Container>
         {/* Section Header */}
         <div
           className="portfolio-heading text-center max-w-2xl mx-auto mb-12"
           data-animate
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-navy mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Real Sites. Real Businesses.{" "}
             <span className="text-coral">Zero Templates.</span>
           </h2>
-          <p className="text-navy/70 text-lg">
+          <p className="text-white/60 text-lg">
             Every project is built from scratch to match your brand. No cookie-cutter designs.
           </p>
         </div>
@@ -75,19 +75,19 @@ export function PortfolioPreview() {
 
         {/* View All + Custom CTA */}
         <div
-          className="portfolio-cta text-center mt-12 space-y-4"
+          className="portfolio-cta text-center mt-10 space-y-3"
           data-animate
         >
           <Link href="/portfolio">
             <Button
-              variant="primary"
+              variant="accent"
               size="lg"
               rightIcon={<ArrowRight size={18} />}
             >
               View All Templates ({templates.length})
             </Button>
           </Link>
-          <p className="text-navy/70">
+          <p className="text-white/60">
             Need something unique?{" "}
             <Link
               href="/contact"

@@ -34,113 +34,120 @@ export function Hero() {
   });
 
   return (
-    <section ref={scope} className="relative min-h-[100vh] min-h-dvh bg-navy overflow-hidden">
-      <div className="hero-grid relative z-10 grid grid-cols-4 md:grid-cols-6 gap-4 md:gap-5 lg:gap-6 p-4 md:p-6 lg:p-8 min-h-[100vh] min-h-dvh">
-        {/* 1. Headline Block - Desktop: col-span-3 row-span-2 */}
-        <div
-          className="hero-headline col-span-4 md:col-span-3 md:row-span-2 flex flex-col justify-center gap-6 md:gap-8"
-          data-animate
-        >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-display font-black leading-[0.9] text-white tracking-tight">
-            We Build Digital{" "}
-            <span className="text-coral">Empires</span>{" "}
-            For Small Businesses
-          </h1>
-          <p className="text-xl md:text-2xl text-white/70 max-w-2xl">
-            Your all-in-one team for web design, marketing, and ongoing support — without the agency price tag.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
-            <MagneticButton>
-              <Link href="/pricing">
-                <Button
-                  variant="accent"
-                  size="lg"
-                  rightIcon={<ArrowRight size={20} />}
-                  data-cursor="button"
-                >
-                  See Our Plans
-                </Button>
-              </Link>
-            </MagneticButton>
-            <MagneticButton>
-              <Link href="/contact">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-white/30 text-white hover:bg-white hover:text-navy"
-                  data-cursor="button"
-                >
-                  Get a Free Quote
-                </Button>
-              </Link>
-            </MagneticButton>
-          </div>
-        </div>
-
-        {/* 2. Visual Accent Block - Desktop: col-span-3 row-span-2 */}
-        <div
-          className="hero-block col-span-4 md:col-span-3 md:row-span-2 bg-gradient-to-br from-coral to-peach rounded-3xl p-8 md:p-12 flex items-center justify-center"
-          data-cursor="card"
-          data-animate
-        >
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl lg:text-5xl font-black text-white/95 leading-tight">
-              {siteConfig.tagline}
-            </div>
-            <div className="mt-6 text-lg md:text-xl text-white/80 font-medium">
-              OneSquad — Your digital team, simplified
+    <section ref={scope} className="relative bg-navy overflow-hidden">
+      <div className="hero-grid relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 md:pt-40 md:pb-24">
+        {/* Main content: 2-column layout */}
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
+          {/* Left: Headline */}
+          <div
+            className="hero-headline flex flex-col gap-6"
+            data-animate
+          >
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[0.95] text-white tracking-tight">
+              We Build Digital{" "}
+              <span className="text-coral">Empires</span>{" "}
+              For Small Businesses
+            </h1>
+            <p className="text-lg md:text-xl text-white/70 max-w-lg">
+              Your all-in-one team for web design, marketing, and ongoing support — without the agency price tag.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <MagneticButton>
+                <Link href="/pricing">
+                  <Button
+                    variant="accent"
+                    size="lg"
+                    rightIcon={<ArrowRight size={20} />}
+                    data-cursor="button"
+                  >
+                    See Our Plans
+                  </Button>
+                </Link>
+              </MagneticButton>
+              <MagneticButton>
+                <Link href="/contact">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-white/30 text-white hover:bg-white hover:text-navy"
+                    data-cursor="button"
+                  >
+                    Get a Free Quote
+                  </Button>
+                </Link>
+              </MagneticButton>
             </div>
           </div>
-        </div>
 
-        {/* 3. Stat Block - Desktop: col-span-2 row-span-1 */}
-        <div
-          className="hero-block col-span-2 md:col-span-2 md:row-span-1 bg-white/5 backdrop-blur-sm rounded-2xl p-6 flex flex-col justify-center"
-          data-cursor="card"
-          data-animate
-        >
-          <div className="text-3xl md:text-4xl font-bold text-white">
-            {stats[0].value}
-          </div>
-          <div className="text-white/60 text-sm md:text-base mt-2">
-            {stats[0].label}
-          </div>
-        </div>
-
-        {/* 4. Logo/Brand Block - Desktop: col-span-1 row-span-1 */}
-        <div
-          className="hero-block col-span-1 md:col-span-1 md:row-span-1 bg-coral/20 rounded-2xl p-4 flex items-center justify-center"
-          data-cursor="card"
-          data-animate
-        >
-          <div className="text-3xl md:text-4xl font-black text-coral">
-            1S
+          {/* Right: Visual Accent Block */}
+          <div
+            className="hero-block bg-gradient-to-br from-coral to-peach rounded-2xl p-10 md:p-12 flex items-center justify-center min-h-[280px] md:min-h-[340px]"
+            data-cursor="card"
+            data-animate
+          >
+            <div className="text-center">
+              <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-white/95 leading-tight">
+                {siteConfig.tagline}
+              </div>
+              <div className="mt-4 text-base md:text-lg text-white/80 font-medium">
+                OneSquad — Your digital team, simplified
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* 5. Quick CTA Block - Desktop: col-span-1 row-span-1 */}
-        <div
-          className="hero-block col-span-1 md:col-span-1 md:row-span-1 bg-peach text-navy rounded-2xl p-4 flex items-center justify-center text-center font-bold hover:bg-peach/90 transition-colors"
-          data-cursor="card"
-          data-animate
-        >
-          <Link href="/pricing" className="w-full h-full flex items-center justify-center gap-1">
-            <span className="text-sm md:text-base">Start Now</span>
-            <ArrowRight size={16} />
-          </Link>
-        </div>
-
-        {/* 6. Trust Block - Desktop: col-span-2 row-span-1 */}
-        <div
-          className="hero-block col-span-2 md:col-span-2 md:row-span-1 bg-blue/20 rounded-2xl p-6 flex flex-col justify-center"
-          data-cursor="card"
-          data-animate
-        >
-          <div className="text-2xl md:text-3xl font-bold text-white">
-            {stats[3].value}
+        {/* Stats Row */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div
+            className="hero-block bg-white/5 rounded-2xl p-5 flex flex-col justify-center"
+            data-cursor="card"
+            data-animate
+          >
+            <div className="text-2xl md:text-3xl font-bold text-white">
+              {stats[0].value}
+            </div>
+            <div className="text-white/60 text-sm mt-1">
+              {stats[0].label}
+            </div>
           </div>
-          <div className="text-white/60 text-sm md:text-base mt-2">
-            {stats[3].label}
+
+          <div
+            className="hero-block bg-white/5 rounded-2xl p-5 flex flex-col justify-center"
+            data-cursor="card"
+            data-animate
+          >
+            <div className="text-2xl md:text-3xl font-bold text-white">
+              {stats[1].value}
+            </div>
+            <div className="text-white/60 text-sm mt-1">
+              {stats[1].label}
+            </div>
+          </div>
+
+          <div
+            className="hero-block bg-white/5 rounded-2xl p-5 flex flex-col justify-center"
+            data-cursor="card"
+            data-animate
+          >
+            <div className="text-2xl md:text-3xl font-bold text-white">
+              {stats[2].value}
+            </div>
+            <div className="text-white/60 text-sm mt-1">
+              {stats[2].label}
+            </div>
+          </div>
+
+          <div
+            className="hero-block bg-white/5 rounded-2xl p-5 flex flex-col justify-center"
+            data-cursor="card"
+            data-animate
+          >
+            <div className="text-2xl md:text-3xl font-bold text-white">
+              {stats[3].value}
+            </div>
+            <div className="text-white/60 text-sm mt-1">
+              {stats[3].label}
+            </div>
           </div>
         </div>
       </div>

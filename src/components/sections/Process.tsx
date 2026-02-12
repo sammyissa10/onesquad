@@ -3,7 +3,7 @@
 import { Container } from "@/components/ui/Container";
 import { Search, Lightbulb, Rocket, BarChart3 } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { fadeUp, slideFromLeft, slideFromRight, TRIGGERS } from "@/lib/scrollAnimations";
+import { fadeUp, TRIGGERS } from "@/lib/scrollAnimations";
 
 const processSteps = [
   {
@@ -38,7 +38,6 @@ const processSteps = [
 
 export function Process() {
   const { scope } = useScrollAnimation(({ gsap }) => {
-    // Section heading: fadeUp with early trigger
     gsap.from('.process-heading', {
       ...fadeUp({ duration: 0.8 }),
       scrollTrigger: {
@@ -47,88 +46,56 @@ export function Process() {
       },
     });
 
-    // Process steps: alternating slide-in based on index
-    const stepElements = scope.current?.querySelectorAll('.process-step');
-    stepElements?.forEach((step, index) => {
-      const isLeft = index % 2 === 0;
-      gsap.from(step, {
-        ...(isLeft ? slideFromLeft() : slideFromRight()),
-        scrollTrigger: {
-          trigger: step,
-          start: TRIGGERS.standard,
-        },
-      });
-    });
-
-    // Icon nodes: scale from 0 with stagger
-    gsap.from('.process-icon', {
-      opacity: 0,
-      scale: 0,
-      duration: 0.4,
+    gsap.from('.process-step', {
+      ...fadeUp({ y: 30 }),
       stagger: 0.15,
       scrollTrigger: {
-        trigger: '.process-timeline',
+        trigger: '.process-grid',
         start: TRIGGERS.standard,
       },
     });
   });
 
   return (
-    <section ref={scope} className="bg-navy text-white py-28 md:py-40">
-      <Container size="md">
+    <section ref={scope} className="bg-white text-navy py-20 md:py-28">
+      <Container>
         {/* Section Header */}
-        <div className="process-heading text-center max-w-2xl mx-auto mb-16" data-animate>
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-6">
+        <div className="process-heading text-center max-w-2xl mx-auto mb-12" data-animate>
+          <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">
             Four Steps. No Bureaucracy. No Surprises.
           </h2>
-          <p className="text-white/60 text-lg">
+          <p className="text-navy/60 text-lg">
             We keep things simple. Here&apos;s exactly how we work.
           </p>
         </div>
 
-        {/* Process Steps */}
-        <div className="process-timeline space-y-12 relative">
-          {/* Vertical timeline line */}
-          <div className="absolute left-8 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 bg-white/10" />
-
-          {processSteps.map((step, index) => {
-            const isLeft = index % 2 === 0;
-            return (
-              <div
-                key={step.number}
-                className={`process-step relative flex items-start gap-6 md:gap-12 ${
-                  isLeft ? "md:flex-row" : "md:flex-row-reverse"
-                }`}
-                data-animate
-              >
-                {/* Content with oversized number watermark */}
-                <div className={`flex-1 pl-22 md:pl-0 ${isLeft ? "md:text-right" : "md:text-left"} relative`}>
-                  {/* Oversized watermark number */}
-                  <div className={`absolute ${isLeft ? "md:-right-4" : "md:-left-4"} -top-6 text-6xl md:text-7xl font-black text-white/5 pointer-events-none`}>
-                    {step.number}
-                  </div>
-
-                  <div className="relative z-10">
-                    <h3 className="text-2xl font-bold text-white mb-3">
-                      {step.title}
-                    </h3>
-                    <p className="text-white/60 text-lg">{step.description}</p>
-                  </div>
-                </div>
-
-                {/* Icon node on the line */}
-                <div
-                  className="process-icon absolute left-3 md:left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-xl bg-coral/20 flex items-center justify-center z-10 border-4 border-navy"
-                  data-animate
-                >
-                  <step.icon className="w-6 h-6 text-coral" />
-                </div>
-
-                {/* Spacer for the other side */}
-                <div className="hidden md:block flex-1" />
+        {/* Process Steps - clean 4-column grid */}
+        <div className="process-grid grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {processSteps.map((step) => (
+            <div
+              key={step.number}
+              className="process-step text-center p-6"
+              data-animate
+            >
+              {/* Step number */}
+              <div className="text-sm font-bold text-coral mb-4">
+                {step.number}
               </div>
-            );
-          })}
+
+              {/* Icon */}
+              <div
+                className="process-icon w-12 h-12 rounded-xl bg-coral/10 flex items-center justify-center mx-auto mb-4"
+              >
+                <step.icon className="w-6 h-6 text-coral" />
+              </div>
+
+              {/* Content */}
+              <h3 className="text-lg font-bold text-navy mb-2">
+                {step.title}
+              </h3>
+              <p className="text-navy/60 text-sm">{step.description}</p>
+            </div>
+          ))}
         </div>
       </Container>
     </section>
