@@ -1,87 +1,180 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView, MotionConfig } from "framer-motion";
 import Link from "next/link";
 import { Header, Footer } from "@/components/layout";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { fadeUp, slideFromLeft, slideFromRight, TRIGGERS } from "@/lib/scrollAnimations";
 
 export default function AboutPage() {
-  const heroRef = useRef(null);
-  const storyRef = useRef(null);
-  const isHeroInView = useInView(heroRef, { once: true });
-  const isStoryInView = useInView(storyRef, { once: true, margin: "-100px" });
+  // Hero animations (dramatic entrance)
+  const { scope: heroScope } = useScrollAnimation(({ gsap }) => {
+    gsap.from('.about-hero-headline', {
+      ...fadeUp({ y: 60, duration: 1.0, ease: 'power3.out' }),
+      scrollTrigger: {
+        trigger: '.about-hero',
+        start: TRIGGERS.hero,
+      },
+    });
+
+    gsap.from('.about-hero-subtitle', {
+      ...fadeUp({ y: 60, duration: 1.0, ease: 'power3.out' }),
+      delay: 0.3,
+      scrollTrigger: {
+        trigger: '.about-hero',
+        start: TRIGGERS.hero,
+      },
+    });
+  });
+
+  // Story section animations (directional slide)
+  const { scope: storyScope } = useScrollAnimation(({ gsap }) => {
+    // Story text slides from left
+    gsap.from('.about-story-text', {
+      ...slideFromLeft({ duration: 0.8 }),
+      scrollTrigger: {
+        trigger: '.about-story',
+        start: TRIGGERS.standard,
+      },
+    });
+
+    // Brand mark slides from right
+    gsap.from('.about-story-brand', {
+      ...slideFromRight({ duration: 0.8 }),
+      scrollTrigger: {
+        trigger: '.about-story',
+        start: TRIGGERS.standard,
+      },
+    });
+  });
+
+  // Values section animations (dramatic typography statements)
+  const { scope: valuesScope } = useScrollAnimation(({ gsap }) => {
+    // Each value block gets its own dramatic entrance
+    const valueBlocks = gsap.utils.toArray('.about-value');
+    valueBlocks.forEach((block) => {
+      const headline = (block as HTMLElement).querySelector('.about-value-headline');
+      const subtitle = (block as HTMLElement).querySelector('.about-value-subtitle');
+
+      if (headline) {
+        gsap.from(headline, {
+          opacity: 0,
+          y: 80,
+          duration: 1.0,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: headline,
+            start: 'top 75%',
+          },
+        });
+      }
+
+      if (subtitle) {
+        gsap.from(subtitle, {
+          ...fadeUp(),
+          delay: 0.3,
+          scrollTrigger: {
+            trigger: subtitle,
+            start: 'top 80%',
+          },
+        });
+      }
+    });
+  });
+
+  // Editorial section animations (subtle)
+  const { scope: editorialScope } = useScrollAnimation(({ gsap }) => {
+    gsap.from('.about-editorial-heading', {
+      ...fadeUp(),
+      scrollTrigger: {
+        trigger: '.about-editorial',
+        start: TRIGGERS.early,
+      },
+    });
+
+    const paragraphs = gsap.utils.toArray('.about-editorial-paragraph');
+    paragraphs.forEach((p, i) => {
+      gsap.from(p as HTMLElement, {
+        ...fadeUp(),
+        delay: 0.15 * (i + 1),
+        scrollTrigger: {
+          trigger: '.about-editorial',
+          start: TRIGGERS.standard,
+        },
+      });
+    });
+  });
+
+  // CTA section animations
+  const { scope: ctaScope } = useScrollAnimation(({ gsap }) => {
+    gsap.from('.about-cta-heading', {
+      ...fadeUp({ scale: 0.9, duration: 0.7 }),
+      scrollTrigger: {
+        trigger: '.about-cta',
+        start: TRIGGERS.early,
+      },
+    });
+
+    gsap.from('.about-cta-text', {
+      ...fadeUp(),
+      delay: 0.15,
+      scrollTrigger: {
+        trigger: '.about-cta',
+        start: TRIGGERS.early,
+      },
+    });
+
+    gsap.from('.about-cta-buttons', {
+      ...fadeUp(),
+      delay: 0.3,
+      scrollTrigger: {
+        trigger: '.about-cta',
+        start: TRIGGERS.early,
+      },
+    });
+  });
 
   return (
-    <MotionConfig reducedMotion="user">
+    <>
       <Header />
       <main>
         {/* Section 1: Dark Hero - Mission First */}
-        <section className="bg-[#0F172A] py-28 md:py-40" data-cursor="text" data-cursor-text="Read On">
+        <section
+          ref={heroScope}
+          className="about-hero bg-[#0F172A] py-28 md:py-40"
+          data-cursor="text"
+          data-cursor-text="Read On"
+          data-animate
+        >
           <Container size="xl">
-            <motion.div
-              ref={heroRef}
-              variants={{
-                hidden: { opacity: 0 },
-                visible: {
-                  opacity: 1,
-                  transition: {
-                    staggerChildren: 0.15,
-                  },
-                },
-              }}
-              initial="hidden"
-              animate={isHeroInView ? "visible" : "hidden"}
-            >
-              <motion.h1
-                variants={{
-                  hidden: { opacity: 0, y: 40 },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                      duration: 0.8,
-                      ease: [0.22, 1, 0.36, 1],
-                    },
-                  },
-                }}
-                className="text-5xl md:text-7xl lg:text-[6rem] xl:text-display font-black text-white leading-[0.9] tracking-tight"
+            <div>
+              <h1
+                className="about-hero-headline text-5xl md:text-7xl lg:text-[6rem] xl:text-display font-black text-white leading-[0.9] tracking-tight"
+                data-animate
               >
                 We Don&apos;t Do Average.
-              </motion.h1>
-              <motion.p
-                variants={{
-                  hidden: { opacity: 0, y: 40 },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                      duration: 0.8,
-                      ease: [0.22, 1, 0.36, 1],
-                    },
-                  },
-                }}
-                className="text-xl md:text-2xl text-white/70 leading-relaxed max-w-3xl mt-8"
+              </h1>
+              <p
+                className="about-hero-subtitle text-xl md:text-2xl text-white/70 leading-relaxed max-w-3xl mt-8"
+                data-animate
               >
                 We&apos;re a small squad building digital empires for businesses that refuse to blend in. No templates. No shortcuts. Just work that actually works.
-              </motion.p>
-            </motion.div>
+              </p>
+            </div>
           </Container>
         </section>
 
         {/* Section 2: Logo Origin Story */}
-        <section className="bg-card py-24 md:py-36">
+        <section
+          ref={storyScope}
+          className="about-story bg-card py-24 md:py-36"
+          data-animate
+        >
           <Container size="xl">
-            <motion.div
-              ref={storyRef}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isStoryInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16"
-            >
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
               {/* Left column - Story */}
-              <div className="lg:col-span-7">
+              <div className="about-story-text lg:col-span-7" data-animate>
                 <p className="text-sm font-semibold text-coral uppercase tracking-widest mb-6">
                   The Story
                 </p>
@@ -102,7 +195,7 @@ export default function AboutPage() {
               </div>
 
               {/* Right column - Decorative brand mark */}
-              <div className="lg:col-span-5">
+              <div className="about-story-brand lg:col-span-5" data-animate>
                 <div
                   className="aspect-square bg-gradient-to-br from-coral to-peach rounded-3xl flex items-center justify-center"
                   data-cursor="card"
@@ -112,107 +205,92 @@ export default function AboutPage() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </Container>
         </section>
 
         {/* Section 3: Values - Typography Statements */}
-        <section className="bg-[#0F172A] py-28 md:py-40">
+        <section
+          ref={valuesScope}
+          className="about-values bg-[#0F172A] py-28 md:py-40"
+          data-animate
+        >
           <Container size="xl">
             <div className="space-y-20 md:space-y-28">
               {/* Value 1 */}
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <h3 className="text-5xl md:text-7xl lg:text-[5.5rem] font-black text-white leading-[0.9] tracking-tight">
+              <div className="about-value" data-animate>
+                <h3 className="about-value-headline text-5xl md:text-7xl lg:text-[5.5rem] font-black text-white leading-[0.9] tracking-tight" data-animate>
                   We Remember <span className="text-coral">Your Name.</span>
                 </h3>
-                <p className="text-xl md:text-2xl text-white/50 max-w-3xl leading-relaxed mt-6">
+                <p className="about-value-subtitle text-xl md:text-2xl text-white/50 max-w-3xl leading-relaxed mt-6" data-animate>
                   You&apos;re not a ticket number. Your account manager knows your business, your goals, and what keeps you up at night. We build relationships, not just websites.
                 </p>
-              </motion.div>
+              </div>
 
               {/* Value 2 */}
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <h3 className="text-5xl md:text-7xl lg:text-[5.5rem] font-black text-white leading-[0.9] tracking-tight">
+              <div className="about-value" data-animate>
+                <h3 className="about-value-headline text-5xl md:text-7xl lg:text-[5.5rem] font-black text-white leading-[0.9] tracking-tight" data-animate>
                   We&apos;d Rather <span className="text-coral">Say No.</span>
                 </h3>
-                <p className="text-xl md:text-2xl text-white/50 max-w-3xl leading-relaxed mt-6">
+                <p className="about-value-subtitle text-xl md:text-2xl text-white/50 max-w-3xl leading-relaxed mt-6" data-animate>
                   If something won&apos;t work for your business, we&apos;ll tell you straight. We&apos;d rather lose a sale than waste your money on something that won&apos;t deliver. That&apos;s not noble — it&apos;s just good business.
                 </p>
-              </motion.div>
+              </div>
 
               {/* Value 3 */}
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <h3 className="text-5xl md:text-7xl lg:text-[5.5rem] font-black text-white leading-[0.9] tracking-tight">
+              <div className="about-value" data-animate>
+                <h3 className="about-value-headline text-5xl md:text-7xl lg:text-[5.5rem] font-black text-white leading-[0.9] tracking-tight" data-animate>
                   We Never Stop <span className="text-coral">Learning.</span>
                 </h3>
-                <p className="text-xl md:text-2xl text-white/50 max-w-3xl leading-relaxed mt-6">
+                <p className="about-value-subtitle text-xl md:text-2xl text-white/50 max-w-3xl leading-relaxed mt-6" data-animate>
                   The digital world moves fast and we move with it. What worked last year might not work today. We stay sharp so you don&apos;t have to — and we bring those insights to every project.
                 </p>
-              </motion.div>
+              </div>
             </div>
           </Container>
         </section>
 
         {/* Section 4: What Makes Us Different */}
-        <section className="bg-peach/10 py-20 md:py-28">
+        <section
+          ref={editorialScope}
+          className="about-editorial bg-peach/10 py-20 md:py-28"
+          data-animate
+        >
           <Container size="xl">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-4xl mx-auto"
-            >
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-navy leading-[0.9] tracking-tight text-center mb-10">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="about-editorial-heading text-4xl md:text-5xl lg:text-6xl font-black text-navy leading-[0.9] tracking-tight text-center mb-10" data-animate>
                 Small Team. Big Standards.
               </h2>
               <div className="space-y-6">
-                <p className="text-lg md:text-xl text-navy/70 leading-relaxed">
+                <p className="about-editorial-paragraph text-lg md:text-xl text-navy/70 leading-relaxed" data-animate>
                   We&apos;re deliberately small. No account managers playing telephone. No junior devs learning on your dime. When you hire OneSquad, you get the people who actually do the work.
                 </p>
-                <p className="text-lg md:text-xl text-navy/70 leading-relaxed">
+                <p className="about-editorial-paragraph text-lg md:text-xl text-navy/70 leading-relaxed" data-animate>
                   We take on fewer projects so we can give each one the attention it deserves. Your business isn&apos;t a line item — it&apos;s our focus.
                 </p>
-                <p className="text-lg md:text-xl text-navy/70 leading-relaxed">
+                <p className="about-editorial-paragraph text-lg md:text-xl text-navy/70 leading-relaxed" data-animate>
                   And yeah, we remember your name. Every single time.
                 </p>
               </div>
-            </motion.div>
+            </div>
           </Container>
         </section>
 
         {/* Section 5: Manifesto Closer / CTA */}
-        <section className="bg-[#0F172A] py-24 md:py-36">
+        <section
+          ref={ctaScope}
+          className="about-cta bg-[#0F172A] py-24 md:py-36"
+          data-animate
+        >
           <Container size="xl">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="text-center"
-            >
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[0.9] tracking-tight">
+            <div className="text-center">
+              <h2 className="about-cta-heading text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[0.9] tracking-tight" data-animate>
                 Ready to Join <span className="text-coral">the Squad</span>?
               </h2>
-              <p className="text-xl text-white/60 mt-6 mb-10">
+              <p className="about-cta-text text-xl text-white/60 mt-6 mb-10" data-animate>
                 Let&apos;s stop talking about what we could build and start building it.
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <div className="about-cta-buttons flex flex-col sm:flex-row items-center justify-center gap-4" data-animate>
                 <Link href="/contact">
                   <Button variant="accent" size="lg" data-cursor="button">
                     Start a Project
@@ -229,11 +307,11 @@ export default function AboutPage() {
                   </Button>
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </Container>
         </section>
       </main>
       <Footer />
-    </MotionConfig>
+    </>
   );
 }

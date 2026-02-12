@@ -19,6 +19,8 @@ import { Button } from "@/components/ui/Button";
 import { Input, Textarea, Select } from "@/components/ui/Input";
 import { siteConfig, services } from "@/lib/constants";
 import { QUOTE_STORAGE_KEY, type QuoteData } from "@/lib/pricingData";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { fadeUp, scaleReveal, slideFromLeft, slideFromRight, TRIGGERS } from "@/lib/scrollAnimations";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -149,61 +151,142 @@ export default function ContactPage() {
     }
   };
 
+  // Hero animations
+  const { scope: heroScope } = useScrollAnimation(({ gsap }) => {
+    gsap.from('.contact-hero-headline', {
+      ...fadeUp({ y: 30, duration: 0.6 }),
+      scrollTrigger: {
+        trigger: '.contact-hero',
+        start: TRIGGERS.hero,
+      },
+    });
+
+    gsap.from('.contact-hero-subtitle', {
+      ...fadeUp({ y: 30, duration: 0.6 }),
+      delay: 0.15,
+      scrollTrigger: {
+        trigger: '.contact-hero',
+        start: TRIGGERS.hero,
+      },
+    });
+  });
+
+  // Form section animations (asymmetric slide-in)
+  const { scope: formScope } = useScrollAnimation(({ gsap }) => {
+    // Sidebar slides from left
+    gsap.from('.contact-sidebar', {
+      ...slideFromLeft(),
+      scrollTrigger: {
+        trigger: '.contact-form-section',
+        start: TRIGGERS.standard,
+      },
+    });
+
+    // Form area slides from right with delay
+    gsap.from('.contact-form-area', {
+      ...slideFromRight(),
+      delay: 0.15,
+      scrollTrigger: {
+        trigger: '.contact-form-section',
+        start: TRIGGERS.standard,
+      },
+    });
+
+    // Contact info items stagger
+    const contactItems = gsap.utils.toArray('.contact-info-item');
+    contactItems.forEach((item, i) => {
+      gsap.from(item as HTMLElement, {
+        ...fadeUp(),
+        delay: 0.2 + (i * 0.1),
+        scrollTrigger: {
+          trigger: '.contact-sidebar',
+          start: TRIGGERS.standard,
+        },
+      });
+    });
+
+    // Quick response badge
+    gsap.from('.contact-badge', {
+      ...scaleReveal(),
+      delay: 0.5,
+      scrollTrigger: {
+        trigger: '.contact-sidebar',
+        start: TRIGGERS.standard,
+      },
+    });
+  });
+
+  // CTA animations
+  const { scope: ctaScope } = useScrollAnimation(({ gsap }) => {
+    gsap.from('.contact-cta-heading', {
+      ...fadeUp(),
+      scrollTrigger: {
+        trigger: '.contact-cta',
+        start: TRIGGERS.standard,
+      },
+    });
+
+    gsap.from('.contact-cta-text', {
+      ...fadeUp(),
+      delay: 0.15,
+      scrollTrigger: {
+        trigger: '.contact-cta',
+        start: TRIGGERS.standard,
+      },
+    });
+
+    gsap.from('.contact-cta-buttons', {
+      ...fadeUp(),
+      delay: 0.3,
+      scrollTrigger: {
+        trigger: '.contact-cta',
+        start: TRIGGERS.standard,
+      },
+    });
+  });
+
   return (
     <>
       <Header />
       <main>
         {/* Section 1: Dark Hero */}
-        <section className="bg-[#0F172A] py-24 md:py-36">
+        <section
+          ref={heroScope}
+          className="contact-hero bg-[#0F172A] py-24 md:py-36"
+          data-animate
+        >
           <Container>
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: {},
-                visible: {
-                  transition: {
-                    staggerChildren: 0.12,
-                  },
-                },
-              }}
+            <div
               className="max-w-3xl"
               data-cursor="text"
               data-cursor-text="Say Hi"
             >
-              <motion.h1
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-                className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[0.9] mb-6"
+              <h1
+                className="contact-hero-headline text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[0.9] mb-6"
+                data-animate
               >
                 Let&apos;s Build Something <span className="text-coral">Together.</span>
-              </motion.h1>
-              <motion.p
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-                className="text-xl text-white/70"
+              </h1>
+              <p
+                className="contact-hero-subtitle text-xl text-white/70"
+                data-animate
               >
                 You&apos;ve got the vision. We&apos;ve got the skills. Tell us what you&apos;re dreaming up and we&apos;ll make it real.
-              </motion.p>
-            </motion.div>
+              </p>
+            </div>
           </Container>
         </section>
 
         {/* Section 2: Form + Sidebar */}
-        <section className="bg-card py-20 md:py-32">
+        <section
+          ref={formScope}
+          className="contact-form-section bg-card py-20 md:py-32"
+          data-animate
+        >
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
               {/* Sidebar */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="lg:col-span-4"
-              >
+              <div className="contact-sidebar lg:col-span-4" data-animate>
                 <h2 className="text-2xl font-bold text-navy mb-2">
                   Other Ways to Reach Us
                 </h2>
@@ -216,8 +299,9 @@ export default function ContactPage() {
                     <a
                       key={item.label}
                       href={item.href}
-                      className="flex items-start gap-4 group"
+                      className="contact-info-item flex items-start gap-4 group"
                       data-cursor="card"
+                      data-animate
                     >
                       <div className="w-12 h-12 rounded-xl bg-coral/10 flex items-center justify-center flex-shrink-0 group-hover:bg-coral transition-colors">
                         <item.icon className="w-5 h-5 text-coral group-hover:text-white transition-colors" />
@@ -235,7 +319,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Quick response badge */}
-                <div className="mt-8 p-5 bg-navy/5 rounded-2xl">
+                <div className="contact-badge mt-8 p-5 bg-navy/5 rounded-2xl" data-animate>
                   <p className="font-bold text-navy mb-1">
                     We Respond Within <span className="text-coral">24 Hours</span>
                   </p>
@@ -243,15 +327,10 @@ export default function ContactPage() {
                     No automated replies, just real people.
                   </p>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Form Area */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="lg:col-span-8"
-              >
+              <div className="contact-form-area lg:col-span-8" data-animate>
                 <div className="mb-8">
                   <h2 className="text-2xl md:text-3xl font-bold text-navy mb-2">
                     Tell Us About Your Project
@@ -261,7 +340,7 @@ export default function ContactPage() {
                   </p>
                 </div>
 
-                {/* Restyled Quote Summary Card */}
+                {/* Restyled Quote Summary Card - Keep motion.div for conditional mount animation */}
                 {quoteData && !isSubmitted && (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.98 }}
@@ -392,22 +471,26 @@ export default function ContactPage() {
                     </p>
                   </form>
                 )}
-              </motion.div>
+              </div>
             </div>
           </Container>
         </section>
 
         {/* Section 3: Alternative CTA */}
-        <section className="bg-[#0F172A] py-20 md:py-28">
+        <section
+          ref={ctaScope}
+          className="contact-cta bg-[#0F172A] py-20 md:py-28"
+          data-animate
+        >
           <Container>
             <div className="text-center max-w-2xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              <h2 className="contact-cta-heading text-3xl md:text-4xl font-bold text-white mb-4" data-animate>
                 Not Ready to Commit?
               </h2>
-              <p className="text-white/70 text-lg mb-8">
+              <p className="contact-cta-text text-white/70 text-lg mb-8" data-animate>
                 That&apos;s cool. Browse our work or check the pricing calculator — no pressure, no sales pitch.
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <div className="contact-cta-buttons flex flex-col sm:flex-row items-center justify-center gap-4" data-animate>
                 <Link href="/portfolio">
                   <Button variant="accent" size="lg" data-cursor="button">
                     Explore Our Work
