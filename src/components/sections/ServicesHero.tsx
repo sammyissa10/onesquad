@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { MagneticButton } from "@/components/ui/MagneticButton";
@@ -66,7 +65,7 @@ export function ServicesHero() {
             data-animate
           >
             <MagneticButton>
-              <Link href="#digital-marketing">
+              <a href="#digital-marketing">
                 <Button
                   variant="accent"
                   size="lg"
@@ -74,11 +73,11 @@ export function ServicesHero() {
                 >
                   Digital Marketing
                 </Button>
-              </Link>
+              </a>
             </MagneticButton>
 
             <MagneticButton>
-              <Link href="#web-solutions">
+              <a href="#web-solutions">
                 <Button
                   variant="outline"
                   size="lg"
@@ -87,7 +86,7 @@ export function ServicesHero() {
                 >
                   Web Solutions
                 </Button>
-              </Link>
+              </a>
             </MagneticButton>
           </div>
         </div>

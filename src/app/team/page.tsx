@@ -187,8 +187,8 @@ export default function TeamPage() {
   return (
     <>
       <Header />
-      <Breadcrumb items={[{ label: "Our Team" }]} />
       <main>
+        <Breadcrumb items={[{ label: "Our Team" }]} />
         {/* Hero */}
         <Section background="gradient">
           <Container>

@@ -246,8 +246,8 @@ export default function PricingPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <Header />
-      <Breadcrumb items={[{ label: "Pricing" }]} />
         <main ref={scope}>
+          <Breadcrumb items={[{ label: "Pricing" }]} />
           {/* Hero - Navy background with oversized typography */}
           <section className="bg-navy py-32 md:py-40 pricing-hero">
             <Container>

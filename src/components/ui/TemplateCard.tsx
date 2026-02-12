@@ -498,16 +498,12 @@ export function PortfolioCard({
   const hasVideo = template.videoUrl && !isMobile;
 
   return (
-    <motion.div
+    <div
       ref={cardRef}
       data-cursor="card"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      whileHover={{ y: -6 }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="group h-full"
+      className="group h-full hover:-translate-y-1.5 transition-transform duration-300"
     >
       <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-full">
         {/* Screenshot / Video Area */}
@@ -587,6 +583,6 @@ export function PortfolioCard({
           </span>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

@@ -188,8 +188,8 @@ export default function EcommercePricingPage() {
   return (
     <MotionConfig reducedMotion="user">
       <Header />
-      <Breadcrumb items={[{ label: "Pricing", href: "/pricing" }, { label: "E-Commerce Plans" }]} />
       <main>
+          <Breadcrumb items={[{ label: "Pricing", href: "/pricing" }, { label: "E-Commerce Plans" }]} />
         {/* Hero - Gradient with navy/blue tones */}
         <section className="relative bg-navy py-28 md:py-36 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy to-blue/80" />
@@ -202,7 +202,7 @@ export default function EcommercePricingPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ type: "spring", stiffness: 100, damping: 15 }}
-              className="text-center max-w-4xl mx-auto py-28 md:py-36"
+              className="text-center max-w-4xl mx-auto"
             >
               <div className="w-20 h-20 rounded-full bg-gradient-to-br from-coral to-peach flex items-center justify-center mx-auto mb-8 shadow-xl">
                 <ShoppingCart className="w-10 h-10 text-white" />
@@ -573,7 +573,7 @@ export default function EcommercePricingPage() {
                               <Languages className="w-5 h-5 text-navy" />
                               <span className="text-lg font-semibold text-navy">Languages</span>
                             </div>
-                            <div className="grid grid-cols-4 gap-3">
+                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                               {languageOptions.map((option) => (
                                 <motion.button
                                   key={option.id}

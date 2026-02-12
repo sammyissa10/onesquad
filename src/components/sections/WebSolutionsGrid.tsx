@@ -58,7 +58,7 @@ export function WebSolutionsGrid() {
         </div>
 
         {/* Asymmetric Bento Grid */}
-        <div className="ws-grid grid grid-cols-2 gap-6">
+        <div className="ws-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
           {webSolutions.map((service, index) => {
             const isHeroCard = index === 0; // Web Design spans 2 columns
 

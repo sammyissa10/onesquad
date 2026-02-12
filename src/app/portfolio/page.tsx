@@ -36,9 +36,6 @@ const groupIcons: Record<string, React.ElementType> = {
 export default function PortfolioPage() {
   const [activeGroup, setActiveGroup] = useState("all");
 
-  // Track if initial scroll animation has happened
-  const [hasInitiallyAnimated, setHasInitiallyAnimated] = useState(false);
-
   const currentGroup = categoryGroups.find((g) => g.id === activeGroup);
   const subCategories = currentGroup?.categories || [];
 
@@ -110,24 +107,20 @@ export default function PortfolioPage() {
     });
   });
 
-  // Grid animations (only on initial scroll, not on filter changes)
+  // Grid animations - GSAP handles scroll reveal, Framer handles filter transitions
   const { scope: gridScope } = useScrollAnimation(({ gsap }) => {
-    // Only animate on first appearance
-    if (!hasInitiallyAnimated) {
-      const cards = gsap.utils.toArray('.portfolio-card-wrapper');
-      cards.forEach((card, i) => {
-        gsap.from(card as HTMLElement, {
-          ...fadeUp({ y: 30, duration: 0.5 }),
-          delay: i * 0.06, // Dense grid = faster stagger
-          scrollTrigger: {
-            trigger: '.portfolio-grid',
-            start: TRIGGERS.late,
-          },
-        });
+    const cards = gsap.utils.toArray('.portfolio-card-wrapper');
+    cards.forEach((card, i) => {
+      gsap.from(card as HTMLElement, {
+        ...fadeUp({ y: 30, duration: 0.5 }),
+        delay: i * 0.06,
+        scrollTrigger: {
+          trigger: '.portfolio-grid',
+          start: TRIGGERS.late,
+        },
       });
-      setHasInitiallyAnimated(true);
-    }
-  }, { deps: [hasInitiallyAnimated] });
+    });
+  });
 
   // CTA animations
   const { scope: ctaScope } = useScrollAnimation(({ gsap }) => {
@@ -199,7 +192,7 @@ export default function PortfolioPage() {
         <Section background="white" className="py-20 md:py-28">
           <Container>
             {/* Sticky Filter Bar - NO animation, immediately available */}
-            <div className="sticky top-0 z-20 bg-white/95 backdrop-blur-md py-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 mb-6">
+            <div className="sticky top-0 z-20 bg-background/95 backdrop-blur-md py-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 mb-6">
               <div className="flex flex-wrap justify-center gap-3">
                 {categoryGroups.map((group) => {
                   const Icon = groupIcons[group.id] || LayoutGrid;

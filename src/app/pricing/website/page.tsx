@@ -153,8 +153,8 @@ export default function WebsitePricingPage() {
   return (
     <MotionConfig reducedMotion="user">
       <Header />
-      <Breadcrumb items={[{ label: "Pricing", href: "/pricing" }, { label: "Website Plans" }]} />
       <main>
+          <Breadcrumb items={[{ label: "Pricing", href: "/pricing" }, { label: "Website Plans" }]} />
         {/* Hero - Dark Navy with generous spacing */}
         <section className="relative bg-navy py-32 md:py-40 overflow-hidden">
           {/* Subtle radial gradient overlay */}

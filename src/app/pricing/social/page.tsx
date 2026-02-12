@@ -161,8 +161,8 @@ export default function SocialMediaPricingPage() {
   return (
     <MotionConfig reducedMotion="user">
       <Header />
-      <Breadcrumb items={[{ label: "Pricing", href: "/pricing" }, { label: "Social Media Plans" }]} />
       <main>
+          <Breadcrumb items={[{ label: "Pricing", href: "/pricing" }, { label: "Social Media Plans" }]} />
         {/* Hero - Light section with playful energy */}
         <section className="relative bg-gradient-to-br from-white to-peach/10 py-20 md:py-28 overflow-hidden">
           {/* Decorative social icons */}

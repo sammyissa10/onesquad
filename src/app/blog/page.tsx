@@ -192,8 +192,8 @@ export default function BlogPage() {
   return (
     <>
       <Header />
-      <Breadcrumb items={[{ label: "Blog" }]} />
       <main>
+        <Breadcrumb items={[{ label: "Blog" }]} />
         {/* Hero */}
         <Section background="gradient">
           <Container>

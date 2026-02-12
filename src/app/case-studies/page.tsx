@@ -168,8 +168,8 @@ export default function CaseStudiesPage() {
   return (
     <>
       <Header />
-      <Breadcrumb items={[{ label: "Case Studies" }]} />
       <main>
+        <Breadcrumb items={[{ label: "Case Studies" }]} />
         {/* Hero */}
         <Section background="gradient">
           <Container>

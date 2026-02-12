@@ -137,6 +137,54 @@ html.lenis.lenis-smooth {
   background-color: var(--card);
 }
 
+/* Dark mode: convert navy text to light foreground on dark surfaces */
+.dark .text-navy {
+  color: var(--foreground);
+}
+.dark .text-navy\/40 {
+  color: color-mix(in srgb, var(--foreground) 40%, transparent);
+}
+.dark .text-navy\/50 {
+  color: color-mix(in srgb, var(--foreground) 50%, transparent);
+}
+.dark .text-navy\/60 {
+  color: color-mix(in srgb, var(--foreground) 60%, transparent);
+}
+.dark .text-navy\/70 {
+  color: color-mix(in srgb, var(--foreground) 70%, transparent);
+}
+
+/* Dark mode: convert navy borders to dark borders */
+.dark .border-navy\/10 {
+  border-color: var(--border);
+}
+
+/* Dark mode: convert light tinted backgrounds */
+.dark .bg-peach\/5,
+.dark .bg-peach\/10,
+.dark .bg-peach\/15 {
+  background-color: var(--muted);
+}
+
+/* Dark mode: convert navy-based backgrounds */
+.dark .bg-navy\/5 {
+  background-color: var(--muted);
+}
+
+/* Dark mode: convert gray borders on light cards */
+.dark .border-gray-200,
+.dark .border-gray-200\/60 {
+  border-color: var(--border);
+}
+
+/* Dark mode: convert light gray backgrounds */
+.dark .bg-gray-100 {
+  background-color: var(--muted);
+}
+.dark .bg-gray-50 {
+  background-color: var(--muted);
+}
+
 /* Custom cursor: hide on touch devices */
 @media (pointer: coarse) and (hover: none) {
   .custom-cursor {

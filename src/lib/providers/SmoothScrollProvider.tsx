@@ -78,22 +78,18 @@ export function SmoothScrollProvider({
   }, [prefersReducedMotion]);
 
   // Route change scroll-to-top
+  // NOTE: Do NOT kill ScrollTrigger instances here — useGSAP's scope cleanup
+  // handles that automatically when components unmount. Killing them here
+  // destroys triggers created by child components that mounted before this
+  // useEffect runs (useLayoutEffect < useEffect timing).
   useEffect(() => {
-    // Kill all ScrollTrigger instances before route change (safety net)
-    ScrollTrigger.getAll().forEach(st => st.kill());
-
     // Scroll to top instantly on route change
     lenisRef.current?.lenis?.scrollTo(0, { immediate: true });
 
-    // Refresh ScrollTrigger after content loads
+    // Refresh ScrollTrigger after new page content loads
     const timer = setTimeout(() => {
       ScrollTrigger.refresh();
-
-      // Debug logging in development
-      if (process.env.NODE_ENV === 'development') {
-        console.debug(`[ScrollTrigger] Active instances after cleanup: ${ScrollTrigger.getAll().length}`);
-      }
-    }, 100);
+    }, 150);
 
     return () => clearTimeout(timer);
   }, [pathname]);
