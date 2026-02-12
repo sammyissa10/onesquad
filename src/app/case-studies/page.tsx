@@ -100,25 +100,9 @@ function CaseStudyCard({ study }: { study: typeof caseStudies[0] }) {
       <div
         className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full flex flex-col"
       >
-        {/* Industry Visual */}
-        <div
-          className="h-48 bg-gradient-to-br from-[#0e1e36] to-[#1a3a5c] flex items-center justify-center relative overflow-hidden"
-        >
-          <study.icon
-            className="w-16 h-16 text-coral/60 group-hover:scale-110 transition-transform relative z-10"
-            strokeWidth={1.5}
-          />
-          <study.icon
-            className="w-32 h-32 text-white/5 absolute -bottom-4 -right-4 rotate-12"
-            strokeWidth={1}
-          />
-          <div className="absolute top-4 left-4 z-10">
-            <Badge variant="accent">{study.industry}</Badge>
-          </div>
-        </div>
-
         {/* Content */}
         <div className="p-6 flex-1 flex flex-col">
+          <Badge variant="accent" className="w-fit mb-3">{study.industry}</Badge>
           <h3 className="text-xl font-bold text-primary mb-1">{study.title}</h3>
           <p className="text-accent font-medium text-sm mb-3">{study.subtitle}</p>
           <p className="text-muted-foreground text-sm mb-4 flex-1">
