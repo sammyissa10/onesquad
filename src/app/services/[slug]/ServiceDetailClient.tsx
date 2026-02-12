@@ -11,28 +11,8 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 import { DynamicIcon } from "@/components/ui/Icon";
 import { cn } from "@/lib/utils";
 import type { Service } from "@/types";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-} as const;
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut" as const,
-    },
-  },
-};
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { fadeUp, scaleReveal, slideFromRight, TRIGGERS } from "@/lib/scrollAnimations";
 
 // Service-specific taglines
 const serviceTaglines: Record<string, string> = {
@@ -96,19 +76,106 @@ export default function ServiceDetailClient({
   relatedServices,
   categoryName,
 }: ServiceDetailClientProps) {
+  const { scope } = useScrollAnimation(({ gsap }) => {
+    // Hero section - fadeUp with power3 easing
+    gsap.from('.detail-hero-headline', {
+      ...fadeUp({ y: 60, duration: 0.9, ease: 'power3.out' }),
+      scrollTrigger: { trigger: '.detail-hero', start: TRIGGERS.hero },
+    });
+
+    gsap.from('.detail-hero-badge', {
+      ...scaleReveal({ delay: 0.2 }),
+      scrollTrigger: { trigger: '.detail-hero', start: TRIGGERS.hero },
+    });
+
+    gsap.from('.detail-hero-icon', {
+      ...scaleReveal({ delay: 0.2 }),
+      scrollTrigger: { trigger: '.detail-hero', start: TRIGGERS.hero },
+    });
+
+    gsap.from('.detail-hero-subtext', {
+      ...fadeUp({ delay: 0.15 }),
+      scrollTrigger: { trigger: '.detail-hero', start: TRIGGERS.hero },
+    });
+
+    // Features section - cards stagger with scaleReveal
+    const featureCards = gsap.utils.toArray('.detail-feature-card');
+    featureCards.forEach((card, i) => {
+      gsap.from(card as HTMLElement, {
+        ...scaleReveal({ delay: i * 0.1 }),
+        scrollTrigger: { trigger: '.detail-features', start: TRIGGERS.late },
+      });
+    });
+
+    // Results section - metrics fade up with increasing delays
+    const metrics = gsap.utils.toArray('.detail-metric');
+    metrics.forEach((metric, i) => {
+      gsap.from(metric as HTMLElement, {
+        ...fadeUp({ delay: i * 0.15 }),
+        scrollTrigger: { trigger: '.detail-results', start: TRIGGERS.standard },
+      });
+    });
+
+    // Why Choose Us section - heading + stats stagger
+    gsap.from('.detail-why-heading', {
+      ...fadeUp(),
+      scrollTrigger: { trigger: '.detail-why', start: TRIGGERS.early },
+    });
+
+    const statCards = gsap.utils.toArray('.detail-stat-card');
+    statCards.forEach((card, i) => {
+      gsap.from(card as HTMLElement, {
+        ...scaleReveal({ delay: i * 0.1 }),
+        scrollTrigger: { trigger: '.detail-why', start: TRIGGERS.standard },
+      });
+    });
+
+    // Related Services section - slideFromRight stagger
+    const relatedCards = gsap.utils.toArray('.detail-related-card');
+    relatedCards.forEach((card, i) => {
+      gsap.from(card as HTMLElement, {
+        ...slideFromRight({ delay: i * 0.12 }),
+        scrollTrigger: { trigger: '.detail-related', start: TRIGGERS.standard },
+      });
+    });
+
+    // FAQ section - heading fadeUp, container scaleReveal
+    gsap.from('.detail-faq-heading', {
+      ...fadeUp(),
+      scrollTrigger: { trigger: '.detail-faq', start: TRIGGERS.early },
+    });
+
+    gsap.from('.detail-faq-container', {
+      ...scaleReveal(),
+      scrollTrigger: { trigger: '.detail-faq', start: TRIGGERS.standard },
+    });
+
+    // CTA section - cascade (heading, text, buttons)
+    gsap.from('.detail-cta-heading', {
+      ...fadeUp(),
+      scrollTrigger: { trigger: '.detail-cta', start: TRIGGERS.early },
+    });
+
+    gsap.from('.detail-cta-text', {
+      ...fadeUp({ delay: 0.15 }),
+      scrollTrigger: { trigger: '.detail-cta', start: TRIGGERS.early },
+    });
+
+    gsap.from('.detail-cta-buttons', {
+      ...fadeUp({ delay: 0.3 }),
+      scrollTrigger: { trigger: '.detail-cta', start: TRIGGERS.early },
+    });
+  });
+
   return (
     <>
       <Header />
-      <main>
+      <main ref={scope}>
         {/* Section 1 — Hero (DARK - navy) */}
-        <section className="bg-navy text-white py-24 md:py-36">
+        <section className="bg-navy text-white py-24 md:py-36 detail-hero">
           <Container>
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              <motion.div variants={itemVariants}>
+            <div>
+              <div>
                 <Link
                   href="/services"
                   className="inline-flex items-center gap-2 text-white/50 hover:text-white mb-6 transition-colors"
@@ -116,16 +183,16 @@ export default function ServiceDetailClient({
                   <ArrowLeft size={16} />
                   Back to Services
                 </Link>
-              </motion.div>
+              </div>
 
-              <motion.div variants={itemVariants}>
+              <div className="detail-hero-badge" data-animate>
                 <span className="inline-block bg-coral/20 text-coral text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
                   {categoryName}
                 </span>
-              </motion.div>
+              </div>
 
-              <motion.div variants={itemVariants} className="flex items-start gap-6 mb-6">
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl w-16 h-16 flex items-center justify-center flex-shrink-0">
+              <div className="flex items-start gap-6 mb-6 detail-hero-headline" data-animate>
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl w-16 h-16 flex items-center justify-center flex-shrink-0 detail-hero-icon" data-animate>
                   <DynamicIcon
                     name={service.icon}
                     className="w-8 h-8 text-white"
@@ -136,38 +203,33 @@ export default function ServiceDetailClient({
                     {service.title}
                   </h1>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div variants={itemVariants}>
+              <div className="detail-hero-subtext" data-animate>
                 <p className="text-xl text-white/60 max-w-2xl">
                   {serviceTaglines[service.slug]}
                 </p>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           </Container>
         </section>
 
         {/* Section 2 — Features (LIGHT - white) */}
-        <section className="bg-white text-navy py-20 md:py-28">
+        <section className="bg-white text-navy py-20 md:py-28 detail-features">
           <Container>
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              <motion.div variants={itemVariants} className="mb-12">
+            <div>
+              <div className="mb-12">
                 <h2 className="text-3xl md:text-4xl font-black text-navy">
                   What You Get
                 </h2>
-              </motion.div>
+              </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {service.features.map((feature) => (
-                  <motion.div
+                  <div
                     key={feature}
-                    variants={itemVariants}
-                    className="relative group"
+                    className="relative group detail-feature-card"
+                    data-animate
                   >
                     {/* Glow hover effect */}
                     <div className="absolute inset-0 bg-coral/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300" />
@@ -179,60 +241,49 @@ export default function ServiceDetailClient({
                         {feature}
                       </span>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           </Container>
         </section>
 
         {/* Section 3 — Results (DARK - navy) */}
         {service.results && service.results.length > 0 && (
-          <section className="bg-navy text-white py-24 md:py-36">
+          <section className="bg-navy text-white py-24 md:py-36 detail-results">
             <Container>
-              <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                <motion.div variants={itemVariants} className="mb-12">
+              <div>
+                <div className="mb-12">
                   <h2 className="text-3xl md:text-5xl font-black text-white">
                     The Numbers Don&apos;t{" "}
                     <span className="text-coral">Lie</span>
                   </h2>
-                </motion.div>
+                </div>
 
                 <div className="grid md:grid-cols-3 gap-12">
                   {service.results.map((result) => (
-                    <motion.div
+                    <div
                       key={result.description}
-                      variants={itemVariants}
-                      className="text-center md:text-left"
+                      className="text-center md:text-left detail-metric"
+                      data-animate
                     >
                       <div className="text-5xl md:text-7xl font-black text-coral mb-3">
                         {result.metric}
                       </div>
                       <p className="text-white/60 text-lg">{result.description}</p>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             </Container>
           </section>
         )}
 
         {/* Section 4 — Why Choose Us (LIGHT - peach tinted) */}
-        <section className="bg-peach/10 text-navy py-16 md:py-24">
+        <section className="bg-peach/10 text-navy py-16 md:py-24 detail-why">
           <Container>
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid lg:grid-cols-2 gap-12 items-center"
-            >
-              <motion.div variants={itemVariants}>
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="detail-why-heading" data-animate>
                 <h2 className="text-3xl md:text-4xl font-black text-navy mb-6">
                   Why OneSquad?
                 </h2>
@@ -260,12 +311,9 @@ export default function ServiceDetailClient({
                     </Link>
                   </MagneticButton>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                variants={itemVariants}
-                className="grid grid-cols-2 gap-4"
-              >
+              <div className="grid grid-cols-2 gap-4">
                 {[
                   { value: "29+", label: "Websites Launched" },
                   { value: "24/7", label: "Support Available" },
@@ -274,7 +322,8 @@ export default function ServiceDetailClient({
                 ].map((stat) => (
                   <div
                     key={stat.label}
-                    className="bg-white rounded-xl p-6 text-center shadow-lg"
+                    className="bg-white rounded-xl p-6 text-center shadow-lg detail-stat-card"
+                    data-animate
                   >
                     <div className="text-3xl font-bold text-coral mb-2">
                       {stat.value}
@@ -284,36 +333,31 @@ export default function ServiceDetailClient({
                     </div>
                   </div>
                 ))}
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           </Container>
         </section>
 
         {/* Section 5 — Related Services (DARK - navy) */}
         {relatedServices.length > 0 && (
-          <section className="bg-navy text-white py-20 md:py-28">
+          <section className="bg-navy text-white py-20 md:py-28 detail-related">
             <Container>
-              <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                <motion.div variants={itemVariants} className="mb-12">
+              <div>
+                <div className="mb-12">
                   <h2 className="text-2xl md:text-3xl font-bold text-white">
                     More From {categoryName}
                   </h2>
-                </motion.div>
+                </div>
 
                 <div className="grid md:grid-cols-3 gap-6">
                   {relatedServices.map((relatedService) => (
-                    <motion.div
+                    <div
                       key={relatedService.slug}
-                      variants={itemVariants}
-                      whileHover={{ y: -6 }}
+                      className="detail-related-card"
+                      data-animate
                     >
                       <Link href={`/services/${relatedService.slug}`}>
-                        <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 h-full hover:shadow-lg hover:shadow-coral/10 transition-shadow">
+                        <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 h-full hover:shadow-lg hover:shadow-coral/10 hover:-translate-y-1.5 transition-all duration-300">
                           <div className="w-12 h-12 rounded-xl bg-coral/10 flex items-center justify-center mb-4">
                             <DynamicIcon
                               name={relatedService.icon}
@@ -331,32 +375,27 @@ export default function ServiceDetailClient({
                           </span>
                         </div>
                       </Link>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             </Container>
           </section>
         )}
 
         {/* Section 6 — Service FAQs (LIGHT - white) */}
         {service.serviceFaqs && service.serviceFaqs.length > 0 && (
-          <section className="bg-white text-navy py-16 md:py-24">
+          <section className="bg-white text-navy py-16 md:py-24 detail-faq">
             <Container size="md">
-              <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                <motion.div variants={itemVariants} className="text-center mb-12">
+              <div>
+                <div className="text-center mb-12 detail-faq-heading" data-animate>
                   <h2 className="text-3xl md:text-4xl font-black text-navy">
                     Questions About{" "}
                     <span className="text-coral">{service.title}</span>?
                   </h2>
-                </motion.div>
+                </div>
 
-                <motion.div variants={itemVariants}>
+                <div className="detail-faq-container" data-animate>
                   <div className="bg-muted rounded-3xl p-6 md:p-10">
                     {service.serviceFaqs.map((faq, index) => (
                       <ServiceFAQItem
@@ -366,37 +405,31 @@ export default function ServiceDetailClient({
                       />
                     ))}
                   </div>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             </Container>
           </section>
         )}
 
         {/* Bottom CTA — inline in page (DARK - navy) */}
-        <section className="bg-navy text-white py-24 md:py-36">
+        <section className="bg-navy text-white py-24 md:py-36 detail-cta">
           <Container>
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="text-center"
-            >
-              <motion.div variants={itemVariants}>
+            <div className="text-center">
+              <div className="detail-cta-heading" data-animate>
                 <h2 className="text-3xl md:text-5xl font-black text-white mb-4">
                   Ready To Get{" "}
                   <span className="text-coral">{service.title}</span>{" "}
                   Working For You?
                 </h2>
-              </motion.div>
+              </div>
 
-              <motion.div variants={itemVariants}>
+              <div className="detail-cta-text" data-animate>
                 <p className="text-white/60 text-lg mb-8 max-w-2xl mx-auto">
                   No contracts. No jargon. Just results.
                 </p>
-              </motion.div>
+              </div>
 
-              <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 detail-cta-buttons" data-animate>
                 <MagneticButton>
                   <Link href="/contact">
                     <Button
@@ -421,8 +454,8 @@ export default function ServiceDetailClient({
                     </Button>
                   </Link>
                 </MagneticButton>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           </Container>
         </section>
       </main>
