@@ -1,7 +1,5 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
 import {
   X,
   Check,
@@ -14,6 +12,8 @@ import {
   Zap,
 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { slideFromLeft, slideFromRight, TRIGGERS } from "@/lib/scrollAnimations";
 
 const withoutUsItems = [
   {
@@ -64,26 +64,20 @@ const withUsItems = [
 function ComparisonCard({
   item,
   type,
-  index,
 }: {
   item: typeof withoutUsItems[0];
   type: "without" | "with";
-  index: number;
 }) {
   const isWithout = type === "without";
 
   return (
-    <motion.div
-      initial={{ opacity: 0, x: isWithout ? -50 : 50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      whileHover={{ y: -6 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      viewport={{ once: true, margin: "-50px" }}
-      className={`flex items-start gap-4 p-4 rounded-xl hover:shadow-lg transition-all duration-300 ${
+    <div
+      className={`comparison-card flex items-start gap-4 p-4 rounded-xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 ${
         isWithout
           ? "bg-red-500/10 border border-red-500/20 hover:shadow-red-500/10"
           : "bg-coral/10 border border-coral/20 hover:shadow-coral/10"
       }`}
+      data-animate
     >
       <div
         className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
@@ -106,98 +100,137 @@ function ComparisonCard({
           {item.description}
         </p>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
 export function Comparison() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
+  const { scope } = useScrollAnimation(({ gsap }) => {
+    // Header: scale in
+    gsap.from('.comparison-header', {
+      opacity: 0,
+      scale: 0.85,
+      duration: 0.8,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.comparison-header',
+        start: TRIGGERS.standard,
+      },
+    });
+
+    // Left column: slide from left
+    gsap.from('.comparison-left', {
+      ...slideFromLeft(),
+      scrollTrigger: {
+        trigger: '.comparison-grid',
+        start: TRIGGERS.standard,
+      },
+    });
+
+    // Right column: slide from right with delay
+    gsap.from('.comparison-right', {
+      ...slideFromRight({ delay: 0.2 }),
+      scrollTrigger: {
+        trigger: '.comparison-grid',
+        start: TRIGGERS.standard,
+      },
+    });
+
+    // Individual cards within columns: stagger
+    gsap.utils.toArray('.comparison-card').forEach((card, i) => {
+      gsap.from(card as gsap.DOMTarget, {
+        opacity: 0,
+        y: 20,
+        duration: 0.5,
+        delay: i * 0.1,
+        scrollTrigger: {
+          trigger: card as gsap.DOMTarget,
+          start: TRIGGERS.late,
+        },
+      });
+    });
+
+    // Divider: scrubbed to scroll position
+    gsap.from('.comparison-divider-fill', {
+      scaleY: 0,
+      transformOrigin: 'top',
+      duration: 1.5,
+      ease: 'power1.inOut',
+      scrollTrigger: {
+        trigger: '.comparison-grid',
+        start: TRIGGERS.standard,
+        end: 'bottom 30%',
+        scrub: 1,
+      },
+    });
   });
 
-  const leftX = useTransform(scrollYProgress, [0, 0.5], [-100, 0]);
-  const rightX = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
-  const scale = useTransform(scrollYProgress, [0, 0.3], [0.8, 1]);
-  const dividerHeight = useTransform(scrollYProgress, [0.2, 0.8], ["0%", "100%"]);
-
   return (
-    <section className="bg-navy text-white py-24 md:py-36 overflow-hidden">
+    <section ref={scope} className="bg-navy text-white py-24 md:py-36 overflow-hidden">
       <Container>
-        <div ref={containerRef}>
-          {/* Section Header */}
-          <motion.div
-            style={{ opacity, scale }}
-            className="text-center max-w-3xl mx-auto mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
-              What Changes When You Stop{" "}
-              <span className="text-coral">Doing It Alone</span>
-            </h2>
-            <p className="text-white/60 text-lg">
-              You've tried doing it all yourself. Here's what changes when you hand it off to a team that does this every day.
-            </p>
-          </motion.div>
+        {/* Section Header */}
+        <div className="comparison-header text-center max-w-3xl mx-auto mb-16" data-animate>
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
+            What Changes When You Stop{" "}
+            <span className="text-coral">Doing It Alone</span>
+          </h2>
+          <p className="text-white/60 text-lg">
+            You've tried doing it all yourself. Here's what changes when you hand it off to a team that does this every day.
+          </p>
+        </div>
 
-          {/* Comparison Grid */}
-          <div className="grid lg:grid-cols-[1fr_auto_1fr] gap-8 lg:gap-4 items-start">
-            {/* Without Us Column */}
-            <motion.div style={{ x: leftX }} className="space-y-4">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center">
-                  <X className="w-6 h-6 text-red-300" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-red-300">Without OneSquad</h3>
-                  <p className="text-sm text-red-200/70">Sound familiar?</p>
-                </div>
+        {/* Comparison Grid */}
+        <div className="comparison-grid grid lg:grid-cols-[1fr_auto_1fr] gap-8 lg:gap-4 items-start">
+          {/* Without Us Column */}
+          <div className="comparison-left space-y-4" data-animate>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center">
+                <X className="w-6 h-6 text-red-300" />
               </div>
-
-              {withoutUsItems.map((item, index) => (
-                <ComparisonCard
-                  key={item.title}
-                  item={item}
-                  type="without"
-                  index={index}
-                />
-              ))}
-            </motion.div>
-
-            {/* Center Divider */}
-            <div className="hidden lg:flex flex-col items-center py-8">
-              <div className="w-px h-full bg-gradient-to-b from-red-300/20 via-white/10 to-coral/20 relative">
-                <motion.div
-                  style={{ height: dividerHeight }}
-                  className="absolute top-0 left-0 w-full bg-gradient-to-b from-red-300 via-coral to-coral"
-                />
+              <div>
+                <h3 className="text-xl font-bold text-red-300">Without OneSquad</h3>
+                <p className="text-sm text-red-200/70">Sound familiar?</p>
               </div>
             </div>
 
-            {/* With Us Column */}
-            <motion.div style={{ x: rightX }} className="space-y-4">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-full bg-coral/20 flex items-center justify-center">
-                  <Check className="w-6 h-6 text-coral" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-coral">With OneSquad</h3>
-                  <p className="text-sm text-white/70">What working with us looks like</p>
-                </div>
-              </div>
-
-              {withUsItems.map((item, index) => (
-                <ComparisonCard
-                  key={item.title}
-                  item={item}
-                  type="with"
-                  index={index}
-                />
-              ))}
-            </motion.div>
+            {withoutUsItems.map((item) => (
+              <ComparisonCard
+                key={item.title}
+                item={item}
+                type="without"
+              />
+            ))}
           </div>
 
+          {/* Center Divider */}
+          <div className="hidden lg:flex flex-col items-center py-8">
+            <div className="w-px h-full bg-gradient-to-b from-red-300/20 via-white/10 to-coral/20 relative">
+              <div
+                className="comparison-divider-fill absolute top-0 left-0 w-full bg-gradient-to-b from-red-300 via-coral to-coral"
+              />
+            </div>
+          </div>
+
+          {/* With Us Column */}
+          <div className="comparison-right space-y-4" data-animate>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-full bg-coral/20 flex items-center justify-center">
+                <Check className="w-6 h-6 text-coral" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-coral">With OneSquad</h3>
+                <p className="text-sm text-white/70">What working with us looks like</p>
+              </div>
+            </div>
+
+            {withUsItems.map((item) => (
+              <ComparisonCard
+                key={item.title}
+                item={item}
+                type="with"
+              />
+            ))}
+          </div>
         </div>
       </Container>
     </section>
