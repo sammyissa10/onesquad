@@ -1,15 +1,10 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
 import { Star } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { testimonials } from "@/lib/constants";
-
-import { scaleIn, stagger } from "@/lib/animations";
-
-const containerVariants = stagger(0.15);
-const itemVariants = scaleIn;
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { fadeUp, scaleReveal, TRIGGERS } from "@/lib/scrollAnimations";
 
 // Define unique visual treatments for each testimonial
 const testimonialStyles = [
@@ -46,84 +41,113 @@ const testimonialStyles = [
 ];
 
 export function Testimonials() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const { scope } = useScrollAnimation(({ gsap }) => {
+    // Section heading: fadeUp with early trigger
+    gsap.from('.testimonials-heading', {
+      ...fadeUp({ duration: 0.8 }),
+      scrollTrigger: {
+        trigger: '.testimonials-heading',
+        start: TRIGGERS.early,
+      },
+    });
+
+    // Testimonial cards: varied-timing reveals
+    // First card (wide, coral): scaleReveal with no delay
+    gsap.from('.testimonial-card-0', {
+      ...scaleReveal(),
+      scrollTrigger: {
+        trigger: '.testimonial-grid',
+        start: TRIGGERS.standard,
+      },
+    });
+
+    // Second card (narrow, navy): scaleReveal with 0.15s delay
+    gsap.from('.testimonial-card-1', {
+      ...scaleReveal(),
+      delay: 0.15,
+      scrollTrigger: {
+        trigger: '.testimonial-grid',
+        start: TRIGGERS.standard,
+      },
+    });
+
+    // Third card (full-width, white): fadeUp with 0.3s delay (different effect)
+    gsap.from('.testimonial-card-2', {
+      ...fadeUp(),
+      delay: 0.3,
+      scrollTrigger: {
+        trigger: '.testimonial-grid',
+        start: TRIGGERS.standard,
+      },
+    });
+  });
 
   return (
-    <section className="bg-peach/15 text-navy py-20 md:py-32">
+    <section ref={scope} className="bg-peach/15 text-navy py-20 md:py-32">
       <Container>
-        <motion.div
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+        {/* Section Header */}
+        <div
+          className="testimonials-heading text-center max-w-2xl mx-auto mb-16"
+          data-animate
         >
-          {/* Section Header */}
-          <motion.div
-            variants={itemVariants}
-            className="text-center max-w-2xl mx-auto mb-16"
-          >
-            <h2 className="text-3xl md:text-5xl font-black text-navy mb-6">
-              Don&apos;t Take Our Word For It.{" "}
-              <span className="text-coral">Take Theirs.</span>
-            </h2>
-            <p className="text-navy/60 text-lg">
-              No scripts. No stock photos. Just honest feedback.
-            </p>
-          </motion.div>
+          <h2 className="text-3xl md:text-5xl font-black text-navy mb-6">
+            Don&apos;t Take Our Word For It.{" "}
+            <span className="text-coral">Take Theirs.</span>
+          </h2>
+          <p className="text-navy/60 text-lg">
+            No scripts. No stock photos. Just honest feedback.
+          </p>
+        </div>
 
-          {/* Testimonial Bento Grid */}
-          <motion.div
-            variants={itemVariants}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
-          >
-            {testimonials.map((testimonial, index) => {
-              const style = testimonialStyles[index % testimonialStyles.length];
+        {/* Testimonial Bento Grid */}
+        <div className="testimonial-grid grid grid-cols-1 md:grid-cols-3 gap-6">
+          {testimonials.map((testimonial, index) => {
+            const style = testimonialStyles[index % testimonialStyles.length];
 
-              return (
-                <motion.div
-                  key={testimonial.id}
-                  data-cursor="card"
-                  className={`${style.bg} ${style.text} ${style.padding} ${style.rounded} ${style.colSpan} hover:scale-[1.02] transition-transform duration-300`}
-                >
-                  {/* Large decorative quote mark */}
-                  <div className={`text-6xl md:text-7xl font-serif leading-none mb-4 ${style.quoteColor}`}>
-                    &ldquo;
+            return (
+              <div
+                key={testimonial.id}
+                data-cursor="card"
+                data-animate
+                className={`testimonial-card-${index} ${style.bg} ${style.text} ${style.padding} ${style.rounded} ${style.colSpan} hover:scale-[1.02] transition-transform duration-300`}
+              >
+                {/* Large decorative quote mark */}
+                <div className={`text-6xl md:text-7xl font-serif leading-none mb-4 ${style.quoteColor}`}>
+                  &ldquo;
+                </div>
+
+                {/* Testimonial content */}
+                <blockquote className="text-lg md:text-xl mb-6 leading-relaxed">
+                  {testimonial.content}
+                </blockquote>
+
+                {/* Star rating */}
+                <div className="flex gap-1 mb-6">
+                  {Array.from({ length: testimonial.rating }).map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`w-5 h-5 ${
+                        style.bg === "bg-white"
+                          ? "fill-coral text-coral"
+                          : "fill-white text-white"
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                {/* Author */}
+                <div>
+                  <div className={`font-bold ${style.nameColor}`}>
+                    {testimonial.name}
                   </div>
-
-                  {/* Testimonial content */}
-                  <blockquote className="text-lg md:text-xl mb-6 leading-relaxed">
-                    {testimonial.content}
-                  </blockquote>
-
-                  {/* Star rating */}
-                  <div className="flex gap-1 mb-6">
-                    {Array.from({ length: testimonial.rating }).map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-5 h-5 ${
-                          style.bg === "bg-white"
-                            ? "fill-coral text-coral"
-                            : "fill-white text-white"
-                        }`}
-                      />
-                    ))}
+                  <div className={style.roleColor}>
+                    {testimonial.role}, {testimonial.company}
                   </div>
-
-                  {/* Author */}
-                  <div>
-                    <div className={`font-bold ${style.nameColor}`}>
-                      {testimonial.name}
-                    </div>
-                    <div className={style.roleColor}>
-                      {testimonial.role}, {testimonial.company}
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </motion.div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </Container>
     </section>
   );

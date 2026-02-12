@@ -1,46 +1,78 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Calendar } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { fadeIn, stagger } from "@/lib/animations";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { fadeUp, TRIGGERS } from "@/lib/scrollAnimations";
 
 export function CTABanner() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const { scope } = useScrollAnimation(({ gsap }) => {
+    // Heading: dramatic fadeUp
+    gsap.from('.cta-heading', {
+      ...fadeUp({ y: 40, duration: 0.8 }),
+      scrollTrigger: {
+        trigger: '.cta-content',
+        start: TRIGGERS.standard,
+      },
+    });
+
+    // Subtext: fadeUp with 0.15s delay
+    gsap.from('.cta-subtext', {
+      ...fadeUp(),
+      delay: 0.15,
+      scrollTrigger: {
+        trigger: '.cta-content',
+        start: TRIGGERS.standard,
+      },
+    });
+
+    // Buttons: fadeUp with 0.3s delay
+    gsap.from('.cta-buttons', {
+      ...fadeUp(),
+      delay: 0.3,
+      scrollTrigger: {
+        trigger: '.cta-content',
+        start: TRIGGERS.standard,
+      },
+    });
+
+    // Trust badges: fadeUp with 0.45s delay, slight scale
+    gsap.from('.cta-badges', {
+      ...fadeUp({ y: 30 }),
+      scale: 0.95,
+      delay: 0.45,
+      scrollTrigger: {
+        trigger: '.cta-content',
+        start: TRIGGERS.standard,
+      },
+    });
+  });
 
   return (
-    <section className="bg-navy text-white py-24 md:py-36">
+    <section ref={scope} className="bg-navy text-white py-24 md:py-36">
       <Container>
-        <motion.div
-          ref={ref}
-          variants={stagger(0.15)}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="text-center max-w-4xl mx-auto"
-        >
-          <motion.h2
-            variants={fadeIn}
-            className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6"
+        <div className="cta-content text-center max-w-4xl mx-auto">
+          <h2
+            className="cta-heading text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6"
+            data-animate
           >
             Ready To Stop Guessing And{" "}
             <span className="text-coral">Start Growing?</span>
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            variants={fadeIn}
-            className="text-xl text-white/60 mb-10"
+          <p
+            className="cta-subtext text-xl text-white/60 mb-10"
+            data-animate
           >
             No 12-month contracts. No corporate jargon. Just results.
-          </motion.p>
+          </p>
 
-          <motion.div
-            variants={fadeIn}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          <div
+            className="cta-buttons flex flex-col sm:flex-row items-center justify-center gap-4"
+            data-animate
           >
             <MagneticButton>
               <Link href="/pricing">
@@ -67,11 +99,11 @@ export function CTABanner() {
                 </Button>
               </Link>
             </MagneticButton>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={fadeIn}
-            className="mt-10 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-center gap-6 text-white/50"
+          <div
+            className="cta-badges mt-10 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-center gap-6 text-white/50"
+            data-animate
           >
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-green-400" />
@@ -85,8 +117,8 @@ export function CTABanner() {
               <div className="w-2 h-2 rounded-full bg-green-400" />
               <span>Cancel anytime</span>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </Container>
     </section>
   );

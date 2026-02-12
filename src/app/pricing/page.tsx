@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion, useInView, MotionConfig } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { Check, HelpCircle, ChevronDown } from "lucide-react";
 import { Header, Footer } from "@/components/layout";
@@ -11,77 +11,8 @@ import { Badge } from "@/components/ui/Badge";
 import { pricingPlans, includedWithEveryPlan, faqs } from "@/lib/constants";
 import { formatPrice, cn } from "@/lib/utils";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
-
-// Hero animation variants - custom cubic bezier for smooth entrance
-const heroVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  },
-};
-
-const heroItemVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  },
-};
-
-// Tier card variants - staggered scale-in
-const tierGridVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const tierCardVariants = {
-  hidden: { opacity: 0, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.4,
-      ease: "easeOut" as const,
-    },
-  },
-};
-
-// Hosting card variants - fade-up with y offset
-const hostingVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const hostingCardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut" as const,
-    },
-  },
-};
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { fadeUp, scaleReveal, TRIGGERS } from "@/lib/scrollAnimations";
 
 function PricingCard({
   plan,
@@ -99,26 +30,23 @@ function PricingCard({
       ? Math.round(plan.price * 0.85)
       : plan.price;
 
-  // Different hover patterns per variant
-  const hoverAnimation =
+  // Different hover patterns per variant - converted to CSS
+  const hoverClasses =
     variant === "hosting"
-      ? { y: -8, boxShadow: "0 20px 40px rgba(5, 23, 51, 0.15)" }
-      : {
-          boxShadow: "0 0 80px rgba(226, 121, 94, 0.3)",
-        };
+      ? "hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(5,23,51,0.15)]"
+      : "hover:shadow-[0_0_80px_rgba(226,121,94,0.3)]";
 
   return (
-    <motion.div
-      variants={hostingCardVariants}
-      whileHover={hoverAnimation}
-      transition={{ duration: 0.3 }}
+    <div
       data-cursor="card"
       className={cn(
-        "relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border h-full flex flex-col",
+        "relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border h-full flex flex-col transition-all duration-300 pricing-plan-card",
+        hoverClasses,
         plan.highlighted
           ? "ring-2 ring-coral border-coral/50"
           : "border-white/10"
       )}
+      data-animate
     >
       {/* Badge */}
       {plan.badge && (
@@ -179,7 +107,7 @@ function PricingCard({
           </Button>
         </Link>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -226,11 +154,77 @@ function FAQItem({ faq, index }: { faq: (typeof faqs)[0]; index: number }) {
 export default function PricingPage() {
   const [isAnnual, setIsAnnual] = useState(false);
   const [activeTab, setActiveTab] = useState<"hosting" | "managed">("hosting");
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   const hostingPlans = pricingPlans.filter((p) => p.category === "hosting");
   const managedPlans = pricingPlans.filter((p) => p.category === "managed");
+
+  const { scope } = useScrollAnimation(({ gsap }) => {
+    // Hero section
+    gsap.from('.pricing-hero-h1', {
+      ...fadeUp({ y: 50, duration: 0.8, ease: 'power3.out' }),
+      scrollTrigger: { trigger: '.pricing-hero', start: TRIGGERS.hero },
+    });
+
+    gsap.from('.pricing-hero-subtitle', {
+      ...fadeUp({ delay: 0.15 }),
+      scrollTrigger: { trigger: '.pricing-hero', start: TRIGGERS.hero },
+    });
+
+    gsap.from('.pricing-hero-toggle', {
+      ...fadeUp({ delay: 0.3 }),
+      scrollTrigger: { trigger: '.pricing-hero', start: TRIGGERS.hero },
+    });
+
+    // Tier Gateway Cards - staggered scaleReveal
+    const tierCards = gsap.utils.toArray('.pricing-tier-card');
+    tierCards.forEach((card, i) => {
+      gsap.from(card as HTMLElement, {
+        ...scaleReveal({ delay: i * 0.12 }),
+        scrollTrigger: { trigger: '.pricing-tiers', start: TRIGGERS.late },
+      });
+    });
+
+    // Hosting/Managed section
+    gsap.from('.pricing-hosting-heading', {
+      ...fadeUp(),
+      scrollTrigger: { trigger: '.pricing-hosting', start: TRIGGERS.early },
+    });
+
+    gsap.from('.pricing-hosting-tabs', {
+      ...fadeUp({ delay: 0.1 }),
+      scrollTrigger: { trigger: '.pricing-hosting', start: TRIGGERS.early },
+    });
+
+    gsap.from('.pricing-hosting-desc', {
+      ...fadeUp({ delay: 0.2 }),
+      scrollTrigger: { trigger: '.pricing-hosting', start: TRIGGERS.early },
+    });
+
+    // Plan cards - staggered fadeUp
+    const planCards = gsap.utils.toArray('.pricing-plan-card');
+    planCards.forEach((card, i) => {
+      gsap.from(card as HTMLElement, {
+        ...fadeUp({ delay: i * 0.1 }),
+        scrollTrigger: { trigger: '.pricing-plans-grid', start: TRIGGERS.standard },
+      });
+    });
+
+    gsap.from('.pricing-included', {
+      ...fadeUp({ delay: 0.3 }),
+      scrollTrigger: { trigger: '.pricing-hosting', start: TRIGGERS.standard },
+    });
+
+    // FAQ section
+    gsap.from('.pricing-faq-heading', {
+      ...fadeUp(),
+      scrollTrigger: { trigger: '.pricing-faq', start: TRIGGERS.early },
+    });
+
+    gsap.from('.pricing-faq-container', {
+      ...scaleReveal(),
+      scrollTrigger: { trigger: '.pricing-faq', start: TRIGGERS.standard },
+    });
+  });
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -253,35 +247,29 @@ export default function PricingPage() {
       />
       <Header />
       <Breadcrumb items={[{ label: "Pricing" }]} />
-      <MotionConfig reducedMotion="user">
-        <main>
+        <main ref={scope}>
           {/* Hero - Navy background with oversized typography */}
-          <section className="bg-navy py-32 md:py-40">
+          <section className="bg-navy py-32 md:py-40 pricing-hero">
             <Container>
-              <motion.div
-                variants={heroVariants}
-                initial="hidden"
-                animate="visible"
-                className="text-center max-w-4xl mx-auto"
-              >
-                <motion.h1
-                  variants={heroItemVariants}
-                  className="text-5xl md:text-6xl xl:text-7xl font-heading font-bold text-white mb-6"
+              <div className="text-center max-w-4xl mx-auto">
+                <h1
+                  className="text-5xl md:text-6xl xl:text-7xl font-heading font-bold text-white mb-6 pricing-hero-h1"
+                  data-animate
                 >
                   Stop Guessing.{" "}
                   <span className="text-coral">Start Building.</span>
-                </motion.h1>
-                <motion.p
-                  variants={heroItemVariants}
-                  className="text-xl md:text-2xl text-white/80 mb-10 max-w-2xl mx-auto"
+                </h1>
+                <p
+                  className="text-xl md:text-2xl text-white/80 mb-10 max-w-2xl mx-auto pricing-hero-subtitle"
+                  data-animate
                 >
                   Three ways to level up. Each one built different.
-                </motion.p>
+                </p>
 
                 {/* Billing toggle - pill style on navy */}
-                <motion.div
-                  variants={heroItemVariants}
-                  className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-full p-1.5"
+                <div
+                  className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-full p-1.5 pricing-hero-toggle"
+                  data-animate
                 >
                   <button
                     onClick={() => setIsAnnual(false)}
@@ -310,29 +298,21 @@ export default function PricingPage() {
                       Save 15%
                     </Badge>
                   </button>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             </Container>
           </section>
 
           {/* Tier Gateway Cards - White background with distinct cards */}
-          <section className="bg-white py-24 md:py-32">
+          <section className="bg-white py-24 md:py-32 pricing-tiers">
             <Container>
-              <motion.div
-                variants={tierGridVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
-                className="grid grid-cols-1 md:grid-cols-3 gap-8"
-              >
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* Social Media Card - Coral stripe, scale hover */}
-                <motion.div variants={tierCardVariants}>
+                <div className="pricing-tier-card" data-animate>
                   <Link href="/pricing/social">
-                    <motion.div
-                      whileHover={{ scale: 1.03 }}
-                      transition={{ duration: 0.3 }}
+                    <div
                       data-cursor="card"
-                      className="relative bg-white rounded-3xl border-2 border-border shadow-lg overflow-hidden h-full"
+                      className="relative bg-white rounded-3xl border-2 border-border shadow-lg overflow-hidden h-full hover:scale-[1.03] transition-transform duration-300"
                     >
                       {/* Coral accent stripe */}
                       <div className="h-2 bg-coral" />
@@ -355,20 +335,16 @@ export default function PricingPage() {
                           Build Your Package
                         </Button>
                       </div>
-                    </motion.div>
+                    </div>
                   </Link>
-                </motion.div>
+                </div>
 
                 {/* Website Card - Taller with glow hover, -mt-4 on desktop */}
-                <motion.div variants={tierCardVariants} className="md:-mt-4">
+                <div className="md:-mt-4 pricing-tier-card" data-animate>
                   <Link href="/pricing/website">
-                    <motion.div
-                      whileHover={{
-                        boxShadow: "0 0 80px rgba(226, 121, 94, 0.3)",
-                      }}
-                      transition={{ duration: 0.3 }}
+                    <div
                       data-cursor="card"
-                      className="relative bg-navy/5 rounded-3xl border border-navy/20 shadow-lg overflow-hidden h-full"
+                      className="relative bg-navy/5 rounded-3xl border border-navy/20 shadow-lg overflow-hidden h-full hover:shadow-[0_0_80px_rgba(226,121,94,0.3)] transition-shadow duration-300"
                     >
                       {/* Content */}
                       <div className="p-8 md:p-10">
@@ -390,21 +366,16 @@ export default function PricingPage() {
                           Configure Your Site
                         </Button>
                       </div>
-                    </motion.div>
+                    </div>
                   </Link>
-                </motion.div>
+                </div>
 
                 {/* E-commerce Card - Gradient border, lift+shadow hover */}
-                <motion.div variants={tierCardVariants}>
+                <div className="pricing-tier-card" data-animate>
                   <Link href="/pricing/ecommerce">
-                    <motion.div
-                      whileHover={{
-                        y: -8,
-                        boxShadow: "0 20px 40px rgba(5, 23, 51, 0.15)",
-                      }}
-                      transition={{ duration: 0.3 }}
+                    <div
                       data-cursor="card"
-                      className="relative bg-white rounded-3xl shadow-lg overflow-hidden h-full"
+                      className="relative bg-white rounded-3xl shadow-lg overflow-hidden h-full hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(5,23,51,0.15)] transition-all duration-300"
                       style={{
                         background: "linear-gradient(white, white) padding-box, linear-gradient(135deg, #E2795E, #FAB383) border-box",
                         border: "2px solid transparent",
@@ -427,40 +398,29 @@ export default function PricingPage() {
                           Build Your Store
                         </Button>
                       </div>
-                    </motion.div>
+                    </div>
                   </Link>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             </Container>
           </section>
 
           {/* Hosting & Managed Plans - Navy background with glass cards */}
-          <section className="bg-navy py-24 md:py-32">
+          <section className="bg-navy py-24 md:py-32 pricing-hosting">
             <Container>
-              <motion.div
-                ref={ref}
-                variants={hostingVariants}
-                initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
-              >
+              <div className="pricing-hosting-heading" data-animate>
                 {/* Section heading */}
-                <motion.div
-                  variants={hostingCardVariants}
-                  className="text-center mb-12"
-                >
+                <div className="text-center mb-12 pricing-faq-heading" data-animate>
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
                     Looking for Hosting or Managed Services?
                   </h2>
                   <p className="text-xl text-white/70 max-w-2xl mx-auto">
                     Full-service plans with everything handled for you.
                   </p>
-                </motion.div>
+                </div>
 
                 {/* Tabs - navy background with coral underline */}
-                <motion.div
-                  variants={hostingCardVariants}
-                  className="flex justify-center mb-12"
-                >
+                <div className="flex justify-center mb-12 pricing-hosting-tabs" data-animate>
                   <div className="inline-flex bg-white/5 backdrop-blur-sm rounded-xl p-2">
                     <button
                       onClick={() => setActiveTab("hosting")}
@@ -501,22 +461,19 @@ export default function PricingPage() {
                       )}
                     </button>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Tab description */}
-                <motion.p
-                  variants={hostingCardVariants}
-                  className="text-center text-white/70 mb-12 max-w-2xl mx-auto"
-                >
+                <p className="text-center text-white/70 mb-12 max-w-2xl mx-auto pricing-hosting-desc" data-animate>
                   {activeTab === "hosting"
                     ? "For businesses that need reliable hosting with professional support. Add features as you grow."
                     : "Let us handle everything — your website, marketing, and brand management, all in one plan."}
-                </motion.p>
+                </p>
 
                 {/* Plans grid */}
                 <div
                   className={cn(
-                    "grid gap-8",
+                    "grid gap-8 pricing-plans-grid",
                     activeTab === "hosting"
                       ? "md:grid-cols-3"
                       : "md:grid-cols-2 lg:grid-cols-4"
@@ -535,10 +492,7 @@ export default function PricingPage() {
                 </div>
 
                 {/* Included with every plan - small line at bottom */}
-                <motion.div
-                  variants={hostingCardVariants}
-                  className="mt-12 pt-8 border-t border-white/10"
-                >
+                <div className="mt-12 pt-8 border-t border-white/10 pricing-included" data-animate>
                   <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
                     <span className="text-sm text-white/60 font-medium">
                       Included with every plan:
@@ -550,15 +504,15 @@ export default function PricingPage() {
                       </div>
                     ))}
                   </div>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             </Container>
           </section>
 
           {/* FAQ - White background with edgy copy */}
-          <section className="bg-white py-20 md:py-28">
+          <section className="bg-white py-20 md:py-28 pricing-faq">
             <Container size="md">
-              <div className="text-center mb-12">
+              <div className="text-center mb-12 pricing-faq-heading" data-animate>
                 <span className="text-coral font-semibold text-sm uppercase tracking-wider">
                   FAQ
                 </span>
@@ -567,7 +521,7 @@ export default function PricingPage() {
                 </h2>
               </div>
 
-              <div className="bg-muted rounded-3xl p-8 md:p-10">
+              <div className="bg-muted rounded-3xl p-8 md:p-10 pricing-faq-container" data-animate>
                 {faqs.map((faq, index) => (
                   <FAQItem key={faq.question} faq={faq} index={index} />
                 ))}
@@ -586,7 +540,6 @@ export default function PricingPage() {
             </Container>
           </section>
         </main>
-      </MotionConfig>
       <Footer />
     </>
   );
