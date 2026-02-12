@@ -40,7 +40,9 @@ export function SmoothScrollProvider({
     }
 
     gsap.ticker.add(update);
-    gsap.ticker.lagSmoothing(0);
+    // Enable lag smoothing to prevent jarring jumps on heavy frames
+    // 500ms threshold, 33ms minimum frame time
+    gsap.ticker.lagSmoothing(500, 33);
 
     return () => {
       gsap.ticker.remove(update);
@@ -65,10 +67,10 @@ export function SmoothScrollProvider({
 
     // Full smooth scroll experience
     return {
-      lerp: 0.075,
+      lerp: 0.1, // Increased from 0.075 to reduce scroll lag with ScrollTrigger
       smoothWheel: true,
       syncTouch: true,
-      syncTouchLerp: 0.075,
+      syncTouchLerp: 0.1, // Match lerp value
       touchMultiplier: 1.5,
       wheelMultiplier: 1,
       infinite: false,
@@ -87,11 +89,20 @@ export function SmoothScrollProvider({
     lenisRef.current?.lenis?.scrollTo(0, { immediate: true });
 
     // Refresh ScrollTrigger after new page content loads
-    const timer = setTimeout(() => {
+    // First refresh after initial render settles
+    const timer1 = setTimeout(() => {
       ScrollTrigger.refresh();
-    }, 150);
+    }, 300);
 
-    return () => clearTimeout(timer);
+    // Safety refresh for lazy content (images, dynamic sections)
+    const timer2 = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 800);
+
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
   }, [pathname]);
 
   return (

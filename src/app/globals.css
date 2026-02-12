@@ -120,6 +120,12 @@ html.lenis.lenis-smooth {
   scrollbar-width: none;
 }
 
+/* Prevent flicker on GPU-promoted animated elements */
+[data-animate] {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
 /* Selection color */
 ::selection {
   background-color: var(--accent);
