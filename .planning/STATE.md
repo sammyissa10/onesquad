@@ -53,6 +53,7 @@ Progress: [████████████████████] 100%
 | Phase quick-18 P01 | 2 | 2 tasks | 5 files |
 | Phase quick-19 P01 | 3 | 2 tasks | 6 files |
 | Phase quick-20 P01 | 1.13 | 3 tasks | 4 files |
+| Phase quick-21 P01 | 3.3 | 3 tasks | 12 files |
 
 ## Accumulated Context
 
@@ -188,6 +189,7 @@ Recent decisions affecting current work:
 - [Phase quick-19]: Use dark:bg-card on form inputs to preserve light mode bg-white while adding dark mode support
 - [Phase quick-19]: Replace text-navy with text-foreground (CSS variable adapts via ThemeProvider) for dark mode text visibility
 - [Phase quick-19]: Use bg-accent instead of bg-primary for portfolio filter active state (coral visible in both themes)
+- [Phase quick-21]: Tokenized navy shades (#0F172A, #0e1e36) and aligned peach with secondary (#FFBD83) for color consistency
 
 ### Pending Todos
 
