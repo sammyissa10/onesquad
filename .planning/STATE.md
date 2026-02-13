@@ -50,6 +50,7 @@ Progress: [████████████████████] 100%
 | Phase quick-13 P01 | 3 | 2 tasks | 4 files |
 | Phase quick-14 P01 | 1.2 | 1 tasks | 1 files |
 | Phase quick-16 P01 | 4 | 3 tasks | 8 files |
+| Phase quick-17 P01 | 6 | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -180,6 +181,10 @@ Recent decisions affecting current work:
 - [Phase quick-15]: Pain-point hero headline: 'You Didn't Start a Business to Fight With Your Website' establishes empathy immediately
 - [Phase quick-15]: Conversion-focused CTAs with specificity and urgency ('Get a Free Mockup in 24hrs', 'Pick Your Plan — Cancel Anytime')
 - [Phase quick-15]: Stat callout badges on testimonials provide immediate visual proof of results (3x Traffic Growth, 180% Organic Growth)
+- [Phase quick-17]: Vanilla pointer events for comparison slider (not GSAP Draggable) - simpler, no dependencies
+- [Phase quick-17]: clip-path reveal for comparison slider - GPU-accelerated, smoother than width/transform
+- [Phase quick-17]: Dual layout rendering for testimonials (carousel + grid) - cleaner than complex conditional logic
+- [Phase quick-17]: Dashboard randomized counter values (not input-based) for more impressive demo variety
 
 ### Pending Todos
 
@@ -209,12 +214,13 @@ None yet.
 | 14 | Redesign comparison section divider animation | 2026-02-12 | 3c67c58 | [14-redesign-comparison-section-divider-anim](./quick/14-redesign-comparison-section-divider-anim/) |
 | 15 | Phase 1 copy rewrite - hero headline, CTA buttons, testimonial badges | 2026-02-12 | 97f4982 | [15-phase-1-copy-rewrite-hero-headline-cta-b](./quick/15-phase-1-copy-rewrite-hero-headline-cta-b/) |
 | 16 | Layout and animation polish - hero countup, bento grid, 3D tilt, pin-scroll | 2026-02-12 | 18c4a07 | [16-layout-and-animation-polish-hero-countup](./quick/16-layout-and-animation-polish-hero-countup/) |
+| 17 | Interactive wow-factor features - comparison slider, testimonial carousel, dashboard personalization | 2026-02-13 | f0491af | [17-interactive-wow-factor-features-comparis](./quick/17-interactive-wow-factor-features-comparis/) |
 
 ## Session Continuity
 
-Last session: 2026-02-12 (quick task execution)
-Stopped at: Completed quick-16-PLAN.md (Layout and animation polish)
-Resume file: .planning/quick/16-layout-and-animation-polish-hero-countup/16-SUMMARY.md
+Last session: 2026-02-13 (quick task execution)
+Stopped at: Completed quick-17-PLAN.md (Interactive wow-factor features)
+Resume file: .planning/quick/17-interactive-wow-factor-features-comparis/17-SUMMARY.md
 
 **Phase 08 Status:** COMPLETE (5 of 5 plans complete)
 - 08-01: GSAP scroll animation presets and homepage conversion (complete)
