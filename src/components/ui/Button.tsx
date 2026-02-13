@@ -18,13 +18,13 @@ interface ButtonProps extends Omit<HTMLMotionProps<"button">, "ref"> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/25",
+    "bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/25 hover:scale-[1.03] hover:-translate-y-0.5 hover:shadow-xl",
   secondary:
     "bg-secondary text-primary hover:bg-secondary/90 shadow-lg shadow-secondary/25",
   accent:
-    "bg-accent text-white hover:bg-accent/90 shadow-lg shadow-accent/25",
+    "bg-accent text-white hover:bg-accent/90 shadow-lg shadow-accent/25 hover:scale-[1.03] hover:-translate-y-0.5 hover:shadow-xl hover:shadow-accent/30",
   outline:
-    "border-2 border-primary text-primary hover:bg-primary hover:text-white",
+    "border-2 border-primary text-primary hover:bg-primary hover:text-white hover:scale-[1.03] hover:-translate-y-0.5 hover:shadow-lg",
   ghost: "text-primary hover:bg-primary/10",
 };
 
@@ -54,7 +54,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         data-cursor="button"
         className={cn(
-          "inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed",
+          "inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed",
           variantStyles[variant],
           sizeStyles[size],
           className

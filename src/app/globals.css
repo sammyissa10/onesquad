@@ -217,6 +217,15 @@ html.transitioning *::after {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
 }
 
+/* Disable button hover transforms for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  button,
+  [role="button"] {
+    transform: none !important;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease !important;
+  }
+}
+
 /* Custom cursor: hide on touch devices */
 @media (pointer: coarse) and (hover: none) {
   .custom-cursor {
