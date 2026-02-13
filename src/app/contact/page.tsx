@@ -292,10 +292,10 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
               {/* Sidebar */}
               <div className="contact-sidebar lg:col-span-4" data-animate>
-                <h2 className="text-2xl font-bold text-navy mb-2">
+                <h2 className="text-2xl font-bold text-foreground mb-2">
                   Other Ways to Reach Us
                 </h2>
-                <p className="text-navy/60 mb-8">
+                <p className="text-muted-foreground mb-8">
                   Not a form person? We get it.
                 </p>
 
@@ -312,10 +312,10 @@ export default function ContactPage() {
                         <item.icon className="w-5 h-5 text-coral group-hover:text-white transition-colors" />
                       </div>
                       <div>
-                        <p className="text-sm text-navy/60">
+                        <p className="text-sm text-muted-foreground">
                           {item.label}
                         </p>
-                        <p className="font-semibold text-navy">
+                        <p className="font-semibold text-foreground">
                           {item.value}
                         </p>
                       </div>
@@ -324,14 +324,14 @@ export default function ContactPage() {
                 </div>
 
                 {/* Quick response badge */}
-                <div className="contact-badge mt-8 p-5 bg-navy/5 rounded-2xl" data-animate>
-                  <p className="font-bold text-navy mb-1">
+                <div className="contact-badge mt-8 p-5 bg-muted rounded-2xl" data-animate>
+                  <p className="font-bold text-foreground mb-1">
                     We Respond Within <span className="text-coral">24 Hours</span>
                   </p>
-                  <p className="text-sm text-navy/60">
+                  <p className="text-sm text-muted-foreground">
                     No automated replies, just real people.
                   </p>
-                  <p className="text-sm text-navy/60 mt-1">
+                  <p className="text-sm text-muted-foreground mt-1">
                     Call, text, or email your OneSquad rep directly.
                   </p>
                 </div>
@@ -340,10 +340,10 @@ export default function ContactPage() {
               {/* Form Area */}
               <div className="contact-form-area lg:col-span-8" data-animate>
                 <div className="mb-8">
-                  <h2 className="text-2xl md:text-3xl font-bold text-navy mb-2">
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
                     Tell Us About Your Project
                   </h2>
-                  <p className="text-navy/60">
+                  <p className="text-muted-foreground">
                     The more you tell us, the better we can help. No pressure — we&apos;ll get back to you within 24 hours.
                   </p>
                 </div>
@@ -360,18 +360,18 @@ export default function ContactPage() {
                         <span className="text-white text-xl font-bold">$</span>
                       </div>
                       <div>
-                        <h4 className="text-lg font-bold text-navy">Your Quote Summary</h4>
-                        <p className="text-sm text-navy/60">From the pricing calculator</p>
+                        <h4 className="text-lg font-bold text-foreground">Your Quote Summary</h4>
+                        <p className="text-sm text-muted-foreground">From the pricing calculator</p>
                       </div>
                     </div>
                     {quoteData.services.map((svc) => (
                       <div key={svc.serviceId} className="flex justify-between text-sm mb-2">
-                        <span className="text-navy/80">{svc.serviceName}</span>
-                        <span className="font-semibold text-navy">${svc.subtotal}</span>
+                        <span className="text-foreground/80">{svc.serviceName}</span>
+                        <span className="font-semibold text-foreground">${svc.subtotal}</span>
                       </div>
                     ))}
                     <div className="border-t-2 border-coral/20 pt-3 mt-3 flex justify-between">
-                      <span className="text-navy font-bold text-lg">Estimated Total</span>
+                      <span className="text-foreground font-bold text-lg">Estimated Total</span>
                       <span className="text-coral font-bold text-xl">${quoteData.total}</span>
                     </div>
                   </motion.div>
@@ -386,10 +386,10 @@ export default function ContactPage() {
                     <div className="w-20 h-20 rounded-full bg-coral/10 flex items-center justify-center mx-auto mb-6">
                       <CheckCircle className="w-10 h-10 text-coral" />
                     </div>
-                    <h3 className="text-2xl font-bold text-navy mb-4">
+                    <h3 className="text-2xl font-bold text-foreground mb-4">
                       Message Sent!
                     </h3>
-                    <p className="text-navy/60 mb-8">
+                    <p className="text-muted-foreground mb-8">
                       Thanks for reaching out. We&apos;ll get back to you within 24 hours with a real, human response.
                     </p>
                     <Button
@@ -474,7 +474,7 @@ export default function ContactPage() {
                       {isSubmitting ? "Sending..." : "Send Message"}
                     </Button>
 
-                    <p className="text-center text-sm text-navy/50">
+                    <p className="text-center text-sm text-muted-foreground">
                       By submitting, you agree to our Privacy Policy. We&apos;ll respond within 24 hours — no automated replies, just real people.
                     </p>
                   </form>
