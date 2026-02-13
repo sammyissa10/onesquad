@@ -102,7 +102,7 @@ export function TemplateShowcaseCard({
 
   // Card background
   const cardBg =
-    variant === 1 ? "bg-[#0F172A]" :
+    variant === 1 ? "bg-navy-section" :
     variant === 2 ? theme.light :
     "bg-white";
 

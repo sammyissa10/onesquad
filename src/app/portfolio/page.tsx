@@ -153,7 +153,7 @@ export default function PortfolioPage() {
         {/* Dark Hero Section */}
         <section
           ref={heroScope}
-          className="hero-section bg-[#0F172A] py-24 md:py-36"
+          className="hero-section bg-navy-section py-24 md:py-36"
           data-cursor="text"
           data-cursor-text="Explore"
           data-animate
@@ -262,7 +262,7 @@ export default function PortfolioPage() {
         {/* Dark CTA Section */}
         <section
           ref={ctaScope}
-          className="cta-section bg-[#0F172A] py-24 md:py-32"
+          className="cta-section bg-navy-section py-24 md:py-32"
           data-animate
         >
           <Container>

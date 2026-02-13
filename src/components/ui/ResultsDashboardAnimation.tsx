@@ -125,7 +125,7 @@ export function ResultsDashboardAnimation({ className = "" }: ResultsDashboardAn
   return (
     <div ref={containerRef} className={`w-full ${className}`}>
       {/* Browser Chrome Frame */}
-      <div className="rounded-2xl bg-[#0e1e36] border border-white/10 overflow-hidden">
+      <div className="rounded-2xl bg-navy-deep border border-white/10 overflow-hidden">
         {/* Top Bar with Dots and URL Bar */}
         <div className="h-8 flex items-center px-3 bg-[#0a1628]">
           {/* Traffic Light Dots */}
@@ -142,7 +142,7 @@ export function ResultsDashboardAnimation({ className = "" }: ResultsDashboardAn
         </div>
 
         {/* Dashboard Content Area */}
-        <div className="bg-[#0a1628] p-3 md:p-4">
+        <div className="bg-navy p-3 md:p-4">
           {/* Header Row */}
           <div className="dash-header dash-el flex justify-between items-center mb-3">
             <div className="text-white/60 text-xs font-medium">Dashboard</div>

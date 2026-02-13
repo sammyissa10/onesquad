@@ -54,8 +54,10 @@
   /* Brand Colors */
   --color-navy: #051733;
   --color-coral: #E2795E;
-  --color-peach: #FAB383;
+  --color-peach: #FFBD83;
   --color-blue: #27598E;
+  --color-navy-section: #0F172A;
+  --color-navy-deep: #0e1e36;
 
   /* Typography Scale */
   --text-display: 5.5rem;

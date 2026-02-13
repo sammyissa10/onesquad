@@ -171,7 +171,7 @@ export default function AboutPage() {
         {/* Section 1: Dark Hero - Mission First */}
         <section
           ref={heroScope}
-          className="about-hero bg-[#0F172A] py-28 md:py-40"
+          className="about-hero bg-navy-section py-28 md:py-40"
           data-cursor="text"
           data-cursor-text="Read On"
           data-animate
@@ -244,7 +244,7 @@ export default function AboutPage() {
         {/* Section 3: Vision / Mission */}
         <section
           ref={visionScope}
-          className="about-vision bg-[#0F172A] py-24 md:py-36"
+          className="about-vision bg-navy-section py-24 md:py-36"
           data-animate
         >
           <Container size="xl">
@@ -265,7 +265,7 @@ export default function AboutPage() {
         {/* Section 4: Values - Typography Statements */}
         <section
           ref={valuesScope}
-          className="about-values bg-[#0F172A] py-28 md:py-40 border-t border-white/10"
+          className="about-values bg-navy-section py-28 md:py-40 border-t border-white/10"
           data-animate
         >
           <Container size="xl">
@@ -332,7 +332,7 @@ export default function AboutPage() {
         {/* Section 6: Manifesto Closer / CTA */}
         <section
           ref={ctaScope}
-          className="about-cta bg-[#0F172A] py-24 md:py-36"
+          className="about-cta bg-navy-section py-24 md:py-36"
           data-animate
         >
           <Container size="xl">

@@ -121,7 +121,7 @@ export function Comparison() {
   });
 
   return (
-    <section ref={scope} className="relative bg-[#0e1e36] text-white py-24 md:py-36 overflow-hidden">
+    <section ref={scope} className="relative bg-navy-deep text-white py-24 md:py-36 overflow-hidden">
       {/* Top gradient border for visual separation from ServicesPreview */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-coral/20 to-transparent" />
 

@@ -257,7 +257,7 @@ export default function ContactPage() {
         {/* Section 1: Dark Hero */}
         <section
           ref={heroScope}
-          className="contact-hero bg-[#0F172A] py-24 md:py-36"
+          className="contact-hero bg-navy-section py-24 md:py-36"
           data-animate
         >
           <Container>
@@ -487,7 +487,7 @@ export default function ContactPage() {
         {/* Section 3: Alternative CTA */}
         <section
           ref={ctaScope}
-          className="contact-cta bg-[#0F172A] py-20 md:py-28"
+          className="contact-cta bg-navy-section py-20 md:py-28"
           data-animate
         >
           <Container>
