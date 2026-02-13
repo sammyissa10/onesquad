@@ -77,15 +77,15 @@ export function ServicesPreview() {
               <span className="w-10 h-0.5 bg-blue rounded-full flex-shrink-0" />
               Web Solutions
             </h3>
-            <div className="ws-cards grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {webSolutions.map((service) => (
-                <div key={service.slug}>
+            <div className="ws-cards grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {webSolutions.map((service, index) => (
+                <div key={service.slug} className={index === 0 ? 'lg:col-span-2' : ''}>
                   <Link href={`/services/${service.slug}`}>
                     <div className="ws-card relative group" data-animate>
                       <div
                         data-cursor="card"
                         data-cursor-text="View"
-                        className="relative bg-white/5 border border-white/10 rounded-2xl p-6 h-full hover:-translate-y-1 transition-transform duration-200"
+                        className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 h-full hover:-translate-y-1 transition-transform duration-200"
                       >
                         <div className="w-12 h-12 rounded-xl bg-blue/15 flex items-center justify-center mb-4">
                           <DynamicIcon
@@ -121,7 +121,7 @@ export function ServicesPreview() {
                       <div
                         data-cursor="card"
                         data-cursor-text="View"
-                        className="relative bg-white/5 border border-white/10 rounded-2xl p-6 h-full hover:-translate-y-1 transition-transform duration-200"
+                        className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 h-full hover:-translate-y-1 transition-transform duration-200"
                       >
                         <div className="flex items-start gap-4">
                           <div className="w-12 h-12 rounded-xl bg-coral/15 flex items-center justify-center flex-shrink-0">

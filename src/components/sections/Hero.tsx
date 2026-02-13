@@ -32,6 +32,64 @@ export function Hero() {
         start: TRIGGERS.hero,
       },
     });
+
+    // Stat countup animations
+    gsap.from('.hero-stats', {
+      scrollTrigger: {
+        trigger: '.hero-stats',
+        start: TRIGGERS.standard,
+        invalidateOnRefresh: true,
+        onEnter: () => {
+          // Stat 0: "21+" countup
+          const stat0 = document.querySelector('.stat-value-0');
+          if (stat0) {
+            const obj = { val: 0 };
+            gsap.to(obj, {
+              val: 21,
+              duration: 1.5,
+              ease: 'power2.out',
+              onUpdate: () => {
+                stat0.textContent = Math.ceil(obj.val) + '+';
+              },
+            });
+          }
+
+          // Stat 1: "2–4 wk" typewriter
+          const stat1 = document.querySelector('.stat-value-1');
+          if (stat1) {
+            const text = '2–4 wk';
+            stat1.textContent = '';
+            const obj = { progress: 0 };
+            gsap.to(obj, {
+              progress: 1,
+              duration: 0.8,
+              ease: 'none',
+              onUpdate: () => {
+                stat1.textContent = text.substring(0, Math.ceil(obj.progress * text.length));
+              },
+            });
+          }
+
+          // Stat 2: "24/7" typewriter
+          const stat2 = document.querySelector('.stat-value-2');
+          if (stat2) {
+            const text = '24/7';
+            stat2.textContent = '';
+            const obj = { progress: 0 };
+            gsap.to(obj, {
+              progress: 1,
+              duration: 0.8,
+              ease: 'none',
+              onUpdate: () => {
+                stat2.textContent = text.substring(0, Math.ceil(obj.progress * text.length));
+              },
+            });
+          }
+
+          // Stat 3: "0" already zero, just fade in with hero-block animation
+        },
+      },
+    });
   });
 
   return (
@@ -90,13 +148,13 @@ export function Hero() {
         </div>
 
         {/* Stats Row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="hero-stats grid grid-cols-2 md:grid-cols-4 gap-4">
           <div
             className="hero-block bg-white/5 rounded-2xl p-5 flex flex-col justify-center"
             data-cursor="card"
             data-animate
           >
-            <div className="text-2xl md:text-3xl font-bold text-white">
+            <div className="stat-value stat-value-0 text-2xl md:text-3xl font-bold text-white">
               {stats[0].value}
             </div>
             <div className="text-white/60 text-sm mt-1">
@@ -109,7 +167,7 @@ export function Hero() {
             data-cursor="card"
             data-animate
           >
-            <div className="text-2xl md:text-3xl font-bold text-white">
+            <div className="stat-value stat-value-1 text-2xl md:text-3xl font-bold text-white">
               {stats[1].value}
             </div>
             <div className="text-white/60 text-sm mt-1">
@@ -122,7 +180,7 @@ export function Hero() {
             data-cursor="card"
             data-animate
           >
-            <div className="text-2xl md:text-3xl font-bold text-white">
+            <div className="stat-value stat-value-2 text-2xl md:text-3xl font-bold text-white">
               {stats[2].value}
             </div>
             <div className="text-white/60 text-sm mt-1">
@@ -135,7 +193,7 @@ export function Hero() {
             data-cursor="card"
             data-animate
           >
-            <div className="text-2xl md:text-3xl font-bold text-white">
+            <div className="stat-value stat-value-3 text-2xl md:text-3xl font-bold text-white">
               {stats[3].value}
             </div>
             <div className="text-white/60 text-sm mt-1">

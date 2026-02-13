@@ -56,11 +56,11 @@ export function Testimonials() {
               key={testimonial.id}
               data-cursor="card"
               data-animate
-              className="testimonial-card bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 hover:-translate-y-1 transition-transform duration-200"
+              className="testimonial-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8 hover:-translate-y-1 transition-transform duration-200"
             >
               {/* Stat badge */}
               {statBadges[testimonial.id] && (
-                <div className="inline-block bg-coral/15 text-coral text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full mb-3">
+                <div className="inline-block bg-coral/15 text-coral text-sm font-bold uppercase tracking-wider px-4 py-2 rounded-full mb-3">
                   {statBadges[testimonial.id]}
                 </div>
               )}
