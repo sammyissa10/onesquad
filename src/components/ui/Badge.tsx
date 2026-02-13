@@ -12,7 +12,7 @@ const variantStyles = {
   accent: "bg-accent text-white",
   secondary: "bg-secondary text-primary",
   outline: "border border-primary text-primary",
-  success: "bg-green-100 text-green-800",
+  success: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
 };
 
 const sizeStyles = {

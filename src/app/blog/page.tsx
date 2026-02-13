@@ -214,7 +214,7 @@ export default function BlogPage() {
               {categories.map((category) => (
                 <button
                   key={category}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${
                     category === "All"
                       ? "bg-accent text-white"
                       : "bg-muted text-muted-foreground hover:bg-accent/10 hover:text-accent"
@@ -302,7 +302,7 @@ export default function BlogPage() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-secondary"
+                  className="flex-1 px-4 py-3 rounded-lg border-0 bg-white dark:bg-white/10 text-foreground dark:text-white placeholder:text-muted-foreground dark:placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-secondary"
                 />
                 <Button variant="secondary" className="text-primary">
                   Subscribe
