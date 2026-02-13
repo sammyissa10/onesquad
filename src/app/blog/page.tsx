@@ -127,7 +127,7 @@ function BlogCard({ post, featured = false }: { post: typeof blogPosts[0]; featu
         href={post.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full flex flex-col block"
+        className="bg-card rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full flex flex-col block"
       >
         {/* Content */}
         <div className="p-6 flex flex-col flex-1">
@@ -137,7 +137,7 @@ function BlogCard({ post, featured = false }: { post: typeof blogPosts[0]; featu
           </div>
 
           <h3
-            className={`font-bold text-primary mb-3 group-hover:text-accent transition-colors ${
+            className={`font-bold text-foreground mb-3 group-hover:text-accent transition-colors ${
               featured ? "text-2xl" : "text-xl"
             }`}
           >

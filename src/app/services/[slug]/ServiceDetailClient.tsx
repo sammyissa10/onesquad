@@ -32,19 +32,19 @@ function ServiceFAQItem({ faq, isLast }: { faq: { question: string; answer: stri
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={cn("border-b border-navy/10", isLast && "border-0")}>
+    <div className={cn("border-b border-border", isLast && "border-0")}>
       <button
         data-cursor="button"
         onClick={() => setIsOpen(!isOpen)}
         className="w-full py-5 flex items-center justify-between text-left group"
       >
-        <span className="font-bold text-navy group-hover:text-coral transition-colors pr-4">
+        <span className="font-bold text-foreground group-hover:text-accent transition-colors pr-4">
           {faq.question}
         </span>
         <ChevronDown
           className={cn(
             "w-5 h-5 transition-all flex-shrink-0",
-            isOpen ? "rotate-180 text-coral" : "text-navy/40"
+            isOpen ? "rotate-180 text-coral" : "text-muted-foreground"
           )}
         />
       </button>
@@ -57,7 +57,7 @@ function ServiceFAQItem({ faq, isLast }: { faq: { question: string; answer: stri
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <p className="pb-5 text-navy/70">{faq.answer}</p>
+            <p className="pb-5 text-muted-foreground">{faq.answer}</p>
           </motion.div>
         )}
       </AnimatePresence>

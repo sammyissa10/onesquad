@@ -127,7 +127,7 @@ const values = [
 function TeamMemberCard({ member }: { member: typeof teamMembers[0] }) {
   return (
     <motion.div variants={itemVariants} whileHover={{ y: -8 }} className="group">
-      <div className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
+      <div className="bg-card rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
         {/* Avatar Placeholder */}
         <div className="h-48 bg-gradient-to-br from-[#0e1e36] to-[#1a3a5c] flex items-center justify-center relative overflow-hidden">
           <span className="text-6xl font-bold text-white/20 relative z-10 group-hover:text-coral/40 transition-colors duration-300">
@@ -138,7 +138,7 @@ function TeamMemberCard({ member }: { member: typeof teamMembers[0] }) {
 
         {/* Content */}
         <div className="p-6">
-          <h3 className="text-xl font-bold text-primary mb-1">{member.name}</h3>
+          <h3 className="text-xl font-bold text-foreground mb-1">{member.name}</h3>
           <p className="text-accent font-medium text-sm mb-4">{member.role}</p>
           <p className="text-muted-foreground text-sm mb-4">{member.bio}</p>
 

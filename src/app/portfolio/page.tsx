@@ -199,8 +199,8 @@ export default function PortfolioPage() {
                       data-cursor="button"
                       className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
                         isActive
-                          ? "bg-primary text-white shadow-lg shadow-primary/25"
-                          : "bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary"
+                          ? "bg-accent text-white shadow-lg shadow-accent/25"
+                          : "bg-muted text-muted-foreground hover:bg-accent/10 hover:text-accent"
                       }`}
                     >
                       <Icon size={16} />
