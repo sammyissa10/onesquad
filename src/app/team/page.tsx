@@ -156,20 +156,24 @@ function TeamMemberCard({ member }: { member: typeof teamMembers[0] }) {
 
           {/* Social Links */}
           <div className="flex gap-3">
-            <a
-              href={member.socials.linkedin}
-              className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:bg-accent hover:text-white transition-colors"
-              aria-label={`${member.name}'s LinkedIn`}
-            >
-              <Linkedin size={16} />
-            </a>
-            <a
-              href={member.socials.twitter}
-              className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:bg-accent hover:text-white transition-colors"
-              aria-label={`${member.name}'s Twitter`}
-            >
-              <Twitter size={16} />
-            </a>
+            {member.socials.linkedin !== "#" && (
+              <a
+                href={member.socials.linkedin}
+                className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:bg-accent hover:text-white transition-colors"
+                aria-label={`${member.name}'s LinkedIn`}
+              >
+                <Linkedin size={16} />
+              </a>
+            )}
+            {member.socials.twitter !== "#" && (
+              <a
+                href={member.socials.twitter}
+                className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:bg-accent hover:text-white transition-colors"
+                aria-label={`${member.name}'s Twitter`}
+              >
+                <Twitter size={16} />
+              </a>
+            )}
             <a
               href={`mailto:${member.socials.email}`}
               className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:bg-accent hover:text-white transition-colors"
