@@ -140,12 +140,12 @@ export default function WebsiteCalculator() {
       variants={premiumStagger}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      className="grid lg:grid-cols-[340px_1fr] gap-12"
+      className="grid lg:grid-cols-[340px_1fr] gap-6 lg:gap-12"
     >
       {/* Sidebar Summary - elegant with subtle border */}
       <motion.div
         variants={premiumItem}
-        className="lg:sticky lg:top-24 h-fit"
+        className="lg:sticky lg:top-24 h-fit order-2 lg:order-1"
       >
         <motion.div
           className="bg-white border border-border/50 rounded-3xl p-8 transition-shadow duration-500"
@@ -227,7 +227,7 @@ export default function WebsiteCalculator() {
       </motion.div>
 
       {/* Main Content Area */}
-      <motion.div variants={premiumItem}>
+      <motion.div variants={premiumItem} className="order-1 lg:order-2">
         {currentStep < 3 && (
           <div className="bg-white rounded-3xl border border-border/50 p-10">
             {/* Step indicators - numbered badges */}

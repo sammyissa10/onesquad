@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   Facebook,
@@ -30,6 +30,15 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
   const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [newsletterError, setNewsletterError] = useState("");
+
+  useEffect(() => {
+    if (newsletterStatus === "success") {
+      const timeout = setTimeout(() => {
+        setNewsletterStatus("idle");
+      }, 5000);
+      return () => clearTimeout(timeout);
+    }
+  }, [newsletterStatus]);
 
   const handleNewsletterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
