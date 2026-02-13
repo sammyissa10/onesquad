@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { Container } from "@/components/ui/Container";
 import { DynamicIcon } from "@/components/ui/Icon";
 import { valueProps } from "@/lib/constants";
@@ -7,6 +8,8 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { fadeUp, scaleReveal, TRIGGERS } from "@/lib/scrollAnimations";
 
 export function Features() {
+  const cardsRef = useRef<HTMLDivElement>(null);
+
   const { scope } = useScrollAnimation(({ gsap }) => {
     // Heading (left column): fade up with early trigger
     gsap.from('.features-heading', {
@@ -28,6 +31,52 @@ export function Features() {
     });
   });
 
+  // 3D card tilt on hover
+  useEffect(() => {
+    const container = cardsRef.current;
+    if (!container) return;
+
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const cards = container.querySelectorAll<HTMLElement>('.feature-card');
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const card = e.currentTarget as HTMLElement;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      // Max tilt: 6 degrees
+      const rotateX = ((y - centerY) / centerY) * -6;
+      const rotateY = ((x - centerX) / centerX) * 6;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+      card.style.transition = 'transform 0.1s ease-out';
+    };
+
+    const handleMouseLeave = (e: MouseEvent) => {
+      const card = e.currentTarget as HTMLElement;
+      card.style.transform = '';
+      card.style.transition = 'transform 0.3s ease-out';
+    };
+
+    cards.forEach(card => {
+      card.addEventListener('mousemove', handleMouseMove);
+      card.addEventListener('mouseleave', handleMouseLeave);
+    });
+
+    return () => {
+      cards.forEach(card => {
+        card.removeEventListener('mousemove', handleMouseMove);
+        card.removeEventListener('mouseleave', handleMouseLeave);
+      });
+    };
+  }, []);
+
   return (
     <section ref={scope} className="bg-white text-navy py-20 md:py-28">
       <Container>
@@ -44,13 +93,13 @@ export function Features() {
           </div>
 
           {/* Right — stacked cards */}
-          <div className="space-y-5">
+          <div ref={cardsRef} className="space-y-5" style={{ perspective: '1000px' }}>
             {valueProps.map((prop) => (
               <div
                 key={prop.title}
                 data-cursor="card"
                 data-animate
-                className="feature-card bg-muted border border-border rounded-2xl p-6 transition-transform duration-200 hover:-translate-y-1"
+                className="feature-card bg-muted border border-border rounded-2xl p-6 will-change-transform"
               >
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-xl bg-coral/10 flex items-center justify-center flex-shrink-0">
