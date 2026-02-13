@@ -15,27 +15,6 @@ const previewTemplates = [
   ...templates.filter((t) => !t.popular),
 ].slice(0, 6);
 
-const categoryTaglines: Record<string, string> = {
-  business: "Local Business • Mobile-First",
-  ecommerce: "E-commerce • Built to Sell",
-  portfolio: "Creative • Stand-Out Design",
-  restaurant: "Restaurant • Reservations Ready",
-  healthcare: "Healthcare • Patient-Focused",
-  construction: "Construction • Project Showcase",
-  plumbing: "Local Service • Call-to-Action",
-  retail: "Retail • Storefront Ready",
-  legal: "Professional • Trust-Building",
-  realestate: "Real Estate • Listing Ready",
-  fitness: "Fitness • Membership-Driven",
-  education: "Education • Course Platform",
-  barbershop: "Local Business • Booking Ready",
-  landscaping: "Outdoor Service • Visual Portfolio",
-  remodeling: "Home Services • Before & After",
-  dashboard: "SaaS • Data-Driven",
-  automotive: "Automotive • Inventory Ready",
-  cleaning: "Service Business • Quote Ready",
-};
-
 export function PortfolioPreview() {
   const { scope } = useScrollAnimation(({ gsap }) => {
     // Section heading: clip-path reveal from bottom (separate trigger)
@@ -79,13 +58,8 @@ export function PortfolioPreview() {
         {/* Templates Grid — 6 compact cards */}
         <div className="portfolio-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {previewTemplates.map((template) => (
-            <div key={template.id} className="portfolio-card relative group/portfolio" data-animate>
+            <div key={template.id} className="portfolio-card" data-animate>
               <TemplateGridCard template={template} />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-navy/90 to-transparent p-4 pt-8 opacity-0 group-hover/portfolio:opacity-100 transition-opacity duration-300 rounded-b-2xl pointer-events-none">
-                <p className="text-white/90 text-xs font-semibold tracking-wide">
-                  {categoryTaglines[template.category] || template.category}
-                </p>
-              </div>
             </div>
           ))}
         </div>
@@ -101,7 +75,7 @@ export function PortfolioPreview() {
               size="lg"
               rightIcon={<ArrowRight size={18} />}
             >
-              Browse Real Client Sites ({templates.length})
+              View All Templates ({templates.length})
             </Button>
           </Link>
           <p className="text-white/60">

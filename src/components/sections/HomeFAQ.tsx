@@ -100,7 +100,7 @@ export function HomeFAQ() {
           <p className="text-navy/60 mb-4">Still have questions?</p>
           <Link href="/contact">
             <Button data-cursor="button" variant="accent">
-              Book a 15-Min Call (Free)
+              Let&apos;s Talk
             </Button>
           </Link>
         </div>

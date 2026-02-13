@@ -55,7 +55,7 @@ export function CTABanner() {
                   size="lg"
                   rightIcon={<ArrowRight size={20} />}
                 >
-                  Pick Your Plan — Cancel Anytime
+                  See Our Plans
                 </Button>
               </Link>
             </MagneticButton>
@@ -68,7 +68,7 @@ export function CTABanner() {
                   leftIcon={<Calendar size={20} />}
                   className="border-white/30 text-white hover:bg-white hover:text-navy"
                 >
-                  Talk to a Human in 24hrs
+                  Schedule a Call
                 </Button>
               </Link>
             </MagneticButton>

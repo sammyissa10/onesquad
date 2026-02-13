@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap, ScrollTrigger, MOTION_QUERIES } from "@/lib/gsap";
 
@@ -10,10 +10,6 @@ interface ResultsDashboardAnimationProps {
 
 export function ResultsDashboardAnimation({ className = "" }: ResultsDashboardAnimationProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [urlInput, setUrlInput] = useState("");
-  const hasInteractedRef = useRef(false);
-  const timelineRef = useRef<gsap.core.Timeline | null>(null);
-  const fallbackTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useGSAP(
     () => {
@@ -21,103 +17,90 @@ export function ResultsDashboardAnimation({ className = "" }: ResultsDashboardAn
 
       // Animation branch - runs only when reduced motion is NOT active
       mm.add(MOTION_QUERIES.noPreference, () => {
-        // Helper function to create the auto-animation timeline
-        const createAutoTimeline = () => {
-          const tl = gsap.timeline({
-            repeat: -1,
-            repeatDelay: 2,
-            defaults: { ease: "power2.out" },
-          });
+        const tl = gsap.timeline({
+          repeat: -1,
+          repeatDelay: 2,
+          defaults: { ease: "power2.out" },
+        });
 
-          // Helper function to animate counter numbers
-          function animateCounter(selector: string, target: number, format: (n: number) => string, duration: number) {
-            const el = containerRef.current?.querySelector(selector);
-            if (!el) return;
-            const obj = { val: 0 };
-            tl.to(obj, {
-              val: target,
-              duration,
-              ease: "power1.out",
-              snap: { val: target > 100 ? 1 : 0.1 },
-              onUpdate: () => { el.textContent = format(obj.val); },
-            }, "<");
-          }
+        // Helper function to animate counter numbers
+        function animateCounter(selector: string, target: number, format: (n: number) => string, duration: number) {
+          const el = containerRef.current?.querySelector(selector);
+          if (!el) return;
+          const obj = { val: 0 };
+          tl.to(obj, {
+            val: target,
+            duration,
+            ease: "power1.out",
+            snap: { val: target > 100 ? 1 : 0.1 },
+            onUpdate: () => { el.textContent = format(obj.val); },
+          }, "<");
+        }
 
-          // Animation sequence:
-          // 1. Dashboard header fades in
-          tl.from(".dash-header", {
+        // Animation sequence:
+        // 1. Dashboard header fades in
+        tl.from(".dash-header", {
+          autoAlpha: 0,
+          y: -10,
+          duration: 0.3,
+        });
+
+        // 2. Metric cards stagger in
+        tl.from(
+          ".dash-metric",
+          {
             autoAlpha: 0,
-            y: -10,
+            y: 15,
+            duration: 0.35,
+            stagger: 0.12,
+          },
+          "-=0.1"
+        );
+
+        // 3. Counter numbers animate up (simultaneously with step 2)
+        animateCounter(".dash-counter-traffic", 12847, (n) => Math.floor(n).toLocaleString(), 1.2);
+        animateCounter(".dash-counter-conv", 8.7, (n) => n.toFixed(1) + "%", 1.0);
+        animateCounter(".dash-counter-rev", 24500, (n) => "$" + Math.floor(n).toLocaleString(), 1.2);
+
+        // 4. Graph bars grow from bottom
+        tl.from(
+          ".dash-bar",
+          {
+            scaleY: 0,
+            transformOrigin: "bottom",
+            duration: 0.4,
+            stagger: 0.06,
+          },
+          "-=0.6"
+        );
+
+        // 5. Toast notification slides in after bars finish
+        tl.from(
+          ".dash-toast",
+          {
+            autoAlpha: 0,
+            y: 10,
             duration: 0.3,
-          });
+          },
+          "+=0.3"
+        );
 
-          // 2. Metric cards stagger in
-          tl.from(
-            ".dash-metric",
-            {
-              autoAlpha: 0,
-              y: 15,
-              duration: 0.35,
-              stagger: 0.12,
-            },
-            "-=0.1"
-          );
+        // 6. Hold for 3 seconds
+        tl.to({}, { duration: 3 });
 
-          // 3. Counter numbers animate up (simultaneously with step 2)
-          animateCounter(".dash-counter-traffic", 12847, (n) => Math.floor(n).toLocaleString(), 1.2);
-          animateCounter(".dash-counter-conv", 8.7, (n) => n.toFixed(1) + "%", 1.0);
-          animateCounter(".dash-counter-rev", 24500, (n) => "$" + Math.floor(n).toLocaleString(), 1.2);
+        // 7. Everything fades out
+        tl.to(".dash-el", { autoAlpha: 0, duration: 0.4 });
 
-          // 4. Graph bars grow from bottom
-          tl.from(
-            ".dash-bar",
-            {
-              scaleY: 0,
-              transformOrigin: "bottom",
-              duration: 0.4,
-              stagger: 0.06,
-            },
-            "-=0.6"
-          );
-
-          // 5. Toast notification slides in after bars finish
-          tl.from(
-            ".dash-toast",
-            {
-              autoAlpha: 0,
-              y: 10,
-              duration: 0.3,
-            },
-            "+=0.3"
-          );
-
-          // 6. Hold for 3 seconds
-          tl.to({}, { duration: 3 });
-
-          // 7. Everything fades out
-          tl.to(".dash-el", { autoAlpha: 0, duration: 0.4 });
-
-          return tl;
-        };
-
-        // Set up 5-second fallback timeout
-        fallbackTimeoutRef.current = setTimeout(() => {
-          if (!hasInteractedRef.current) {
-            const tl = createAutoTimeline();
-            timelineRef.current = tl;
-
-            // Pause timeline when scrolled out of viewport to reduce main thread work
-            ScrollTrigger.create({
-              trigger: containerRef.current,
-              start: 'top bottom',    // element top reaches viewport bottom (entering)
-              end: 'bottom top',      // element bottom passes viewport top (leaving)
-              onEnter: () => tl.play(),
-              onLeave: () => tl.pause(),
-              onEnterBack: () => tl.play(),
-              onLeaveBack: () => tl.pause(),
-            });
-          }
-        }, 5000);
+        // Pause timeline when scrolled out of viewport to reduce main thread work
+        ScrollTrigger.create({
+          trigger: containerRef.current,
+          start: 'top bottom',    // element top reaches viewport bottom (entering)
+          end: 'bottom top',      // element bottom passes viewport top (leaving)
+          onEnter: () => tl.play(),
+          onLeave: () => tl.pause(),
+          onEnterBack: () => tl.play(),
+          onLeaveBack: () => tl.pause(),
+        });
       });
 
       // Reduced motion branch - show static completed state
@@ -134,100 +117,10 @@ export function ResultsDashboardAnimation({ className = "" }: ResultsDashboardAn
         if (revEl) revEl.textContent = "$24,500";
       });
 
-      return () => {
-        mm.revert();
-        if (fallbackTimeoutRef.current) {
-          clearTimeout(fallbackTimeoutRef.current);
-        }
-      };
+      return () => mm.revert();
     },
     { scope: containerRef }
   );
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setUrlInput(value);
-
-    // Trigger personalized animation on first keystroke
-    if (!hasInteractedRef.current) {
-      hasInteractedRef.current = true;
-
-      // Clear fallback timeout
-      if (fallbackTimeoutRef.current) {
-        clearTimeout(fallbackTimeoutRef.current);
-        fallbackTimeoutRef.current = null;
-      }
-
-      // Kill auto-animation timeline if running
-      if (timelineRef.current) {
-        timelineRef.current.kill();
-        timelineRef.current = null;
-      }
-
-      // Make all elements visible immediately
-      gsap.set(".dash-el", { autoAlpha: 1 });
-
-      // Randomized counter values
-      const randomTraffic = Math.floor(Math.random() * 10000) + 8000;
-      const randomConv = (Math.random() * 8 + 4).toFixed(1);
-      const randomRev = Math.floor(Math.random() * 30000) + 15000;
-
-      // Animate counters with random values
-      const trafficEl = containerRef.current?.querySelector(".dash-counter-traffic");
-      const convEl = containerRef.current?.querySelector(".dash-counter-conv");
-      const revEl = containerRef.current?.querySelector(".dash-counter-rev");
-
-      if (trafficEl) {
-        const obj = { val: 0 };
-        gsap.to(obj, {
-          val: randomTraffic,
-          duration: 1.2,
-          ease: "power1.out",
-          snap: { val: 1 },
-          onUpdate: () => { trafficEl.textContent = Math.floor(obj.val).toLocaleString(); },
-        });
-      }
-
-      if (convEl) {
-        const obj = { val: 0 };
-        gsap.to(obj, {
-          val: parseFloat(randomConv),
-          duration: 1.2,
-          ease: "power1.out",
-          snap: { val: 0.1 },
-          onUpdate: () => { convEl.textContent = obj.val.toFixed(1) + "%"; },
-        });
-      }
-
-      if (revEl) {
-        const obj = { val: 0 };
-        gsap.to(obj, {
-          val: randomRev,
-          duration: 1.2,
-          ease: "power1.out",
-          snap: { val: 1 },
-          onUpdate: () => { revEl.textContent = "$" + Math.floor(obj.val).toLocaleString(); },
-        });
-      }
-
-      // Animate bars growing from 0
-      gsap.from(".dash-bar", {
-        scaleY: 0,
-        transformOrigin: "bottom",
-        duration: 0.4,
-        stagger: 0.06,
-      });
-
-      // Show toast after counters finish
-      setTimeout(() => {
-        gsap.from(".dash-toast", {
-          autoAlpha: 0,
-          y: 10,
-          duration: 0.3,
-        });
-      }, 1500);
-    }
-  };
 
   return (
     <div ref={containerRef} className={`w-full ${className}`}>
@@ -242,17 +135,9 @@ export function ResultsDashboardAnimation({ className = "" }: ResultsDashboardAn
             <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
           </div>
 
-          {/* Interactive URL Bar */}
+          {/* Fake URL Bar */}
           <div className="flex-1 mx-3 h-4 bg-white/5 rounded-md flex items-center px-2">
-            <span className="text-[10px] text-white/30 mr-1">🌐</span>
-            <input
-              type="text"
-              value={urlInput}
-              onChange={handleInputChange}
-              placeholder="yourcompany.com"
-              aria-label="Enter your website URL"
-              className="bg-transparent text-[10px] text-white/60 placeholder:text-white/30 w-full outline-none border-none"
-            />
+            <span className="text-[10px] text-white/30">analytics.onesquads.com</span>
           </div>
         </div>
 
@@ -260,15 +145,7 @@ export function ResultsDashboardAnimation({ className = "" }: ResultsDashboardAn
         <div className="bg-[#0a1628] p-3 md:p-4">
           {/* Header Row */}
           <div className="dash-header dash-el flex justify-between items-center mb-3">
-            <div className="text-white/60 text-xs font-medium">
-              {urlInput ? (
-                <>
-                  <span className="text-white">{urlInput}</span> Dashboard
-                </>
-              ) : (
-                "Dashboard"
-              )}
-            </div>
+            <div className="text-white/60 text-xs font-medium">Dashboard</div>
             <div className="flex items-center gap-1.5">
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <div className="text-emerald-400 text-[10px] font-medium">Live</div>
@@ -329,7 +206,7 @@ export function ResultsDashboardAnimation({ className = "" }: ResultsDashboardAn
           {/* Notification Toast */}
           <div className="dash-toast dash-el bg-emerald-500/20 border border-emerald-500/30 rounded-lg px-3 py-1.5 flex items-center gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            <div className="text-emerald-300 text-[11px] font-medium">New lead captured from Google!</div>
+            <div className="text-emerald-300 text-[11px] font-medium">New lead captured!</div>
           </div>
         </div>
       </div>
