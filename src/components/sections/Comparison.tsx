@@ -140,24 +140,24 @@ export function Comparison() {
         {/* Without Section - Compact, Dismissed Items */}
         <div className="without-section mb-12 md:mb-16">
           <div className="flex items-center gap-3 mb-8 justify-center">
-            <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center">
-              <X className="w-5 h-5 text-red-400" />
+            <div className="w-10 h-10 rounded-xl bg-coral/10 border border-coral/20 flex items-center justify-center">
+              <X className="w-5 h-5 text-coral/60" />
             </div>
-            <h3 className="text-xl md:text-2xl font-bold text-red-400">Without OneSquad</h3>
+            <h3 className="text-xl md:text-2xl font-bold text-coral/60">Without OneSquad</h3>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {withoutUsItems.map((item) => (
               <div
                 key={item.title}
-                className="without-item flex items-start gap-4 bg-white/[0.03] border border-red-500/15 rounded-2xl p-6"
+                className="without-item flex items-start gap-4 bg-white/[0.03] border border-coral/15 rounded-2xl p-6"
                 data-animate
               >
-                <div className="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-1">
-                  <item.icon className="w-5 h-5 text-red-400" />
+                <div className="w-10 h-10 rounded-lg bg-coral/10 flex items-center justify-center flex-shrink-0 mt-1">
+                  <item.icon className="w-5 h-5 text-coral/60" />
                 </div>
                 <div>
-                  <h4 className="font-bold mb-1 text-white/80 line-through decoration-red-500/40">
+                  <h4 className="font-bold mb-1 text-white/80 line-through decoration-coral/40">
                     {item.title}
                   </h4>
                   <p className="text-sm text-white/40">

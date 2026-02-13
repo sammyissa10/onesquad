@@ -53,7 +53,7 @@ const backgroundStyles = {
   white: "bg-card",
   muted: "bg-muted",
   primary: "bg-primary-brand text-white",
-  gradient: "bg-gradient-to-br from-primary-brand to-[#27598E] text-white",
+  gradient: "bg-gradient-to-br from-primary-brand to-highlight text-white",
 };
 
 export function Section({

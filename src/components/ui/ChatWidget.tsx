@@ -50,7 +50,7 @@ export function ChatWidget() {
             className="fixed bottom-4 left-4 sm:bottom-8 sm:left-8 z-50 w-[calc(100vw-2rem)] sm:w-80 bg-card rounded-2xl shadow-2xl overflow-hidden border border-border"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-primary-brand to-[#27598E] p-4 flex items-center justify-between">
+            <div className="bg-gradient-to-r from-primary-brand to-highlight p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
                   <MessageCircle size={20} className="text-white" />
