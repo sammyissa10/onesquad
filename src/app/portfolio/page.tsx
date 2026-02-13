@@ -187,7 +187,7 @@ export default function PortfolioPage() {
         <Section background="white" className="py-20 md:py-28">
           <Container>
             {/* Sticky Filter Bar - NO animation, immediately available */}
-            <div className="sticky top-0 z-20 bg-background/95 backdrop-blur-md py-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 mb-6">
+            <div className="sticky top-20 z-20 bg-background/95 backdrop-blur-md py-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 mb-6">
               <div className="flex flex-wrap justify-center gap-3">
                 {categoryGroups.map((group) => {
                   const Icon = groupIcons[group.id] || LayoutGrid;
