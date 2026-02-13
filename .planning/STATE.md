@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 Phase: 8 of 8 (Scroll Animations Site-wide)
 Plan: 5 of 5
 Status: Complete
-Last activity: 2026-02-13 - Completed quick task 19: Fix five dark mode UX errors (form inputs, contact sidebar, blog/team cards, FAQ, portfolio filters)
+Last activity: 2026-02-13 - Completed quick task 20: Fix 5 design errors (badge dark mode, blog filter focus, newsletter input, team social links, portfolio sticky offset)
 
 Progress: [████████████████████] 100%
 
