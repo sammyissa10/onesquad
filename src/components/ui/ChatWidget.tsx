@@ -31,7 +31,7 @@ export function ChatWidget() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-8 left-8 z-50 w-14 h-14 rounded-full bg-accent text-white shadow-lg shadow-accent/30 flex items-center justify-center hover:bg-accent/90 transition-colors"
+            className="fixed bottom-4 left-4 sm:bottom-8 sm:left-8 z-50 w-14 h-14 rounded-full bg-accent text-white shadow-lg shadow-accent/30 flex items-center justify-center hover:bg-accent/90 transition-colors"
             aria-label="Open chat"
           >
             <MessageCircle size={24} />
@@ -47,7 +47,7 @@ export function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-8 left-8 z-50 w-80 bg-card rounded-2xl shadow-2xl overflow-hidden border border-border"
+            className="fixed bottom-4 left-4 sm:bottom-8 sm:left-8 z-50 w-[calc(100vw-2rem)] sm:w-80 bg-card rounded-2xl shadow-2xl overflow-hidden border border-border"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-primary-brand to-[#27598E] p-4 flex items-center justify-between">

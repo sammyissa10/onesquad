@@ -151,7 +151,7 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             data-cursor="button"
-            className={cn("lg:hidden p-2", useDarkText ? "text-foreground" : "text-white")}
+            className={cn("lg:hidden p-3", useDarkText ? "text-foreground" : "text-white")}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >

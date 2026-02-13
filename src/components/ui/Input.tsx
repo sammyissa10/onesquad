@@ -1,6 +1,7 @@
 "use client";
 
 import { forwardRef } from "react";
+import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -119,30 +120,35 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             {label}
           </label>
         )}
-        <select
-          ref={ref}
-          id={selectId}
-          className={cn(
-            "w-full px-4 py-3 rounded-xl border bg-white text-foreground transition-colors duration-200 appearance-none cursor-pointer",
-            "focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent",
-            error
-              ? "border-red-500 focus:ring-red-500"
-              : "border-border hover:border-highlight",
-            className
-          )}
-          {...props}
-        >
-          {placeholder && (
-            <option value="" disabled>
-              {placeholder}
-            </option>
-          )}
-          {options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
+        <div className="relative w-full">
+          <select
+            ref={ref}
+            id={selectId}
+            className={cn(
+              "w-full px-4 py-3 pr-10 rounded-xl border bg-white text-foreground transition-colors duration-200 appearance-none cursor-pointer",
+              "focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent",
+              error
+                ? "border-red-500 focus:ring-red-500"
+                : "border-border hover:border-highlight",
+              className
+            )}
+            {...props}
+          >
+            {placeholder && (
+              <option value="" disabled>
+                {placeholder}
+              </option>
+            )}
+            {options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <ChevronDown
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none"
+          />
+        </div>
         {error && (
           <p className="mt-1 text-sm text-red-500">{error}</p>
         )}
