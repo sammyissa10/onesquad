@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 Phase: 8 of 8 (Scroll Animations Site-wide)
 Plan: 5 of 5
 Status: Complete
-Last activity: 2026-02-13 - Completed quick task 20: Fix 5 design errors (badge dark mode, blog filter focus, newsletter input, team social links, portfolio sticky offset)
+Last activity: 2026-02-13 - Completed quick task 21: Fix 5 color/design issues (tokenize navy, peach mismatch, gradient hardcode, comparison red, newsletter contrast)
 
 Progress: [████████████████████] 100%
 
@@ -221,12 +221,13 @@ None yet.
 | 18 | Fix five UX/UI design errors (chat widget, touch target, select arrow, newsletter, calculator) | 2026-02-13 | cc12fe8 | [18-fix-five-ux-ui-design-errors-chat-widget](./quick/18-fix-five-ux-ui-design-errors-chat-widget/) |
 | 19 | Fix five dark mode UX errors (form inputs, contact sidebar, blog/team cards, FAQ, portfolio filters) | 2026-02-13 | fa844b1 | [19-fix-five-dark-mode-ux-errors-form-inputs](./quick/19-fix-five-dark-mode-ux-errors-form-inputs/) |
 | 20 | Fix 5 design errors (Badge dark mode, blog filter focus, newsletter input, team social links, portfolio sticky filter) | 2026-02-13 | 8e7fece | [20-fix-5-design-errors-badge-dark-mode-blog](./quick/20-fix-5-design-errors-badge-dark-mode-blog/) |
+| 21 | Fix 5 color/design issues (tokenize navy, peach mismatch, gradient hardcode, comparison red, newsletter contrast) | 2026-02-13 | f83e0a6 | [21-fix-5-color-design-issues-tokenize-navy-](./quick/21-fix-5-color-design-issues-tokenize-navy-/) |
 
 ## Session Continuity
 
 Last session: 2026-02-13 (quick task execution)
-Stopped at: Completed quick-20-PLAN.md (fix 5 design errors)
-Resume file: .planning/quick/20-fix-5-design-errors-badge-dark-mode-blog/20-SUMMARY.md
+Stopped at: Completed quick-21-PLAN.md (fix 5 color/design issues)
+Resume file: .planning/quick/21-fix-5-color-design-issues-tokenize-navy-/21-SUMMARY.md
 
 **Phase 08 Status:** COMPLETE (5 of 5 plans complete)
 - 08-01: GSAP scroll animation presets and homepage conversion (complete)
