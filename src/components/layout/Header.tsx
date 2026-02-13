@@ -28,10 +28,13 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
+  // Close mobile menu on route change — legitimate sync of React state with
+  // external navigation events; not a cascading render concern.
   useEffect(() => {
+    /* eslint-disable react-hooks/set-state-in-effect */
     setIsMobileMenuOpen(false);
     setOpenDropdown(null);
+    /* eslint-enable react-hooks/set-state-in-effect */
   }, [pathname]);
 
   // Only the home page has a dark hero behind the header; all other pages need solid styling

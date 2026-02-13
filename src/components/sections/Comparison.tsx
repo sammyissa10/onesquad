@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { fadeUp, scaleReveal, staggerFadeUp, TRIGGERS } from "@/lib/scrollAnimations";
+import { fadeUp, staggerFadeUp, TRIGGERS } from "@/lib/scrollAnimations";
 
 const withoutUsItems = [
   {

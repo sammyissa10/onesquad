@@ -45,8 +45,8 @@ export default function NotFound() {
                 Oops! Page Not Found
               </h1>
               <p className="text-xl text-white/80 mb-8">
-                The page you're looking for seems to have wandered off into the
-                digital void. Don't worry, it happens to the best of us!
+                The page you&apos;re looking for seems to have wandered off into the
+                digital void. Don&apos;t worry, it happens to the best of us!
               </p>
 
               {/* Actions */}

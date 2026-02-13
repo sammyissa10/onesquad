@@ -41,7 +41,7 @@ export default function TermsPage() {
             >
               <h2 className="text-2xl font-bold text-primary mb-4">1. Agreement to Terms</h2>
               <p className="text-muted-foreground mb-6">
-                By accessing or using OneSquad's website and services, you agree to be
+                By accessing or using OneSquad&apos;s website and services, you agree to be
                 bound by these Terms of Service. If you do not agree to these terms,
                 please do not use our services.
               </p>

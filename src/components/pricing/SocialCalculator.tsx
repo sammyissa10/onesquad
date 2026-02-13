@@ -23,15 +23,6 @@ import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 // Animation variants - bold/playful personality
-const socialFadeIn = {
-  hidden: { opacity: 0, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.2, ease: "easeOut" as const }
-  }
-};
-
 const socialStagger = {
   hidden: { opacity: 0 },
   visible: {

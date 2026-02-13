@@ -5,7 +5,6 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import {
   ShoppingCart,
-  Check,
   ArrowRight,
   ArrowLeft,
   Palette,
@@ -25,15 +24,6 @@ import {
 import { cn } from "@/lib/utils";
 
 // Spring animation variants for revenue/growth personality
-const growthFadeIn = {
-  hidden: { opacity: 0, x: -20 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { type: "spring" as const, stiffness: 100, damping: 15 }
-  }
-};
-
 const growthStagger = {
   hidden: { opacity: 0 },
   visible: {

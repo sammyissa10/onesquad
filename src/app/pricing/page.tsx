@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Check, HelpCircle, ChevronDown, ExternalLink } from "lucide-react";
+import { Check, ChevronDown, ExternalLink } from "lucide-react";
 import { Header, Footer } from "@/components/layout";
-import { Container, Section } from "@/components/ui/Container";
+import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { pricingPlans, includedWithEveryPlan, faqs } from "@/lib/constants";
@@ -587,7 +587,7 @@ export default function PricingPage() {
                   FAQ
                 </span>
                 <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mt-4">
-                  Questions? We've Got Answers.
+                  Questions? We&apos;ve Got Answers.
                 </h2>
               </div>
 
@@ -599,7 +599,7 @@ export default function PricingPage() {
 
               <div className="text-center mt-12">
                 <p className="text-muted-foreground mb-4 text-lg">
-                  Still overthinking it? Let's talk.
+                  Still overthinking it? Let&apos;s talk.
                 </p>
                 <Link href="/contact">
                   <Button variant="accent" size="lg">

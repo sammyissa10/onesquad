@@ -10,7 +10,6 @@ import {
   Heart,
   Palette,
   ShoppingBag,
-  ArrowRight,
 } from "lucide-react";
 import { Header, Footer } from "@/components/layout";
 import { Container, Section } from "@/components/ui/Container";
@@ -19,7 +18,6 @@ import { PortfolioCard } from "@/components/ui/TemplateCard";
 import {
   templates,
   categoryGroups,
-  categoryLabels,
 } from "@/lib/templateData";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { fadeUp, scaleReveal, TRIGGERS } from "@/lib/scrollAnimations";
@@ -273,7 +271,7 @@ export default function PortfolioPage() {
                 className="cta-heading text-3xl md:text-4xl font-bold text-white mb-6"
                 data-animate
               >
-                Don't See What You Need? Let's Build It.
+                Don&apos;t See What You Need? Let&apos;s Build It.
               </h2>
               <p
                 className="cta-subtitle text-lg text-white/60 mb-8"

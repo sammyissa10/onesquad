@@ -4,7 +4,6 @@ import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
   Globe,
-  Check,
   ArrowRight,
   ArrowLeft,
   Palette,
@@ -22,15 +21,6 @@ import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 // Premium animation variants - slower, smoother, more deliberate
-const premiumFadeIn = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }
-  }
-};
-
 const premiumStagger = {
   hidden: { opacity: 0 },
   visible: {

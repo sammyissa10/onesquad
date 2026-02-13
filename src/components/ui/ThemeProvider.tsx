@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 type Theme = "light" | "dark";
 
@@ -17,16 +17,15 @@ const ThemeContext = createContext<ThemeContextType>({
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("light");
-
-  useEffect(() => {
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window === "undefined") return "light";
     // Check if inline script already applied dark class
     const isDark = document.documentElement.classList.contains("dark");
     const stored = localStorage.getItem("onesquad-theme") as Theme | null;
     const resolvedTheme = stored || (isDark ? "dark" : "light");
-    setTheme(resolvedTheme);
     document.documentElement.classList.toggle("dark", resolvedTheme === "dark");
-  }, []);
+    return resolvedTheme;
+  });
 
   const toggleTheme = () => {
     const next = theme === "light" ? "dark" : "light";

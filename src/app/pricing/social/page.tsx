@@ -1,24 +1,18 @@
 "use client";
 
-import { useState } from "react";
 import { motion, MotionConfig } from "framer-motion";
-import Link from "next/link";
 import {
   Share2,
-  Check,
-  ArrowRight,
   Instagram,
   Facebook,
   Twitter,
 } from "lucide-react";
 import { Header, Footer } from "@/components/layout";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import SocialCalculator from "@/components/pricing/SocialCalculator";
 
 export default function SocialMediaPricingPage() {
-  const [currentStep, setCurrentStep] = useState(1);
 
   return (
     <MotionConfig reducedMotion="user">

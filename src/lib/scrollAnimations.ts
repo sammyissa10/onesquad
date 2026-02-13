@@ -10,7 +10,6 @@
  * Import pattern: `import { fadeUp, scaleReveal, TRIGGERS } from '@/lib/scrollAnimations'`
  */
 
-import type { gsap } from "gsap";
 
 /**
  * Animation configuration object shape

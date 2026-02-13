@@ -8,20 +8,14 @@ export function CustomCursor() {
   const cursorFollowerRef = useRef<HTMLDivElement>(null);
   const cursorTextRef = useRef<HTMLSpanElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [isTouchDevice] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return "ontouchstart" in window || (navigator.maxTouchPoints || 0) > 0;
+  });
 
   // Cursor state refs - use refs to avoid re-renders on hover state changes
   const currentStateRef = useRef<string>("default");
   const currentTextRef = useRef<string>("");
-
-  // Touch device detection - check on mount to avoid SSR mismatch
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const hasTouch =
-        "ontouchstart" in window || (navigator.maxTouchPoints || 0) > 0;
-      setIsTouchDevice(hasTouch);
-    }
-  }, []);
 
   // Main cursor logic - mouse tracking and reduced-motion support
   useEffect(() => {

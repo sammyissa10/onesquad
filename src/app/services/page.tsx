@@ -47,7 +47,7 @@ export default function ServicesPage() {
                 <span className="text-coral">Doing Everything Yourself?</span>
               </h2>
               <p className="text-navy/60 text-lg mb-8">
-                Tell us about your business. We'll show you what's possible.
+                Tell us about your business. We&apos;ll show you what&apos;s possible.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <MagneticButton>

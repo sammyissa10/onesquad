@@ -206,6 +206,7 @@ export function TemplateShowcaseCard({
 
         {/* Screenshot */}
         <div className="relative aspect-[16/10] overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={template.screenshot}
             alt={template.name}
@@ -371,6 +372,7 @@ export function TemplateGridCard({
         <div className={`h-0.5 bg-gradient-to-r ${theme.gradient}`} />
 
         <div className="aspect-[16/10] relative overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={template.screenshot}
             alt={template.name}
@@ -427,25 +429,16 @@ export function TemplateGridCard({
 
 // ── Portfolio Card (Phase 06 - Masonry Grid) ───────────────────────
 
-export function PortfolioCard({
-  template,
-  featured = false,
-}: {
-  template: TemplateData;
-  featured?: boolean;
-}) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function PortfolioCard({ template, featured = false }: { template: TemplateData; featured?: boolean }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  });
   const [isInView, setIsInView] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
-
-  // Detect touch devices
-  useEffect(() => {
-    const hasTouchScreen =
-      "ontouchstart" in window || navigator.maxTouchPoints > 0;
-    setIsMobile(hasTouchScreen);
-  }, []);
 
   // IntersectionObserver for lazy video loading
   useEffect(() => {
@@ -509,6 +502,7 @@ export function PortfolioCard({
         {/* Screenshot / Video Area */}
         <div className="relative aspect-[16/10] overflow-hidden bg-gray-100">
           {/* Static thumbnail (always visible, crossfades out on hover if video exists) */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={template.screenshot}
             alt={template.name}
