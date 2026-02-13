@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 Phase: 8 of 8 (Scroll Animations Site-wide)
 Plan: 5 of 5
 Status: Complete
-Last activity: 2026-02-13 - Completed quick task 18: Fix five UX/UI design errors (chat widget, touch target, select arrow, newsletter, calculator layout)
+Last activity: 2026-02-13 - Completed quick task 19: Fix five dark mode UX errors (form inputs, contact sidebar, blog/team cards, FAQ, portfolio filters)
 
 Progress: [████████████████████] 100%
 
@@ -51,6 +51,7 @@ Progress: [████████████████████] 100%
 | Phase quick-14 P01 | 1.2 | 1 tasks | 1 files |
 | Phase quick-17 P01 | 11 | 3 tasks | 21 files |
 | Phase quick-18 P01 | 2 | 2 tasks | 5 files |
+| Phase quick-19 P01 | 3 | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -183,6 +184,9 @@ Recent decisions affecting current work:
 - **Quick-18:** ChatWidget uses calc(100vw-2rem) for true viewport-relative sizing on mobile (<480px)
 - **Quick-18:** EcommerceCalculator unchanged - 50/50 split-screen with hidden lg:block panel handles mobile stacking correctly
 - **Quick-18:** Newsletter auto-reset uses 5s useEffect timeout with cleanup to prevent memory leaks
+- [Phase quick-19]: Use dark:bg-card on form inputs to preserve light mode bg-white while adding dark mode support
+- [Phase quick-19]: Replace text-navy with text-foreground (CSS variable adapts via ThemeProvider) for dark mode text visibility
+- [Phase quick-19]: Use bg-accent instead of bg-primary for portfolio filter active state (coral visible in both themes)
 
 ### Pending Todos
 
@@ -212,12 +216,13 @@ None yet.
 | 14 | Redesign comparison section divider animation | 2026-02-12 | 3c67c58 | [14-redesign-comparison-section-divider-anim](./quick/14-redesign-comparison-section-divider-anim/) |
 | 17 | Fix five codebase issues (ESLint, rate limiting, logging, framer-motion audit) | 2026-02-13 | d84feb9 | [17-fix-five-codebase-issues-non-functional-](./quick/17-fix-five-codebase-issues-non-functional-/) |
 | 18 | Fix five UX/UI design errors (chat widget, touch target, select arrow, newsletter, calculator) | 2026-02-13 | cc12fe8 | [18-fix-five-ux-ui-design-errors-chat-widget](./quick/18-fix-five-ux-ui-design-errors-chat-widget/) |
+| 19 | Fix five dark mode UX errors (form inputs, contact sidebar, blog/team cards, FAQ, portfolio filters) | 2026-02-13 | fa844b1 | [19-fix-five-dark-mode-ux-errors-form-inputs](./quick/19-fix-five-dark-mode-ux-errors-form-inputs/) |
 
 ## Session Continuity
 
 Last session: 2026-02-13 (quick task execution)
-Stopped at: Completed quick-18-PLAN.md (fix five UX/UI design errors)
-Resume file: .planning/quick/18-fix-five-ux-ui-design-errors-chat-widget/18-SUMMARY.md
+Stopped at: Completed quick-19-PLAN.md (fix five dark mode UX errors)
+Resume file: .planning/quick/19-fix-five-dark-mode-ux-errors-form-inputs/19-SUMMARY.md
 
 **Phase 08 Status:** COMPLETE (5 of 5 plans complete)
 - 08-01: GSAP scroll animation presets and homepage conversion (complete)
