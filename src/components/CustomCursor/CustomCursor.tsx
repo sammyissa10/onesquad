@@ -10,7 +10,9 @@ export function CustomCursor() {
   const [isVisible, setIsVisible] = useState(false);
   const [isTouchDevice] = useState(() => {
     if (typeof window === "undefined") return false;
-    return "ontouchstart" in window || (navigator.maxTouchPoints || 0) > 0;
+    // Use pointer: coarse to detect actual touchscreens (phones/tablets).
+    // ontouchstart/maxTouchPoints incorrectly flags Mac trackpads as touch devices.
+    return window.matchMedia("(pointer: coarse)").matches;
   });
 
   // Cursor state refs - use refs to avoid re-renders on hover state changes
