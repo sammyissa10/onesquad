@@ -225,18 +225,3 @@ html.transitioning *::after {
     display: none !important;
   }
 }
-
-/* Custom cursor: hide native cursor on desktop when custom cursor is active */
-@media (pointer: fine) {
-  html.cursor-active,
-  html.cursor-active * {
-    cursor: none !important;
-  }
-  /* Preserve text cursor for inputs/textareas */
-  html.cursor-active input,
-  html.cursor-active textarea,
-  html.cursor-active select,
-  html.cursor-active [contenteditable] {
-    cursor: text !important;
-  }
-}
