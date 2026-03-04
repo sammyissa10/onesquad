@@ -37,6 +37,14 @@ export function Header() {
     /* eslint-enable react-hooks/set-state-in-effect */
   }, [pathname]);
 
+  // Lock body scroll when mobile drawer is open
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
   // Only the home page has a dark hero behind the header; all other pages need solid styling
   const isHomePage = pathname === "/";
   const useDarkText = isScrolled || !isHomePage;
@@ -160,18 +168,43 @@ export function Header() {
         </nav>
       </Container>
 
-      {/* Mobile Menu */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden bg-card border-t border-border overflow-hidden"
-          >
-            <Container>
-              <div className="py-4 space-y-2">
+          <>
+            {/* Backdrop overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
+
+            {/* Drawer panel */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-card z-50 lg:hidden flex flex-col shadow-2xl"
+            >
+              {/* Top bar */}
+              <div className="flex items-center justify-between p-5 border-b border-border">
+                <Logo variant="default" />
+                <button
+                  data-cursor="button"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  aria-label="Close menu"
+                  className="p-2 rounded-lg text-foreground hover:bg-muted transition-colors"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Nav links */}
+              <nav className="flex-1 overflow-y-auto py-4 px-5">
                 {navItems.map((item) => (
                   <div key={item.label}>
                     {item.children ? (
@@ -183,7 +216,7 @@ export function Header() {
                               openDropdown === item.label ? null : item.label
                             )
                           }
-                          className="flex items-center justify-between w-full py-3 font-medium text-foreground"
+                          className="flex items-center justify-between w-full py-3 text-lg font-medium text-foreground hover:text-accent transition-colors"
                         >
                           {item.label}
                           <ChevronDown
@@ -200,14 +233,14 @@ export function Header() {
                               initial={{ opacity: 0, height: 0 }}
                               animate={{ opacity: 1, height: "auto" }}
                               exit={{ opacity: 0, height: 0 }}
-                              className="pl-4 space-y-1"
+                              className="pl-4 space-y-1 overflow-hidden"
                             >
                               {item.children.map((child) => (
                                 <Link
                                   key={child.label}
                                   href={child.href}
                                   data-cursor="button"
-                                  className="block py-2 text-sm text-muted-foreground hover:text-accent"
+                                  className="block py-2 text-sm text-muted-foreground hover:text-accent transition-colors"
                                 >
                                   {child.label}
                                 </Link>
@@ -219,13 +252,12 @@ export function Header() {
                     ) : (
                       <Link
                         href={item.href}
-                        onClick={undefined}
                         data-cursor="button"
                         className={cn(
-                          "block py-3 font-medium transition-colors",
+                          "block py-3 text-lg font-medium transition-colors",
                           pathname === item.href
                             ? "text-accent"
-                            : "text-foreground"
+                            : "text-foreground hover:text-accent"
                         )}
                       >
                         {item.label}
@@ -233,27 +265,28 @@ export function Header() {
                     )}
                   </div>
                 ))}
-                <div className="flex items-center justify-between py-3 border-t border-border">
-                  <span className="font-medium text-foreground">Theme</span>
+              </nav>
+
+              {/* Bottom CTA area */}
+              <div className="p-5 border-t border-border space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="font-medium text-foreground text-sm">Theme</span>
                   <ThemeToggle className="text-foreground hover:bg-muted" />
                 </div>
-
-                <div className="pt-4 space-y-3">
-                  <Link href="/pricing-calculator">
-                    <Button variant="outline" size="md" className="w-full border-accent text-accent">
-                      <Calculator size={16} className="mr-2" />
-                      Price Calculator
-                    </Button>
-                  </Link>
-                  <Link href="/contact">
-                    <Button variant="accent" size="md" className="w-full">
-                      Hire Us
-                    </Button>
-                  </Link>
-                </div>
+                <Link href="/pricing-calculator">
+                  <Button variant="outline" size="md" className="w-full border-accent text-accent">
+                    <Calculator size={16} className="mr-2" />
+                    Price Calculator
+                  </Button>
+                </Link>
+                <Link href="/contact">
+                  <Button variant="accent" size="md" className="w-full">
+                    Hire Us
+                  </Button>
+                </Link>
               </div>
-            </Container>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>
