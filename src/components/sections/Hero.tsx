@@ -44,7 +44,7 @@ export function Hero() {
             className="hero-headline flex flex-col gap-6"
             data-animate
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[0.95] text-white tracking-tight">
+            <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold leading-[0.92] text-white tracking-[-0.035em]" style={{ fontFamily: 'var(--font-display), var(--font-heading), sans-serif' }}>
               We Build Websites That{" "}
               <span className="text-coral">Work</span>{" "}
               For Small Businesses

@@ -18,11 +18,11 @@ interface ButtonProps extends Omit<HTMLMotionProps<"button">, "ref"> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/25",
+    "bg-gradient-to-r from-[#E8734A] to-[#F4A261] text-white hover:scale-105 hover:shadow-xl hover:shadow-[#E8734A]/30 shadow-lg shadow-[#E8734A]/20",
   secondary:
     "bg-secondary text-primary hover:bg-secondary/90 shadow-lg shadow-secondary/25",
   accent:
-    "bg-accent text-white hover:bg-accent/90 shadow-lg shadow-accent/25",
+    "bg-gradient-to-r from-[#E8734A] to-[#F4A261] text-white hover:scale-105 hover:shadow-xl hover:shadow-[#E8734A]/30 shadow-lg shadow-[#E8734A]/20",
   outline:
     "border-2 border-primary text-primary hover:bg-primary hover:text-white",
   ghost: "text-primary hover:bg-primary/10",
@@ -54,7 +54,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         data-cursor="button"
         className={cn(
-          "inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed",
+          "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed",
           variantStyles[variant],
           sizeStyles[size],
           className
