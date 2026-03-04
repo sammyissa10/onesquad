@@ -45,12 +45,11 @@ export function Hero() {
             data-animate
           >
             <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold leading-[0.92] text-white tracking-[-0.035em]" style={{ fontFamily: 'var(--font-display), var(--font-heading), sans-serif' }}>
-              We Build Websites That{" "}
-              <span className="text-coral">Work</span>{" "}
-              For Small Businesses
+              Your Business Deserves a Website That Actually{" "}
+              <span className="bg-gradient-to-r from-coral to-peach bg-clip-text text-transparent">Converts</span>
             </h1>
             <p className="text-lg md:text-xl text-white/70 max-w-lg">
-              Design, marketing, and support — all from one team, for one monthly price.
+              We design and build high-performance websites for small businesses across NW Indiana — from first click to paying customer.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <MagneticButton>
@@ -82,10 +81,11 @@ export function Hero() {
 
           {/* Right: Animated Results Dashboard */}
           <div
-            className="hero-block"
+            className="hero-block relative"
             data-cursor="card"
             data-animate
           >
+            <div className="absolute inset-0 -m-8 rounded-full bg-coral/10 blur-3xl pointer-events-none" aria-hidden="true" />
             <ResultsDashboardAnimation />
           </div>
         </div>
