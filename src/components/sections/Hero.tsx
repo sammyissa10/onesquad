@@ -4,7 +4,6 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { ResultsDashboardAnimation } from "@/components/ui/ResultsDashboardAnimation";
 import { stats } from "@/lib/constants";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { fadeUp, TRIGGERS } from "@/lib/scrollAnimations";
@@ -79,14 +78,61 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right: Animated Results Dashboard */}
+          {/* Right: Abstract gradient composition */}
           <div
-            className="hero-block relative"
-            data-cursor="card"
+            className="hero-block relative hidden md:flex items-center justify-center"
+            aria-hidden="true"
             data-animate
           >
-            <div className="absolute inset-0 -m-8 rounded-full bg-coral/10 blur-3xl pointer-events-none" aria-hidden="true" />
-            <ResultsDashboardAnimation />
+            {/* Outer glow */}
+            <div className="absolute inset-0 rounded-full bg-coral/10 blur-3xl" />
+
+            {/* Main blob — coral/peach radial */}
+            <div className="relative w-[480px] h-[480px]">
+              {/* Large background circle */}
+              <div className="absolute inset-0 rounded-full border border-white/5" />
+
+              {/* Primary coral blob */}
+              <div className="absolute top-[10%] left-[10%] w-[75%] h-[75%] rounded-full bg-gradient-to-br from-coral/40 via-peach/25 to-transparent blur-2xl" />
+
+              {/* Secondary peach blob offset */}
+              <div className="absolute bottom-[5%] right-[5%] w-[55%] h-[55%] rounded-full bg-gradient-to-tl from-peach/30 via-coral/15 to-transparent blur-2xl" />
+
+              {/* Navy inner ring */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] rounded-full border border-white/10" />
+
+              {/* Inner navy ring smaller */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] rounded-full border border-white/8" />
+
+              {/* Center dot */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-coral/80" />
+
+              {/* Geometric lines — diagonal grid */}
+              <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 480 480" fill="none">
+                <line x1="0" y1="120" x2="480" y2="360" stroke="white" strokeWidth="0.5"/>
+                <line x1="0" y1="240" x2="480" y2="240" stroke="white" strokeWidth="0.5"/>
+                <line x1="0" y1="360" x2="480" y2="120" stroke="white" strokeWidth="0.5"/>
+                <line x1="120" y1="0" x2="360" y2="480" stroke="white" strokeWidth="0.5"/>
+                <line x1="240" y1="0" x2="240" y2="480" stroke="white" strokeWidth="0.5"/>
+                <line x1="360" y1="0" x2="120" y2="480" stroke="white" strokeWidth="0.5"/>
+              </svg>
+
+              {/* Floating accent dots */}
+              <div className="absolute top-[18%] right-[20%] w-2 h-2 rounded-full bg-coral" />
+              <div className="absolute bottom-[22%] left-[18%] w-1.5 h-1.5 rounded-full bg-peach/70" />
+              <div className="absolute top-[55%] right-[12%] w-1 h-1 rounded-full bg-white/50" />
+              <div className="absolute top-[30%] left-[15%] w-1 h-1 rounded-full bg-white/30" />
+
+              {/* Pill accent — top right */}
+              <div className="absolute top-[12%] right-[8%] px-3 py-1.5 rounded-full bg-white/8 border border-white/10 backdrop-blur-sm text-xs text-white/60 font-medium">
+                NW Indiana
+              </div>
+
+              {/* Pill accent — bottom left */}
+              <div className="absolute bottom-[14%] left-[6%] px-3 py-1.5 rounded-full bg-coral/20 border border-coral/30 backdrop-blur-sm text-xs text-coral font-medium">
+                ↑ Converts
+              </div>
+            </div>
           </div>
         </div>
 
