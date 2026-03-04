@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Nunito } from "next/font/google";
+import { Space_Grotesk, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
 import { ChatWidget } from "@/components/ui/ChatWidget";
@@ -7,10 +7,16 @@ import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { SmoothScrollProvider } from "@/lib/providers/SmoothScrollProvider";
 import { siteConfig } from "@/lib/constants";
 
-const nunito = Nunito({
-  variable: "--font-nunito",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
-  weight: ["300", "400", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -88,7 +94,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${nunito.variable} antialiased`}>
+      <body className={`${spaceGrotesk.variable} ${dmSans.variable} antialiased`}>
         <ThemeProvider>
           <SmoothScrollProvider>
             {children}
