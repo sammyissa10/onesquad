@@ -74,7 +74,7 @@ export function Process() {
   });
 
   return (
-    <section ref={scope} className="bg-white text-navy py-20 md:py-28">
+    <section ref={scope} className="bg-warm-white text-navy py-20 md:py-28">
       <Container>
         {/* Section Header */}
         <div className="process-heading text-center max-w-2xl mx-auto mb-16" data-animate>

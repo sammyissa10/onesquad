@@ -30,7 +30,7 @@ export function ScrollPromptBanner() {
   });
 
   return (
-    <section ref={scope} className="relative bg-white overflow-hidden">
+    <section ref={scope} className="relative bg-warm-white overflow-hidden">
       {/* Wavy top border SVG */}
       <div className="absolute top-0 left-0 right-0 z-10">
         <svg

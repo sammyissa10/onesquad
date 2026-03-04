@@ -29,7 +29,7 @@ export function Features() {
   });
 
   return (
-    <section ref={scope} className="bg-white text-navy py-20 md:py-28">
+    <section ref={scope} className="bg-warm-white text-navy py-20 md:py-28">
       <Container>
         {/* Asymmetric layout: heading left, cards right */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">

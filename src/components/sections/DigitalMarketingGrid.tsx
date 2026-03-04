@@ -37,7 +37,7 @@ export function DigitalMarketingGrid() {
   });
 
   return (
-    <section ref={scope} id="digital-marketing" className="bg-white text-navy py-20 md:py-28">
+    <section ref={scope} id="digital-marketing" className="bg-warm-white text-navy py-20 md:py-28">
       <Container>
         {/* Category Header */}
         <div className="dm-header mb-12" data-animate>
