@@ -8,6 +8,8 @@ export { HomeFAQ } from "./HomeFAQ";
 export { PricingCalculator } from "./PricingCalculator";
 export { Comparison } from "./Comparison";
 export { ScrollPromptBanner } from "./ScrollPromptBanner";
+export { TrustBadges } from "./TrustBadges";
+export { StatsSection } from "./StatsSection";
 export { ServicesHero } from "./ServicesHero";
 export { DigitalMarketingGrid } from "./DigitalMarketingGrid";
 export { WebSolutionsGrid } from "./WebSolutionsGrid";
