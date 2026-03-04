@@ -78,60 +78,112 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right: Abstract gradient composition */}
+          {/* Right: Device mockup — laptop + phone + social proof */}
           <div
             className="hero-block relative hidden md:flex items-center justify-center"
             aria-hidden="true"
             data-animate
           >
-            {/* Outer glow */}
-            <div className="absolute inset-0 rounded-full bg-coral/10 blur-3xl" />
+            {/* Background glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-coral/8 blur-3xl pointer-events-none" />
 
-            {/* Main blob — coral/peach radial */}
-            <div className="relative w-[480px] h-[480px]">
-              {/* Large background circle */}
-              <div className="absolute inset-0 rounded-full border border-white/5" />
+            <div className="relative w-[460px] h-[420px]">
 
-              {/* Primary coral blob */}
-              <div className="absolute top-[10%] left-[10%] w-[75%] h-[75%] rounded-full bg-gradient-to-br from-coral/40 via-peach/25 to-transparent blur-2xl" />
-
-              {/* Secondary peach blob offset */}
-              <div className="absolute bottom-[5%] right-[5%] w-[55%] h-[55%] rounded-full bg-gradient-to-tl from-peach/30 via-coral/15 to-transparent blur-2xl" />
-
-              {/* Navy inner ring */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] rounded-full border border-white/10" />
-
-              {/* Inner navy ring smaller */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] rounded-full border border-white/8" />
-
-              {/* Center dot */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-coral/80" />
-
-              {/* Geometric lines — diagonal grid */}
-              <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 480 480" fill="none">
-                <line x1="0" y1="120" x2="480" y2="360" stroke="white" strokeWidth="0.5"/>
-                <line x1="0" y1="240" x2="480" y2="240" stroke="white" strokeWidth="0.5"/>
-                <line x1="0" y1="360" x2="480" y2="120" stroke="white" strokeWidth="0.5"/>
-                <line x1="120" y1="0" x2="360" y2="480" stroke="white" strokeWidth="0.5"/>
-                <line x1="240" y1="0" x2="240" y2="480" stroke="white" strokeWidth="0.5"/>
-                <line x1="360" y1="0" x2="120" y2="480" stroke="white" strokeWidth="0.5"/>
-              </svg>
-
-              {/* Floating accent dots */}
-              <div className="absolute top-[18%] right-[20%] w-2 h-2 rounded-full bg-coral" />
-              <div className="absolute bottom-[22%] left-[18%] w-1.5 h-1.5 rounded-full bg-peach/70" />
-              <div className="absolute top-[55%] right-[12%] w-1 h-1 rounded-full bg-white/50" />
-              <div className="absolute top-[30%] left-[15%] w-1 h-1 rounded-full bg-white/30" />
-
-              {/* Pill accent — top right */}
-              <div className="absolute top-[12%] right-[8%] px-3 py-1.5 rounded-full bg-white/8 border border-white/10 backdrop-blur-sm text-xs text-white/60 font-medium">
-                NW Indiana
+              {/* ── Laptop ── */}
+              <div className="absolute top-0 left-0 w-[380px]">
+                {/* Screen bezel */}
+                <div className="w-full bg-[#0d1b2e] rounded-xl border border-white/15 shadow-2xl overflow-hidden">
+                  {/* Browser chrome */}
+                  <div className="flex items-center gap-1.5 px-3 py-2 bg-[#0a1525] border-b border-white/10">
+                    <div className="w-2.5 h-2.5 rounded-full bg-red-400/70" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/70" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-green-400/70" />
+                    <div className="ml-2 flex-1 bg-white/8 rounded px-2 py-0.5 text-[9px] text-white/40 font-mono">
+                      onesquads.com
+                    </div>
+                  </div>
+                  {/* Website preview content */}
+                  <div className="bg-[#F8F6F3] p-4 space-y-3">
+                    {/* Nav bar */}
+                    <div className="flex items-center justify-between">
+                      <div className="w-14 h-2.5 bg-[#1B2A4A] rounded-sm" />
+                      <div className="flex gap-2">
+                        <div className="w-7 h-1.5 bg-[#1B2A4A]/20 rounded-sm" />
+                        <div className="w-7 h-1.5 bg-[#1B2A4A]/20 rounded-sm" />
+                        <div className="w-7 h-1.5 bg-[#1B2A4A]/20 rounded-sm" />
+                        <div className="w-10 h-4 bg-coral rounded-full" />
+                      </div>
+                    </div>
+                    {/* Hero block */}
+                    <div className="bg-[#1B2A4A] rounded-lg p-4 space-y-2">
+                      <div className="w-4/5 h-4 bg-white/90 rounded" />
+                      <div className="w-3/5 h-4 bg-white/90 rounded" />
+                      <div className="w-2/5 h-3 bg-white/40 rounded mt-1" />
+                      <div className="flex gap-2 mt-2">
+                        <div className="w-16 h-5 bg-coral rounded-full" />
+                        <div className="w-16 h-5 border border-white/30 rounded-full" />
+                      </div>
+                    </div>
+                    {/* Card row */}
+                    <div className="grid grid-cols-3 gap-1.5">
+                      {[0,1,2].map(i => (
+                        <div key={i} className="bg-white rounded-md p-2 space-y-1 shadow-sm">
+                          <div className="w-4 h-4 rounded bg-coral/30" />
+                          <div className="w-full h-1.5 bg-gray-200 rounded" />
+                          <div className="w-3/4 h-1.5 bg-gray-100 rounded" />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                {/* Laptop base */}
+                <div className="mx-auto w-[60%] h-2 bg-[#0d1b2e] rounded-b-lg border-x border-b border-white/10" />
+                <div className="mx-auto w-[75%] h-1 bg-[#0a1525] rounded-b-xl" />
               </div>
 
-              {/* Pill accent — bottom left */}
-              <div className="absolute bottom-[14%] left-[6%] px-3 py-1.5 rounded-full bg-coral/20 border border-coral/30 backdrop-blur-sm text-xs text-coral font-medium">
-                ↑ Converts
+              {/* ── Phone mockup ── */}
+              <div className="absolute bottom-0 right-0 w-[100px] bg-[#0d1b2e] rounded-2xl border border-white/15 shadow-2xl overflow-hidden">
+                {/* Phone notch */}
+                <div className="flex justify-center pt-2 pb-1">
+                  <div className="w-8 h-1 bg-white/20 rounded-full" />
+                </div>
+                {/* Phone screen */}
+                <div className="mx-1.5 mb-2 bg-[#F8F6F3] rounded-xl overflow-hidden">
+                  <div className="bg-[#1B2A4A] p-2 space-y-1.5">
+                    <div className="w-3/4 h-2 bg-white/80 rounded" />
+                    <div className="w-1/2 h-2 bg-white/80 rounded" />
+                    <div className="w-12 h-3 bg-coral rounded-full mt-1" />
+                  </div>
+                  <div className="p-2 space-y-1">
+                    <div className="w-full h-1.5 bg-gray-200 rounded" />
+                    <div className="w-5/6 h-1.5 bg-gray-100 rounded" />
+                    <div className="w-4/6 h-1.5 bg-gray-100 rounded" />
+                  </div>
+                </div>
+                {/* Home bar */}
+                <div className="flex justify-center pb-2">
+                  <div className="w-6 h-0.5 bg-white/20 rounded-full" />
+                </div>
               </div>
+
+              {/* ── Floating badge: Google review ── */}
+              <div className="absolute -top-3 right-4 flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/15 rounded-xl px-3 py-2 shadow-lg">
+                <div className="flex text-yellow-400 text-[10px]">★★★★★</div>
+                <div>
+                  <div className="text-white text-[10px] font-semibold leading-none">5.0 Google</div>
+                  <div className="text-white/50 text-[8px] mt-0.5">Lakeside Dental</div>
+                </div>
+              </div>
+
+              {/* ── Floating badge: traffic up ── */}
+              <div className="absolute bottom-16 -left-4 flex items-center gap-2 bg-[#1B2A4A]/90 backdrop-blur-md border border-coral/30 rounded-xl px-3 py-2 shadow-lg">
+                <div className="w-6 h-6 rounded-lg bg-coral/20 flex items-center justify-center text-coral text-xs font-bold">↑</div>
+                <div>
+                  <div className="text-coral text-[11px] font-bold leading-none">+142%</div>
+                  <div className="text-white/50 text-[8px] mt-0.5">Monthly Traffic</div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
