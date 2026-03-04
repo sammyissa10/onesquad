@@ -1,217 +1,112 @@
 "use client";
 
-import {
-  X,
-  Check,
-  Clock,
-  DollarSign,
-  TrendingDown,
-  TrendingUp,
-  AlertTriangle,
-  Shield,
-  Zap,
-} from "lucide-react";
+import { X, Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { fadeUp, staggerFadeUp, TRIGGERS } from "@/lib/scrollAnimations";
+import { fadeUp, slideFromLeft, slideFromRight, TRIGGERS } from "@/lib/scrollAnimations";
 
-const withoutUsItems = [
-  {
-    icon: Clock,
-    title: "Wasted Time",
-    description: "Endless hours trying to figure out DIY website builders and marketing tools",
-  },
-  {
-    icon: DollarSign,
-    title: "Hidden Costs",
-    description: "Unexpected fees, premium plugins, and expensive freelancers that blow your budget",
-  },
-  {
-    icon: TrendingDown,
-    title: "Poor Results",
-    description: "Few visitors turning into customers, flat traffic, and marketing that doesn't pay off",
-  },
-  {
-    icon: AlertTriangle,
-    title: "Constant Stress",
-    description: "Dealing with technical problems, security scares, and unexpected site outages",
-  },
+const withoutItems = [
+  "Spending hours on DIY website builders",
+  "Juggling 5+ different tools and logins",
+  "Marketing that eats budget but brings no leads",
+  "Outdated site that looks broken on mobile",
+  "No idea what's working and what's not",
 ];
 
-const withUsItems = [
-  {
-    icon: Zap,
-    title: "Fast Launch",
-    description: "Your professional website live in weeks, not months, with expert guidance",
-  },
-  {
-    icon: DollarSign,
-    title: "Transparent Pricing",
-    description: "Clear, upfront costs with no surprises—everything included in your plan",
-  },
-  {
-    icon: TrendingUp,
-    title: "Real Growth",
-    description: "More people finding you in Google, more inquiries coming in, more sales closing",
-  },
-  {
-    icon: Shield,
-    title: "Peace of Mind",
-    description: "Reliable security, daily backups, and 99.9% uptime — all handled for you",
-  },
+const withItems = [
+  "Professional site live in 2-4 weeks",
+  "One team handles everything for you",
+  "Marketing that actually brings in customers",
+  "Fast, mobile-first design on every device",
+  "Monthly reports in plain English",
 ];
 
 export function Comparison() {
   const { scope } = useScrollAnimation(({ gsap }) => {
-    // Header: scale in
-    gsap.from('.comparison-header', {
-      opacity: 0,
-      scale: 0.85,
-      duration: 0.8,
-      ease: 'power2.out',
+    gsap.from(".comparison-header", {
+      ...fadeUp({ duration: 0.8 }),
       scrollTrigger: {
-        trigger: '.comparison-header',
-        start: TRIGGERS.standard,
-        invalidateOnRefresh: true,
+        trigger: ".comparison-header",
+        start: TRIGGERS.early,
       },
     });
 
-    // "Without" items: fast stagger fade up (they're being dismissed)
-    gsap.from('.without-item', {
-      ...fadeUp({ duration: 0.3 }),
-      stagger: staggerFadeUp({ each: 0.06 }),
+    gsap.from(".without-col", {
+      ...slideFromLeft(),
       scrollTrigger: {
-        trigger: '.without-section',
+        trigger: ".without-col",
         start: TRIGGERS.standard,
-        invalidateOnRefresh: true,
       },
     });
 
-    // Coral divider: gradient wipe from center outward
-    gsap.from('.divider-line', {
-      scaleX: 0,
-      duration: 1.2,
-      ease: 'power2.inOut',
+    gsap.from(".with-col", {
+      ...slideFromRight(),
       scrollTrigger: {
-        trigger: '.comparison-divider',
+        trigger: ".with-col",
         start: TRIGGERS.standard,
-        end: 'bottom 30%',
-        scrub: 1,
-        invalidateOnRefresh: true,
-      },
-    });
-
-    // Ensure cards start visible - GSAP will manage opacity via ScrollTrigger
-    gsap.set('.with-card', { autoAlpha: 1 });
-
-    // "With" cards: slower stagger scale reveal from center (premium feel)
-    gsap.from('.with-card', {
-      autoAlpha: 0,
-      scale: 0.92,
-      duration: 0.5,
-      ease: 'power2.out',
-      immediateRender: false,
-      stagger: staggerFadeUp({ each: 0.1, from: 'center' }),
-      scrollTrigger: {
-        trigger: '.with-section',
-        start: TRIGGERS.standard,
-        invalidateOnRefresh: true,
       },
     });
   });
 
   return (
-    <section ref={scope} className="relative bg-navy-deep text-white py-24 md:py-36 overflow-hidden">
-      {/* Top gradient border for visual separation from ServicesPreview */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-coral/20 to-transparent" />
-
-      <Container>
+    <section ref={scope} className="bg-navy-deep text-white py-20 md:py-28 overflow-hidden">
+      <Container className="max-w-[1200px]">
         {/* Section Header */}
-        <div className="comparison-header text-center max-w-3xl mx-auto mb-16 md:mb-20" data-animate>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            What Changes When You Stop{" "}
-            <span className="text-coral">Doing It Alone</span>
+        <div className="comparison-header text-center max-w-3xl mx-auto mb-12" data-animate>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Stop Juggling.{" "}
+            <span className="text-coral">Start Growing.</span>
           </h2>
-          <p className="text-white/60 text-lg md:text-xl">
-            You&apos;ve tried doing it all yourself. Here&apos;s what changes when you hand it off to a team that does this every day.
+          <p className="text-white/60 text-lg">
+            See the difference when you have a dedicated digital team.
           </p>
         </div>
 
-        {/* Without Section - Compact, Dismissed Items */}
-        <div className="without-section mb-12 md:mb-16">
-          <div className="flex items-center gap-3 mb-8 justify-center">
-            <div className="w-10 h-10 rounded-xl bg-coral/10 border border-coral/20 flex items-center justify-center">
-              <X className="w-5 h-5 text-coral/60" />
-            </div>
-            <h3 className="text-xl md:text-2xl font-bold text-coral/60">Without OneSquad</h3>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {withoutUsItems.map((item) => (
-              <div
-                key={item.title}
-                className="without-item flex items-start gap-4 bg-white/[0.03] border border-coral/15 rounded-2xl p-6"
-                data-animate
-              >
-                <div className="w-10 h-10 rounded-lg bg-coral/10 flex items-center justify-center flex-shrink-0 mt-1">
-                  <item.icon className="w-5 h-5 text-coral/60" />
-                </div>
-                <div>
-                  <h4 className="font-bold mb-1 text-white/80 line-through decoration-coral/40">
-                    {item.title}
-                  </h4>
-                  <p className="text-sm text-white/40">
-                    {item.description}
-                  </p>
-                </div>
+        {/* Two-column comparison */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {/* Left — Without OneSquad */}
+          <div
+            className="without-col bg-white/[0.03] border border-white/10 rounded-2xl p-8"
+            data-animate
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0">
+                <X className="w-4 h-4 text-red-400/60" />
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Coral Divider - Gradient Wipe */}
-        <div className="comparison-divider relative h-20 md:h-24 flex items-center justify-center mb-12 md:mb-16" data-animate>
-          <div className="divider-line w-full h-[3px] rounded-full bg-gradient-to-r from-transparent from-5% via-coral to-transparent to-95% shadow-[0_0_12px_rgba(255,107,107,0.4)]" />
-        </div>
-
-        {/* With Section - Elevated Premium Cards */}
-        <div className="with-section">
-          <div className="flex items-center gap-3 mb-8 justify-center">
-            <div className="w-10 h-10 rounded-xl bg-coral/10 border border-coral/20 flex items-center justify-center">
-              <Check className="w-5 h-5 text-coral" />
+              <h3 className="text-lg font-bold text-white/60">Without OneSquad</h3>
             </div>
-            <h3 className="text-xl md:text-2xl font-bold text-coral">With OneSquad</h3>
+            <div className="space-y-4">
+              {withoutItems.map((item) => (
+                <div key={item} className="flex items-start gap-3">
+                  <X className="w-5 h-5 text-red-400/60 flex-shrink-0 mt-0.5" />
+                  <span className="text-white/50 text-sm">{item}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {withUsItems.map((item) => (
-              <div
-                key={item.title}
-                className="with-card bg-white/5 border border-white/10 rounded-2xl p-6 hover:-translate-y-1.5 hover:shadow-lg hover:shadow-coral/10 transition-all duration-300"
-                data-cursor="card"
-                data-animate
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-coral/10 flex items-center justify-center flex-shrink-0">
-                    <item.icon className="w-6 h-6 text-coral" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-lg mb-2 text-white">
-                      {item.title}
-                    </h4>
-                    <p className="text-sm text-white/60">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
+          {/* Right — With OneSquad */}
+          <div
+            className="with-col bg-coral/5 border border-coral/20 rounded-2xl p-8"
+            data-animate
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 rounded-lg bg-coral/15 flex items-center justify-center flex-shrink-0">
+                <Check className="w-4 h-4 text-coral" />
               </div>
-            ))}
+              <h3 className="text-lg font-bold text-coral">With OneSquad</h3>
+            </div>
+            <div className="space-y-4">
+              {withItems.map((item) => (
+                <div key={item} className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-coral flex-shrink-0 mt-0.5" />
+                  <span className="text-white/80 text-sm">{item}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </Container>
-
-      {/* Bottom gradient border for visual separation from Process */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-coral/20 to-transparent" />
     </section>
   );
 }
