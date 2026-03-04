@@ -25,11 +25,12 @@ export function CTABanner() {
   });
 
   return (
-    <section ref={scope} className="bg-navy text-white py-20 md:py-28">
+    <section ref={scope} className="relative text-white py-20 md:py-28 overflow-hidden bg-gradient-to-br from-[#1B2A4A] via-[#2D3E5E] to-[#E8734A]/20">
+      <div className="absolute top-0 right-0 w-96 h-96 bg-coral/15 rounded-full blur-[120px] pointer-events-none -translate-y-1/3 translate-x-1/4" aria-hidden="true" />
       <Container>
         <div className="cta-content text-center max-w-3xl mx-auto">
           <h2
-            className="cta-heading text-3xl md:text-4xl font-bold text-white mb-4"
+            className="cta-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4"
             data-animate
           >
             Ready To Get Your Website{" "}
