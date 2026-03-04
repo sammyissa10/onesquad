@@ -69,9 +69,9 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-primary-brand text-white">
+    <footer className="bg-primary-brand text-white border-t-2 border-coral">
       {/* Newsletter Signup */}
-      <div className="border-b border-white/10">
+      <div className="border-b border-white/10 bg-gradient-to-r from-coral/10 via-transparent to-peach/10">
         <Container>
           <div className="py-10 flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
@@ -118,8 +118,17 @@ export function Footer() {
       </div>
 
       {/* Main Footer */}
-      <Container>
-        <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="relative">
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.03]"
+          aria-hidden="true"
+          style={{
+            backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
+            backgroundSize: '24px 24px',
+          }}
+        />
+        <Container>
+          <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Logo variant="light" showTagline className="mb-6" />
@@ -135,7 +144,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor="button"
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors"
+                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:bg-accent hover:text-white transition-colors duration-200"
                   aria-label={social.label}
                 >
                   <social.icon size={18} />
@@ -245,8 +254,9 @@ export function Footer() {
               </li>
             </ul>
           </div>
-        </div>
-      </Container>
+          </div>
+        </Container>
+      </div>
 
       {/* Trust Signals */}
       <div className="border-t border-white/10">
