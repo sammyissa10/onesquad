@@ -11,13 +11,16 @@
 :root {
   /* Brand Colors */
   --primary: #051733;
-  --accent: #E2795E;
+  --accent: #E8734A;
   --secondary: #FFBD83;
   --highlight: #27598E;
   --primary-brand: #051733;
+  --warm-white: #FDF8F5;
+  --navy-muted: #2D3E5E;
+  --gradient-accent: linear-gradient(135deg, #E8734A, #F4A261);
 
   /* Semantic Colors */
-  --background: #ffffff;
+  --background: #FDF8F5;
   --foreground: #051733;
   --muted: #f8fafc;
   --muted-foreground: #64748b;
@@ -52,12 +55,14 @@
   --color-card: var(--card);
 
   /* Brand Colors */
-  --color-navy: #051733;
-  --color-coral: #E2795E;
+  --color-navy: #1B2A4A;
+  --color-coral: #E8734A;
   --color-peach: #FFBD83;
   --color-blue: #27598E;
   --color-navy-section: #0F172A;
   --color-navy-deep: #0e1e36;
+  --color-warm-white: #FDF8F5;
+  --color-navy-muted: #2D3E5E;
 
   /* Typography Scale */
   --text-display: 5.5rem;
@@ -65,14 +70,18 @@
   --text-display--letter-spacing: -0.03em;
 
   /* Spacing Tokens */
-  --spacing-section-xs: 3rem;
-  --spacing-section-sm: 5rem;
-  --spacing-section-md: 7rem;
-  --spacing-section-lg: 10rem;
+  --spacing-section-xs: 4.5rem;
+  --spacing-section-sm: 7.5rem;
+  --spacing-section-md: 10.5rem;
+  --spacing-section-lg: 15rem;
+
+  /* Container */
+  --container-max: 1200px;
 
   /* Fonts */
-  --font-heading: "Coolvetica";
-  --font-body: var(--font-nunito);
+  --font-heading: var(--font-space-grotesk);
+  --font-body: var(--font-dm-sans);
+  --font-display: "Coolvetica";
 }
 
 /* Base Styles */
@@ -91,7 +100,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 /* Lenis smooth scroll */
@@ -144,6 +153,11 @@ html.lenis {
 
 /* Dark mode: convert white surfaces to dark card color */
 .dark .bg-white {
+  background-color: var(--card);
+}
+
+/* Dark mode: convert warm white surfaces to dark card color */
+.dark .bg-warm-white {
   background-color: var(--card);
 }
 
