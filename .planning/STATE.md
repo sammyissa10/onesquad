@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 Phase: 8 of 8 (Scroll Animations Site-wide)
 Plan: 5 of 5
 Status: Complete
-Last activity: 2026-02-13 - Completed quick task 21: Fix 5 color/design issues (tokenize navy, peach mismatch, gradient hardcode, comparison red, newsletter contrast)
+Last activity: 2026-03-04 - Completed quick task 23: Wave 1 redesign (colors, Space Grotesk, spacing, hero sizing, pill buttons)
 
 Progress: [████████████████████] 100%
 
@@ -226,6 +226,7 @@ None yet.
 | 20 | Fix 5 design errors (Badge dark mode, blog filter focus, newsletter input, team social links, portfolio sticky filter) | 2026-02-13 | 8e7fece | [20-fix-5-design-errors-badge-dark-mode-blog](./quick/20-fix-5-design-errors-badge-dark-mode-blog/) |
 | 21 | Fix 5 color/design issues (tokenize navy, peach mismatch, gradient hardcode, comparison red, newsletter contrast) | 2026-02-13 | f83e0a6 | [21-fix-5-color-design-issues-tokenize-navy-](./quick/21-fix-5-color-design-issues-tokenize-navy-/) |
 | 22 | Remove PortfolioPreview section from homepage | 2026-03-04 | f1268ee | [22-remove-the-website-portfolio-design-sect](./quick/22-remove-the-website-portfolio-design-sect/) |
+| 23 | Wave 1 redesign: colors, Space Grotesk font, spacing, hero sizing, pill buttons | 2026-03-04 | b486f4f | [23-wave-1-redesign-colors-space-grotesk-fon](./quick/23-wave-1-redesign-colors-space-grotesk-fon/) |
 | 23 | Wave 1 redesign: colors, Space Grotesk font, spacing | 2026-03-04 | f8f8076 | [23-wave-1-redesign-colors-space-grotesk-fon](./quick/23-wave-1-redesign-colors-space-grotesk-fon/) |
 
 ## Session Continuity
