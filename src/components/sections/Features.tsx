@@ -29,8 +29,8 @@ export function Features() {
   });
 
   return (
-    <section ref={scope} className="bg-warm-white text-navy py-20 md:py-28">
-      <Container>
+    <section ref={scope} className="bg-warm-white text-navy py-[var(--spacing-section-sm)] md:py-[var(--spacing-section-md)]">
+      <Container className="max-w-[1200px]">
         {/* Asymmetric layout: heading left, cards right */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left — heading and description */}

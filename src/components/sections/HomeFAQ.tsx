@@ -75,7 +75,7 @@ function FAQItem({ faq }: { faq: typeof homeFAQs[0] }) {
 
 export function HomeFAQ() {
   return (
-    <section className="bg-warm-white text-navy py-20 md:py-28">
+    <section className="bg-warm-white text-navy py-[var(--spacing-section-sm)] md:py-[var(--spacing-section-md)]">
       <Container size="md">
         {/* Section Header */}
         <div className="text-center mb-12">
