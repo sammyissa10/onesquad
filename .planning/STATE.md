@@ -176,6 +176,9 @@ Recent decisions affecting current work:
 - [Phase quick-9]: Timeline consolidation reduces ScrollTrigger instances without changing visual behavior
 - [Phase quick-10]: ResultsDashboardAnimation uses animated counters (traffic/conversions/revenue) to communicate outcomes vs static tagline
 - [Phase quick-12]: Extracted three separate calculator components to preserve each tier's distinct visual personality
+- **Quick-23:** Coolvetica demoted to display-only font (hero headline); Space Grotesk takes over as --font-heading for all other headings
+- **Quick-23:** Container max-w-[1200px] applied via className override; HomeFAQ kept at size=md (max-w-5xl) since FAQ is narrow by design
+- **Quick-23:** PricingCalculator skipped for bg-warm-white — no section-level bg-white present
 - **Quick-13:** Added border-t border-white/10 to Values section to visually separate from adjacent Vision section (both bg-[#0F172A])
 - **Quick-13:** Phone contactInfo entry falls back to mailto since siteConfig.phone is empty
 - **Quick-14:** Single GSAP timeline with scrub:1 for all divider elements (ring, lines, text) ensures cohesive scroll-linked playback
@@ -223,12 +226,13 @@ None yet.
 | 20 | Fix 5 design errors (Badge dark mode, blog filter focus, newsletter input, team social links, portfolio sticky filter) | 2026-02-13 | 8e7fece | [20-fix-5-design-errors-badge-dark-mode-blog](./quick/20-fix-5-design-errors-badge-dark-mode-blog/) |
 | 21 | Fix 5 color/design issues (tokenize navy, peach mismatch, gradient hardcode, comparison red, newsletter contrast) | 2026-02-13 | f83e0a6 | [21-fix-5-color-design-issues-tokenize-navy-](./quick/21-fix-5-color-design-issues-tokenize-navy-/) |
 | 22 | Remove PortfolioPreview section from homepage | 2026-03-04 | f1268ee | [22-remove-the-website-portfolio-design-sect](./quick/22-remove-the-website-portfolio-design-sect/) |
+| 23 | Wave 1 redesign: colors, Space Grotesk font, spacing | 2026-03-04 | f8f8076 | [23-wave-1-redesign-colors-space-grotesk-fon](./quick/23-wave-1-redesign-colors-space-grotesk-fon/) |
 
 ## Session Continuity
 
 Last session: 2026-03-04 (quick task execution)
-Stopped at: Completed quick-22-PLAN.md (remove PortfolioPreview section from homepage)
-Resume file: .planning/quick/22-remove-the-website-portfolio-design-sect/22-SUMMARY.md
+Stopped at: Completed quick-23-PLAN.md (wave 1 redesign: colors, Space Grotesk font, spacing)
+Resume file: .planning/quick/23-wave-1-redesign-colors-space-grotesk-fon/23-SUMMARY.md
 
 **Phase 08 Status:** COMPLETE (5 of 5 plans complete)
 - 08-01: GSAP scroll animation presets and homepage conversion (complete)
