@@ -5,7 +5,6 @@ export { Testimonials } from "./Testimonials";
 export { CTABanner } from "./CTABanner";
 export { Process } from "./Process";
 export { HomeFAQ } from "./HomeFAQ";
-export { PortfolioPreview } from "./PortfolioPreview";
 export { PricingCalculator } from "./PricingCalculator";
 export { Comparison } from "./Comparison";
 export { ScrollPromptBanner } from "./ScrollPromptBanner";

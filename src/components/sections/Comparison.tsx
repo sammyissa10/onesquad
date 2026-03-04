@@ -210,7 +210,7 @@ export function Comparison() {
         </div>
       </Container>
 
-      {/* Bottom gradient border for visual separation from PortfolioPreview */}
+      {/* Bottom gradient border for visual separation from Process */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-coral/20 to-transparent" />
     </section>
   );

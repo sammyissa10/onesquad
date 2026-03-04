@@ -6,7 +6,6 @@ import {
   ServicesPreview,
   Comparison,
   ScrollPromptBanner,
-  PortfolioPreview,
   Process,
   Testimonials,
   HomeFAQ,
@@ -23,7 +22,6 @@ export default function HomePage() {
         <ServicesPreview />
         <ScrollPromptBanner />
         <Comparison />
-        <PortfolioPreview />
         <Process />
         <Testimonials />
         <HomeFAQ />
