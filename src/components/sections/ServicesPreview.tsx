@@ -57,7 +57,9 @@ export function ServicesPreview() {
       stagger: 0.08,
       scrollTrigger: {
         trigger: ".services-list",
-        start: TRIGGERS.standard,
+        start: "top bottom",
+        once: true,
+        invalidateOnRefresh: true,
       },
     });
 

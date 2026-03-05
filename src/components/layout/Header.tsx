@@ -52,9 +52,7 @@ export function Header() {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        useDarkText
-          ? "bg-card/95 backdrop-blur-md shadow-lg"
-          : "bg-transparent"
+        "bg-card/95 dark:bg-white/95 backdrop-blur-md shadow-lg"
       )}
     >
       <Container>
@@ -79,7 +77,7 @@ export function Header() {
                   data-cursor="button"
                   className={cn(
                     "flex items-center gap-1 text-sm font-medium transition-colors hover:text-accent",
-                    pathname === item.href ? "text-accent" : useDarkText ? "text-foreground" : "text-white"
+                    pathname === item.href ? "text-accent" : "text-foreground dark:text-navy"
                   )}
                 >
                   {item.label}
@@ -130,9 +128,7 @@ export function Header() {
                 data-cursor="button"
                 className={cn(
                   "flex items-center gap-1.5 p-2 rounded-lg transition-colors",
-                  useDarkText
-                    ? "text-accent hover:text-accent/80 hover:bg-muted"
-                    : "text-white hover:text-white/80 hover:bg-white/10"
+                  "text-accent hover:text-accent/80 hover:bg-muted dark:hover:bg-navy/10"
                 )}
                 title="Price Calculator"
               >
@@ -141,9 +137,7 @@ export function Header() {
             </Link>
             <ThemeToggle
               className={cn(
-                useDarkText
-                  ? "text-foreground hover:bg-muted"
-                  : "text-white hover:bg-white/10"
+                "text-foreground dark:text-navy hover:bg-muted dark:hover:bg-navy/10"
               )}
             />
             <MagneticButton>
@@ -158,7 +152,7 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             data-cursor="button"
-            className={cn("lg:hidden p-3", useDarkText ? "text-foreground" : "text-white")}
+            className={cn("lg:hidden p-3 text-foreground dark:text-navy")}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
