@@ -99,7 +99,7 @@ export function Process() {
               className="process-step pt-8 pr-8 pb-4"
               data-animate
             >
-              <div className="text-6xl font-black text-white/8 leading-none mb-6 tabular-nums">
+              <div className="text-6xl font-black text-coral leading-none mb-6 tabular-nums">
                 {step.number}
               </div>
               <div className="timeline-dot w-10 h-10 rounded-full border border-white/20 flex items-center justify-center mb-5">
