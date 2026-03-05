@@ -81,7 +81,7 @@ export function Hero() {
 
         {/* Massive headline */}
         <h1
-          className="hero-headline text-[3rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[7rem] xl:text-[8rem] leading-[0.88] tracking-[-0.04em] text-white mb-12"
+          className="hero-headline text-[2.4rem] sm:text-[3.2rem] md:text-[4rem] lg:text-[5rem] xl:text-[6rem] leading-[0.92] tracking-[-0.03em] text-white mb-12"
           style={{ fontWeight: 900 }}
           data-animate
         >
