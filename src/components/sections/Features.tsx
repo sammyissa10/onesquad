@@ -53,7 +53,7 @@ export function Features() {
                 className="feature-row grid grid-cols-[3rem_1fr] gap-6 py-8 border-b border-navy/10 dark:border-border"
                 data-animate
               >
-                <span className="text-4xl font-black text-navy/20 dark:text-foreground/20 leading-none pt-1 tabular-nums">
+                <span className="text-4xl font-black text-coral leading-none pt-1 tabular-nums">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div>
