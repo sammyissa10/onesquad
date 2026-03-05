@@ -1,14 +1,12 @@
 "use client";
 
 import { Container } from "@/components/ui/Container";
-import { DynamicIcon } from "@/components/ui/Icon";
 import { valueProps } from "@/lib/constants";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { fadeUp, scaleReveal, TRIGGERS } from "@/lib/scrollAnimations";
+import { fadeUp, TRIGGERS } from "@/lib/scrollAnimations";
 
 export function Features() {
   const { scope } = useScrollAnimation(({ gsap }) => {
-    // Heading (left column): fade up with early trigger
     gsap.from('.features-heading', {
       ...fadeUp({ duration: 0.8 }),
       scrollTrigger: {
@@ -17,51 +15,54 @@ export function Features() {
       },
     });
 
-    // Cards (right column): single ScrollTrigger with stagger
-    gsap.from('.feature-card', {
-      ...scaleReveal(),
-      stagger: 0.12,
+    gsap.from('.feature-row', {
+      autoAlpha: 0,
+      y: 20,
+      duration: 0.6,
+      ease: "power2.out",
+      stagger: 0.1,
       scrollTrigger: {
-        trigger: '.feature-card',
-        start: TRIGGERS.late,
+        trigger: '.features-list',
+        start: TRIGGERS.standard,
       },
     });
   });
 
   return (
-    <section ref={scope} className="bg-warm-white text-navy py-[var(--spacing-section-sm)] md:py-[var(--spacing-section-md)]">
+    <section ref={scope} className="bg-warm-white dark:bg-card text-navy py-24 md:py-36">
       <Container className="max-w-[1200px]">
-        {/* Asymmetric layout: heading left, cards right */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          {/* Left — heading and description */}
+        <div className="grid lg:grid-cols-[1fr_1.6fr] gap-16 lg:gap-24 items-start">
+          {/* Left — sticky heading */}
           <div className="features-heading lg:sticky lg:top-32" data-animate>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-navy mb-4">
+            <p className="text-xs text-coral uppercase tracking-[0.2em] font-semibold mb-4">
+              Why OneSquad
+            </p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-navy dark:text-foreground leading-[1.05] tracking-tight mb-6">
               Why People Switch to OneSquad
             </h2>
-            <p className="text-navy/60 text-lg">
+            <p className="text-navy/55 dark:text-foreground/55 text-lg leading-relaxed">
               We&apos;re faster, more affordable, and we treat your business like it matters.
             </p>
           </div>
 
-          {/* Right — stacked cards */}
-          <div className="space-y-5">
-            {valueProps.map((prop) => (
+          {/* Right — numbered list */}
+          <div className="features-list border-t border-navy/10 dark:border-border">
+            {valueProps.map((prop, index) => (
               <div
                 key={prop.title}
-                data-cursor="card"
+                className="feature-row grid grid-cols-[3rem_1fr] gap-6 py-8 border-b border-navy/10 dark:border-border"
                 data-animate
-                className="feature-card bg-transparent border border-navy/10 dark:border-white/10 rounded-2xl p-6 hover:border-coral/30 transition-colors duration-200"
               >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-coral/5 flex items-center justify-center flex-shrink-0">
-                    <DynamicIcon name={prop.icon} className="w-6 h-6 text-coral" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-navy mb-1">
-                      {prop.title}
-                    </h3>
-                    <p className="text-navy/60 text-sm">{prop.description}</p>
-                  </div>
+                <span className="text-4xl font-black text-navy/10 dark:text-foreground/10 leading-none pt-1 tabular-nums">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="text-lg font-bold text-navy dark:text-foreground mb-1.5">
+                    {prop.title}
+                  </h3>
+                  <p className="text-navy/55 dark:text-foreground/55 text-sm leading-relaxed">
+                    {prop.description}
+                  </p>
                 </div>
               </div>
             ))}

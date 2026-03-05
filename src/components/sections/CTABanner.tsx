@@ -25,12 +25,14 @@ export function CTABanner() {
   });
 
   return (
-    <section ref={scope} className="relative text-white py-20 md:py-28 overflow-hidden bg-gradient-to-br from-[#1B2A4A] via-[#2D3E5E] to-[#E8734A]/20">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-coral/15 rounded-full blur-[120px] pointer-events-none -translate-y-1/3 translate-x-1/4" aria-hidden="true" />
+    <section ref={scope} className="bg-[#0d1525] text-white border-t-2 border-coral py-24 md:py-36 overflow-hidden">
       <Container>
-        <div className="cta-content text-center max-w-3xl mx-auto">
+        <div className="cta-content max-w-4xl">
+          <p className="text-xs text-coral uppercase tracking-[0.2em] font-semibold mb-6" data-animate>
+            Get Started
+          </p>
           <h2
-            className="cta-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4"
+            className="cta-heading text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[0.95] tracking-tight mb-8"
             data-animate
           >
             Ready To Get Your Website{" "}
@@ -38,14 +40,14 @@ export function CTABanner() {
           </h2>
 
           <p
-            className="cta-subtext text-lg text-white/60 mb-8"
+            className="cta-subtext text-lg text-white/45 mb-10 max-w-xl"
             data-animate
           >
             No 12-month contracts. No corporate jargon. Just results.
           </p>
 
           <div
-            className="cta-buttons flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="cta-buttons flex flex-wrap gap-4"
             data-animate
           >
             <MagneticButton>
@@ -67,30 +69,12 @@ export function CTABanner() {
                   variant="outline"
                   size="lg"
                   leftIcon={<Calendar size={20} />}
-                  className="border-white/30 text-white hover:bg-white hover:text-navy"
+                  className="border-white/20 text-white hover:bg-white hover:text-navy"
                 >
                   Schedule a Call
                 </Button>
               </Link>
             </MagneticButton>
-          </div>
-
-          <div
-            className="cta-badges mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-center gap-6 text-white/50 text-sm"
-            data-animate
-          >
-            <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
-              <span>No long-term contracts</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
-              <span>Response within 24 hours</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
-              <span>Cancel anytime</span>
-            </div>
           </div>
         </div>
       </Container>

@@ -2,7 +2,7 @@
 
 import { Container } from "@/components/ui/Container";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { fadeUp, TRIGGERS } from "@/lib/scrollAnimations";
+import { TRIGGERS } from "@/lib/scrollAnimations";
 
 const businessNames = [
   "Lakeside Dental",
@@ -15,38 +15,36 @@ const businessNames = [
 
 export function TrustBadges() {
   const { scope } = useScrollAnimation(({ gsap }) => {
-    gsap.from(".trust-heading", {
-      ...fadeUp({ duration: 0.8 }),
+    gsap.from(".trust-strip", {
+      autoAlpha: 0,
+      y: 10,
+      duration: 0.6,
+      ease: "power2.out",
       scrollTrigger: {
-        trigger: ".trust-heading",
+        trigger: ".trust-strip",
         start: TRIGGERS.early,
-      },
-    });
-
-    gsap.from(".trust-names", {
-      ...fadeUp(),
-      scrollTrigger: {
-        trigger: ".trust-names",
-        start: TRIGGERS.standard,
       },
     });
   });
 
   return (
-    <section ref={scope} className="bg-[#F5EFE0] dark:bg-card py-16 md:py-20">
+    <section ref={scope} className="bg-white dark:bg-card border-b border-navy/5 dark:border-border">
       <Container className="max-w-[1200px]">
-        <h2
-          className="trust-heading text-2xl md:text-3xl font-extrabold text-navy mb-6 text-center"
-          data-animate
-        >
-          Trusted by Local Businesses Across NW Indiana
-        </h2>
-        <p
-          className="trust-names text-navy/50 text-sm md:text-base font-medium tracking-wide text-center"
-          data-animate
-        >
-          {businessNames.join(" · ")}
-        </p>
+        <div className="trust-strip flex flex-wrap items-center gap-x-6 gap-y-2 py-5" data-animate>
+          <span className="text-xs text-navy/40 dark:text-foreground/40 uppercase tracking-[0.15em] font-medium whitespace-nowrap shrink-0">
+            Trusted by 50+ businesses
+          </span>
+          <div className="w-px h-4 bg-navy/10 dark:bg-border shrink-0 hidden sm:block" aria-hidden="true" />
+          <div className="flex flex-wrap items-center gap-x-1">
+            {businessNames.map((name, i) => (
+              <span key={name} className="text-sm text-navy/45 dark:text-foreground/45 font-medium">
+                {name}{i < businessNames.length - 1 && (
+                  <span className="mx-3 text-navy/15 dark:text-border" aria-hidden="true">·</span>
+                )}
+              </span>
+            ))}
+          </div>
+        </div>
       </Container>
     </section>
   );

@@ -49,37 +49,34 @@ export function Comparison() {
   });
 
   return (
-    <section ref={scope} className="bg-navy-deep text-white py-20 md:py-28 overflow-hidden">
+    <section ref={scope} className="bg-white dark:bg-card py-24 md:py-36 overflow-hidden">
       <Container className="max-w-[1200px]">
         {/* Section Header */}
-        <div className="comparison-header text-center max-w-3xl mx-auto mb-12" data-animate>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+        <div className="comparison-header mb-16" data-animate>
+          <p className="text-xs text-coral uppercase tracking-[0.2em] font-semibold mb-4">
+            The Difference
+          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-navy dark:text-foreground leading-[1.05] tracking-tight">
             Stop Juggling.{" "}
             <span className="text-coral">Start Growing.</span>
           </h2>
-          <p className="text-white/60 text-lg">
-            See the difference when you have a dedicated digital team.
-          </p>
         </div>
 
-        {/* Two-column comparison */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {/* Two-column comparison table */}
+        <div className="grid md:grid-cols-2 gap-0 border border-navy/10 dark:border-border rounded-2xl overflow-hidden">
           {/* Left — Without OneSquad */}
           <div
-            className="without-col bg-white/[0.03] border border-white/10 rounded-2xl p-8"
+            className="without-col p-8 md:p-10 border-b md:border-b-0 md:border-r border-navy/10 dark:border-border"
             data-animate
           >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0">
-                <X className="w-4 h-4 text-red-400/60" />
-              </div>
-              <h3 className="text-lg font-bold text-white/60">Without OneSquad</h3>
-            </div>
-            <div className="space-y-4">
+            <h3 className="text-sm font-semibold text-navy/40 dark:text-foreground/40 uppercase tracking-[0.15em] mb-8">
+              Without OneSquad
+            </h3>
+            <div className="space-y-5">
               {withoutItems.map((item) => (
-                <div key={item} className="flex items-start gap-3">
-                  <X className="w-5 h-5 text-red-400/60 flex-shrink-0 mt-0.5" />
-                  <span className="text-white/50 text-sm">{item}</span>
+                <div key={item} className="flex items-start gap-4">
+                  <X className="w-4 h-4 text-navy/20 dark:text-foreground/20 flex-shrink-0 mt-0.5" />
+                  <span className="text-navy/50 dark:text-foreground/50 text-sm leading-relaxed">{item}</span>
                 </div>
               ))}
             </div>
@@ -87,20 +84,17 @@ export function Comparison() {
 
           {/* Right — With OneSquad */}
           <div
-            className="with-col bg-coral/5 border border-coral/20 rounded-2xl p-8"
+            className="with-col bg-coral/[0.03] dark:bg-coral/5 p-8 md:p-10"
             data-animate
           >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-8 h-8 rounded-lg bg-coral/15 flex items-center justify-center flex-shrink-0">
-                <Check className="w-4 h-4 text-coral" />
-              </div>
-              <h3 className="text-lg font-bold text-coral">With OneSquad</h3>
-            </div>
-            <div className="space-y-4">
+            <h3 className="text-sm font-semibold text-coral uppercase tracking-[0.15em] mb-8">
+              With OneSquad
+            </h3>
+            <div className="space-y-5">
               {withItems.map((item) => (
-                <div key={item} className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-coral flex-shrink-0 mt-0.5" />
-                  <span className="text-white/80 text-sm">{item}</span>
+                <div key={item} className="flex items-start gap-4">
+                  <Check className="w-4 h-4 text-coral flex-shrink-0 mt-0.5" />
+                  <span className="text-navy/80 dark:text-foreground/80 text-sm leading-relaxed font-medium">{item}</span>
                 </div>
               ))}
             </div>

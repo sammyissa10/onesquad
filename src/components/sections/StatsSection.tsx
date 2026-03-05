@@ -50,14 +50,14 @@ export function StatsSection() {
   return (
     <section
       ref={scope}
-      className="bg-navy-deep text-white border-t-2 border-coral py-[var(--spacing-section-sm)] md:py-[var(--spacing-section-md)]"
+      className="bg-white dark:bg-card text-navy border-b border-navy/8 dark:border-border py-16 md:py-20"
     >
       <Container className="max-w-[1200px]">
-        <div className="grid grid-cols-2 md:grid-cols-4 divide-y-2 divide-white/10 md:divide-y-0 md:divide-x md:divide-white/10 text-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-navy/8 dark:divide-border text-center">
           {statsData.map((stat, index) => (
-            <div key={stat.label} className="stat-item px-6 py-8 md:py-0" data-animate>
+            <div key={stat.label} className="stat-item px-6 py-4" data-animate>
               <div
-                className={`stat-value-${index} text-6xl md:text-7xl lg:text-8xl font-black text-coral mb-3`}
+                className={`stat-value-${index} text-5xl md:text-6xl lg:text-7xl font-black text-coral mb-2`}
               >
                 {stat.isStatic
                   ? stat.staticValue
@@ -65,7 +65,7 @@ export function StatsSection() {
                   ? "0.0\u2605"
                   : `0${stat.suffix}`}
               </div>
-              <div className="text-xs md:text-sm text-white/40 uppercase tracking-[0.15em] mt-3">
+              <div className="text-xs text-navy/45 dark:text-foreground/45 uppercase tracking-[0.15em]">
                 {stat.label}
               </div>
             </div>
