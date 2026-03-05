@@ -15,12 +15,12 @@
   --secondary: #FFBD83;
   --highlight: #27598E;
   --primary-brand: #051733;
-  --warm-white: #FDF8F5;
+  --warm-white: #F5EFE0;
   --navy-muted: #2D3E5E;
   --gradient-accent: linear-gradient(135deg, #E8734A, #F4A261);
 
   /* Semantic Colors */
-  --background: #FDF8F5;
+  --background: #F5EFE0;
   --foreground: #051733;
   --muted: #f8fafc;
   --muted-foreground: #64748b;
@@ -61,7 +61,7 @@
   --color-blue: #27598E;
   --color-navy-section: #0F172A;
   --color-navy-deep: #0e1e36;
-  --color-warm-white: #FDF8F5;
+  --color-warm-white: #F5EFE0;
   --color-navy-muted: #2D3E5E;
 
   /* Typography Scale */
@@ -82,6 +82,9 @@
   --font-heading: var(--font-space-grotesk);
   --font-body: var(--font-dm-sans);
   --font-display: "Coolvetica";
+
+  /* Font Weight Tokens */
+  --font-weight-display: 900;
 }
 
 /* Base Styles */
@@ -99,8 +102,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  font-weight: 900;
+  letter-spacing: -0.04em;
 }
 
 /* Lenis smooth scroll */
