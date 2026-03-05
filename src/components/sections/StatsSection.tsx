@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef } from "react";
 import { Container } from "@/components/ui/Container";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { fadeUp, TRIGGERS } from "@/lib/scrollAnimations";
@@ -49,19 +48,24 @@ export function StatsSection() {
   });
 
   return (
-    <section ref={scope} className="bg-navy-deep text-white py-16 md:py-24">
+    <section
+      ref={scope}
+      className="bg-navy-deep text-white border-t-2 border-coral py-[var(--spacing-section-sm)] md:py-[var(--spacing-section-md)]"
+    >
       <Container className="max-w-[1200px]">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 divide-y-2 divide-white/10 md:divide-y-0 md:divide-x md:divide-white/10 text-center">
           {statsData.map((stat, index) => (
-            <div key={stat.label} className="stat-item" data-animate>
-              <div className={`stat-value-${index} text-4xl md:text-5xl font-bold text-coral mb-2`}>
+            <div key={stat.label} className="stat-item px-6 py-8 md:py-0" data-animate>
+              <div
+                className={`stat-value-${index} text-6xl md:text-7xl lg:text-8xl font-black text-coral mb-3`}
+              >
                 {stat.isStatic
                   ? stat.staticValue
                   : index === 3
                   ? "0.0\u2605"
                   : `0${stat.suffix}`}
               </div>
-              <div className="text-sm text-white/60 uppercase tracking-wider">
+              <div className="text-xs md:text-sm text-white/40 uppercase tracking-[0.15em] mt-3">
                 {stat.label}
               </div>
             </div>

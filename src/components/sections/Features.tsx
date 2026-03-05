@@ -35,7 +35,7 @@ export function Features() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left — heading and description */}
           <div className="features-heading lg:sticky lg:top-32" data-animate>
-            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-navy mb-4">
               Why People Switch to OneSquad
             </h2>
             <p className="text-navy/60 text-lg">
@@ -50,10 +50,10 @@ export function Features() {
                 key={prop.title}
                 data-cursor="card"
                 data-animate
-                className="feature-card bg-white/80 dark:bg-white/5 backdrop-blur-sm border border-white/20 rounded-2xl p-6 shadow-lg transition-transform duration-200 hover:-translate-y-1"
+                className="feature-card bg-transparent border border-navy/10 dark:border-white/10 rounded-2xl p-6 hover:border-coral/30 transition-colors duration-200"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-coral/10 flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-coral/5 flex items-center justify-center flex-shrink-0">
                     <DynamicIcon name={prop.icon} className="w-6 h-6 text-coral" />
                   </div>
                   <div>
