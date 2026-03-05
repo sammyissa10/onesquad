@@ -164,6 +164,11 @@ html.lenis {
   background-color: var(--card);
 }
 
+/* Dark mode: convert explicit warm beige (#F5EFE0) to dark card color */
+.dark .bg-\[\#F5EFE0\] {
+  background-color: var(--card);
+}
+
 /* Dark mode: convert navy text to light foreground on dark surfaces */
 .dark .text-navy {
   color: var(--foreground);

@@ -2,6 +2,7 @@ import { Header } from "@/components/layout";
 import { Footer } from "@/components/layout";
 import {
   Hero,
+  MarqueeTicker,
   Features,
   ServicesPreview,
   Comparison,
@@ -21,16 +22,17 @@ export default function HomePage() {
       <Header />
       <main>
         <Hero />
+        <MarqueeTicker />
         <TrustBadges />
         <StatsSection />
-        <WaveDivider fill="#FDF8F5" />
+        <WaveDivider fill="#F5EFE0" />
         <Features />
         <WaveDivider fill="#1B2A4A" flip />
         <ServicesPreview />
         <ScrollPromptBanner />
         <WaveDivider fill="#0e1e36" />
         <Comparison />
-        <WaveDivider fill="#FDF8F5" flip />
+        <WaveDivider fill="#F5EFE0" flip />
         <Process />
         <Testimonials />
         <HomeFAQ />
