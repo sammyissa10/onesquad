@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 Phase: 8 of 8 (Scroll Animations Site-wide)
 Plan: 5 of 5
 Status: Complete
-Last activity: 2026-03-04 - Completed quick task 23: Wave 1 redesign (colors, Space Grotesk, spacing, hero sizing, pill buttons)
+Last activity: 2026-03-05 - Completed quick task 26: Wave 4 redesign (professional agency look, hero, marquee ticker, stats, features)
 
 Progress: [████████████████████] 100%
 
@@ -54,6 +54,7 @@ Progress: [████████████████████] 100%
 | Phase quick-19 P01 | 3 | 2 tasks | 6 files |
 | Phase quick-20 P01 | 1.13 | 3 tasks | 4 files |
 | Phase quick-21 P01 | 3.3 | 3 tasks | 12 files |
+| Phase quick-26 P01 | 3 | 3 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -179,6 +180,7 @@ Recent decisions affecting current work:
 - **Quick-23:** Coolvetica demoted to display-only font (hero headline); Space Grotesk takes over as --font-heading for all other headings
 - **Quick-23:** Container max-w-[1200px] applied via className override; HomeFAQ kept at size=md (max-w-5xl) since FAQ is narrow by design
 - **Quick-23:** PricingCalculator skipped for bg-warm-white — no section-level bg-white present
+- **Quick-26:** warm-white updated to #F5EFE0; Hero bento grid replaced with full-width dark section at 7rem/weight-900; MarqueeTicker uses pure CSS keyframes; TrustBadges simplified to dot-separated inline text; StatsSection uses divide-x for vertical dividers; Features border-only cards replace glassmorphism
 - **Quick-13:** Added border-t border-white/10 to Values section to visually separate from adjacent Vision section (both bg-[#0F172A])
 - **Quick-13:** Phone contactInfo entry falls back to mailto since siteConfig.phone is empty
 - **Quick-14:** Single GSAP timeline with scrub:1 for all divider elements (ring, lines, text) ensures cohesive scroll-linked playback
@@ -228,12 +230,13 @@ None yet.
 | 22 | Remove PortfolioPreview section from homepage | 2026-03-04 | f1268ee | [22-remove-the-website-portfolio-design-sect](./quick/22-remove-the-website-portfolio-design-sect/) |
 | 23 | Wave 1 redesign: colors, Space Grotesk font, spacing, hero sizing, pill buttons | 2026-03-04 | b486f4f | [23-wave-1-redesign-colors-space-grotesk-fon](./quick/23-wave-1-redesign-colors-space-grotesk-fon/) |
 | 23 | Wave 1 redesign: colors, Space Grotesk font, spacing | 2026-03-04 | f8f8076 | [23-wave-1-redesign-colors-space-grotesk-fon](./quick/23-wave-1-redesign-colors-space-grotesk-fon/) |
+| 26 | Wave 4 redesign: professional agency look (hero, marquee, stats, features) | 2026-03-05 | edeeeb9 | [26-wave-4-redesign-professional-agency-look](./quick/26-wave-4-redesign-professional-agency-look/) |
 
 ## Session Continuity
 
-Last session: 2026-03-04 (quick task execution)
-Stopped at: Completed quick-23-PLAN.md (wave 1 redesign: colors, Space Grotesk font, spacing)
-Resume file: .planning/quick/23-wave-1-redesign-colors-space-grotesk-fon/23-SUMMARY.md
+Last session: 2026-03-05 (quick task execution)
+Stopped at: Completed quick-26-PLAN.md (wave 4 redesign: professional agency look)
+Resume file: .planning/quick/26-wave-4-redesign-professional-agency-look/26-SUMMARY.md
 
 **Phase 08 Status:** COMPLETE (5 of 5 plans complete)
 - 08-01: GSAP scroll animation presets and homepage conversion (complete)
