@@ -15,16 +15,16 @@
   --secondary: #FFBD83;
   --highlight: #27598E;
   --primary-brand: #051733;
-  --warm-white: #F5EFE0;
+  --warm-white: #F4F4F2;
   --navy-muted: #2D3E5E;
   --gradient-accent: linear-gradient(135deg, #E8734A, #F4A261);
 
   /* Semantic Colors */
-  --background: #F5EFE0;
+  --background: #FFFFFF;
   --foreground: #051733;
-  --muted: #f8fafc;
+  --muted: #f4f4f2;
   --muted-foreground: #64748b;
-  --border: #e2e8f0;
+  --border: #e8e8e8;
   --card: #ffffff;
 }
 
@@ -61,7 +61,7 @@
   --color-blue: #27598E;
   --color-navy-section: #0F172A;
   --color-navy-deep: #0e1e36;
-  --color-warm-white: #F5EFE0;
+  --color-warm-white: #F4F4F2;
   --color-navy-muted: #2D3E5E;
 
   /* Typography Scale */
@@ -164,8 +164,8 @@ html.lenis {
   background-color: var(--card);
 }
 
-/* Dark mode: convert explicit warm beige (#F5EFE0) to dark card color */
-.dark .bg-\[\#F5EFE0\] {
+/* Dark mode: convert explicit near-white (#F4F4F2) to dark card color */
+.dark .bg-\[\#F4F4F2\] {
   background-color: var(--card);
 }
 
