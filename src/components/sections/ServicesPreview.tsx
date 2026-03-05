@@ -49,20 +49,6 @@ export function ServicesPreview() {
       },
     });
 
-    gsap.from(".service-row", {
-      autoAlpha: 0,
-      y: 15,
-      duration: 0.5,
-      ease: "power2.out",
-      stagger: 0.08,
-      scrollTrigger: {
-        trigger: ".services-list",
-        start: "top bottom",
-        once: true,
-        invalidateOnRefresh: true,
-      },
-    });
-
     gsap.from(".services-cta", {
       ...fadeUp(),
       scrollTrigger: {
