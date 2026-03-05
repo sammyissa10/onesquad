@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 Phase: 8 of 8 (Scroll Animations Site-wide)
 Plan: 5 of 5
 Status: Complete
-Last activity: 2026-03-05 - Completed quick task 26: Wave 4 redesign (professional agency look, hero, marquee ticker, stats, features)
+Last activity: 2026-03-05 - Completed quick task 27: Wave 5 homepage overhaul (editorial typography, remove wave decorators, clean sections)
 
 Progress: [████████████████████] 100%
 
@@ -231,6 +231,7 @@ None yet.
 | 23 | Wave 1 redesign: colors, Space Grotesk font, spacing, hero sizing, pill buttons | 2026-03-04 | b486f4f | [23-wave-1-redesign-colors-space-grotesk-fon](./quick/23-wave-1-redesign-colors-space-grotesk-fon/) |
 | 23 | Wave 1 redesign: colors, Space Grotesk font, spacing | 2026-03-04 | f8f8076 | [23-wave-1-redesign-colors-space-grotesk-fon](./quick/23-wave-1-redesign-colors-space-grotesk-fon/) |
 | 26 | Wave 4 redesign: professional agency look (hero, marquee, stats, features) | 2026-03-05 | edeeeb9 | [26-wave-4-redesign-professional-agency-look](./quick/26-wave-4-redesign-professional-agency-look/) |
+| 27 | Wave 5 homepage overhaul: editorial typography, remove wave decorators, clean sections | 2026-03-05 | 54153ee | [27-wave-5-homepage-redesign-big-visual-over](./quick/27-wave-5-homepage-redesign-big-visual-over/) |
 
 ## Session Continuity
 
