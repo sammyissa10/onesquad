@@ -26,13 +26,13 @@ export function Hero() {
       <div className="relative z-10 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 md:pt-36 md:pb-20">
 
         {/* Bento grid */}
-        <div className="bento-grid flex flex-col lg:flex-row gap-3">
+        <div className="bento-grid flex flex-col lg:flex-row lg:items-stretch gap-3">
 
           {/* ── LEFT COLUMN ── */}
           <div className="flex flex-col gap-3 lg:w-[60%]">
 
             {/* Headline cell */}
-            <div className="bento-cell bg-navy dark:bg-[#1a2640] rounded-2xl p-7 md:p-9 flex flex-col gap-6 border border-navy/10 dark:border-white/5">
+            <div className="bento-cell bg-navy dark:bg-[#1a2640] rounded-2xl p-7 md:p-9 flex flex-col gap-6 border border-navy/10 dark:border-white/5 flex-1">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-coral animate-pulse" />
                 <span className="text-xs text-white/50 uppercase tracking-widest font-medium">NW Indiana Web Studio</span>

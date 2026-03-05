@@ -45,9 +45,8 @@ export function Header() {
     };
   }, [isMobileMenuOpen]);
 
-  // Only the home page has a dark hero behind the header; all other pages need solid styling
-  const isHomePage = pathname === "/";
-  const useDarkText = isScrolled || !isHomePage;
+  // Always use solid header — hero is no longer dark behind it
+  const useDarkText = true;
 
   return (
     <header
