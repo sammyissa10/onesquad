@@ -10,9 +10,9 @@ import type {
 // Site Configuration
 export const siteConfig = {
   name: "OneSquad",
-  tagline: "Your website, marketing, and support team — without the agency price tag",
+  tagline: "Your apps, websites, and marketing team — without the agency price tag",
   description:
-    "We handle websites, marketing, and everything in between so you can focus on running your business. Think of us as the digital team you never had to hire.",
+    "We build custom apps, websites, and run your marketing — all under one roof. Whether you need a management tool, a client portal, or a full digital presence, we handle it so you can focus on your business.",
   url: "https://www.onesquads.com",
   email: "ayaz.onesquad@outlook.com",
   phone: "",
@@ -39,6 +39,7 @@ export const navItems: NavItem[] = [
       { label: "PPC Advertising", href: "/services/ppc" },
       { label: "Content Marketing", href: "/services/content-marketing" },
       { label: "Web Design", href: "/services/web-design" },
+      { label: "Custom App Development", href: "/services/app-development" },
       { label: "E-commerce Solutions", href: "/services/ecommerce" },
       { label: "Hosting & Security", href: "/services/hosting" },
       { label: "Ongoing Maintenance", href: "/services/maintenance" },
@@ -250,6 +251,33 @@ export const services: Service[] = [
     serviceFaqs: [
       { question: "How long does it take to build a website?", answer: "Most standard websites take 2-4 weeks. More complex sites with custom features may take 4-8 weeks. We'll provide a detailed timeline during our consultation." },
       { question: "Will my website work on mobile devices?", answer: "Absolutely. Every website we build is fully responsive and optimized for all devices — phones, tablets, and desktops. Mobile-first design is our standard approach." },
+    ],
+  },
+  {
+    slug: "app-development",
+    title: "Custom App Development",
+    category: "web-solutions",
+    description:
+      "Custom-built apps for your business — management tools, client portals, booking systems, internal dashboards, and more. If you need software that fits how you actually work, we build it.",
+    shortDescription:
+      "Custom apps built around your business — not the other way around.",
+    icon: "AppWindow",
+    features: [
+      "Management apps for your team or clients",
+      "Client portals and booking systems",
+      "Internal dashboards and reporting tools",
+      "Inventory and order management systems",
+      "Works on desktop, tablet, and mobile",
+      "Built to scale as your business grows",
+    ],
+    results: [
+      { metric: "100%", description: "Built to your exact requirements" },
+      { metric: "2-6 wks", description: "Typical delivery time" },
+      { metric: "0", description: "Off-the-shelf compromises" },
+    ],
+    serviceFaqs: [
+      { question: "What kinds of apps do you build?", answer: "Management apps, client portals, booking and scheduling tools, internal dashboards, inventory systems, CRMs — anything your business needs that doesn't exist as an off-the-shelf solution." },
+      { question: "How long does a custom app take to build?", answer: "It depends on complexity. Simple tools can be ready in 2-3 weeks. More complex apps with multiple user roles and integrations typically take 4-8 weeks. We'll scope it out before any commitment." },
     ],
   },
   {
@@ -477,13 +505,13 @@ export const valueProps: ValueProp[] = [
   {
     title: "One team. Everything handled.",
     description:
-      "Website, search optimization, social media, email, hosting, maintenance — all from the same people who already know your business.",
+      "Apps, websites, search optimization, social media, email, hosting — all from the same people who already know your business.",
     icon: "Layers",
   },
   {
     title: "Start small, scale when you're ready.",
     description:
-      "Our plans grow with you. Most clients start with a website and add marketing later. No pressure, no upsells.",
+      "Our plans grow with you. Start with a website or app and add marketing later. No pressure, no upsells.",
     icon: "TrendingUp",
   },
   {
@@ -571,7 +599,7 @@ export const includedWithEveryPlan = [
 
 // Stats for social proof
 export const stats = [
-  { value: "21+", label: "Websites Launched" },
+  { value: "21+", label: "Projects Delivered" },
   { value: "2–4 wk", label: "Avg. Launch Time" },
   { value: "24/7", label: "Uptime Monitoring" },
   { value: "0", label: "Long-term Contracts" },

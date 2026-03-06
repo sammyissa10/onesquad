@@ -1,7 +1,7 @@
 "use client";
 
 const keywords =
-  "Web Design · SEO · Social Media · E-Commerce · Branding · Digital Ads";
+  "Custom Apps · Web Design · SEO · Social Media · E-Commerce · Branding · Digital Ads · Management Tools · Client Portals";
 
 // Duplicate 4x so the loop fills and cycles seamlessly
 const items = Array(4).fill(keywords);

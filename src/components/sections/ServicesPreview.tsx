@@ -8,19 +8,14 @@ import { fadeUp, TRIGGERS } from "@/lib/scrollAnimations";
 
 const previewServices = [
   {
+    title: "Custom Apps",
+    description: "Management tools, client portals, dashboards — built for how you actually work.",
+    slug: "app-development",
+  },
+  {
     title: "Web Design",
     description: "Professional websites that turn visitors into customers.",
     slug: "web-design",
-  },
-  {
-    title: "Social Media",
-    description: "Strategic content that builds your audience and drives leads.",
-    slug: "social-media",
-  },
-  {
-    title: "SEO",
-    description: "Get found by the right people when they search online.",
-    slug: "seo",
   },
   {
     title: "E-commerce",
@@ -28,9 +23,14 @@ const previewServices = [
     slug: "ecommerce",
   },
   {
-    title: "Branding",
-    description: "Logo, colors, voice — a cohesive brand identity that sticks.",
-    slug: "content-marketing",
+    title: "SEO",
+    description: "Get found by the right people when they search online.",
+    slug: "seo",
+  },
+  {
+    title: "Social Media",
+    description: "Strategic content that builds your audience and drives leads.",
+    slug: "social-media",
   },
   {
     title: "Digital Ads",
