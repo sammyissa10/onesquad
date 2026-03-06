@@ -1,4 +1,5 @@
 export { Hero } from "./Hero";
+export { PortfolioPreview } from "./PortfolioPreview";
 export { MarqueeTicker } from "./MarqueeTicker";
 export { Features } from "./Features";
 export { ServicesPreview } from "./ServicesPreview";

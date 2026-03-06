@@ -8,6 +8,7 @@ import {
   Comparison,
   Process,
   Testimonials,
+  PortfolioPreview,
   HomeFAQ,
   CTABanner,
   TrustBadges,
@@ -28,6 +29,7 @@ export default function HomePage() {
         <Comparison />
         <Process />
         <Testimonials />
+        <PortfolioPreview />
         <HomeFAQ />
         <CTABanner />
       </main>
